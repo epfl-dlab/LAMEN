@@ -1,0 +1,3 @@
+In an animal behavior study, two monkeys are trained to pull levers for rewards. Each monkey is put in separate, but identical, rooms with a lever. The monkeys, through previous training, know that they have a choice: pull the lever (share), or do nothing (hoard).
+
+If both monkeys pull the lever, they'll each be rewarded with 1 banana (the "normal" outcome). If one monkey pulls the lever while the other does nothing, the "generous" monkey will get nothing and the "greedy" monkey will receive 3 bananas. If both monkeys choose not to pull the lever, they'll each still get 1 banana. The research signals somethings about cooperative behavior and inherent self-interests of monkeys. 

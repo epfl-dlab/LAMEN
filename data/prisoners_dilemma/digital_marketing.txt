@@ -1,0 +1,3 @@
+Within the realm of digital marketing, there are two rival companies bidding for ad space on a popular website. They can either bid high (assert dominance) or low (play it safe).
+
+If both bid low, they will each end up with equally less desirable ad spots but at a low cost. If one bids high while the other bids low, the high bidder lands the prime ad spot without competition and low bidder gets the less desirable spot. If both bid high, they'll have to participate in a bidding war and possibly pay more than intended for the prime spot. This exemplifies risk-reward trade-offs and competitive behavior in business. 
