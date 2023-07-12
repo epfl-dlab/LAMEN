@@ -1,0 +1,51 @@
+Financing, Payoff
+$20 million now, 0
+$21 million now, 100
+$22 million now, 200
+$23 million now, 300 
+$24 million now, 400 
+$25 million now, 500
+$26 million now, 600
+$27 million now, 700
+$28 million now, 800
+$29 million now, 900
+$30 million now, 1,000
+
+Family Employees, Payoff 
+0 employees, 0
+1 employees, 250
+2 employees, 500
+3 employees, 750
+4 employees, 1,000
+5 employees, 1,250
+6 employees, 1,500
+7 employees, 1,750
+8 employees, 2,000
+9 employees, 2,250
+10 employees, 2,500
+
+Non-compete Period, Payoff
+10 years, 0
+9 years, 150
+8 years, 300
+7 years, 450
+6 years, 600
+5 years, 750
+4 years, 900
+3 vears, 1,050
+2 years, 1,200
+1 years, 1,350
+0 years, 1,500
+
+Contingent Liability, Payoff
+0 percent, 0
+10 percent, 50
+20 percent, 100
+30 percent, 150
+40 percent, 200
+50 percent, 250
+60 percent, 300
+70 percent, 350
+80 percent, 400
+90 percent, 450
+100 percent, 500
