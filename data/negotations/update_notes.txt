@@ -1,0 +1,3 @@
+Given this history of negotiations, update your previous set of notes to the next round of negotations. Notes should be {word_count} words.
+
+Previous set of notes: {notes}
