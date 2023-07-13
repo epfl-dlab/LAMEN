@@ -13,6 +13,7 @@ from langchain.schema import (
     SystemMessage
 )
 from langchain.chat_models import ChatOpenAI
+from langchain import LLMChain
 
 from utils import return_agent_prompts, notes_prompts
 from config import EXISTING_ROLES
@@ -32,6 +33,16 @@ WORD_COUNT=200  # how many words should the notes be
 
 class NegotiationAgent:
     def __init__(self, agent_name: str) -> None:
+        """
+        Class creates agents for negotation tasks. Currently, there are 
+        two possible agent names, but will implement more as more
+        negotation stories emerge. 
+        
+
+        Args:
+            agent_name (str): Name of agent name. Payoff table must exist. 
+        """
+        
         self.main_text, self.payoff = return_agent_prompts(agent_name) # AKA the stories
         self.init_notes_prompt, self.update_notes_prompt = notes_prompts() # determine how to write prompts
 
@@ -47,40 +58,74 @@ class NegotiationAgent:
         log.info("Initializing Chat model")
         self.chat_model = ChatOpenAI()
         
+        
+        # somehow need to keep track of notes evolution and 
+        # history of conversation to keep prompts coming.
         self.history = []
+        self.notes_history = []
 
-    def initialize_notes(self):
+    def initialize_notes(self) -> None: 
+        """
+        Initializes notes for agents prior to negotiations. 
+        """
         chat_prompt = self._system_prompt.format_prompt(note_gen=[self.init_notes_prompt]).to_messages()
         resp = self.chat_model(chat_prompt)
         self.notes = resp.content
-        self.history += AIMessage(content=self.notes)
+        self.notes_history += AIMessage(content=self.notes)
+        
+        # update system prompt to also have notes.
         self.system_prompt = SystemMessagePromptTemplate.from_template(self._combine_notes(self.context, self.notes))
 
 
-    def initialize_negotations(self, initialization_text="Start negotations."):
+    def initialize_negotations(self, initialization_text: str) -> str:
         """
         Method to be used if this agent begins negotations.
+        
 
-        Determine the correct initialization text.
+        TODO: Determine the correct initialization text.
         """
+        
+        # create chat prompt
         chat_prompt = ChatPromptTemplate.from_messages([
                     self.system_prompt, 
                     HumanMessagePromptTemplate.from_template(initialization_text)]
                 )
-        print(chat_prompt)
-        self.chat_model = ChatOpenAI()
-
-        initial_negotation = self.chat_model(chat_prompt).content
-        self.history += AIMessage(content=initial_negotation)
+        
+        # initiialize openai model. not sure if i have to do this. 
+        self.chat_model = ChatOpenAI(max_tokens=128,model_name="gpt-4")
+        
+        # creating an LLM chain due to various bugs in just using chat model. 
+        llm = LLMChain(llm=self.chat_model, prompt=chat_prompt)
+        
+        # TODO: figure out why you have to add an input to the llm run function.
+        initial_negotation = llm.run(input="")          # outputs a string!(???)
+        
+        # TODO: Determine how to keep track of history.
+        self.history.append(AIMessage(content=initial_negotation))
         return initial_negotation
     
-    def step(self, new_message):
-        self.history += HumanMessage(content=new_message)
-        update_prompt = ChatPromptTemplate.from_messages(self.system_prompt, self.history)
-        next_negotiation = self.chat_model(update_prompt)
-        self.history += next_negotiation
-        return next_negotiation.content
+    def step(self, new_message: str) -> str:
+        """Takes the message from the previous output and has this agent
+        outputs an a response.
+
+        Args:
+            new_message (str): Message from (other) agent
+
+        Returns:
+            str: New message from (this) agent.
+        """
+        # we will first add the other output to this agents history.
+        self.history.append(HumanMessage(content=new_message))
+        update_prompt = ChatPromptTemplate.from_messages([self.system_prompt] + self.history)
+        # initiialize openai model. not sure if i have to do this. 
+        self.chat_model = ChatOpenAI(max_tokens=128,model_name="gpt-4")
         
+        # creating an LLM chain due to various bugs in just using chat model. 
+        llm = LLMChain(llm=self.chat_model, prompt=update_prompt)
+        response = llm.run(input="")          # outputs a string!(???)
+
+        self.history.append(AIMessage(content=response))
+        return response
 
     def complete_negotation(self):
         return self.notes
@@ -95,20 +140,39 @@ class NegotiationAgent:
     
     @staticmethod
     def _combine_notes(main, notes):
+        # Another weird function to combien two strings. 
+        # This must be better designed.
         return main + "\n\nNotes:\n\n" + notes
 
 class CollaborativeAgents:
-    def __init__(self, agent_list: List[NegotiationAgent]):
-        pass
+    def __init__(self):
+        # instantiate the two agents
+        self.cpc = NegotiationAgent("cpc")
+        self.costa = NegotiationAgent("hp_costa")
+        
+        # define their negotation intialization text.
+        self.cpc_negotiation_text = "You are meeting with H.P. Costa of Rio Copa Foods to begin the negotations. You will start the discussions."
+        self.chp_costa_negotiation_text = "You are meeting with P.J. Green of CPC to begin the negotations. You will start the discussions."
 
+        # have them come up with their notes
+        self.cpc.initialize_notes()
+        self.costa.initialize_notes()
+        
+    def run(self, num_steps=2):
+        f = open("outputs", "a")
+        # let's get the ball rolling
+        output_text = self.cpc.initialize_negotations(self.cpc_negotiation_text)
+        f.write(output_text)
+        # if cpc begins, then we must feed it into costa next
+        for _ in range(2):
+            step_text = self.costa.step(output_text)
+            output_text = self.cpc.step(step_text)
+            f.write(step_text)
+            f.write(output_text)
+            
+        
 
 if __name__=="__main__":
-    # preliminatry code running
-    # check init
-    na = NegotiationAgent("cpc")
-
-    # check note-taking process
-    na.initialize_notes()
+    ca = CollaborativeAgents()
     
-    # check initialize negotations 
-    na.initialize_negotations()
+    ca.run()
