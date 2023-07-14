@@ -7,11 +7,13 @@ from typing import Callable, List, Tuple, Any, Dict, cast, Union
 import tiktoken
 from abc import ABC
 import json
+from retry import retry
 
 
 class BaseMessage(ABC):
     def format_prompt(self, before, to):
         self.content = self.content.replace("{"+before+"}", f"{to}")
+        return self
         
     def prepare_for_generation(self):
         return {"role": self.role, "content": self.content}
@@ -23,31 +25,36 @@ class BaseMessage(ABC):
         return self.content 
     
 class AIMessage(BaseMessage):
-    def __init__(self, text):
+    def __init__(self, content):
         super().__init__()
         self.role = "assistant"
-        self.content = text
+        self.content = content
     
     def __repr__(self):
         return f'AIMessage("content={self.content}")'
     
 class HumanMessage(BaseMessage):
-    def __init__(self, text):
+    def __init__(self, content):
         super().__init__()
         self.role = "user"
-        self.content = text
+        self.content = content
     
     def __repr__(self):
         return f'HumanMessage("content={self.content}")'
     
 class SystemMessage(BaseMessage):
-    def __init__(self, text):
+    def __init__(self, content):
         super().__init__()
         self.role = "system"
-        self.content = text
+        self.content = content
     
     def __repr__(self):
         return f'SystemMessage("content={self.content}")'
+    
+    def __add__(self, otherSystem):
+        # i think this is the only class that will require adding.
+        return SystemMessage(self.content + "\n" + otherSystem.content)
+        
 
 class ChatModel:
     def __init__(self, openai_api_key:str=None, 
@@ -93,16 +100,26 @@ class ChatModel:
         output_tokens = estimated_output_tokens
         
         in_price, out_price = get_model_pricing(self.model_name)
-        return input_tokens*in_price + output_tokens*out_price
+        price = round((input_tokens*in_price + output_tokens*out_price) / 1000, 4) 
         
-    
+        return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
+        
+
+    @retry(requests.exceptions.RequestException, tries=3, delay=2, backoff=2)
     def __call__(self, messages: List[BaseMessage]):
         data = [k.prepare_for_generation() for k in messages]
         data = {
             "model": self.model_name,
-            "messages": data
+            "messages": data,
+            "temperature": self.temperature,
+            "max_tokens": self.max_tokens
         }
         response = requests.post(self.url, headers=self.headers, data=json.dumps(data))
+        
+        # check for errors
+        if response.status_code != 200:
+            raise requests.exceptions.RequestException("Not a 200 response")
+        
         self.response = AIMessage(response.json()["choices"][0]["message"]["content"])
         messages.append(self.response)
         self.messages = messages
