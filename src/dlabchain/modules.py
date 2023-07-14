@@ -12,6 +12,7 @@ import json
 class BaseMessage(ABC):
     def format_prompt(self, before, to):
         self.content = self.content.replace("{"+before+"}", f"{to}")
+        return self
         
     def prepare_for_generation(self):
         return {"role": self.role, "content": self.content}
@@ -23,31 +24,36 @@ class BaseMessage(ABC):
         return self.content 
     
 class AIMessage(BaseMessage):
-    def __init__(self, text):
+    def __init__(self, content):
         super().__init__()
         self.role = "assistant"
-        self.content = text
+        self.content = content
     
     def __repr__(self):
         return f'AIMessage("content={self.content}")'
     
 class HumanMessage(BaseMessage):
-    def __init__(self, text):
+    def __init__(self, content):
         super().__init__()
         self.role = "user"
-        self.content = text
+        self.content = content
     
     def __repr__(self):
         return f'HumanMessage("content={self.content}")'
     
 class SystemMessage(BaseMessage):
-    def __init__(self, text):
+    def __init__(self, content):
         super().__init__()
         self.role = "system"
-        self.content = text
+        self.content = content
     
     def __repr__(self):
         return f'SystemMessage("content={self.content}")'
+    
+    def __add__(self, otherSystem):
+        # i think this is the only class that will require adding.
+        return SystemMessage(self.content + "\n" + otherSystem.content)
+        
 
 class ChatModel:
     def __init__(self, openai_api_key:str=None, 
@@ -93,7 +99,9 @@ class ChatModel:
         output_tokens = estimated_output_tokens
         
         in_price, out_price = get_model_pricing(self.model_name)
-        return input_tokens*in_price + output_tokens*out_price
+        price = round(input_tokens*in_price + output_tokens*out_price, 2)
+        
+        return f"${price}"
         
     
     def __call__(self, messages: List[BaseMessage]):
