@@ -110,7 +110,9 @@ class ChatModel:
         data = [k.prepare_for_generation() for k in messages]
         data = {
             "model": self.model_name,
-            "messages": data
+            "messages": data,
+            "temperature": self.temperature,
+            "max_tokens": self.max_tokens
         }
         response = requests.post(self.url, headers=self.headers, data=json.dumps(data))
         
