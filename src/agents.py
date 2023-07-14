@@ -18,7 +18,7 @@ log = logging.getLogger("my-logger")
 WORD_COUNT=200  # how many words should the notes be
 
 class NegotiationAgent:
-    def __init__(self, agent_name: str, talkative: str=128) -> None:
+    def __init__(self, agent_name: str, talkative: int=20) -> None:
         """
         Class creates agents for negotation tasks. Currently, there are 
         two possible agent names, but will implement more as more
@@ -30,6 +30,7 @@ class NegotiationAgent:
             talkative (str) : Determines how much the agent will talk and think
         """
         self.max_tokens = talkative
+        self.model_name = "gpt-3.5-turbo"
         
         self.main_text, self.payoff = return_agent_prompts(agent_name) # AKA the stories
         self.init_notes_prompt, self.update_notes_prompt = notes_prompts() # determine how to write prompts
@@ -42,10 +43,9 @@ class NegotiationAgent:
         self.init_notes_prompt = HumanMessage(self.init_notes_prompt).format_prompt("word_count", str(WORD_COUNT))
         self.update_notes_prompt = HumanMessage(self.update_notes_prompt).format_prompt("word_count", str(WORD_COUNT))
 
+
         log.info("Initializing Chat model")
-        self.chat_model = ChatModel()
-        
-        
+        self.chat_model = ChatModel(model_name=self.model_name, max_tokens=self.max_tokens)
         # somehow need to keep track of notes evolution and 
         # history of conversation to keep prompts coming.
         self.history = []
@@ -56,14 +56,16 @@ class NegotiationAgent:
         Initializes notes for agents prior to negotiations. 
         """
         # provide agent with task and previous notes
-        chat_prompt = [self._system_prompt, HumanMessage(self.init_notes_prompt)]
+        chat_prompt = [self._system_prompt, self.init_notes_prompt]
+        print(f"Negotitation Cost will be: {self.chat_model.estimate_cost(chat_prompt, self.max_tokens)}")
+        
         resp = self.chat_model(chat_prompt)
         
         # save most recent notes in self.notes.
         self.notes = resp.content
         
         # self.notes_history holds all notes the agent has taken.
-        self.notes_history += resp
+        self.notes_history.append(resp)
         
         # update system prompt to also have notes.
         self.system_prompt = SystemMessage(self._combine_notes(self.context, self.notes))
@@ -81,12 +83,12 @@ class NegotiationAgent:
         chat_prompt = [self.system_prompt, HumanMessage(initialization_text)]
         
         # initiialize openai model. not sure if i have to do this. 
-        self.chat_model = ChatModel(max_tokens=self.max_tokens,model_name="gpt-4")
+        self.chat_model = ChatModel(model_name=self.model_name, max_tokens=self.max_tokens)
         initial_negotation = self.chat_model(chat_prompt)
         
         # TODO: Determine how to keep track of history.
-        self.history.append(AIMessage(content=initial_negotation))
-        return initial_negotation
+        self.history.append(initial_negotation)
+        return initial_negotation.content
     
     def step(self, new_message: str) -> str:
         """Takes the message from the previous output and has this agent
@@ -103,7 +105,7 @@ class NegotiationAgent:
         update_prompt = [self.system_prompt]+self.history
         
         # initiialize openai model. not sure if i have to do this. 
-        self.chat_model = ChatModel(max_tokens=self.max_tokens,model_name="gpt-4")
+        self.chat_model = ChatModel(model_name=self.model_name, max_tokens=self.max_tokens)
 
         print("Estimated cost: ", self.chat_model.estimate_cost(update_prompt, self.max_tokens))
         
@@ -132,7 +134,7 @@ class NegotiationAgent:
         - Append a message asking to update notes.
         """        
         # new prompt
-        update_prompt = [self.system_prompt]+ self.history + [self.update_notes_prompt]
+        update_prompt = [self.system_prompt] + self.history + [self.update_notes_prompt]
 
         new_notes = self.chat_model(update_prompt)
         
@@ -172,20 +174,26 @@ class CollaborativeAgents:
         self.costa.initialize_notes()
         
     def run(self, num_steps=2):
-        f = open("outputs", "wa")
+        f = open("outputs", "w")
         # let's get the ball rolling
+        f.write("Costa original notes: " + self.costa.notes)
+        f.write("\n\nCPC original notes: " + self.cpc.notes)
+
         output_text = self.cpc.initialize_negotations(self.cpc_negotiation_text)
-        f.write(output_text)
+        f.write("\n\nInitial negotiations: " + output_text)
         # if cpc begins, then we must feed it into costa next
         for _ in range(2):
             for _ in range(num_steps):
                 step_text = self.costa.step(output_text)
                 output_text = self.cpc.step(step_text)
-                f.write(step_text)
-                f.write(output_text)
+                f.write("\n\nCosta step:" + step_text)
+                f.write("\n\nCPC step:" + output_text)
             
             self.costa.update_notes()
+            f.write("\n\nCosta new notes: " + self.costa.notes)
             self.cpc.update_notes()
+            f.write("\n\nCPC new notes: " + self.cpc.notes)
+
             
         
         f.write("===================")

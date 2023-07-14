@@ -7,6 +7,7 @@ from typing import Callable, List, Tuple, Any, Dict, cast, Union
 import tiktoken
 from abc import ABC
 import json
+from retry import retry
 
 
 class BaseMessage(ABC):
@@ -99,11 +100,12 @@ class ChatModel:
         output_tokens = estimated_output_tokens
         
         in_price, out_price = get_model_pricing(self.model_name)
-        price = round(input_tokens*in_price + output_tokens*out_price, 2)
+        price = round((input_tokens*in_price + output_tokens*out_price) / 1000, 4) 
         
-        return f"${price}"
+        return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
         
-    
+
+    @retry(requests.exceptions.RequestException, tries=3, delay=2, backoff=2)
     def __call__(self, messages: List[BaseMessage]):
         data = [k.prepare_for_generation() for k in messages]
         data = {
@@ -111,6 +113,11 @@ class ChatModel:
             "messages": data
         }
         response = requests.post(self.url, headers=self.headers, data=json.dumps(data))
+        
+        # check for errors
+        if response.status_code != 200:
+            raise requests.exceptions.RequestException("Not a 200 response")
+        
         self.response = AIMessage(response.json()["choices"][0]["message"]["content"])
         messages.append(self.response)
         self.messages = messages
