@@ -159,8 +159,8 @@ class NegotiationAgent:
         # This must be better designed.
         return main + "\n\nNotes:\n\n" + notes
 
-class CollaborativeAgents:
-    def __init__(self):
+class NegotiatingAgents:
+    def __init__(self, agents: List[str]):
         # instantiate the two agents
         self.cpc = NegotiationAgent("cpc")
         self.costa = NegotiationAgent("hp_costa")
@@ -198,9 +198,9 @@ class CollaborativeAgents:
         
         f.write("===================")
             
-        
+
 
 if __name__=="__main__":
-    ca = CollaborativeAgents()
+    ca = NegotiatingAgents()
     
     ca.run()
