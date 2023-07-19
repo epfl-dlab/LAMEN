@@ -1,0 +1,1 @@
+Your payoff is how much money you can save by buying the object.
