@@ -56,6 +56,8 @@ class SystemMessage(BaseMessage):
         return SystemMessage(self.content + "\n" + otherSystem.content)
         
 
+# TODO: azure and openai work slightly different, make sure both are supported for v1
+# TODO: assume a local secrets.json file that hosts keys to avoid accidental version control commits
 class ChatModel:
     def __init__(self, openai_api_key:str=None, 
                         max_tokens:int=256, 
