@@ -20,14 +20,17 @@ NOTE: older versions of Python could work but are not tested
 ## Structure
 - data/
   - agent_descriptions/: .json agent files, e.g., age, backstory, profession, etc.
-  - games/: .json files of games (see `game_creator.py`)
+  - games/: .json files of games (see `game_utils.py`)
+  - message_prompts/: (to-do)
+  - note_prompts/: (to-do)
   - results/: outputs of running experiments
 - src
+  - utils/ (to-refactor) 
+    - `utils.py`: helper functions
+    - `game_utils.py`: (heavy TODOs) create games in structured format
+    - `dlabchain/`: various helper files to query LLM REST APIs
   - `agents.py`: agent and negotiation classes
   - `run_file.py`: run experiments
-  - `utils.py`: helper functions
-  - `game_creator.py`: (heavy TODOs) create games in structured format
-  - `dlabchain/`: various helper files to query LLM REST APIs
 - `explorations.ipynb`: notebook to scratch on
 - `secrets.json`: local file to host API keys
 

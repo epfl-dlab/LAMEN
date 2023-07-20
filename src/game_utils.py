@@ -95,3 +95,5 @@ def create_game(issue_types: list, issue_importance: list, issue_names=None, iss
     return game
 
 
+def load_game(game_name: str) -> dict:
+    pass
