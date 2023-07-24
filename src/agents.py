@@ -3,18 +3,18 @@ import os
 import json
 import csv
 from dlabchain import AIMessage, SystemMessage, HumanMessage, ChatModel
+from typing import Tuple
+from omegaconf import DictConfig, OmegaConf
 
 import logging
 log = logging.getLogger("my-logger")
 
 
-def create_agent_description(desc: str, agent_name: str, save_path='data/agent_descriptions', **kwargs):
+def create_agent_description(cfg: DictConfig):
     # TODO: think of sensible comparison axes, e.g., age, profession, sex, etc.
-    agent = locals()
-    del agent['save_path']
-
-    with open(os.path.join(save_path, agent_name), 'w') as f:
-        json.dump(agent, f)
+    agents = cfg["experiments"]["agents"]
+    
+    
 
 
 class NegotiationAgent:
@@ -23,10 +23,12 @@ class NegotiationAgent:
                  max_msg_len=64, max_note_len=64,
                  msg_input_msg_history=-1, msg_input_note_history=-1,
                  note_input_msg_history=-1, note_input_note_history=-1,
-                 model_name="gpt-4", model_provider='openai', model_temperature=0.,
-                 model_key='openai_key', model_key_path=None, verbosity=0) -> None:
+                 model_name="gpt-4", model_provider='openai', model_key='openai_key',
+                 model_key_path=None, **kwargs) -> None:
         """
         Basic agent class
+        agent_name
+        init_description
         """
         self.agent_name = str(uuid4()) if agent_name is None else agent_name
         # TODO: read description from data/agent_descriptions
@@ -37,10 +39,19 @@ class NegotiationAgent:
         # notes params
         self.note_prompt, self.max_note_len = note_prompt, max_note_len
         self.note_input_msg_history, self.note_input_note_history = note_input_msg_history, note_input_note_history
-        # TODO: init model using model params
-        self.model = ChatModel()
+        # generation parameters
+        self.generation_parameters = kwargs
+        # init model
+        # we init two models: internal vs. external discussion
+        self.external_model = ChatModel(
+            model_name=model_name, model_provider=model_provider,
+            max_tokens=max_msg_len, **self.generation_parameters
+        )
+        self.internal_model = ChatModel(
+            model_name=model_name, model_provider=model_provider, 
+            max_tokens=max_note_len, **self.generation_parameters
+        )
 
-        self.verbosity = verbosity
         self.notes_history = []
         self.msg_history = []
 
@@ -51,6 +62,7 @@ class NegotiationAgent:
         notes_history_input = self.notes_history[-self.msg_input_note_history:]
 
         # TODO: decide on weaving pattern, e.g. system_msg_0, note_0, msg_0, note_1, msg_1, -> system_msg_1: prompt
+        self.external_model()
 
     def generate_note(self):
         # TODO: use note_input params to determine what the context for the completion inference pass consists of
@@ -74,6 +86,7 @@ class NegotiationAgent:
         # TODO: get token len of completion input (system_msg, msg_history, note_history, prev_game_history) + note/msg
         # 1. enough context token space to generate note?
         # 2. enough context token space to generate msg?
+        # not clear how to make a scalable approach to max token length across dif models
         got_space = True
 
         return got_space
@@ -146,7 +159,7 @@ class NegotiationProtocol:
 
         return completed
 
-    def compare_issues(self, return_issues=False) -> (bool, dict):
+    def compare_issues(self, return_issues=False) -> Tuple[bool, dict]:
         is1 = self.agents[0].get_issues_state()
         is2 = self.agents[1].get_issues_state()
 

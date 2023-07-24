@@ -1,0 +1,17 @@
+defaults:
+  - hydra: inference
+  - experiments: negotiation
+
+model_provider: openai # can be `openai` or `azure`
+
+# path to work directory
+work_dir: ${hydra:runtime.cwd}
+
+# path to data directory
+data_dir: ${work_dir}/data
+
+# path to output directory, created dynamically by hydra
+output_dir: ${hydra:runtime.output_dir}
+
+# determines the log directory's parent folder
+logs_subfolder: inference
