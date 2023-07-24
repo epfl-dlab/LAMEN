@@ -14,6 +14,7 @@
 - tiktoken (used to estimate token conversion length)
 - fire (used for running scripts)
 - aiohttp (not yet, used for async api calls)
+- openai 
 
 NOTE: older versions of Python could work but are not tested
 
@@ -33,6 +34,9 @@ NOTE: older versions of Python could work but are not tested
   - `run_file.py`: run experiments
 - `explorations.ipynb`: notebook to scratch on
 - `secrets.json`: local file to host API keys
+- `.env``: save API keys. currently used for two models
+  - `OPENAI_API_KEY`: for models from OPENAI
+  - `AZURE_API_KEY`: for azure based models
 
 ## Quick Start
 TODO
