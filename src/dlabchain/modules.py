@@ -78,13 +78,12 @@ class ChatModel:
 
         # get the correct api-key from environment
         # TODO: improve how we get API keys.
-        if (openai_api_key == None) & api_endpoint=="openai": openai_api_key = os.getenv("OPENAI_API_KEY")
-        if (openai_api_key == None) & api_endpoint=="azure": openai_api_key = os.getenv("AZURE_API_KEY")
+        if (openai_api_key == None) & (api_endpoint=="openai"): openai_api_key = os.getenv("OPENAI_API_KEY")
+        if (openai_api_key == None) & (api_endpoint=="azure"): openai_api_key = os.getenv("AZURE_API_KEY")
         if openai_api_key == None: raise ValueError("No openai key found.")
     
         self.api_endpoint = api_endpoint
-        self._api_key = openai_api_key
-        openai.api_key = self._api_key
+        openai.api_key = openai_api_key
 
         # generation params
         self.max_tokens = max_tokens
@@ -93,43 +92,17 @@ class ChatModel:
         self.generation_params = kwargs
         
         # only single generations currently implemented
-        if self.generation_params.get("n") > 1:
+        if self.generation_params.get("n", 1) >= 2:
             raise NotImplementedError("Need to implement for more than one generation.")
 
-        self.enc = None
+        self.enc = None         # used for measuring cost of generation below
 
         # adjust if we want to use azure as the endpoing
         if self.api_endpoint=="azure":
             openai.api_base = "https://instance0.openai.azure.com/"
             openai.api_type = "azure"
             openai.api_version = "2023-03-15-preview"
-            self.headers = {
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {openai_api_key}"
-            }
-
-    def estimate_cost(self, messages: Union[List[BaseMessage],str], estimated_output_tokens):
-        """
-        Basic cost estimatino
-        """
-        # estimate the cost of making a call given a prompt
-        # and expected length
-
-        # TODO: allow estimation for strings        
-        if self.enc == None: self.enc = tiktoken.encoding_for_model(self.model_name)
-
-        if type(messages)==str:
-            all_messages = ""
-            for m in messages: all_messages += m.text()
-        else: all_messages = messages
-
-        input_tokens = len(self.enc.encode(all_messages))
-        output_tokens = estimated_output_tokens
-
-        in_price, out_price = get_model_pricing(self.model_name)
-        price = round((input_tokens * in_price + output_tokens * out_price) / 1000, 4)
-
-        return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
+            self.model_name = self.model_name.replace(".","") # for the azure naming struct.
 
     @retry(requests.exceptions.RequestException, tries=3, delay=2, backoff=2)
     def __call__(self, messages: List[BaseMessage]):
@@ -137,13 +110,8 @@ class ChatModel:
         Generate tokens.
         """
         data = [k.prepare_for_generation() for k in messages]
-        response = openai.ChatCompletion(
-            model=self.model_name,
-            messages=messages,
-            temperature=self.temperature,
-            max_tokens=self.max_tokens,
-            **self.generation_params
-        )
+        response = self._generate(data)
+
         self.response = AIMessage(response["choices"][0]["message"]["content"])
 
         messages.append(self.response)
@@ -158,8 +126,50 @@ class ChatModel:
     def __repr__(self):
         return f'ChatModel("model_name={self.model_name}, max_tokens={self.max_tokens}")'
 
+    def estimate_cost(self, messages: Union[List[BaseMessage],str], estimated_output_tokens):
+            """
+            Basic cost estimatino
+            """
+            # estimate the cost of making a call given a prompt
+            # and expected length
+            if self.enc == None: self.enc = tiktoken.encoding_for_model(self.model_name)
+
+            if type(messages)==list:
+                all_messages = ""
+                for m in messages: all_messages += m.text()
+            else: all_messages = messages
+
+            input_tokens = len(self.enc.encode(all_messages))
+            output_tokens = estimated_output_tokens
+
+            in_price, out_price = get_model_pricing(self.model_name)
+            price = round((input_tokens * in_price + output_tokens * out_price) / 1000, 4)
+
+            return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
+
+    def _generate(self, data):
+        # refactoring since silly api differences between 
+        # azure and openai. 
+        # in azure engine = model_name, in openai its model =...            
+        if self.api_endpoint=="azure":
+            return openai.ChatCompletion.create(
+            engine=self.model_name, 
+            messages=data,
+            temperature=self.temperature,
+            max_tokens=self.max_tokens,
+            **self.generation_params
+        )
+        else:
+            return openai.ChatCompletion.create(
+            model=self.model_name, 
+            messages=data,
+            temperature=self.temperature,
+            max_tokens=self.max_tokens,
+            **self.generation_params
+        )
 
 def get_model_pricing(model_name):
+    # these are currently hard-coded. maybe easier to get from api or web.
     if model_name not in ["gpt-4", "gpt-3.5-turbo"]:
         raise NotImplementedError("Only possible for 'gpt-4' or 'gpt-3.5-turbo'")
 
