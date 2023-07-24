@@ -1,6 +1,3 @@
-# in case we want to create our own langchain.
-# for asynch calls
-#  plus langchain is a little confusing
 import os
 import requests
 from typing import Callable, List, Tuple, Any, Dict, cast, Union
@@ -8,6 +5,8 @@ import tiktoken
 from abc import ABC
 import json
 from retry import retry
+
+import openai
 
 
 class BaseMessage(ABC):
@@ -61,8 +60,10 @@ class SystemMessage(BaseMessage):
 
 # TODO: azure and openai work slightly different, make sure both are supported for v1
 # TODO: assume a local secrets.json file that hosts keys to avoid accidental version control commits
+# ^ Right now we are using .env files to store API keys. 
 class ChatModel:
     def __init__(self, openai_api_key: str = None,
+                 api_endpoint: str = "openai",
                  max_tokens: int = 256,
                  model_name: str = "gpt-3.5-turbo",
                  temperature: float = 0.7,
@@ -74,31 +75,53 @@ class ChatModel:
         Args:
             openai_api_key (_type_, optional): key. Defaults to None.
         """
-        if openai_api_key == None: openai_api_key = os.getenv("OPENAI_API_KEY")
-        if openai_api_key == None: raise ValueError("No openai key found.")
 
+        # get the correct api-key from environment
+        # TODO: improve how we get API keys.
+        if (openai_api_key == None) & api_endpoint=="openai": openai_api_key = os.getenv("OPENAI_API_KEY")
+        if (openai_api_key == None) & api_endpoint=="azure": openai_api_key = os.getenv("AZURE_API_KEY")
+        if openai_api_key == None: raise ValueError("No openai key found.")
+    
+        self.api_endpoint = api_endpoint
+        self._api_key = openai_api_key
+        openai.api_key = self._api_key
+
+        # generation params
         self.max_tokens = max_tokens
         self.model_name = model_name
         self.temperature = temperature
         self.generation_params = kwargs
+        
+        # only single generations currently implemented
+        if self.generation_params.get("n") > 1:
+            raise NotImplementedError("Need to implement for more than one generation.")
 
         self.enc = None
 
-        self.url = "https://api.openai.com/v1/chat/completions"
-        self.headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {openai_api_key}"
-        }
+        # adjust if we want to use azure as the endpoing
+        if self.api_endpoint=="azure":
+            openai.api_base = "https://instance0.openai.azure.com/"
+            openai.api_type = "azure"
+            openai.api_version = "2023-03-15-preview"
+            self.headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {openai_api_key}"
+            }
 
-    def estimate_cost(self, messages: List[BaseMessage], estimated_output_tokens):
+    def estimate_cost(self, messages: Union[List[BaseMessage],str], estimated_output_tokens):
+        """
+        Basic cost estimatino
+        """
         # estimate the cost of making a call given a prompt
         # and expected length
 
         # TODO: allow estimation for strings        
         if self.enc == None: self.enc = tiktoken.encoding_for_model(self.model_name)
 
-        all_messages = ""
-        for m in messages: all_messages += m.text()
+        if type(messages)==str:
+            all_messages = ""
+            for m in messages: all_messages += m.text()
+        else: all_messages = messages
 
         input_tokens = len(self.enc.encode(all_messages))
         output_tokens = estimated_output_tokens
@@ -110,23 +133,23 @@ class ChatModel:
 
     @retry(requests.exceptions.RequestException, tries=3, delay=2, backoff=2)
     def __call__(self, messages: List[BaseMessage]):
+        """
+        Generate tokens.
+        """
         data = [k.prepare_for_generation() for k in messages]
-        data = {
-            "model": self.model_name,
-            "messages": data,
-            "temperature": self.temperature,
-            "max_tokens": self.max_tokens
-        }
-        response = requests.post(self.url, headers=self.headers, data=json.dumps(data))
+        response = openai.ChatCompletion(
+            model=self.model_name,
+            messages=messages,
+            temperature=self.temperature,
+            max_tokens=self.max_tokens,
+            **self.generation_params
+        )
+        self.response = AIMessage(response["choices"][0]["message"]["content"])
 
-        #  check for errors
-        if response.status_code != 200:
-            raise requests.exceptions.RequestException("Not a 200 response")
-
-        self.response = AIMessage(response.json()["choices"][0]["message"]["content"])
         messages.append(self.response)
         self.messages = messages
-        return self.response
+
+        return self.response.content
 
     def history(self):
         # optionally keep a history of interactions
