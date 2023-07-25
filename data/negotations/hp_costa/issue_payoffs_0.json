@@ -1,0 +1,54 @@
+{
+    "Financing": [
+      { "$20 million now": 2500 },
+      { "$21 million now": 2250 },
+      { "$22 million now": 2000 },
+      { "$23 million now": 1750 },
+      { "$24 million now": 1500 },
+      { "$25 million now": 1250 },
+      { "$26 million now": 1000 },
+      { "$27 million now": 750 },
+      { "$28 million now": 500 },
+      { "$29 million now": 250 },
+      { "$30 million now": 0 }
+    ],
+    "Family Employees": [
+      { "0 employees": 1000 },
+      { "1 employees": 900 },
+      { "2 employees": 800 },
+      { "3 employees": 700 },
+      { "4 employees": 600 },
+      { "5 employees": 500 },
+      { "6 employees": 400 },
+      { "7 employees": 300 },
+      { "8 employees": 200 },
+      { "9 employees": 100 },
+      { "10 employees": 0 }
+    ],
+    "Non-compete Period": [
+      { "10 years": 1500 },
+      { "9 years": 1350 },
+      { "8 years": 1200 },
+      { "7 years": 1050 },
+      { "6 years": 900 },
+      { "5 years": 750 },
+      { "4 years": 600 },
+      { "3 years": 450 },
+      { "2 years": 300 },
+      { "1 year": 150 },
+      { "0 years": 0 }
+    ],
+    "Contingent Liability": [
+      { "0 percent": 0 },
+      { "10 percent": 50 },
+      { "20 percent": 100 },
+      { "30 percent": 150 },
+      { "40 percent": 200 },
+      { "50 percent": 250 },
+      { "60 percent": 300 },
+      { "70 percent": 350 },
+      { "80 percent": 400 },
+      { "90 percent": 450 },
+      { "100 percent": 500 }
+    ]
+}
