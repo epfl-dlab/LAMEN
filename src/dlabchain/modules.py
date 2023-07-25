@@ -63,10 +63,8 @@ class SystemMessage(BaseMessage):
 # ^ Right now we are using .env files to store API keys. 
 class ChatModel:
     def __init__(self, openai_api_key: str = None,
-                 api_endpoint: str = "openai",
-                 max_tokens: int = 256,
-                 model_name: str = "gpt-3.5-turbo",
-                 temperature: float = 0.7,
+                 model_provider: str = "openai", max_tokens: int = 256,
+                 model_name: str = "gpt-3.5-turbo", temperature: float = 0.7,
                  **kwargs) -> None:
         """ChatModel.
         
@@ -78,16 +76,16 @@ class ChatModel:
 
         # get the correct api-key from environment
         # TODO: improve how we get API keys.
-        if (openai_api_key == None) & (api_endpoint=="openai"): openai_api_key = os.getenv("OPENAI_API_KEY")
-        if (openai_api_key == None) & (api_endpoint=="azure"): openai_api_key = os.getenv("AZURE_API_KEY")
+        if (openai_api_key == None) & (model_provider=="openai"): openai_api_key = os.getenv("OPENAI_API_KEY")
+        if (openai_api_key == None) & (model_provider=="azure"): openai_api_key = os.getenv("AZURE_API_KEY")
         if openai_api_key == None: raise ValueError("No openai key found.")
     
-        self.api_endpoint = api_endpoint
+        self.model_provider = model_provider
         openai.api_key = openai_api_key
 
         # generation params
         self.max_tokens = max_tokens
-        self.model_name = model_name
+        self._model_name, self.model_name = model_name, model_name # 
         self.temperature = temperature
         self.generation_params = kwargs
         
@@ -98,11 +96,11 @@ class ChatModel:
         self.enc = None         # used for measuring cost of generation below
 
         # adjust if we want to use azure as the endpoing
-        if self.api_endpoint=="azure":
+        if self.model_provider=="azure":
             openai.api_base = "https://instance0.openai.azure.com/"
             openai.api_type = "azure"
             openai.api_version = "2023-03-15-preview"
-            self.model_name = self.model_name.replace(".","") # for the azure naming struct.
+            self.model_name = self._model_name.replace(".","") # for the azure naming struct.
 
     @retry(requests.exceptions.RequestException, tries=3, delay=2, backoff=2)
     def __call__(self, messages: List[BaseMessage]):
@@ -148,10 +146,9 @@ class ChatModel:
             return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
 
     def _generate(self, data):
-        # refactoring since silly api differences between 
-        # azure and openai. 
-        # in azure engine = model_name, in openai its model =...            
-        if self.api_endpoint=="azure":
+        # refactoring since silly api differences between azure and openai. 
+        # in azure engine = model_name, in openai model =...            
+        if self.model_provider=="azure":
             return openai.ChatCompletion.create(
             engine=self.model_name, 
             messages=data,
