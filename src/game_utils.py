@@ -25,7 +25,6 @@ Each issue is a dictionary of format:
 - payoff_1:
 - payoff_2:
 """
-import numpy
 import numpy as np
 import json
 

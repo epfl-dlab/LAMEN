@@ -16,6 +16,10 @@ def create_agent_description(desc: str, agent_name: str, save_path='data/agent_d
     with open(os.path.join(save_path, agent_name), 'w') as f:
         json.dump(agent, f)
 
+def load_agent_description(agent_path) -> str:
+    # TODO: load agent json and join into single string
+    pass
+
 
 class NegotiationAgent:
     def __init__(self, agent_name=None, init_description=None,
@@ -30,6 +34,7 @@ class NegotiationAgent:
         """
         self.agent_name = str(uuid4()) if agent_name is None else agent_name
         # TODO: read description from data/agent_descriptions
+        self.init_description = load_agent_description(init_description)
 
         # message params
         self.msg_prompt, self.max_msg_len = msg_prompt, max_msg_len
@@ -50,14 +55,14 @@ class NegotiationAgent:
         msg_history_input = self.msg_history[-self.msg_input_msg_history:]
         notes_history_input = self.notes_history[-self.msg_input_note_history:]
 
-        # TODO: decide on weaving pattern, e.g. system_msg_0, note_0, msg_0, note_1, msg_1, -> system_msg_1: prompt
+        # TODO: weaving pattern, e.g. system_msg_0, user_msg[note_0, msg_0, note_1 -> msg_prompt]
 
     def generate_note(self):
         # TODO: use note_input params to determine what the context for the completion inference pass consists of
         msg_history_input = self.msg_history[-self.note_input_msg_history:]
         notes_history_input = self.notes_history[-self.note_input_note_history:]
 
-        # TODO: decide on weaving pattern, e.g. system_msg_0, note_0, msg_0, note_1, msg_1, -> system_msg_1: prompt
+        # TODO: weaving pattern, e.g. system_msg_0, user_msg[note_0, msg_0, note_1, msg_1 -> note_prompt]
 
     def get_issues_state(self) -> dict:
         # TODO: get latest issues_proposal from internal notes
@@ -72,6 +77,7 @@ class NegotiationAgent:
     # likely, this could also be a function of the ChatModel() class
     def check_context_len_step(self) -> bool:
         # TODO: get token len of completion input (system_msg, msg_history, note_history, prev_game_history) + note/msg
+        # NOTE: openai adds 8 tokens for any request
         # 1. enough context token space to generate note?
         # 2. enough context token space to generate msg?
         got_space = True
@@ -102,8 +108,9 @@ class NegotiationProtocol:
         self.max_rounds = max_rounds
         self.stop_condition = stop_condition
         self.game = game
+        
+        # move the agent order to respect start agent index
         self.agents = agents
-        self.start_agent_index = start_agent_index
 
     def run(self):
         # TODO: conduct rounds of negotiation until a stop_condition is hit
@@ -160,7 +167,7 @@ class NegotiationProtocol:
         return agreed
 
     def save_results(self):
-        # TODO: save a csv row containing:
+        # TODO: save a csv or json row containing:
         # agent; round; note; message; issues_state; timestamp
         headers = ['agent', 'round', 'note', 'message', 'issues_state', 'timestamp']
         csv_path = os.path.join(self.save_folder, 'negotiation.csv')
