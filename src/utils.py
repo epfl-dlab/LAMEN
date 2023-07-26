@@ -1,3 +1,4 @@
+import json
 from typing import Tuple
 from pathlib import Path
 from config import NEGOTIATIONS_DIR
@@ -30,7 +31,18 @@ def format_skeleton(agent_cfg, other_agent_cfg):
     f = open(skeleton_path, "r")
     
     f.replace("{name}", name).replace("{occupation}", agent_cfg["qualities"]["profession"])
-    
+
+
+def get_api_key(fname, key):
+    try:
+        with open(fname) as f:
+            api_key = json.load(f)[key]
+    except (FileExistsError, FileNotFoundError, KeyError) as e:
+        print(f'error: {e}')
+        return None
+
+    return api_key
+
     
 
 

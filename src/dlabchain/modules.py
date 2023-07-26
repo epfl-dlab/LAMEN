@@ -5,6 +5,7 @@ import tiktoken
 from abc import ABC
 import json
 from retry import retry
+# TODO: fix import structure, from utils import get_api_key
 
 import openai
 
@@ -62,9 +63,9 @@ class SystemMessage(BaseMessage):
 # TODO: assume a local secrets.json file that hosts keys to avoid accidental version control commits
 # ^ Right now we are using .env files to store API keys. 
 class ChatModel:
-    def __init__(self, openai_api_key: str = None,
-                 model_provider: str = "openai", max_tokens: int = 256,
-                 model_name: str = "gpt-3.5-turbo", temperature: float = 0.7,
+    def __init__(self, model_key: str = None, model_key_path=None, model_key_name=None,
+                 model_provider: str = "openai",
+                 model_name: str = "gpt-3.5-turbo", temperature: float = 0.0, max_tokens=None,
                  **kwargs) -> None:
         """ChatModel.
         
@@ -76,18 +77,29 @@ class ChatModel:
 
         # get the correct api-key from environment
         # TODO: improve how we get API keys.
-        if (openai_api_key == None) & (model_provider=="openai"): openai_api_key = os.getenv("OPENAI_API_KEY")
-        if (openai_api_key == None) & (model_provider=="azure"): openai_api_key = os.getenv("AZURE_API_KEY")
-        if openai_api_key == None: raise ValueError("No openai key found.")
+        # @td NOTE: use simple function 'get_api_key()' I added to utils.py
+        if model_key is None:
+            # TODO: use get_api_key from utils
+            if (model_key == None) & (model_provider=="openai"): openai_api_key = os.getenv("OPENAI_API_KEY")
+            if (model_key == None) & (model_provider=="azure"): openai_api_key = os.getenv("AZURE_API_KEY")
+            if model_key == None: raise ValueError("No openai key found.")
     
         self.model_provider = model_provider
-        openai.api_key = openai_api_key
+        openai.api_key = model_key
 
         # generation params
-        self.max_tokens = max_tokens
+        self.max_tokens = max_tokens  # NOTE: remove
         self._model_name, self.model_name = model_name, model_name # 
         self.temperature = temperature
         self.generation_params = kwargs
+
+        # get model api details
+        model_details = get_model_details(model_name)
+        self.context_max_tokens = model_details['max_tokens']
+        self.prompt_cost = model_details['prompt_cost']
+        self.completion_cost = model_details['completion_cost']
+        self.tpm = model_details['tpm']
+        self.rpm = model_details['rpm']
         
         # only single generations currently implemented
         if self.generation_params.get("n", 1) >= 2:
@@ -126,10 +138,11 @@ class ChatModel:
 
     def estimate_cost(self, messages: Union[List[BaseMessage],str], estimated_output_tokens):
             """
-            Basic cost estimatino
+            Basic cost estimation
             """
             # estimate the cost of making a call given a prompt
             # and expected length
+            # @td NOTE: standard 8 tokens are put per message
             if self.enc == None: self.enc = tiktoken.encoding_for_model(self.model_name)
 
             if type(messages)==list:
@@ -140,20 +153,20 @@ class ChatModel:
             input_tokens = len(self.enc.encode(all_messages))
             output_tokens = estimated_output_tokens
 
-            in_price, out_price = get_model_pricing(self.model_name)
-            price = round((input_tokens * in_price + output_tokens * out_price) / 1000, 4)
+            price = round((input_tokens * self.prompt_cost + output_tokens * self.completion_cost) / 1000, 4)
 
             return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
 
     def _generate(self, data):
         # refactoring since silly api differences between azure and openai. 
-        # in azure engine = model_name, in openai model =...            
+        # in azure engine = model_name, in openai model =...
+        # @td NOTE: using the max_tokens param has undesired behavior, specify max token requirements in prompt
         if self.model_provider=="azure":
             return openai.ChatCompletion.create(
             engine=self.model_name, 
             messages=data,
             temperature=self.temperature,
-            max_tokens=self.max_tokens,
+            # max_tokens=self.max_tokens,
             **self.generation_params
         )
         else:
@@ -161,16 +174,27 @@ class ChatModel:
             model=self.model_name, 
             messages=data,
             temperature=self.temperature,
-            max_tokens=self.max_tokens,
+            # max_tokens=self.max_tokens,
             **self.generation_params
         )
 
+
 def get_model_pricing(model_name):
-    # these are currently hard-coded. maybe easier to get from api or web.
-    if model_name not in ["gpt-4", "gpt-3.5-turbo"]:
-        raise NotImplementedError("Only possible for 'gpt-4' or 'gpt-3.5-turbo'")
+    model_details = get_model_details(model_name=model_name)
+    return model_details['prompt_cost'], model_details['completion_cost']
 
-    input_pricing_dict = {"gpt-4": 0.03, "gpt-3.5-turbo": 0.003}
-    output_pricing_dict = {"gpt-4": 0.06, "gpt-3.5-turbo": 0.004}
 
-    return input_pricing_dict[model_name], output_pricing_dict[model_name]
+def get_model_details(model_name, fpath='data/llm_model_detail.json'):
+
+    try:
+        with open(fpath) as f:
+            details = json.load(f)
+    except Exception as e:
+        print(f'error: unable to load model details')
+        details = {}
+
+    models = details.keys()
+    if model_name not in models:
+        raise KeyError(f'error: no details available for model {model_name} - pick one of {models}')
+
+    return models[model_name]

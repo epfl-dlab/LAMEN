@@ -3,6 +3,7 @@ import os
 import json
 import csv
 from dlabchain import AIMessage, SystemMessage, HumanMessage, ChatModel
+from utils import get_api_key
 from typing import Tuple
 from omegaconf import DictConfig, OmegaConf
 
@@ -24,57 +25,59 @@ def load_agent_description(agent_path) -> str:
 class NegotiationAgent:
     def __init__(self, agent_name=None, init_description=None,
                  msg_prompt=None, note_prompt=None,
-                 max_msg_len=64, max_note_len=64,
+                 msg_max_len=64, note_max_len=64,
                  msg_input_msg_history=-1, msg_input_note_history=-1,
                  note_input_msg_history=-1, note_input_note_history=-1,
                  model_name="gpt-4", model_provider='openai', model_key='openai_key',
-                 model_key_path=None, **kwargs) -> None:
+                 model_key_path='secrets.json', **kwargs) -> None:
         """
         Basic agent class
         agent_name
         init_description
         """
-        self.agent_name = str(uuid4()) if agent_name is None else agent_name
         # TODO: read description from data/agent_descriptions
         self.init_description = load_agent_description(init_description)
+        self.agent_name = str(uuid4()) if agent_name is None else agent_name
 
         # message params
-        self.msg_prompt, self.max_msg_len = msg_prompt, max_msg_len
+        self.msg_prompt, self.msg_max_len = msg_prompt, msg_max_len
         self.msg_input_msg_history, self.msg_input_note_history = msg_input_msg_history, msg_input_note_history
         # notes params
-        self.note_prompt, self.max_note_len = note_prompt, max_note_len
+        self.note_prompt, self.note_max_len = note_prompt, note_max_len
         self.note_input_msg_history, self.note_input_note_history = note_input_msg_history, note_input_note_history
         # generation parameters
         self.generation_parameters = kwargs
-        # init model
-        # we init two models: internal vs. external discussion
-        self.external_model = ChatModel(
-            model_name=model_name, model_provider=model_provider,
-            max_tokens=max_msg_len, **self.generation_parameters
-        )
-        self.internal_model = ChatModel(
-            model_name=model_name, model_provider=model_provider, 
-            max_tokens=max_note_len, **self.generation_parameters
+        # model
+        api_key = get_api_key(fname=model_key_path, key=model_key)
+        self.model = ChatModel(
+            model_name=model_name, model_provider=model_provider, model_key=api_key,
+            **self.generation_parameters
         )
 
         self.notes_history = []
         self.msg_history = []
 
-    def generate_message(self):
-        # assume counterparty message history is updated by the NegotiationsProtocol
-        # TODO: use msg_input params to determine what the context for the completion inference pass consists of
+    def generate_message(self, system_msg):
         msg_history_input = self.msg_history[-self.msg_input_msg_history:]
         notes_history_input = self.notes_history[-self.msg_input_note_history:]
+        # msg prompt structure:
+        # system_msg(game, side, agent, issues) + user_msg(c_msg, note, msg, c_msg, note, prompt) -> agent_msg: msg
+        user_msg = ''  # TODO: call function that weaves msg_history, note_history, msg_len, msg_prompt
+        context = system_msg + user_msg
+        msg = self.model(context)
+        return msg
 
-        # TODO: decide on weaving pattern, e.g. system_msg_0, note_0, msg_0, note_1, msg_1, -> system_msg_1: prompt
-        self.external_model()
-
-    def generate_note(self):
+    def generate_note(self, system_msg):
         # TODO: use note_input params to determine what the context for the completion inference pass consists of
         msg_history_input = self.msg_history[-self.note_input_msg_history:]
         notes_history_input = self.notes_history[-self.note_input_note_history:]
 
-        # TODO: weaving pattern, e.g. system_msg_0, user_msg[note_0, msg_0, note_1, msg_1 -> note_prompt]
+        # note prompt structure:
+        # system_msg(game, side, agent, issues) + user_msg(c_msg, note, msg, c_msg, prompt) --> agent_msg: note
+        user_msg = ''  # TODO: call function that weaves msg_history, note_history, note_len, note_prompt
+        context = system_msg + user_msg
+        note = self.model(context)
+        return note
 
     def get_issues_state(self) -> dict:
         # TODO: get latest issues_proposal from internal notes
