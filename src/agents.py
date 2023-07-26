@@ -21,6 +21,10 @@ def load_agent_description(agent_path) -> str:
     # TODO: load agent json and join into single string
     pass
 
+class AgentSystemPrompt:
+    def __init__(self, agent, game):
+        pass
+
 
 class NegotiationAgent:
     def __init__(self, agent_name=None, init_description=None,
@@ -28,7 +32,7 @@ class NegotiationAgent:
                  msg_max_len=64, note_max_len=64,
                  msg_input_msg_history=-1, msg_input_note_history=-1,
                  note_input_msg_history=-1, note_input_note_history=-1,
-                 model_name="gpt-4", model_provider='openai', model_key='openai_key',
+                 model_name="gpt-4", model_provider='openai', model_key='OPENAI_API_KEY',
                  model_key_path='secrets.json', **kwargs) -> None:
         """
         Basic agent class
@@ -36,7 +40,8 @@ class NegotiationAgent:
         init_description
         """
         # TODO: read description from data/agent_descriptions
-        self.init_description = load_agent_description(init_description)
+        # self.init_description = load_agent_description(init_description)
+        self.init_description = init_description # we load it in as a string unlike ^^^ 
         self.agent_name = str(uuid4()) if agent_name is None else agent_name
 
         # message params
@@ -57,17 +62,17 @@ class NegotiationAgent:
         self.notes_history = []
         self.msg_history = []
 
-    def generate_message(self, system_msg):
+    def generate_message(self):
         msg_history_input = self.msg_history[-self.msg_input_msg_history:]
         notes_history_input = self.notes_history[-self.msg_input_note_history:]
         # msg prompt structure:
         # system_msg(game, side, agent, issues) + user_msg(c_msg, note, msg, c_msg, note, prompt) -> agent_msg: msg
         user_msg = ''  # TODO: call function that weaves msg_history, note_history, msg_len, msg_prompt
-        context = system_msg + user_msg
+        context = self.system_skeleton + user_msg
         msg = self.model(context)
         return msg
 
-    def generate_note(self, system_msg):
+    def generate_note(self):
         # TODO: use note_input params to determine what the context for the completion inference pass consists of
         msg_history_input = self.msg_history[-self.note_input_msg_history:]
         notes_history_input = self.notes_history[-self.note_input_note_history:]
@@ -75,13 +80,16 @@ class NegotiationAgent:
         # note prompt structure:
         # system_msg(game, side, agent, issues) + user_msg(c_msg, note, msg, c_msg, prompt) --> agent_msg: note
         user_msg = ''  # TODO: call function that weaves msg_history, note_history, note_len, note_prompt
-        context = system_msg + user_msg
+        context = self.system_skeleton + user_msg
         note = self.model(context)
         return note
 
     def get_issues_state(self) -> dict:
         # TODO: get latest issues_proposal from internal notes
         pass
+    
+    def __repr__(self):
+        return f"{self.init_description}"
 
     # might kill
     @staticmethod
@@ -108,7 +116,12 @@ class NegotiationAgent:
 
     def get_settings(self):
         # TODO: return init settings for analysis / saving
-        pass
+        pass        
+    
+    def create_static_system_prompt(self, shared_description, side_description, issues_format):
+        intial_story = shared_description +"\n"+ side_description +  "\nDescription of your qualities:\n" + self.init_description + "\n" + issues_format
+        self.system_skeleton = SystemMessage(intial_story)
+        print(intial_story)
 
 
 class NegotiationProtocol:
@@ -124,9 +137,21 @@ class NegotiationProtocol:
         self.max_rounds = max_rounds
         self.stop_condition = stop_condition
         self.game = game
+        game_shared_description = game.description
         
+        # get issues for each agent
+
         # move the agent order to respect start agent index
         self.agents = agents
+
+
+        for i, agent in enumerate(agents):
+            issues_format = game.format_all_issues(i)
+            agent_side = self.game.sides[i][0]
+            agent.create_static_system_prompt(game_shared_description, agent_side, issues_format)
+        
+        
+            
 
     def run(self):
         # TODO: conduct rounds of negotiation until a stop_condition is hit

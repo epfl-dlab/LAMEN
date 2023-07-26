@@ -43,8 +43,22 @@ def get_api_key(fname, key):
 
     return api_key
 
-    
+def read_json(path_name: str):
+    f = open(path_name, "r")
+    json_file = json.load(f)
+    return json_file
 
+def format_dictionary(dictionary, indent=0):
+    result = ""
+    for key, value in dictionary.items():
+        if isinstance(value, dict):
+            result += f"{' ' * indent}{key}:\n{format_dictionary(value, indent + 4)}"
+        else:
+            result += f"{' ' * indent}{key}: {value}\n"
+    return result
+
+def dictionary_to_string(dictionary):
+    return format_dictionary(dictionary)
 
 if __name__=="__main__":
     print(return_agent_prompts("cpc"))

@@ -184,7 +184,7 @@ def get_model_pricing(model_name):
     return model_details['prompt_cost'], model_details['completion_cost']
 
 
-def get_model_details(model_name, fpath='data/llm_model_detail.json'):
+def get_model_details(model_name, fpath='data/llm_model_details.json'):
 
     try:
         with open(fpath) as f:
@@ -197,4 +197,4 @@ def get_model_details(model_name, fpath='data/llm_model_detail.json'):
     if model_name not in models:
         raise KeyError(f'error: no details available for model {model_name} - pick one of {models}')
 
-    return models[model_name]
+    return details[model_name]

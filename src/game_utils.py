@@ -29,36 +29,41 @@ import os
 import numpy as np
 import json
 from datetime import datetime as dt
+from utils import read_json
 
 
 class Issue:
-    def __init__(self, issue_name=None, issue_type=None, issue_descriptions=None, payoffs=None, num_steps=10,
-                 step_descriptions=None, **kwargs):
-        self.issue_name = issue_name
-        self.issue_type = issue_type
-        self.issue_descriptions = issue_descriptions
+    def __init__(self, name=None, type=None, descriptions=None, payoffs=None, num_steps=10,
+                 payoff_labels=None, **kwargs):
+        self.name = name
+        self.type = type        # this may be annoying
+        self.descriptions = descriptions
         self.payoffs = payoffs
-        self.step_descriptions = step_descriptions
+        self.payoff_labels = payoff_labels
 
         # both sides want the same thing
-        if issue_type == 'compatible':
+        # TODO: venia overwrote all of these linspaces. they don't work.
+        if type == 'compatible':
             m1 = np.linspace(0, 1, num_steps)
             m2 = m1
+            m1, m2 = payoffs
         # sides want opposite things, e.g., +1 for me is -1 for you
-        elif issue_type == 'distributive':
+        elif type == 'distributive':
             m1 = np.linspace(0, 1, num_steps)
             m2 = np.flip(m1)
+            m1, m2 = payoffs
         # it is worth more to one side than the other
         # NOTE: this is tricky when there are multiple issues in a single game, i.e., how does rescaling/weighing work?
-        elif issue_type == 'integrative':
+        elif type == 'integrative':
             m1 = np.linspace(0, 1, num_steps)
             m2 = np.flip(m1) * 0.5
+            m1, m2 = payoffs
         # user-defined issue
-        elif issue_type == 'custom':
+        elif type == 'custom':
             m1, m2 = payoffs
         else:
             raise NotImplemented(
-                f'error: issue type {issue_type} not in [compatible, integrative, distributive, custom]')
+                f'error: issue type {type} not in [compatible, integrative, distributive, custom]')
 
         self.payoffs = [m1, m2]
 
@@ -81,6 +86,21 @@ class Issue:
 
         return Issue.from_dict(issue)
 
+    def split_dict_by_index(self, category):
+        if category in ["payoffs", "payoff_labels", "descriptions"]:
+            dict_0 = {k: v[0] if isinstance(v, list) else v for k, v in category.items()}
+            dict_1 = {k: v[1] if isinstance(v, list) else v for k, v in category.items()}
+            return dict_0, dict_1
+        else:
+            raise NotImplementedError(f"Category not in payoffs, payoff_labels, descriptions")
+    
+    def format_issue(self, idx):
+        issue_format = self.name + "\n"
+        for label, payoff in zip(self.payoff_labels[idx], self.payoffs[idx]):
+            issue_format += f"{label}, {payoff}\n"
+        return issue_format
+                
+            
 
 class Game:
     def __init__(self, name, description, issues, issue_weights, scale=(1, 1), sides=None, **kwargs):
@@ -88,7 +108,10 @@ class Game:
         self.description = description
         self.sides = sides
         self.issues = issues
+        self.load_issues() # load in the issues in correct format
+        
         self.issue_weights = issue_weights
+        # TODO add reweigh issues somehow if we want?? 
         self.scale = scale
 
     def reweigh_issues(self):
@@ -103,17 +126,34 @@ class Game:
 
     def get_system_msg(self):
         pass
-
+    
+    def load_issues(self, issues_path="data/issues/"):
+        issues = []
+        for issue in self.issues: 
+            issues.append(Issue.load(os.path.join(issues_path, issue+".json")))
+            
+        self.issues = issues
+        
     def to_dict(self):
         return vars(self)
 
+    def format_all_issues(self, agent_idx):
+        issues_text = ""
+        for issue in self.issues:
+            issues_text += issue.format_issue(agent_idx)
+            
+        return issues_text
+    
     @staticmethod
     def from_dict(d):
         return Game(**d)
 
+    def __str__(self):
+        return f"Game: {self.name}"
 
-def load_game(game_name: str) -> dict:
-    pass
+
+def load_game(game_path: str) -> dict:
+    return read_json(game_path)
 
 
 def create_experiment():
