@@ -44,15 +44,15 @@ class Issue:
         if issue_type == 'compatible':
             m1 = np.linspace(0, 1, num_steps)
             m2 = m1
+        # sides want opposite things, e.g., +1 for me is -1 for you
+        elif issue_type == 'distributive':
+            m1 = np.linspace(0, 1, num_steps)
+            m2 = np.flip(m1)
         # it is worth more to one side than the other
         # NOTE: this is tricky when there are multiple issues in a single game, i.e., how does rescaling/weighing work?
         elif issue_type == 'integrative':
             m1 = np.linspace(0, 1, num_steps)
             m2 = np.flip(m1) * 0.5
-        # sides want opposite things, e.g., +1 for me is -1 for you
-        elif issue_type == 'distributive':
-            m1 = np.linspace(0, 1, num_steps)
-            m2 = np.flip(m1)
         # user-defined issue
         elif issue_type == 'custom':
             m1, m2 = payoffs

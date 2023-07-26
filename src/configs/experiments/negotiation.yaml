@@ -1,29 +1,30 @@
-issues_path: data/issues
 agents_path: data/agents
 games_path: data/games
+issues_path: data/issues
+models_path: data/model_settings
 note_prompts_path: data/note_prompts
 message_prompts_path: data/message_prompts
 
-game: "rio_copa.json"
+game:
+  - file: "rio_copa.json"
 
-# inputs and output instruction
+# inputs and output instructions
 communication:
-  agent_1: "auto_regressive_50_50.json"
-  agent_2: "auto_regressive_50_50.json"
+  agent_1:
+    - file: "auto_regressive_50_50.json"
+  agent_2:
+    - file: "auto_regressive_50_50.json"
 
 # agent characteristics
 agents:
-  - agent_1: "hp_costa.json"
-  - agent_2: "pj_green.json"
+  - agent_1:
+    - file: "pj_green.json"
+  - agent_2:
+    - file: "hp_costa.json"
 
+# model settings
 generation_parameters:
   - agent_1:
-    - model_provider: "openai"
-    - model_name: "gpt-3.5-turbo"
-    - temperature: 0.
-    - length_penalty: 0
+    - file: "openai_35_0_0.json"
   - agent_2:
-    - model_provider: "openai"
-    - model_name: "gpt-3.5-turbo"
-    - temperature: 0.
-    - length_penalty: 0
+    - file: "openai_35_0_0.json"
