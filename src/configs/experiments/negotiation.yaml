@@ -1,40 +1,29 @@
-stop_condition: "count" # can be `count', `decision'
-model_provider: "azure" # can be `openai' or `azure'
+issues_path: data/issues
+agents_path: data/agents
+games_path: data/games
+note_prompts_path: data/note_prompts
+message_prompts_path: data/message_prompts
 
-stories_path: data/agent_descriptions/
+game: "rio_copa.json"
 
-# TODO consider separating issues into separate files and selecting 
-# which issues to discuss in negotiations.
-issues: ["financing", "family employees", "non-compete period", "contingent liability"]
+# inputs and output instruction
+communication:
+  agent_1: "auto_regressive_50_50.json"
+  agent_2: "auto_regressive_50_50.json"
 
-msg_input_msg_history: -1
-msg_input_note_history: -1
-note_input_msg_history: -1
-note_input_note_history: -1
-
+# agent characteristics
 agents:
-  - buyer:
-    - name: P.J. Green
-    - company_name: CPC
-    - story_path: ... # add story path
-    - payoff_file: ...
-    - qualities: 
-      - gender: male
-      - profession: lawyer
-      - age: 45
-      - personality_type: diffident
-  - seller:
-    - name: H.P. Costa
-    - company_name: Rop Copa Foods
-    - story_path: ... # add story path
-    - payoff_file: ...
-    - qualities:
-      - gender: male
-      - profession: lawyer
-      - age: 55
-      - personality_type: aggressive
+  - agent_1: "hp_costa.json"
+  - agent_2: "pj_green.json"
 
 generation_parameters:
-  - model_name: "gpt-3.5-turbo"
-  - temperature: 0.
-  - length_penalty: 0
+  - agent_1:
+    - model_provider: "openai"
+    - model_name: "gpt-3.5-turbo"
+    - temperature: 0.
+    - length_penalty: 0
+  - agent_2:
+    - model_provider: "openai"
+    - model_name: "gpt-3.5-turbo"
+    - temperature: 0.
+    - length_penalty: 0

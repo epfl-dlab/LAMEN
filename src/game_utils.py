@@ -25,74 +25,96 @@ Each issue is a dictionary of format:
 - payoff_1:
 - payoff_2:
 """
+import os
 import numpy as np
 import json
+from datetime import datetime as dt
 
 
-def create_issue(issue_name: str, issue_type: str, num_steps: int, scale=(1, 1), issue_descriptions=None,
-                 step_descriptions=None) -> dict:
-    """
+class Issue:
+    def __init__(self, issue_name=None, issue_type=None, issue_descriptions=None, payoffs=None, num_steps=10,
+                 step_descriptions=None, **kwargs):
+        self.issue_name = issue_name
+        self.issue_type = issue_type
+        self.issue_descriptions = issue_descriptions
+        self.payoffs = payoffs
+        self.step_descriptions = step_descriptions
 
-    :param issue_name:
-    :param issue_type:
-    :param num_steps:
-    :param scale:
-    :param step_descriptions:
-    :param issue_descriptions:
-    :return:
-    """
-    issue, po1, po2 = {}, {}, {}
-    if issue_type == 'compatible':
+        # both sides want the same thing
+        if issue_type == 'compatible':
+            m1 = np.linspace(0, 1, num_steps)
+            m2 = m1
+        # it is worth more to one side than the other
+        # NOTE: this is tricky when there are multiple issues in a single game, i.e., how does rescaling/weighing work?
+        elif issue_type == 'integrative':
+            m1 = np.linspace(0, 1, num_steps)
+            m2 = np.flip(m1) * 0.5
+        # sides want opposite things, e.g., +1 for me is -1 for you
+        elif issue_type == 'distributive':
+            m1 = np.linspace(0, 1, num_steps)
+            m2 = np.flip(m1)
+        # user-defined issue
+        elif issue_type == 'custom':
+            m1, m2 = payoffs
+        else:
+            raise NotImplemented(
+                f'error: issue type {issue_type} not in [compatible, integrative, distributive, custom]')
+
+        self.payoffs = [m1, m2]
+
+    def to_dict(self):
+        return vars(self)
+
+    @staticmethod
+    def from_dict(d):
+        return Issue(**d)
+
+    def save(self, fname):
+        d = self.to_dict()
+        with open(os.path.join(fname + '.json')) as f:
+            json.dump(d, f)
+
+    @staticmethod
+    def load(fname):
+        with open(fname) as f:
+            issue = json.load(f)
+
+        return Issue.from_dict(issue)
+
+
+class Game:
+    def __init__(self, name, description, issues, issue_weights, scale=(1, 1), sides=None, **kwargs):
+        self.name = name
+        self.description = description
+        self.sides = sides
+        self.issues = issues
+        self.issue_weights = issue_weights
+        self.scale = scale
+
+    def reweigh_issues(self):
+        # normalize weights to [0, 1]
+        issue_weights = np.assarray(self.issue_weights) / np.sum(self.issue_weights, axis=1, keepdims=True)
+        for issue, w in zip(self.issues, issue_weights.transpose()):
+            payoffs = []
+            for po, w_, s in zip(issue.payoffs, w, self.scale):
+                po = po * w_ * s
+                payoffs.append(po)
+            issue.payoffs = payoffs
+
+    def get_system_msg(self):
         pass
-    elif issue_type == 'integrative':
-        pass
-    elif issue_type == 'distributive':
-        pass
-    elif issue_type == 'custom':
-        pass
-    else:
-        raise NotImplemented(f'error: issue type {issue_type} not in [compatible, integrative, distributive, custom]')
 
-    return issue
+    def to_dict(self):
+        return vars(self)
 
-
-def create_game(issue_types: list, issue_importance: list, issue_names=None, issue_descriptions=None,
-                issue_step_descriptions=None, num_steps=10, scale=(1, 1), save_path=None) -> dict:
-    """
-    Create a game consisting of one or more issues
-    :param issue_types:
-    :param issue_importance: list of tuples
-    :param issue_names:
-    :param issue_descriptions:
-    :param issue_step_descriptions:
-    :param num_steps:
-    :param scale:
-    :param save_path:
-    :return:
-    """
-    # TODO: some checks on lengths, types, etc.
-
-    if issue_names is None:
-        issue_names = [f'issue {i}' for i in range(len(issue_types))]
-    if isinstance(num_steps, int):
-        num_steps = [num_steps] * len(issue_types)
-
-    issue_importance = np.asarray(issue_importance) / sum(issue_importance)
-
-    issues = []
-    for name, it, ns, gi, i_desc, i_s_desc in zip(issue_names, issue_types, num_steps, issue_importance,
-                                                  issue_descriptions, issue_step_descriptions):
-        issue = create_issue(issue_name=name, issue_type=it, num_steps=ns, issue_descriptions=i_desc,
-                             step_descriptions=i_s_desc, scale=(gi[0] * scale[0], gi[1] * scale[1]))
-        issues.append(issue)
-
-    game = {}
-
-    if save_path is not None:
-        pass
-
-    return game
+    @staticmethod
+    def from_dict(d):
+        return Game(**d)
 
 
 def load_game(game_name: str) -> dict:
+    pass
+
+
+def create_experiment():
     pass
