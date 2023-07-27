@@ -21,6 +21,7 @@ class AgentMetadata:
 
 @hydra.main(version_base=None, config_path="configs", config_name="inference_root")
 def main(cfg: DictConfig):
+    cfgg = cfg
     cfg = cfg["experiments"]
     agents_raw = cfg["agents"]
     
@@ -47,13 +48,12 @@ def main(cfg: DictConfig):
     agents[0].create_static_system_prompt(game_shared_description, agent_side, issues_format)
     agents[1].create_static_system_prompt(game_shared_description, agent_side, issues_format)
 
-    print(agents[0].system_skeleton)
+    save_folder = cfgg["output_dir"]
+    max_rounds = cfg["max_rounds"]
 
-    print(agents[1].system_skeleton)
-
-    negotiation = NegotiationProtocol(agents=agents, game=game, stop_condition=stop_condition,
+    negotiation = NegotiationProtocol(agents=agents, game=game,
                                       max_rounds=max_rounds, save_folder=save_folder)
-    # negotiation.run()
+    negotiation.run()
     
     
     # intiialize communication protocol 

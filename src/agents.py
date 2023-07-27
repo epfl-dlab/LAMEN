@@ -3,7 +3,7 @@ import os
 import json
 import csv
 from dlabchain import AIMessage, SystemMessage, HumanMessage, ChatModel
-from utils import get_api_key, model_metadata
+from utils import get_api_key
 from typing import Tuple
 from omegaconf import DictConfig
 import re
@@ -24,11 +24,11 @@ def load_agent_description(agent_path) -> str:
     pass
 
 def get_note_prompt_text(note_name, note_path="data/note_prompts"):
-    f = open(os.path.join(note_path, note_name)).read()
+    f = open(os.path.join(note_path, note_name+".txt")).read()
     return f
 
 def get_msg_prompt_text(msg_name, msg_path="data/msg_prompts"):
-    f = open(os.path.join(msg_path, msg_name)).read()
+    f = open(os.path.join(msg_path, msg_name+".txt")).read()
     return f    
 
 
@@ -138,9 +138,10 @@ class NegotiationAgent:
 
     def step(self, user_msg):
         # create mental note
-        self.generate_note(user_msg)
+        msg_new = self.generate_note(user_msg)
         # create external message
         self.generate_message(user_msg)
+        return msg_new
 
     # likely, this could also be a function of the ChatModel() class
     def check_context_len_step(self, category) -> bool:
@@ -151,12 +152,14 @@ class NegotiationAgent:
         # not clear how to make a scalable approach to max token length across dif model
         if category == "note":
             max_len = self.note_max_len
+            history = [HumanMessage(k[1]) for k in self.notes_history]
         elif category == "msg":
             max_len = self.msg_max_len
+            history = [HumanMessage(k[1]) for k in self.msg_history]
         else:
             raise NotImplementedError("We currently only support 'note' and 'msg'")
         
-        return self.model.check_context_len(self.get_messages(), max_len)
+        return self.model.check_context_len(history, max_len)
 
     def get_settings(self):
         # TODO: return init settings for analysis / saving
@@ -171,7 +174,6 @@ Description of your qualities:
 Your payoff values are noted below. Adopt these values as your preferences while negotiating.
 {issues_format}"""
         self.system_skeleton = SystemMessage(intial_story)
-        print(intial_story)
         
     def process_output():
         # It's imaginable that the model starts with `Sure, here you go!' 
@@ -220,12 +222,20 @@ class NegotiationProtocol:
         completed = False
         num_rounds = 0
         while not completed:
-            self.agents[0].step()
+            if num_rounds == 0:
+                self.agents[0].step("")
+            else:
+                msg_text = self.agents[0].prepare_msg_note_input(self.agents[1].msg_history)
+                self.agents[0].step(msg_text)
+            
             completed = self.check_completion(num_rounds=num_rounds)
+            print(self.agents[0].msg_history)
+            print(self.agents[0].notes_history)
             self.save_results()
 
             if not completed:
-                self.agents[1].step()
+                msg_text = self.agents[1].prepare_msg_note_input(self.agents[0].msg_history)
+                self.agents[1].step(msg_text)
                 completed = self.check_completion(num_rounds=num_rounds)
                 self.save_results()
 
@@ -240,15 +250,22 @@ class NegotiationProtocol:
         #   -> c. fancier stuff, e.g., memory bank search etc.
         completed = False
         # 1
-        if self.compare_issues(return_issues=False):
-            completed = True
+        try:
+            if self.compare_issues(return_issues=False):
+                completed = True
+        except:
+            print("Not proper format")
         # 2
         if num_rounds >= self.max_rounds:
             completed = True
         # 3
-        if not self.agents[0].check_context_len_step():
+        if not self.agents[0].check_context_len_step("msg"):
             completed = True
-        if not self.agents[1].check_context_len_step():
+        if not self.agents[0].check_context_len_step("note"):
+            completed = True
+        if not self.agents[1].check_context_len_step("msg"):
+            completed = True
+        if not self.agents[1].check_context_len_step("note"):
             completed = True
 
         return completed

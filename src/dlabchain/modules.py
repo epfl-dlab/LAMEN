@@ -6,7 +6,6 @@ from abc import ABC
 import json
 from retry import retry
 # TODO: fix import structure, from utils import get_api_key
-from utils import model_metadata
 import openai
 
 

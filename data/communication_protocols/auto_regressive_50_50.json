@@ -2,7 +2,7 @@
   "msg_input_msg_history": -1,
   "msg_input_note_history": -1,
   "msg_max_len": 50,
-  "msg_prompt": "You represent agent A, compose a response to the following history of negotiations.",
+  "msg_prompt": "prompt_0",
   "note_input_msg_history": -1,
   "note_input_note_history": -1,
   "note_max_len": 50,

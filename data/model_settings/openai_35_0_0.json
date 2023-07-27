@@ -1,6 +1,5 @@
 {
   "model_provider": "openai",
   "model_name": "gpt-3.5-turbo",
-  "temperature": 0,
-  "length_penalty": 0
+  "temperature": 0
 }
