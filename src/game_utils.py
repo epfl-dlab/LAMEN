@@ -140,9 +140,9 @@ class Game:
     def format_all_issues(self, agent_idx):
         issues_text = ""
         for issue in self.issues:
-            issues_text += issue.format_issue(agent_idx)
+            issues_text += f"{issue.format_issue(agent_idx)}\n"
             
-        return issues_text
+        return issues_text.strip()
     
     @staticmethod
     def from_dict(d):

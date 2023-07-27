@@ -1,0 +1,11 @@
+"Reflect on the negotiation rounds outlined below. Focus on each of the issues and potential strategies to win the negotiations. Then conclude with a summary of the negotiations in the following format. Here issue_name_i should correspond to the issue of discussion, status indicates whether or not you've accepted the proposed value, and offer price indicates the value of the offer.
+
+Current Issue State:
+    {'issue_name_i': 
+        {
+            'status': 'Accepted or Not Accepted',
+            'offer': 'value'
+        }
+    }
+
+Endeavour to provide detailed reflections with appropriate valuation wherever necessary. Make sure that the response is less than {max_tokens} words.

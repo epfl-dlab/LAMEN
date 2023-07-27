@@ -3,9 +3,11 @@ import os
 import json
 import csv
 from dlabchain import AIMessage, SystemMessage, HumanMessage, ChatModel
-from utils import get_api_key
+from utils import get_api_key, model_metadata
 from typing import Tuple
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import DictConfig
+import re
+import ast
 
 import logging
 log = logging.getLogger("my-logger")
@@ -21,9 +23,13 @@ def load_agent_description(agent_path) -> str:
     # TODO: load agent json and join into single string
     pass
 
-class AgentSystemPrompt:
-    def __init__(self, agent, game):
-        pass
+def get_note_prompt_text(note_name, note_path="data/note_prompts"):
+    f = open(os.path.join(note_path, note_name)).read()
+    return f
+
+def get_msg_prompt_text(msg_name, msg_path="data/msg_prompts"):
+    f = open(os.path.join(msg_path, msg_name)).read()
+    return f    
 
 
 class NegotiationAgent:
@@ -45,10 +51,13 @@ class NegotiationAgent:
         self.agent_name = str(uuid4()) if agent_name is None else agent_name
 
         # message params
-        self.msg_prompt, self.msg_max_len = msg_prompt, msg_max_len
+        msg_prompt_path, self.msg_max_len = msg_prompt, msg_max_len
+        self.msg_prompt = get_msg_prompt_text(msg_prompt_path)
         self.msg_input_msg_history, self.msg_input_note_history = msg_input_msg_history, msg_input_note_history
         # notes params
-        self.note_prompt, self.note_max_len = note_prompt, note_max_len
+        note_prompt_path, self.note_max_len = note_prompt, note_max_len
+        self.note_prompt = get_note_prompt_text(note_prompt_path)
+
         self.note_input_msg_history, self.note_input_note_history = note_input_msg_history, note_input_note_history
         # generation parameters
         self.generation_parameters = kwargs
@@ -68,7 +77,7 @@ class NegotiationAgent:
         # msg prompt structure:
         # system_msg(game, side, agent, issues) + user_msg(c_msg, note, msg, c_msg, note, prompt) -> agent_msg: msg
         user_msg = ''  # TODO: call function that weaves msg_history, note_history, msg_len, msg_prompt
-        context = self.system_skeleton + user_msg
+        context = [self.system_skeleton, HumanMessage(self.msg_prompt)]
         msg = self.model(context)
         return msg
 
@@ -80,14 +89,21 @@ class NegotiationAgent:
         # note prompt structure:
         # system_msg(game, side, agent, issues) + user_msg(c_msg, note, msg, c_msg, prompt) --> agent_msg: note
         user_msg = ''  # TODO: call function that weaves msg_history, note_history, note_len, note_prompt
-        context = self.system_skeleton + user_msg
+        context = [self.system_skeleton, HumanMessage(self.note_prompt)]
         note = self.model(context)
         return note
 
     def get_issues_state(self) -> dict:
         # TODO: get latest issues_proposal from internal notes
-        pass
-    
+        # chatgpt inspired regex string.
+        # Use regex to find string that start with '{' and end with '}', and doesn't contain '{}' within it
+        try: 
+            dict_list = ast.literal_eval(re.search('({.+})', self.notes_history[-1]).group(0))
+        except: 
+            dict_list = {}
+            print("Didn't work.")
+        return dict_list
+
     def __repr__(self):
         return f"{self.init_description}"
 
@@ -98,15 +114,20 @@ class NegotiationAgent:
         to_agent.msg_history.append(last_msg)
 
     # likely, this could also be a function of the ChatModel() class
-    def check_context_len_step(self) -> bool:
+    def check_context_len_step(self, category) -> bool:
         # TODO: get token len of completion input (system_msg, msg_history, note_history, prev_game_history) + note/msg
         # NOTE: openai adds 8 tokens for any request
         # 1. enough context token space to generate note?
         # 2. enough context token space to generate msg?
-        # not clear how to make a scalable approach to max token length across dif models
-        got_space = True
-
-        return got_space
+        # not clear how to make a scalable approach to max token length across dif model
+        if category == "note":
+            max_len = self.note_max_len
+        elif category == "msg":
+            max_len = self.msg_max_len
+        else:
+            raise NotImplementedError("We currently only support 'note' and 'msg'")
+        
+        return self.model.check_context_len(self.get_messages(), max_len)
 
     def step(self):
         # create mental note
@@ -119,9 +140,21 @@ class NegotiationAgent:
         pass        
     
     def create_static_system_prompt(self, shared_description, side_description, issues_format):
-        intial_story = shared_description +"\n"+ side_description +  "\nDescription of your qualities:\n" + self.init_description + "\n" + issues_format
+        intial_story = f"""
+{shared_description}
+{side_description}
+Description of your qualities:
+{self.init_description} 
+Your payoff values are noted below. Adopt these values as your preferences while negotiating.
+{issues_format}"""
         self.system_skeleton = SystemMessage(intial_story)
         print(intial_story)
+        
+    def process_output():
+        # It's imaginable that the model starts with `Sure, here you go!' 
+        # We also might want it to update a dictionary with the current 
+        # status of the dictionaries. 
+        pass
 
 
 class NegotiationProtocol:
@@ -150,9 +183,6 @@ class NegotiationProtocol:
             agent_side = self.game.sides[i][0]
             agent.create_static_system_prompt(game_shared_description, agent_side, issues_format)
         
-        
-            
-
     def run(self):
         # TODO: conduct rounds of negotiation until a stop_condition is hit
         #       after each respective agent step, call check_completion()

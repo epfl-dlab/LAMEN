@@ -17,8 +17,6 @@ class AgentMetadata:
         self.init_description = dictionary_to_string(self.description) # format the dictionary to add to prompt
         self.commmuncation_protocol = read_json(communication)
         self.generation_parameters = read_json(generation_parameters)       
-        
-    
 
 
 @hydra.main(version_base=None, config_path="configs", config_name="inference_root")
@@ -45,15 +43,16 @@ def main(cfg: DictConfig):
     game_shared_description = game.description
     issues_format = game.format_all_issues(0)
     agent_side = game.sides[0][0]
-    print(issues_format)
-    print(agent_side)
+
     agents[0].create_static_system_prompt(game_shared_description, agent_side, issues_format)
+    agents[1].create_static_system_prompt(game_shared_description, agent_side, issues_format)
 
+    print(agents[0].system_skeleton)
 
+    print(agents[1].system_skeleton)
 
-    
-    # negotiation = NegotiationProtocol(agents=[agent_0, agent_1], game=game, stop_condition=stop_condition,
-                                      #max_rounds=max_rounds, save_folder=save_folder)
+    negotiation = NegotiationProtocol(agents=agents, game=game, stop_condition=stop_condition,
+                                      max_rounds=max_rounds, save_folder=save_folder)
     # negotiation.run()
     
     

@@ -6,7 +6,7 @@ from abc import ABC
 import json
 from retry import retry
 # TODO: fix import structure, from utils import get_api_key
-
+from utils import model_metadata
 import openai
 
 
@@ -140,22 +140,25 @@ class ChatModel:
             """
             Basic cost estimation
             """
-            # estimate the cost of making a call given a prompt
-            # and expected length
-            # @td NOTE: standard 8 tokens are put per message
-            if self.enc == None: self.enc = tiktoken.encoding_for_model(self.model_name)
-
-            if type(messages)==list:
-                all_messages = ""
-                for m in messages: all_messages += m.text()
-            else: all_messages = messages
-
-            input_tokens = len(self.enc.encode(all_messages))
+            input_tokens = self.estimate_tokens(messages)
             output_tokens = estimated_output_tokens
 
             price = round((input_tokens * self.prompt_cost + output_tokens * self.completion_cost) / 1000, 4)
 
             return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
+        
+    def estimate_tokens(self, messages: Union[List[BaseMessage],str]):
+        # estimate the cost of making a call given a prompt
+        # and expected length
+        # @td NOTE: standard 8 tokens are put per message
+        if self.enc == None: self.enc = tiktoken.encoding_for_model(self.model_name)
+
+        if type(messages)==list:
+            all_messages = ""
+            for m in messages: all_messages += m.text()
+        else: all_messages = messages
+        input_tokens = len(self.enc.encode(all_messages))
+        return input_tokens
 
     def _generate(self, data):
         # refactoring since silly api differences between azure and openai. 
@@ -178,6 +181,23 @@ class ChatModel:
             **self.generation_params
         )
 
+    def check_context_len(self, messages: List[BaseMessage], max_tokens: int) -> bool:
+        """Calculate how many tokens we have left. 
+        
+        messages: List[system_msg, msg_history, note_history, prev_game_history) + note/msg]
+        
+        Returns:
+            got_space (bool)
+        """
+        # TODO: get token len of completion input (system_msg, msg_history, note_history, prev_game_history) + note/msg
+        # NOTE: openai adds 8 tokens for any request
+        # 1. enough context token space to generate note?
+        # 2. enough context token space to generate msg?   
+        
+        # we can easily add a test for this.
+        tokens_left = self.context_max_tokens - 8 - self.estimate_tokens(messages) - max_tokens
+        got_space = True if tokens_left > 0 else False
+        return got_space
 
 def get_model_pricing(model_name):
     model_details = get_model_details(model_name=model_name)
