@@ -23,18 +23,6 @@ def load_agent_description(agent_path) -> str:
     pass
 
 
-def get_note_prompt_text(note_name, note_path="data/note_prompts"):
-    f = open(os.path.join(note_path, note_name+".txt")).read()
-    print(note_name, f)
-    return f
-
-
-def get_msg_prompt_text(msg_name, msg_path="data/msg_prompts"):
-    f = open(os.path.join(msg_path, msg_name+".txt")).read()
-    print(msg_name, f)
-    return f    
-
-
 class NegotiationAgent:
     def __init__(self, agent_name=None, init_description=None,
                  msg_prompt=None, note_prompt=None,
@@ -47,17 +35,16 @@ class NegotiationAgent:
         Basic agent class
         """
         self.system_description = ''
-        self.init_description = init_description # we load it in as a string unlike ^^^ 
-        self.agent_name = str(uuid4()) if agent_name is None else agent_name
+        self.init_description = init_description # we load it in as a string unlike ^^^
+        self.agent_name = agent_name
 
         # message params
-        msg_prompt_path, self.msg_max_len = msg_prompt, msg_max_len
-        self.msg_prompt = get_msg_prompt_text(msg_prompt_path)
+        self.msg_prompt_path, self.msg_max_len = msg_prompt, msg_max_len
+        self.msg_prompt = self.get_msg_note_prompt(msg_prompt, is_note=False)
         self.msg_input_msg_history, self.msg_input_note_history = msg_input_msg_history, msg_input_note_history
         # notes params
-        note_prompt_path, self.note_max_len = note_prompt, note_max_len
-        self.note_prompt = get_note_prompt_text(note_prompt_path)
-
+        self.note_prompt_path, self.note_max_len = note_prompt, note_max_len
+        self.note_prompt = self.get_msg_note_prompt(note_prompt, is_note=True)
         self.note_input_msg_history, self.note_input_note_history = note_input_msg_history, note_input_note_history
         # generation parameters
         self.generation_parameters = kwargs
@@ -180,7 +167,15 @@ Description of your qualities:
 Your payoff values are noted below. Adopt these values as your preferences while negotiating.
 {issues_format}"""
         self.system_description = SystemMessage(intial_story)
-        
+
+    def get_msg_note_prompt(self, prompt_name, before='max_words', is_note=False):
+        prompt_path = 'data/note_prompts' if is_note else 'data/message_prompts'
+        max_len = self.note_max_len if is_note else self.msg_max_len
+        prompt = open(os.path.join(prompt_path, prompt_name + ".txt")).read()
+        prompt = prompt.replace("{" + before + "}", f"{max_len}")
+
+        return prompt
+
     def process_output(self):
         # It's imaginable that the model starts with `Sure, here you go!' 
         # We also might want it to update a dictionary with the current 
@@ -243,10 +238,10 @@ class NegotiationProtocol:
         #   -> c. fancier stuff, e.g., memory bank search etc.
         completed = False
         # 1
-        try:
-            completed, agreed_issues = self.compare_issues(return_issues=True)
-        except:
-            print(f"error: issues not in proper format to compare - {agreed_issues}")
+        # try:
+        #     completed, agreed_issues = self.compare_issues(return_issues=True)
+        # except:
+        #     print(f"error: issues not in proper format to compare - {agreed_issues}")
         # 2
         if num_rounds >= self.max_rounds:
             completed = True

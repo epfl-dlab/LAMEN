@@ -1,7 +1,13 @@
+Compose a mental note to order your thoughts.
 Reflect on the negotiations transcript so far.
 For all issues think about strategies to maximize your payoffs.
-Finally, summarize what you believe to be an acceptable and achievable offer for each issue in the following format:
+Your note can not exceed {max_words} words.
+
+Finally, for each of the issues write what you believe to be an acceptable and achievable agreement.
+
+acceptable offer format:
 ```json{
-    "issue_name_i": "<acceptable offer>"
+    "issue_name_0": "<acceptable offer>",
+    "issue_name_1": "<acceptable offer>",
+    ...
 }```
-Your note can never exceed {max_tokens} words!

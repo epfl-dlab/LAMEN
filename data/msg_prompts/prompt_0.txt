@@ -1,1 +1,0 @@
-You represent agent A, compose a response to the following history of negotiations.

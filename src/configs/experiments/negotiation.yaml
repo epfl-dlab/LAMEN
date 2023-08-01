@@ -15,9 +15,9 @@ max_rounds: 5
 agents: 
   - agent_1: 
       agent_description: "${data_dir}/agents/pj_green.json"
-      communication: ${data_dir}/communication_protocols/auto_regressive_50_50.json
+      communication: ${data_dir}/communication_protocols/auto_regressive_100_100.json
       generation_parameters: ${data_dir}/model_settings/openai_35_0_0.json
   - agent_2: 
       agent_description: "${data_dir}/agents/hp_costa.json"
-      communication: ${data_dir}/communication_protocols/auto_regressive_50_50.json
+      communication: ${data_dir}/communication_protocols/auto_regressive_100_100.json
       generation_parameters: ${data_dir}/model_settings/openai_35_0_0.json
