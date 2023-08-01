@@ -1,10 +1,11 @@
 import hydra
-import json 
+import json
+import fire
 from omegaconf import DictConfig, OmegaConf
-from utils import read_json, dictionary_to_string
+from utils import read_json, dictionary_to_string, get_api_key
 
 from agents import NegotiationAgent, NegotiationProtocol
-from game_utils import load_game, Game, Issue
+from games import load_game, Game, Issue
 
 from dotenv import load_dotenv
 import os 
@@ -25,14 +26,14 @@ def main(cfg: DictConfig):
     cfg = cfg["experiments"]
     agents_raw = cfg["agents"]
     
-    # initialize agent2 with their stories
+    # initialize agents with their stories
     agents = [] # list will store agent metadata 
     for agent in agents_raw:
         agent = list(agent.values())[0]     # stupid python dictionary workaround 
         agent_data = AgentMetadata(**agent)
         agents.append(NegotiationAgent(
             **agent_data.commmuncation_protocol, 
-            **agent_data.generation_parameters, 
+            **agent_data.generation_parameters,
             init_description=agent_data.init_description)
         )
     print(f"We have {len(agents)}. There descriptions are {agents[0]}{agents[1]}")
@@ -56,14 +57,5 @@ def main(cfg: DictConfig):
     negotiation.run()
     
     
-    # intiialize communication protocol 
-        # in comm protocol define 
-
-    
-    # TODO initilaize the agents
-    # Run through the negotiations
-    # With the features from the config file.
-    
-    
-if __name__=="__main__":
+if __name__ == "__main__":
     main()

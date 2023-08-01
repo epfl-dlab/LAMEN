@@ -99,8 +99,7 @@ class Issue:
         for label, payoff in zip(self.payoff_labels[idx], self.payoffs[idx]):
             issue_format += f"{label}, {payoff}\n"
         return issue_format
-                
-            
+
 
 class Game:
     def __init__(self, name, description, issues, issue_weights, scale=(1, 1), sides=None, **kwargs):

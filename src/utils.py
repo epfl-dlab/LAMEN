@@ -33,12 +33,12 @@ def format_skeleton(agent_cfg, other_agent_cfg):
     f.replace("{name}", name).replace("{occupation}", agent_cfg["qualities"]["profession"])
 
 
-def get_api_key(fname, key):
+def get_api_key(fname='secrets.json', key='dlab_openai_key'):
     try:
         with open(fname) as f:
             api_key = json.load(f)[key]
-    except (FileExistsError, FileNotFoundError, KeyError) as e:
-        print(f'error: {e}')
+    except Exception as e:
+        print(f'error: unable to load api key {key} from file {fname} - {e}')
         return None
 
     return api_key

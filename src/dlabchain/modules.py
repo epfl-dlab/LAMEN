@@ -60,7 +60,7 @@ class SystemMessage(BaseMessage):
 
 # TODO: azure and openai work slightly different, make sure both are supported for v1
 # TODO: assume a local secrets.json file that hosts keys to avoid accidental version control commits
-# ^ Right now we are using .env files to store API keys. 
+#  ^ Right now we are using .env files to store API keys.
 class ChatModel:
     def __init__(self, model_key: str = None, model_key_path=None, model_key_name=None,
                  model_provider: str = "openai",
@@ -79,16 +79,16 @@ class ChatModel:
         # @td NOTE: use simple function 'get_api_key()' I added to utils.py
         if model_key is None:
             # TODO: use get_api_key from utils
-            if (model_key == None) & (model_provider=="openai"): openai_api_key = os.getenv("OPENAI_API_KEY")
-            if (model_key == None) & (model_provider=="azure"): openai_api_key = os.getenv("AZURE_API_KEY")
+            if (model_key == None) & (model_provider == "openai"): openai_api_key = os.getenv("OPENAI_API_KEY")
+            if (model_key == None) & (model_provider == "azure"): openai_api_key = os.getenv("AZURE_API_KEY")
             if model_key == None: raise ValueError("No openai key found.")
-    
+
         self.model_provider = model_provider
         openai.api_key = model_key
 
-        # generation params
+        #  generation params
         self.max_tokens = max_tokens  # NOTE: remove
-        self._model_name, self.model_name = model_name, model_name # 
+        self._model_name, self.model_name = model_name, model_name  #
         self.temperature = temperature
         self.generation_params = kwargs
 
@@ -99,19 +99,19 @@ class ChatModel:
         self.completion_cost = model_details['completion_cost']
         self.tpm = model_details['tpm']
         self.rpm = model_details['rpm']
-        
-        # only single generations currently implemented
+
+        #  only single generations currently implemented
         if self.generation_params.get("n", 1) >= 2:
             raise NotImplementedError("Need to implement for more than one generation.")
 
-        self.enc = None         # used for measuring cost of generation below
+        self.enc = None  # used for measuring cost of generation below
 
         # adjust if we want to use azure as the endpoing
-        if self.model_provider=="azure":
+        if self.model_provider == "azure":
             openai.api_base = "https://instance0.openai.azure.com/"
             openai.api_type = "azure"
             openai.api_version = "2023-03-15-preview"
-            self.model_name = self._model_name.replace(".","") # for the azure naming struct.
+            self.model_name = self._model_name.replace(".", "")  # for the azure naming struct.
 
     @retry(requests.exceptions.RequestException, tries=3, delay=2, backoff=2)
     def __call__(self, messages: List[BaseMessage]):
@@ -121,6 +121,7 @@ class ChatModel:
         data = [k.prepare_for_generation() for k in messages]
         response = self._generate(data)
 
+        # TODO: error handling
         self.response = AIMessage(response["choices"][0]["message"]["content"])
 
         messages.append(self.response)
@@ -135,27 +136,28 @@ class ChatModel:
     def __repr__(self):
         return f'ChatModel("model_name={self.model_name}, max_tokens={self.max_tokens}")'
 
-    def estimate_cost(self, messages: Union[List[BaseMessage],str], estimated_output_tokens):
-            """
-            Basic cost estimation
-            """
-            input_tokens = self.estimate_tokens(messages)
-            output_tokens = estimated_output_tokens
+    def estimate_cost(self, messages: Union[List[BaseMessage], str], estimated_output_tokens):
+        """
+        Basic cost estimation
+        """
+        input_tokens = self.estimate_tokens(messages)
+        output_tokens = estimated_output_tokens
 
-            price = round((input_tokens * self.prompt_cost + output_tokens * self.completion_cost) / 1000, 4)
+        price = round((input_tokens * self.prompt_cost + output_tokens * self.completion_cost) / 1000, 4)
 
-            return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
-        
-    def estimate_tokens(self, messages: Union[List[BaseMessage],str]):
+        return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
+
+    def estimate_tokens(self, messages: Union[List[BaseMessage], str]):
         # estimate the cost of making a call given a prompt
         # and expected length
         # @td NOTE: standard 8 tokens are put per message
         if self.enc == None: self.enc = tiktoken.encoding_for_model(self.model_name)
 
-        if type(messages)==list:
+        if type(messages) == list:
             all_messages = ""
             for m in messages: all_messages += m.text()
-        else: all_messages = messages
+        else:
+            all_messages = messages
         input_tokens = len(self.enc.encode(all_messages))
         return input_tokens
 
@@ -163,22 +165,22 @@ class ChatModel:
         # refactoring since silly api differences between azure and openai. 
         # in azure engine = model_name, in openai model =...
         # @td NOTE: using the max_tokens param has undesired behavior, specify max token requirements in prompt
-        if self.model_provider=="azure":
+        if self.model_provider == "azure":
             return openai.ChatCompletion.create(
-            engine=self.model_name, 
-            messages=data,
-            temperature=self.temperature,
-            # max_tokens=self.max_tokens,
-            **self.generation_params
-        )
+                engine=self.model_name,
+                messages=data,
+                temperature=self.temperature,
+                # max_tokens=self.max_tokens,
+                **self.generation_params
+            )
         else:
             return openai.ChatCompletion.create(
-            model=self.model_name, 
-            messages=data,
-            temperature=self.temperature,
-            # max_tokens=self.max_tokens,
-            **self.generation_params
-        )
+                model=self.model_name,
+                messages=data,
+                temperature=self.temperature,
+                # max_tokens=self.max_tokens,
+                **self.generation_params
+            )
 
     def check_context_len(self, messages: List[BaseMessage], max_tokens: int) -> bool:
         """Calculate how many tokens we have left. 
@@ -192,11 +194,12 @@ class ChatModel:
         # NOTE: openai adds 8 tokens for any request
         # 1. enough context token space to generate note?
         # 2. enough context token space to generate msg?   
-        
+
         # we can easily add a test for this.
         tokens_left = self.context_max_tokens - 8 - self.estimate_tokens(messages) - max_tokens
         got_space = True if tokens_left > 0 else False
         return got_space
+
 
 def get_model_pricing(model_name):
     model_details = get_model_details(model_name=model_name)
@@ -204,7 +207,6 @@ def get_model_pricing(model_name):
 
 
 def get_model_details(model_name, fpath='data/llm_model_details.json'):
-
     try:
         with open(fpath) as f:
             details = json.load(f)

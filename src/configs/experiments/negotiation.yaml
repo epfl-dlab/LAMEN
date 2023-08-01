@@ -18,6 +18,6 @@ agents:
       communication: ${data_dir}/communication_protocols/auto_regressive_50_50.json
       generation_parameters: ${data_dir}/model_settings/openai_35_0_0.json
   - agent_2: 
-      agent_description: "${data_dir}/agents/hp_costa.json"   # agent characteristics
-      communication: ${data_dir}/communication_protocols/auto_regressive_50_50.json  # inputs and output instructions
-      generation_parameters: ${data_dir}/model_settings/openai_35_0_0.json    # model settings
+      agent_description: "${data_dir}/agents/hp_costa.json"
+      communication: ${data_dir}/communication_protocols/auto_regressive_50_50.json
+      generation_parameters: ${data_dir}/model_settings/openai_35_0_0.json

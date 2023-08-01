@@ -1,11 +1,7 @@
-"Reflect on the negotiation rounds outlined below. Focus on each of the issues and potential strategies to win the negotiations. Then conclude with a summary of the negotiations in the following format. Here issue_name_i should correspond to the issue of discussion, status indicates whether or not you've accepted the proposed value, and offer price indicates the value of the offer.
-
-Current Issue State:
-    {'issue_name_i': 
-        {
-            'status': 'Accepted or Not Accepted',
-            'offer': 'value'
-        }
-    }
-
-Endeavour to provide detailed reflections with appropriate valuation wherever necessary. Make sure that the response is less than {max_tokens} words.
+Reflect on the negotiations transcript so far.
+For all issues think about strategies to maximize your payoffs.
+Finally, summarize what you believe to be an acceptable and achievable offer for each issue in the following format:
+```json{
+    "issue_name_i": "<acceptable offer>"
+}```
+Your note can never exceed {max_tokens} words!
