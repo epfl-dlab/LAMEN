@@ -36,7 +36,7 @@ def main(cfg: DictConfig):
             agent_name=agent_data.agent_name,
             init_description=agent_data.init_description)
         )
-    print(f"We have {len(agents)}. There descriptions are {agents[0]}{agents[1]}")
+    print(f"running negotiations with {len(agents)} agents:\n{agents[0]}\n{agents[1]}")
 
     # initialize game
     game_information = load_game(cfg["game"]["file"])

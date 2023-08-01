@@ -1,0 +1,5 @@
+{
+  "model_provider": "openai",
+  "model_name": "gpt-4",
+  "temperature": 0
+}

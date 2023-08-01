@@ -60,7 +60,6 @@ class SystemMessage(BaseMessage):
 
 # TODO: azure and openai work slightly different, make sure both are supported for v1
 # TODO: assume a local secrets.json file that hosts keys to avoid accidental version control commits
-#  ^ Right now we are using .env files to store API keys.
 class ChatModel:
     def __init__(self, model_key: str = None, model_key_path=None, model_key_name=None,
                  model_provider: str = "openai",
@@ -182,7 +181,7 @@ class ChatModel:
                 **self.generation_params
             )
 
-    def check_context_len(self, messages: List[BaseMessage], max_tokens: int) -> bool:
+    def check_context_len(self, context: List[BaseMessage], max_gen_tokens: int) -> bool:
         """Calculate how many tokens we have left. 
         
         messages: List[system_msg, msg_history, note_history, prev_game_history) + note/msg]
@@ -190,14 +189,15 @@ class ChatModel:
         Returns:
             got_space (bool)
         """
-        # TODO: get token len of completion input (system_msg, msg_history, note_history, prev_game_history) + note/msg
-        # NOTE: openai adds 8 tokens for any request
         # 1. enough context token space to generate note?
-        # 2. enough context token space to generate msg?   
+        # 2. enough context token space to generate msg?
 
-        # we can easily add a test for this.
-        tokens_left = self.context_max_tokens - 8 - self.estimate_tokens(messages) - max_tokens
-        got_space = True if tokens_left > 0 else False
+        # openai adds 8 default tokens per request
+        msg_token_penalty = 8
+        context_tokens = self.estimate_tokens(context)
+        tokens_left = self.context_max_tokens - (context_tokens + msg_token_penalty + max_gen_tokens)
+        got_space = tokens_left > 0
+
         return got_space
 
 
