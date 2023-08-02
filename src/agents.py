@@ -127,43 +127,43 @@ class NegotiationAgent:
             max_n = 1e5
 
         neg_history = []
-        for i in range(0, max_len):
+        for i in range(1, max_len+1):
 
-            if msg and i < max_n and i < len(n_h):
-                neg_history.append(('mental note', n_h[-i]))
+            if msg and (i <= max_n) and (0 < len(n_h)):
+                neg_history.append(('mental note', n_h.pop()))
 
-            if i < max_m:
-                if i < len(c_msg_history):
-                    neg_history.append(('offer', c_msg_history[-i]))
-                if i < len(m_h):
-                    neg_history.append(('offer', m_h[-i]))
+            if i <= max_m:
+                if 0 < len(c_msg_history):
+                    neg_history.append(('offer', c_msg_history.pop()))
+                if 0 < len(m_h):
+                    neg_history.append(('offer', m_h.pop()))
 
-            if not msg and i < max_n and i < len(n_h):
-                neg_history.append(('mental note', n_h[-i]))
+            if not msg and (i <= max_n) and (0 < len(n_h)):
+                neg_history.append(('mental note', n_h.pop()))
 
-            if i + 1 == max_len and max_len < len(c_msg_history):
-                neg_history.append(('offer', c_msg_history[0]))
+            if (i == max_len) and (0 < len(c_msg_history)) and (i <= max_m):
+                neg_history.append(('offer', c_msg_history.pop()))
 
         neg_history = neg_history[::-1]
         neg_transcript = ''
         for i_type, (a, i) in neg_history:
-            neg_transcript += f'[{a}] [{i_type}] {i}\n'
+            neg_transcript += f'[{a}] [{i_type}]\n{i}\n'
 
         next_prompt = self.msg_prompt if msg else self.note_prompt
-        user_msg = ''
         if first_msg_note:
             to_replace = "Reflect on the negotiations transcript so far."
             replacement = "You are to start the negotiations."
             next_prompt = next_prompt.replace(to_replace, replacement)
 
+            user_msg = next_prompt
             if len(neg_transcript) > 0:
-                user_msg = 'A log of your mental notes so far:\n\n'
-                user_msg += '<start transcript>\n' + neg_transcript + '\n<end transcript>\n\n'
-            user_msg += next_prompt
+                user_msg += '\nA log of your mental notes so far:\n\n'
+                user_msg += '<start transcript>\n' + neg_transcript + '\n<end transcript>\n'
+
         else:
-            user_msg = 'Transcript of ongoing negotiations and your mental notes so far:\n\n'
+            user_msg = next_prompt
+            user_msg += '\nTranscript of ongoing negotiations and your mental notes so far:\n'
             user_msg += '<start transcript>\n' + neg_transcript + '\n<end transcript>\n\n'
-            user_msg += next_prompt
 
         return user_msg
 

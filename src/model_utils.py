@@ -6,7 +6,8 @@ import json
 from retry import retry
 from utils import get_api_key
 import openai
-from random import randint
+import time
+from datetime import datetime as dt
 
 
 class BaseMessage(ABC):
@@ -117,7 +118,8 @@ class ChatModel:
         data = [k.prepare_for_generation() for k in messages]
 
         if self.debug_mode:
-            return f"[{randint(1, 10000)}] lorem ipsum dolor sit amet"
+            time.sleep(0.2)  # small wait to see sensible msg timestamps
+            return f"<{dt.strftime(dt.now(), '%H%M%S_%f')}> lorem ipsum dolor sit amet"
 
         response = self._generate(data)
 
