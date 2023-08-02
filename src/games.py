@@ -147,6 +147,14 @@ class Game:
     def to_dict(self):
         return vars(self)
 
+    def get_issue(self, issue_name):
+        issue = [k for k in self.issues if k.name==issue_name]
+        if len(issue)>0:
+            return issue[0]
+        else:
+            raise NotImplementedError("Issue not found")
+        
+
     def format_all_issues(self, agent_idx):
         issues_text = ""
         for issue in self.issues:

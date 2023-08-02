@@ -24,6 +24,9 @@ def main(cfg: DictConfig):
     cfgg = cfg
     cfg = cfg["experiments"]
     agents_raw = cfg["agents"]
+    debug_mode = cfgg["debug_mode"]
+    verbosity = cfgg["verbosity"]
+
 
     # initialize agents with their stories
     agents = []  # list will store agent metadata
@@ -34,7 +37,8 @@ def main(cfg: DictConfig):
             **agent_data.communication_protocol,
             **agent_data.generation_parameters,
             agent_name=agent_data.agent_name,
-            init_description=agent_data.init_description)
+            init_description=agent_data.init_description, 
+            debug_mode=debug_mode, verbosity=verbosity)
         )
     print(f"running negotiations with {len(agents)} agents:\n{agents[0]}\n{agents[1]}")
 

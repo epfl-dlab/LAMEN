@@ -6,6 +6,7 @@ import json
 from retry import retry
 from utils import get_api_key
 import openai
+from random import randint
 
 
 class BaseMessage(ABC):
@@ -60,7 +61,7 @@ class SystemMessage(BaseMessage):
 class ChatModel:
     def __init__(self, model_key: str = None, model_key_path=None, model_key_name=None,
                  model_provider: str = "openai", model_name: str = "gpt-3.5-turbo", temperature: float = 0.0,
-                 budget=10., **kwargs) -> None:
+                 budget=10., debug_mode=False, **kwargs) -> None:
         """
         Basic LLM API model wrapper class
 
@@ -79,6 +80,7 @@ class ChatModel:
         self.model_provider = model_provider
         openai.api_key = model_key
 
+        self.debug_mode = debug_mode
         #  generation params
         self._model_name, self.model_name = model_name, model_name  #
         self.temperature = temperature
@@ -113,6 +115,10 @@ class ChatModel:
         Generate tokens.
         """
         data = [k.prepare_for_generation() for k in messages]
+
+        if self.debug_mode:
+            return f"[{randint(1, 10000)}] lorem ipsum dolor sit amet"
+
         response = self._generate(data)
 
         # TODO: error handling
