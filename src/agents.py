@@ -103,9 +103,10 @@ class NegotiationAgent:
         # to check generative capacity moving forward without overriding real history
         n_h = self.notes_history.copy()
         m_h = self.msg_history.copy()
+        cm_h = c_msg_history.copy()
 
         # is this the first message?
-        first_msg_note = (len(n_h) == 0 or len(m_h) == 0) and len(c_msg_history) == 0
+        first_msg_note = (len(n_h) == 0 or len(m_h) == 0) and len(cm_h) == 0
 
         # IF need to simulate msg create phantom note --> needed to check for context overflow
         if simulate_msg:
@@ -133,16 +134,16 @@ class NegotiationAgent:
                 neg_history.append(('mental note', n_h.pop()))
 
             if i <= max_m:
-                if 0 < len(c_msg_history):
-                    neg_history.append(('offer', c_msg_history.pop()))
+                if 0 < len(cm_h):
+                    neg_history.append(('offer', cm_h.pop()))
                 if 0 < len(m_h):
                     neg_history.append(('offer', m_h.pop()))
 
             if not msg and (i <= max_n) and (0 < len(n_h)):
                 neg_history.append(('mental note', n_h.pop()))
 
-            if (i == max_len) and (0 < len(c_msg_history)) and (i <= max_m):
-                neg_history.append(('offer', c_msg_history.pop()))
+            if (i == max_len) and (0 < len(cm_h)) and (i <= max_m):
+                neg_history.append(('offer', cm_h.pop()))
 
         neg_history = neg_history[::-1]
         neg_transcript = ''
