@@ -33,37 +33,34 @@ from utils import read_json
 
 
 class Issue:
-    def __init__(self, name=None, type=None, descriptions=None, payoffs=None, num_steps=10,
+    def __init__(self, name, issue_type='custom', descriptions=None, payoffs=None, num_steps=10,
                  payoff_labels=None, **kwargs):
         self.name = name
-        self.type = type        # this may be annoying
+        self.issue_type = issue_type
         self.descriptions = descriptions
         self.payoffs = payoffs
         self.payoff_labels = payoff_labels
 
         # both sides want the same thing
         # TODO: venia overwrote all of these linspaces. they don't work.
-        if type == 'compatible':
+        if issue_type == 'compatible':
             m1 = np.linspace(0, 1, num_steps)
             m2 = m1
-            m1, m2 = payoffs
         # sides want opposite things, e.g., +1 for me is -1 for you
-        elif type == 'distributive':
+        elif issue_type == 'distributive':
             m1 = np.linspace(0, 1, num_steps)
             m2 = np.flip(m1)
-            m1, m2 = payoffs
         # it is worth more to one side than the other
         # NOTE: this is tricky when there are multiple issues in a single game, i.e., how does rescaling/weighing work?
-        elif type == 'integrative':
+        elif issue_type == 'integrative':
             m1 = np.linspace(0, 1, num_steps)
             m2 = np.flip(m1) * 0.5
-            m1, m2 = payoffs
         # user-defined issue
-        elif type == 'custom':
+        elif issue_type == 'custom':
             m1, m2 = payoffs
         else:
             raise NotImplemented(
-                f'error: issue type {type} not in [compatible, integrative, distributive, custom]')
+                f'error: issue type {issue_type} not in [compatible, integrative, distributive, custom]')
 
         self.payoffs = [m1, m2]
 
@@ -100,6 +97,15 @@ class Issue:
             issue_format += f"{label}, {payoff}\n"
         return issue_format
 
+    def __repr__(self):
+        s = ''
+        lj = 20
+        for k, v in zip(['issue', 'type', 'payoffs', 'payoff_labels', 'descriptions'],
+                        [self.name, self.issue_type, self.payoffs, self.payoff_labels, self.descriptions]):
+
+            s += f'{k}'.ljust(lj) + f'{v}\n'
+        return s
+
 
 class Game:
     def __init__(self, name, description, issues, issue_weights, scale=(1, 1), sides=None, **kwargs):
@@ -107,19 +113,21 @@ class Game:
         self.description = description
         self.sides = sides
         self.issues = issues
-        self.load_issues() # load in the issues in correct format
+        self.load_issues()  # load in the issues in correct format
         
         self.issue_weights = issue_weights
-        # TODO add reweigh issues somehow if we want?? 
         self.scale = scale
+
+        # scale issues to their importance
+        self.reweigh_issues()
 
     def reweigh_issues(self):
         # normalize weights to [0, 1]
-        issue_weights = np.assarray(self.issue_weights) / np.sum(self.issue_weights, axis=1, keepdims=True)
+        issue_weights = np.asarray(self.issue_weights) / np.sum(self.issue_weights, axis=1, keepdims=True)
         for issue, w in zip(self.issues, issue_weights.transpose()):
             payoffs = []
             for po, w_, s in zip(issue.payoffs, w, self.scale):
-                po = po * w_ * s
+                po = (np.asarray(po) * w_ * s).astype(int)  # integer values only, TODO: make sure rounding is sensible!
                 payoffs.append(po)
             issue.payoffs = payoffs
 
@@ -128,10 +136,13 @@ class Game:
     
     def load_issues(self, issues_path="data/issues/"):
         issues = []
-        for issue in self.issues: 
-            issues.append(Issue.load(os.path.join(issues_path, issue+".json")))
-            
-        self.issues = issues
+        for issue in self.issues:
+            if isinstance(issue, str):
+                fname = os.path.join(issues_path, issue + '.json')
+                issues.append(Issue.load(fname))
+
+        if len(issues) > 0:
+            self.issues = issues
         
     def to_dict(self):
         return vars(self)

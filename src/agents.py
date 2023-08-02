@@ -2,9 +2,9 @@ import os
 import time
 import csv
 from datetime import datetime as dt
-from dlabchain import SystemMessage, HumanMessage, ChatModel
+from model_utils import SystemMessage, HumanMessage, ChatModel
 from utils import get_api_key, printv
-from omegaconf import DictConfig
+# from omegaconf import DictConfig
 import re
 import json
 
@@ -12,14 +12,14 @@ import logging
 log = logging.getLogger("my-logger")
 
 
-def create_agent_description(cfg: DictConfig):
-    # TODO: think of sensible comparison axes, e.g., age, profession, sex, etc.
-    agents = cfg["experiments"]["agents"]
-
-
-def load_agent_description(agent_path) -> str:
-    # TODO: load agent json and join into single string
-    pass
+# def create_agent_description(agent_dict, path='../data/agents'):
+#     # TODO: think of sensible comparison axes, e.g., age, profession, sex, etc.
+#     pass
+#
+#
+# def load_agent_description(agent_path) -> str:
+#     # TODO: load agent json and join into single string
+#     pass
 
 
 class NegotiationAgent:
@@ -29,11 +29,12 @@ class NegotiationAgent:
                  msg_input_msg_history=-1, msg_input_note_history=-1,
                  note_input_msg_history=-1, note_input_note_history=-1,
                  model_name="gpt-4", model_provider='openai', model_key='dlab_openai_key',
-                 model_key_path='secrets.json', verbosity=1, **kwargs) -> None:
+                 model_key_path='secrets.json', verbosity=2, **kwargs) -> None:
         """
         Basic agent class
         """
         self.init_settings = locals()
+        self.verbosity = verbosity
 
         self.system_description = ''
         self.init_description = init_description
@@ -56,7 +57,10 @@ class NegotiationAgent:
             model_name=model_name, model_provider=model_provider, model_key=api_key,
             **self.generation_parameters
         )
-        self.verbosity = verbosity
+
+        # keep track of what agents think they can achieve
+        self.achievable_payoffs = {}
+        self.issue_payoffs = {}
 
         self.notes_history = []
         self.msg_history = []
@@ -65,7 +69,7 @@ class NegotiationAgent:
         # msg prompt structure
         # system_msg(game, side, agent, issues) + user_msg(c_msg, note, msg, c_msg, note, prompt) -> agent_msg: msg
         user_msg = self.prepare_msg_note_input(c_msg_history)
-        printv(f'MSG PROMPT\n {user_msg} \n', self.verbosity, 1)
+        printv(f'\nMSG PROMPT\n {user_msg} \n', self.verbosity, 1)
         context = [self.system_description, HumanMessage(user_msg)]
         msg = self.model(context)
         self.msg_history.append((self.agent_name, msg))
@@ -78,7 +82,7 @@ class NegotiationAgent:
         # note prompt structure:
         # system_msg(game, side, agent, issues) + user_msg(c_msg, note, msg, c_msg, prompt) --> agent_msg: note
         user_msg = self.prepare_msg_note_input(c_msg_history)
-        printv(f'NOTE PROMPT\n {user_msg} \n', self.verbosity, 1)
+        printv(f'\n[NOTE PROMPT]\n {user_msg} \n', self.verbosity, 1)
         context = [self.system_description, HumanMessage(user_msg)]
         note = self.model(context)
         self.notes_history.append((self.agent_name, note))
@@ -209,12 +213,6 @@ Your payoff values are noted below. Adopt these values as your preferences while
 
         return prompt
 
-    def process_output(self):
-        # It's imaginable that the model starts with `Sure, here you go!' 
-        # We also might want it to update a dictionary with the current 
-        # status of the dictionaries. 
-        pass
-
     def get_issues_state(self) -> dict:
         """
         Each mental note should conclude with the current issues state.
@@ -243,6 +241,9 @@ Your payoff values are noted below. Adopt these values as your preferences while
                 except Exception as e:
                     print(f'error: unable to retrieve valid state from notes - {e}')
 
+                if any(state):
+                    self.achievable_payoffs = state
+
         return state
 
     def __repr__(self):
@@ -253,7 +254,7 @@ class NegotiationProtocol:
     """
     Run negotiations
     """
-    def __init__(self, agents, game, start_agent_index=0, stop_condition='context_fill', max_rounds=1e6,
+    def __init__(self, agents, game, start_agent_index=0, stop_condition='context_fill', max_rounds=1e2,
                  save_folder='data/results', verbosity=2):
 
         os.makedirs(save_folder, exist_ok=True)
@@ -265,35 +266,31 @@ class NegotiationProtocol:
         self.game = game
         game_shared_description = game.description
 
-        # saving results information
-        headers = ['agent', 'round', 'note', 'message', 'issues_state', 'timestamp', 'model_name']
-        self.fname = 'negotiations.csv'
-        self.csv_path = os.path.join(self.save_folder, self.fname)
-        with open(self.csv_path, 'a') as f:
-            writer = csv.writer(f)
-            writer.writerow(headers)
 
-        # move the agent order to respect start agent index
         self.agents = agents
         for i, agent in enumerate(agents):
             issues_format = game.format_all_issues(i)
             agent_side = self.game.sides[i][0]
             agent.create_static_system_prompt(game_shared_description, agent_side, issues_format)
 
+        # move the agent order to respect start agent index
+        self.agents = self.agents if start_agent_index == 0 else [self.agents[1], self.agents[0]]
+        self.num_agreed_issues = 0
+
     def run(self):
         # conduct rounds of negotiation until a stop_condition is hit
         # after each respective agent step, call check_completion()
         completed = False
-        num_rounds = 0
+        round_num = 0
         while not completed:
             ts = []
             t = time.time()
-            printv(f'\nROUND {num_rounds}/{self.max_rounds}\n\n', self.verbosity)
+            self._format_round_print(round_num=round_num, total_rounds=self.max_rounds, start=True)
             self.agents[0].step(self.agents[1].msg_history)
             completed = self.check_completion(agent=self.agents[1],
                                               c_msg_history=self.agents[0].msg_history,
-                                              num_rounds=num_rounds)
-            self.save_results(agent=self.agents[0], round_num=num_rounds)
+                                              num_rounds=round_num)
+            self.save_results(agent=self.agents[0], round_num=round_num)
             ts.append(time.time() - t)
             t = time.time()
 
@@ -301,11 +298,28 @@ class NegotiationProtocol:
                 self.agents[1].step(self.agents[0].msg_history)
                 completed = self.check_completion(agent=self.agents[0],
                                                   c_msg_history=self.agents[1].msg_history,
-                                                  num_rounds=num_rounds)
-                self.save_results(agent=self.agents[1], round_num=num_rounds)
+                                                  num_rounds=round_num)
+                self.save_results(agent=self.agents[1], round_num=round_num)
             ts.append(time.time() - t)
-            printv(f'\n\nROUND END: {ts[0]: .1f} - {ts[1]: .1f}\n', self.verbosity)
-            num_rounds += 1
+            self._format_round_print(round_num=round_num, total_rounds=self.max_rounds,
+                                     t1=ts[-1], t2=ts[-2])
+            round_num += 1
+
+    def _format_round_print(self, round_num, total_rounds, t1=0., t2=0., start=False):
+        prompt_costs, completion_costs = 0, 0
+        for a in self.agents:
+            prompt_costs += a.model.session_prompt_costs
+            completion_costs += a.model.session_completion_costs
+        tc = prompt_costs + completion_costs
+
+        if start:
+            s = f'\n\nROUND [{round_num}/{total_rounds}]: ' \
+                f'session costs: ${tc : .2f} (prompt: ${prompt_costs : .1f} | completion: ${completion_costs :.1f}), ' \
+                f'agreed issues: {self.num_agreed_issues}\n\n'
+        else:
+            s = f'\n\nROUND END [{round_num}/{total_rounds}]: time {t1: .1f}s | {t2: .1f}s\n\n'
+
+        printv(s, self.verbosity)
 
     def check_completion(self, agent, c_msg_history, num_rounds) -> bool:
         # 1. all issues are agreed upon
@@ -314,6 +328,8 @@ class NegotiationProtocol:
         #   -> a. stop
         #   -> b. drop history
         #   -> c. fancier stuff, e.g., memory bank search etc.
+        # 4. ran out of compute budget
+
         completed = False
 
         # 1
@@ -330,6 +346,11 @@ class NegotiationProtocol:
             completed = True
             printv(f'[completed] (context overflow)', self.verbosity)
 
+        # 4
+        if agent.model.budget <= 0:
+            completed = True
+            printv(f'[completed] (ran out of compute budget)', self.verbosity)
+
         return completed
 
     def compare_issues(self, return_issues=False):
@@ -342,6 +363,7 @@ class NegotiationProtocol:
             is_keys = is2.keys()
             agreed_issues = [k for k in is_keys if is1.get(k) == is2.get(k)]
             agreed = len(agreed_issues) == len(is_keys)
+            self.num_agreed_issues = len(agreed_issues)
 
         if return_issues:
             return agreed, agreed_issues
@@ -349,12 +371,18 @@ class NegotiationProtocol:
         return agreed
 
     def save_results(self, agent, round_num):        
+        headers = ['agent', 'round', 'note', 'message', 'issues_state', 'timestamp']
+        fname = 'negotiations.csv'
+        csv_path = os.path.join(self.save_folder, fname)
+        csv_path_exists = os.path.exists(csv_path)
         with open(self.csv_path, 'a') as f:
             writer = csv.writer(f)
+            if not csv_path_exists:
+                writer.writerow(headers)
+
 
             note = '' if len(agent.notes_history) == 0 else agent.notes_history[-1][1]
             msg = '' if len(agent.msg_history) == 0 else agent.msg_history[-1][1]
-            print("\n\n\nMSG\n\n\n",msg)
             issues_state = agent.get_issues_state()
             timestamp = dt.strftime(dt.now(), '%Y%m%d_%H%M%S')
             model_name = agent.model_name

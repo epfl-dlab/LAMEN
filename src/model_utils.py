@@ -1,11 +1,10 @@
-import os
 import requests
-from typing import Callable, List, Tuple, Any, Dict, cast, Union
+from typing import List, Union
 import tiktoken
 from abc import ABC
 import json
 from retry import retry
-# TODO: fix import structure, from utils import get_api_key
+from utils import get_api_key
 import openai
 
 
@@ -58,35 +57,29 @@ class SystemMessage(BaseMessage):
         return SystemMessage(self.content + "\n" + otherSystem.content)
 
 
-# TODO: azure and openai work slightly different, make sure both are supported for v1
-# TODO: assume a local secrets.json file that hosts keys to avoid accidental version control commits
 class ChatModel:
     def __init__(self, model_key: str = None, model_key_path=None, model_key_name=None,
-                 model_provider: str = "openai",
-                 model_name: str = "gpt-3.5-turbo", temperature: float = 0.0, max_tokens=None,
-                 **kwargs) -> None:
-        """ChatModel.
-        
-        If key empty, we will
+                 model_provider: str = "openai", model_name: str = "gpt-3.5-turbo", temperature: float = 0.0,
+                 budget=10., **kwargs) -> None:
+        """
+        Basic LLM API model wrapper class
 
-        Args:
-            openai_api_key (_type_, optional): key. Defaults to None.
+        # TODO: (1) error handling
+        #       (2) expand support
+        #       (3) move to aiohttp REST API calls
+        #       (4) add streaming mode
         """
 
         # get the correct api-key from environment
         # TODO: improve how we get API keys.
         # @td NOTE: use simple function 'get_api_key()' I added to utils.py
         if model_key is None:
-            # TODO: use get_api_key from utils
-            if (model_key == None) & (model_provider == "openai"): openai_api_key = os.getenv("OPENAI_API_KEY")
-            if (model_key == None) & (model_provider == "azure"): openai_api_key = os.getenv("AZURE_API_KEY")
-            if model_key == None: raise ValueError("No openai key found.")
+            model_key = get_api_key(fname=model_key_path, key=model_key_name)
 
         self.model_provider = model_provider
         openai.api_key = model_key
 
         #  generation params
-        self.max_tokens = max_tokens  # NOTE: remove
         self._model_name, self.model_name = model_name, model_name  #
         self.temperature = temperature
         self.generation_params = kwargs
@@ -99,11 +92,14 @@ class ChatModel:
         self.tpm = model_details['tpm']
         self.rpm = model_details['rpm']
 
+        # keep track of costs
+        self.budget = budget
+        self.session_prompt_costs = 0
+        self.session_completion_costs = 0
+
         #  only single generations currently implemented
         if self.generation_params.get("n", 1) >= 2:
             raise NotImplementedError("Need to implement for more than one generation.")
-
-        self.enc = None  # used for measuring cost of generation below
 
         # adjust if we want to use azure as the endpoing
         if self.model_provider == "azure":
@@ -120,7 +116,20 @@ class ChatModel:
         response = self._generate(data)
 
         # TODO: error handling
-        self.response = AIMessage(response["choices"][0]["message"]["content"])
+        prompt_tokens = self.estimate_tokens(messages=messages)
+        completion_tokens = 0
+        try:
+            self.response = AIMessage(response["choices"][0]["message"]["content"])
+            prompt_tokens = response['usage']['prompt_tokens']
+            completion_tokens = response['usage']['completion_tokens']
+        except Exception as e:
+            print(f'[error] failed to generate response - {e}')
+
+        # keep track of budget and costs
+        pc, cc, _ = self.estimate_cost(input_tokens=prompt_tokens, output_tokens=completion_tokens)
+        self.session_prompt_costs += pc
+        self.session_completion_costs += cc
+        self.budget -= (pc + cc)
 
         messages.append(self.response)
         self.messages = messages
@@ -131,33 +140,33 @@ class ChatModel:
         # optionally keep a history of interactions
         return self.messages
 
-    def __repr__(self):
-        return f'ChatModel("model_name={self.model_name}, max_tokens={self.max_tokens}")'
-
-    def estimate_cost(self, messages: Union[List[BaseMessage], str], estimated_output_tokens):
+    def estimate_cost(self, input_tokens: int, output_tokens: int):
         """
         Basic cost estimation
         """
-        input_tokens = self.estimate_tokens(messages)
-        output_tokens = estimated_output_tokens
+        input_cost = (input_tokens / 1000) * self.prompt_cost
+        output_cost = (output_tokens / 1000) * self.completion_cost
+        total_cost = input_cost + output_cost
 
-        price = round((input_tokens * self.prompt_cost + output_tokens * self.completion_cost) / 1000, 4)
-
-        return f"${price} for {input_tokens} input tokens and {output_tokens} output tokens"
+        return input_cost, output_cost, total_cost
 
     def estimate_tokens(self, messages: Union[List[BaseMessage], str]):
         # estimate the cost of making a call given a prompt
         # and expected length
         # @td NOTE: standard 8 tokens are put per message
-        if self.enc == None: self.enc = tiktoken.encoding_for_model(self.model_name)
+        enc = tiktoken.encoding_for_model(self.model_name)
+        msg_token_penalty = 8
 
-        if type(messages) == list:
+        if isinstance(messages, list):
             all_messages = ""
-            for m in messages: all_messages += m.text()
+            for m in messages:
+                all_messages += m.text()
         else:
             all_messages = messages
-        input_tokens = len(self.enc.encode(all_messages))
-        return input_tokens
+
+        tokens = len(enc.encode(all_messages)) + msg_token_penalty
+
+        return tokens
 
     @retry(requests.exceptions.RequestException, tries=3, delay=2, backoff=2)
     def _generate(self, data):
@@ -200,6 +209,9 @@ class ChatModel:
 
         return got_space
 
+    def __repr__(self):
+        return f'ChatModel("model_name"={self.model_name}, "model_provider"={self.model_provider})'
+
 
 def get_model_pricing(model_name):
     model_details = get_model_details(model_name=model_name)
@@ -211,7 +223,7 @@ def get_model_details(model_name, fpath='data/llm_model_details.json'):
         with open(fpath) as f:
             details = json.load(f)
     except Exception as e:
-        print(f'error: unable to load model details')
+        print(f'error: unable to load model details - {e}')
         details = {}
 
     models = details.keys()
