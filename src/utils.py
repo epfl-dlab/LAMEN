@@ -1,7 +1,7 @@
 import json
 from typing import Tuple
 from pathlib import Path
-from config import NEGOTIATIONS_DIR
+# from config import NEGOTIATIONS_DIR
 from omegaconf import DictConfig, OmegaConf
 
 
@@ -11,20 +11,20 @@ def printv(msg, v=0, v_min=0):
         print(msg)
 
 
-def return_agent_prompts(name: str) -> Tuple[str, str]:
-    if name not in ["cpc", "hp_costa"]:
-        raise NameError("Name must be either 'cpc' or 'hp_costa'")
+# def return_agent_prompts(name: str) -> Tuple[str, str]:
+#     if name not in ["cpc", "hp_costa"]:
+#         raise NameError("Name must be either 'cpc' or 'hp_costa'")
+#
+#     main_text = open(NEGOTIATIONS_DIR / f"{name}.txt").read()
+#     main_payoff = open(NEGOTIATIONS_DIR / f"{name}_payoff.txt").read()
+#
+#     return main_text, main_payoff
 
-    main_text = open(NEGOTIATIONS_DIR / f"{name}.txt").read()
-    main_payoff = open(NEGOTIATIONS_DIR / f"{name}_payoff.txt").read()
 
-    return main_text, main_payoff
-
-
-def notes_prompts() -> Tuple[str, str]:
-    init_notes = open(NEGOTIATIONS_DIR / f"initialize_notes.txt").read()
-    update_notes = open(NEGOTIATIONS_DIR / f"update_notes.txt").read()
-    return init_notes, update_notes
+# def notes_prompts() -> Tuple[str, str]:
+#     init_notes = open(NEGOTIATIONS_DIR / f"initialize_notes.txt").read()
+#     update_notes = open(NEGOTIATIONS_DIR / f"update_notes.txt").read()
+#     return init_notes, update_notes
 
 
 def format_skeleton(agent_cfg, other_agent_cfg):
@@ -73,5 +73,5 @@ def dictionary_to_string(dictionary):
     return format_dictionary(dictionary)
 
 
-if __name__ == "__main__":
-    print(return_agent_prompts("cpc"))
+# if __name__ == "__main__":
+#     print(return_agent_prompts("cpc"))

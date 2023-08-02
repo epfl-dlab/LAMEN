@@ -1,7 +1,7 @@
 defaults:
   - _self_
   - hydra: inference
-  - experiments: negotiation
+  - experiments: car_negotiation
 
 model_provider: openai # can be `openai` or `azure`
 

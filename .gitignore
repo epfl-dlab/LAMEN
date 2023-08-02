@@ -2,3 +2,7 @@
 **/__pycache__/
 *secrets.json
 *.idea/
+.ipynb_checkpoints/
+logs/
+logs/*
+
