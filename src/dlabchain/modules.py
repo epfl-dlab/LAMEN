@@ -112,7 +112,6 @@ class ChatModel:
             openai.api_version = "2023-03-15-preview"
             self.model_name = self._model_name.replace(".", "")  # for the azure naming struct.
 
-    @retry(requests.exceptions.RequestException, tries=3, delay=2, backoff=2)
     def __call__(self, messages: List[BaseMessage]):
         """
         Generate tokens.
@@ -160,6 +159,7 @@ class ChatModel:
         input_tokens = len(self.enc.encode(all_messages))
         return input_tokens
 
+    @retry(requests.exceptions.RequestException, tries=3, delay=2, backoff=2)
     def _generate(self, data):
         # refactoring since silly api differences between azure and openai. 
         # in azure engine = model_name, in openai model =...

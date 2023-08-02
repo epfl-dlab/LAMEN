@@ -6,6 +6,7 @@ from dlabchain import SystemMessage, HumanMessage, ChatModel
 from utils import get_api_key, printv
 from omegaconf import DictConfig
 import re
+import json
 
 import logging
 log = logging.getLogger("my-logger")
@@ -49,6 +50,7 @@ class NegotiationAgent:
         # generation parameters
         self.generation_parameters = kwargs
         # model
+        self.model_name = model_name
         api_key = get_api_key(fname=model_key_path, key=model_key)
         self.model = ChatModel(
             model_name=model_name, model_provider=model_provider, model_key=api_key,
@@ -233,12 +235,11 @@ Your payoff values are noted below. Adopt these values as your preferences while
         if len(self.notes_history) > 0:
             _, last_note = self.notes_history[-1]
 
-            state_regex = re.compile(r"{.*?}")
-            state_str = state_regex.search(last_note, re.MULTILINE | re.DOTALL)
+            state_regex = re.compile(r"{[\s\S]*?}" )
+            state_str = state_regex.search(last_note)
             if state_str is not None:
-                print(state_str)
                 try:
-                    state = eval(state_str[0])
+                    state = json.loads(state_str[0])
                 except Exception as e:
                     print(f'error: unable to retrieve valid state from notes - {e}')
 
@@ -263,6 +264,14 @@ class NegotiationProtocol:
         self.stop_condition = stop_condition
         self.game = game
         game_shared_description = game.description
+
+        # saving results information
+        headers = ['agent', 'round', 'note', 'message', 'issues_state', 'timestamp', 'model_name']
+        self.fname = 'negotiations.csv'
+        self.csv_path = os.path.join(self.save_folder, self.fname)
+        with open(self.csv_path, 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow(headers)
 
         # move the agent order to respect start agent index
         self.agents = agents
@@ -339,20 +348,17 @@ class NegotiationProtocol:
 
         return agreed
 
-    def save_results(self, agent, round_num):
-        headers = ['agent', 'round', 'note', 'message', 'issues_state', 'timestamp']
-        fname = 'negotiations.csv'
-        csv_path = os.path.join(self.save_folder, fname)
-        with open(csv_path, 'a') as f:
+    def save_results(self, agent, round_num):        
+        with open(self.csv_path, 'a') as f:
             writer = csv.writer(f)
-            if os.path.exists(csv_path):
-                writer.writerow(headers)
 
             note = '' if len(agent.notes_history) == 0 else agent.notes_history[-1][1]
-            msg = '' if len(agent.msg_history) > 0 else agent.msg_history[-1][1]
+            msg = '' if len(agent.msg_history) == 0 else agent.msg_history[-1][1]
+            print("\n\n\nMSG\n\n\n",msg)
             issues_state = agent.get_issues_state()
             timestamp = dt.strftime(dt.now(), '%Y%m%d_%H%M%S')
-            data = [agent.agent_name, round_num, note, msg, issues_state, timestamp]
+            model_name = agent.model_name
+            data = [agent.agent_name, round_num, note, msg, issues_state, timestamp, model_name]
             try:
                 writer.writerow(data)
             except Exception as e:
