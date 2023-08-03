@@ -8,6 +8,7 @@ from utils import read_json, dictionary_to_string, get_api_key
 
 from agents import NegotiationAgent, NegotiationProtocol
 from games import load_game, Game, Issue
+from evaluation import EvaluateNegotiations
 
 
 class AgentMetadata:
@@ -59,7 +60,7 @@ def main(cfg: DictConfig):
     negotiation = NegotiationProtocol(agents=agents, game=game,
                                       max_rounds=max_rounds, save_folder=save_folder)
     negotiation.run()
-
+    negotiation.evaluate()
 
 if __name__ == "__main__":
     main()

@@ -148,7 +148,7 @@ class Game:
         return vars(self)
 
     def get_issue(self, issue_name):
-        issue = [k for k in self.issues if k.name==issue_name]
+        issue = [k for k in self.issues if k.name.replace("_"," ")==issue_name.replace("_"," ")]
         if len(issue)>0:
             return issue[0]
         else:
