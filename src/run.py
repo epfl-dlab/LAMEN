@@ -61,6 +61,7 @@ def main(cfg: DictConfig):
                                       max_rounds=max_rounds, save_folder=save_folder)
     negotiation.run()
     negotiation.evaluate()
+    negotiation.save_summary()
 
 if __name__ == "__main__":
     main()

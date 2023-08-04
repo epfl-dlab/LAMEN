@@ -268,12 +268,14 @@ class NegotiationProtocol:
         self.stop_condition = stop_condition
         self.game = game
         game_shared_description = game.description
+        print(game_shared_description)
 
 
         self.agents = agents
         for i, agent in enumerate(agents):
             issues_format = game.format_all_issues(i)
             agent_side = self.game.sides[i][0]
+            print("AGENT_SIDE", agent_side)
             agent.create_static_system_prompt(game_shared_description, agent_side, issues_format)
 
         # move the agent order to respect start agent index
@@ -293,13 +295,13 @@ class NegotiationProtocol:
             completed = self.check_completion(agent=self.agents[1],
                                               c_msg_history=self.agents[0].msg_history,
                                               num_rounds=round_num)
-            self.save_results(agent=self.agents[0], round_num=round_num, agent_idx=0)
+            self.save_results(agent=self.agents[0], round_num=round_num, agent_id=0)
             ts.append(time.time() - t)
             t = time.time()
 
             if not completed:
                 self.agents[1].step(self.agents[0].msg_history)
-                self.save_results(agent=self.agents[1], round_num=round_num, agent_idx=1)
+                self.save_results(agent=self.agents[1], round_num=round_num, agent_id=1)
                 completed = self.check_completion(agent=self.agents[0],
                                                   c_msg_history=self.agents[1].msg_history,
                                                   num_rounds=round_num)
@@ -377,8 +379,8 @@ class NegotiationProtocol:
 
         return agreed
 
-    def save_results(self, agent, round_num, agent_idx):        
-        headers = ['agent_name', "agent_idx", 'round', 'note', 'message', 'issues_state', 'timestamp','model_name']
+    def save_results(self, agent, round_num, agent_id):        
+        headers = ['agent_name', "agent_id", 'round', 'note', 'message', 'issues_state', 'timestamp','model_name']
         fname = 'negotiations.csv'
         csv_path = os.path.join(self.save_folder, fname)
         csv_path_exists = os.path.exists(csv_path)
@@ -393,7 +395,7 @@ class NegotiationProtocol:
             issues_state = agent.get_issues_state()
             timestamp = dt.strftime(dt.now(), '%Y%m%d_%H%M%S')
             model_name = agent.model_name
-            data = [agent.agent_name,agent_idx, round_num, note, msg, issues_state, timestamp, model_name]
+            data = [agent.agent_name,agent_id, round_num, note, msg, issues_state, timestamp, model_name]
             try:
                 writer.writerow(data)
             except Exception as e:
