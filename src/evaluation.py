@@ -49,8 +49,6 @@ class EvaluateNegotiations:
         self.neg_hist.to_csv(output_path, index=False)
 
 
-
-
     def language_analysis(self, vocab_path):
         """
         vocab_path (str): a json file with different vocabularies for different constructs.

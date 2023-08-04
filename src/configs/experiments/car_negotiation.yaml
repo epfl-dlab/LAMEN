@@ -6,11 +6,14 @@ note_prompts_path: data/note_prompts
 message_prompts_path: data/message_prompts
 communication_protocols_path: ${data_dir}/communication_protocols
 
+defaults:
+  - agents:
+
 game:
   file: ${data_dir}/games/car_dealership.json
 
 stop_condition: ""
-max_rounds: 5
+max_rounds: 10
 budget: 10.
 
 agents: 
