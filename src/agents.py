@@ -3,12 +3,14 @@ import time
 import csv
 from datetime import datetime as dt
 from model_utils import SystemMessage, HumanMessage, ChatModel
+from evaluation import EvaluateNegotiations
 from utils import get_api_key, printv
 # from omegaconf import DictConfig
 import re
 import json
 
 import logging
+
 log = logging.getLogger("my-logger")
 
 
@@ -255,7 +257,7 @@ class NegotiationProtocol:
     """
     Run negotiations
     """
-    def __init__(self, agents, game, start_agent_index=0, stop_condition='context_fill', max_rounds=1e2,
+    def __init__(self, agents, game, start_agent_index=0, stop_condition='context_fill', max_rounds=2,
                  save_folder='data/results', verbosity=2):
 
         os.makedirs(save_folder, exist_ok=True)
@@ -266,12 +268,14 @@ class NegotiationProtocol:
         self.stop_condition = stop_condition
         self.game = game
         game_shared_description = game.description
+        print(game_shared_description)
 
 
         self.agents = agents
         for i, agent in enumerate(agents):
             issues_format = game.format_all_issues(i)
             agent_side = self.game.sides[i][0]
+            print("AGENT_SIDE", agent_side)
             agent.create_static_system_prompt(game_shared_description, agent_side, issues_format)
 
         # move the agent order to respect start agent index
@@ -291,20 +295,24 @@ class NegotiationProtocol:
             completed = self.check_completion(agent=self.agents[1],
                                               c_msg_history=self.agents[0].msg_history,
                                               num_rounds=round_num)
-            self.save_results(agent=self.agents[0], round_num=round_num, agent_idx=0)
+            self.save_results(agent=self.agents[0], round_num=round_num, agent_id=0)
             ts.append(time.time() - t)
             t = time.time()
 
             if not completed:
                 self.agents[1].step(self.agents[0].msg_history)
+                self.save_results(agent=self.agents[1], round_num=round_num, agent_id=1)
                 completed = self.check_completion(agent=self.agents[0],
                                                   c_msg_history=self.agents[1].msg_history,
                                                   num_rounds=round_num)
-                self.save_results(agent=self.agents[1], round_num=round_num, agent_idx=1)
             ts.append(time.time() - t)
             self._format_round_print(round_num=round_num, total_rounds=self.max_rounds,
                                      t1=ts[-1], t2=ts[-2])
             round_num += 1
+
+    def evaluate(self):
+        nego_eval = EvaluateNegotiations(self.save_folder, self.game)
+        nego_eval.compute_metrics()
 
     def _format_round_print(self, round_num, total_rounds, t1=0., t2=0., start=False):
         prompt_costs, completion_costs = 0, 0
@@ -371,8 +379,8 @@ class NegotiationProtocol:
 
         return agreed
 
-    def save_results(self, agent, round_num, agent_idx):        
-        headers = ['agent_name', "agent_idx", 'round', 'note', 'message', 'issues_state', 'timestamp']
+    def save_results(self, agent, round_num, agent_id):        
+        headers = ['agent_name', "agent_id", 'round', 'note', 'message', 'issues_state', 'timestamp','model_name']
         fname = 'negotiations.csv'
         csv_path = os.path.join(self.save_folder, fname)
         csv_path_exists = os.path.exists(csv_path)
@@ -387,7 +395,7 @@ class NegotiationProtocol:
             issues_state = agent.get_issues_state()
             timestamp = dt.strftime(dt.now(), '%Y%m%d_%H%M%S')
             model_name = agent.model_name
-            data = [agent.agent_name,agent_idx, round_num, note, msg, issues_state, timestamp, model_name]
+            data = [agent.agent_name,agent_id, round_num, note, msg, issues_state, timestamp, model_name]
             try:
                 writer.writerow(data)
             except Exception as e:
