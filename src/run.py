@@ -27,6 +27,7 @@ def main(cfg: DictConfig):
     agents_raw = cfg["agents"]
     debug_mode = cfgg["debug_mode"]
     verbosity = cfgg["verbosity"]
+    start_agent_index = cfg["start_agent_index"]
 
 
     # initialize agents with their stories
@@ -58,7 +59,8 @@ def main(cfg: DictConfig):
     max_rounds = cfg["max_rounds"]
 
     negotiation = NegotiationProtocol(agents=agents, game=game,
-                                      max_rounds=max_rounds, save_folder=save_folder)
+                                      max_rounds=max_rounds, save_folder=save_folder,
+                                      start_agent_index=start_agent_index)
     negotiation.run()
     negotiation.evaluate()
 

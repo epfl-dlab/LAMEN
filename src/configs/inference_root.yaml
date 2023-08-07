@@ -10,7 +10,7 @@ work_dir: ${hydra:runtime.cwd}
 
 # for debugging
 debug_mode: False
-verbosity: 1
+verbosity: 2
 
 # path to data directory
 data_dir: ${work_dir}/data

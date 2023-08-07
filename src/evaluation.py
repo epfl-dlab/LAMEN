@@ -127,5 +127,9 @@ class EvaluateNegotiations:
         return input_tokens
 
     
-
+    def measure_faithfulness(self):
+        """
+        Measure 
+        """
+        pass
     

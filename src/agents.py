@@ -54,7 +54,9 @@ class NegotiationAgent:
         self.generation_parameters = kwargs
         # model
         self.model_name = model_name
-        api_key = get_api_key(fname=model_key_path, key=model_key)
+        api_key_mappings = {"openai": "OPENAI_API_KEY", "azure":"AZURE_API_KEY", "anthropic":"ANTHROPIC_API_KEY"}
+
+        api_key = get_api_key(fname=model_key_path, key=api_key_mappings[model_provider])
         self.model = ChatModel(
             model_name=model_name, model_provider=model_provider, model_key=api_key,debug_mode=debug_mode,
             **self.generation_parameters
@@ -257,8 +259,8 @@ class NegotiationProtocol:
     """
     Run negotiations
     """
-    def __init__(self, agents, game, start_agent_index=0, stop_condition='context_fill', max_rounds=2,
-                 save_folder='data/results', verbosity=2):
+    def __init__(self, agents, game, start_agent_index=1, stop_condition='context_fill', max_rounds=2,
+                 save_folder='data/results', verbosity=2, reverse_agent_order=False):
 
         os.makedirs(save_folder, exist_ok=True)
         self.save_folder = save_folder
@@ -277,6 +279,7 @@ class NegotiationProtocol:
             agent_side = self.game.sides[i][0]
             print("AGENT_SIDE", agent_side)
             agent.create_static_system_prompt(game_shared_description, agent_side, issues_format)
+
 
         # move the agent order to respect start agent index
         self.agents = self.agents if start_agent_index == 0 else [self.agents[1], self.agents[0]]

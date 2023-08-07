@@ -1,4 +1,4 @@
 Your negotiating partner is sitting across from you.
-Reflect on the negotiations transcript so far.
-Try to further the state of negotiations on at least one issue.
+
+Using this history of negotiations, formulate a response to your negotiating partner. Try to further the state of negotiations on at least one issue.
 Your offer can never exceed {max_words} words!

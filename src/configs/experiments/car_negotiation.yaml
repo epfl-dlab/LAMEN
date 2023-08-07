@@ -16,6 +16,8 @@ stop_condition: ""
 max_rounds: 10
 budget: 10.
 
+start_agent_index: 1
+
 agents: 
   - agent_1: 
       agent_description: "${data_dir}/agents/car_salesperson.json"
@@ -24,4 +26,4 @@ agents:
   - agent_2: 
       agent_description: "${data_dir}/agents/car_buyer.json"
       communication: ${data_dir}/communication_protocols/auto_regressive_100_100.json
-      generation_parameters: ${data_dir}/model_settings/openai_35_0_0.json
+      generation_parameters: ${data_dir}/model_settings/anthropic_claude_2.json
