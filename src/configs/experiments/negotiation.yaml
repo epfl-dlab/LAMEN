@@ -8,6 +8,7 @@ communication_protocols_path: ${data_dir}/communication_protocols
 
 game:
   file: ${data_dir}/games/rio_copa.json
+  general_rules: ${data_dir}/games/general_rules.json
 
 stop_condition: ""
 max_rounds: 5

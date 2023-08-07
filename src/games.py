@@ -30,7 +30,7 @@ import numpy as np
 import json
 from datetime import datetime as dt
 from utils import read_json
-
+from typing import Optional
 
 class Issue:
     def __init__(self, name, issue_type='custom', descriptions=None, payoffs=None, num_steps=10,
@@ -170,9 +170,15 @@ class Game:
         return f"Game: {self.name}"
 
 
-def load_game(game_path: str) -> dict:
-    return read_json(game_path)
+def load_game(game_path: str, general_rules: Optional[str] = None) -> dict:
+    """
+    game_path (str): path to the game file
+    general_rules (str): [optional] path to general rules to be added to the description.
+    """
+    game = read_json(game_path)
 
+    if general_rules is not None:
+        general_rules_data = read_json(general_rules)["general_rules"]
+        game["description"] = game["description"] + " " + general_rules_data
 
-def create_experiment():
-    pass
+    return game

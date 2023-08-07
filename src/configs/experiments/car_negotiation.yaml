@@ -11,6 +11,7 @@ defaults:
 
 game:
   file: ${data_dir}/games/car_dealership.json
+  general_rules: ${data_dir}/games/general_rules.json
 
 stop_condition: ""
 max_rounds: 10

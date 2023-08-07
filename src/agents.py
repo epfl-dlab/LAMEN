@@ -277,7 +277,6 @@ class NegotiationProtocol:
         for i, agent in enumerate(agents):
             issues_format = game.format_all_issues(i)
             agent_side = self.game.sides[i][0]
-            print("AGENT_SIDE", agent_side)
             agent.create_static_system_prompt(game_shared_description, agent_side, issues_format)
 
 

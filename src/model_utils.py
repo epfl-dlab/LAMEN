@@ -273,8 +273,6 @@ class ChatModel:
                     full_prompt+=f"Human: {msg.content}\n\n"
                 else:
                     full_prompt+=f"Assistant: {msg.content}\n\n"
-            print("FULL PROMPT [VENIA]: ", full_prompt)
-            print("END OF FULL PROMPT")
             return full_prompt + "\n\nAssistant:"
 
 

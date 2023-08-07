@@ -45,15 +45,12 @@ def main(cfg: DictConfig):
     print(f"running negotiations with {len(agents)} agents:\n{agents[0]}\n{agents[1]}")
 
     # initialize game
-    game_information = load_game(cfg["game"]["file"])
+    if "general_rules" in cfg["game"].keys():
+        game_information = load_game(cfg["game"]["file"], cfg["game"]["general_rules"])
+    else:
+        game_information = load_game(cfg["game"]["file"])
+        
     game = Game.from_dict(game_information)
-
-    game_shared_description = game.description
-    issues_format = game.format_all_issues(0)
-    agent_side = game.sides[0][0]
-
-    agents[0].create_static_system_prompt(game_shared_description, agent_side, issues_format)
-    agents[1].create_static_system_prompt(game_shared_description, agent_side, issues_format)
 
     save_folder = cfgg["output_dir"]
     max_rounds = cfg["max_rounds"]
