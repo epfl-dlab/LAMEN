@@ -8,6 +8,9 @@ model_provider: openai # can be `openai` or `azure`
 # path to work directory
 work_dir: ${hydra:runtime.cwd}
 
+# faithfulness
+check_faithfulness: True
+
 # for debugging
 debug_mode: False
 verbosity: 1

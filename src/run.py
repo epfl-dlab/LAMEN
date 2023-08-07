@@ -28,6 +28,7 @@ def main(cfg: DictConfig):
     debug_mode = cfgg["debug_mode"]
     verbosity = cfgg["verbosity"]
     start_agent_index = cfg["start_agent_index"]
+    check_faithfulness = cfgg["check_faithfulness"]
 
 
     # initialize agents with their stories
@@ -49,7 +50,7 @@ def main(cfg: DictConfig):
         game_information = load_game(cfg["game"]["file"], cfg["game"]["general_rules"])
     else:
         game_information = load_game(cfg["game"]["file"])
-        
+
     game = Game.from_dict(game_information)
 
     save_folder = cfgg["output_dir"]
@@ -57,7 +58,8 @@ def main(cfg: DictConfig):
 
     negotiation = NegotiationProtocol(agents=agents, game=game,
                                       max_rounds=max_rounds, save_folder=save_folder,
-                                      start_agent_index=start_agent_index)
+                                      start_agent_index=start_agent_index, 
+                                      check_faithfulness=check_faithfulness)
     negotiation.run()
     negotiation.evaluate()
 

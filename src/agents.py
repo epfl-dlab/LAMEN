@@ -260,11 +260,13 @@ class NegotiationProtocol:
     Run negotiations
     """
     def __init__(self, agents, game, start_agent_index=1, stop_condition='context_fill', max_rounds=2,
-                 save_folder='data/results', verbosity=2, reverse_agent_order=False):
+                 save_folder='data/results', verbosity=2, 
+                 check_faithfulness=False):
 
         os.makedirs(save_folder, exist_ok=True)
         self.save_folder = save_folder
         self.verbosity = verbosity
+        self.check_faithfulness = check_faithfulness
 
         self.max_rounds = max_rounds
         self.stop_condition = stop_condition
@@ -313,7 +315,7 @@ class NegotiationProtocol:
             round_num += 1
 
     def evaluate(self):
-        nego_eval = EvaluateNegotiations(self.save_folder, self.game)
+        nego_eval = EvaluateNegotiations(self.save_folder, self.game, check_faithfulness=self.check_faithfulness)
         nego_eval.compute_metrics()
 
     def _format_round_print(self, round_num, total_rounds, t1=0., t2=0., start=False):
