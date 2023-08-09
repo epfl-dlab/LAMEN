@@ -29,6 +29,11 @@ import numpy as np
 import yaml
 from attr import define
 
+import json
+from datetime import datetime as dt
+from utils import read_json
+from typing import Optional
+
 
 @define
 class Game:
@@ -38,12 +43,15 @@ class Game:
     issue_weights: list
     scale: tuple = (1, 1)
     sides: list = None
+    general_game_rules: str = None
 
     def __attrs_post_init__(self):
         # load in the issues in correct format
         self.load_issues()
         # scale issues to their importance
         self.reweigh_issues()
+        # add general rules
+        self.add_general_rules()
 
     def reweigh_issues(self):
         # normalize weights to [0, 1]
@@ -54,6 +62,15 @@ class Game:
                 po = (np.asarray(po) * w_ * s).astype(int)  # integer values only, TODO: make sure rounding is sensible!
                 payoffs.append(po)
             issue.payoffs = payoffs
+
+    def add_general_rules(self):
+        if self.general_game_rules is not None:
+            with open(self.general_game_rules, 'r') as f:
+                general_rules_data = yaml.safe_load(f)
+
+            self.description = self.description + " " + general_rules_data['prompt']
+            for rule in general_rules_data['rules']:
+                self.description += '\n' + rule
 
     def get_system_msg(self):
         pass
@@ -157,3 +174,22 @@ class Issue:
         for label, payoff in zip(self.payoff_labels[idx], self.payoffs[idx]):
             issue_format += f"{label}, {payoff}\n"
         return issue_format
+
+
+def load_game(game_path: str, general_rules: Optional[str] = None) -> dict:
+    """
+    game_path (str): path to the game file
+    general_rules (str): [optional] path to general rules to be added to the description.
+    """
+    with open(game_path, 'r') as f:
+        game = yaml.safe_load(f)
+
+    if general_rules is not None:
+        with open(general_rules, 'r') as f:
+            general_rules_data = yaml.safe_load(f)
+
+            game["description"] = game["description"] + " " + general_rules_data['prompt']
+            for rule in general_rules_data['rules']:
+                game['description'] += '\n' + rule
+
+    return game

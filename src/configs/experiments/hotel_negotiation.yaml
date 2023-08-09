@@ -1,5 +1,6 @@
 game:
   _target_: games.Game
+  general_game_rules: ${games_dir}/general_rules.yaml
   kwargs: ${games_dir}/hotel.yaml
 
 agent_1:
@@ -17,7 +18,6 @@ agent_2:
   generation_parameters: ${models_dir}/openai_4_0_0.yaml
 
 negotiation_protocol:
-#  _target_: protocols.NegotiationsProtocol
   max_rounds: 10
   stop_condition: ""
   start_agent_index: 0

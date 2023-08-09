@@ -1,0 +1,14 @@
+azure:
+  api_base: "https://instance0.openai.azure.com/"
+  api_version: "2023-03-15-preview"
+  api_type: "azure"
+anthropic:
+  api_base: "https://api.anthropic.com/v1/complete"
+  headers:
+    accept: "application/json"
+    anthropic-version: "2023-06-01"
+    content-type: "application/json"
+openai:
+  api_base: "https://api.openai.com/v1/chat/completions"
+  headers:
+    content-type: "application/json"

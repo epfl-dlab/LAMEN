@@ -2,23 +2,33 @@ import json
 import os
 import tiktoken
 import pandas as pd
+from model_utils import AIMessage, HumanMessage, SystemMessage, ChatModel
+from utils import get_api_key
+from games import Game
+from attr import define
 
 
+@define
 class EvaluateNegotiations:
     """
     - read note history 
     - provide summary statistics on both sides
     - look at doc for advice https://docs.google.com/document/d/1H9fGwmUllIBkFj2_KFPLiJKi4T8DMeJNFO8Wv_f-wQM/edit
     """
+    game: Game
+    save_dir: str
+    check_faithfulness: bool = False
+    file_name: str = 'negotiations.csv'
+    neg_hist: pd.DataFrame = None
+    issues: list = None
+    n_agents: int = 2
+    enc: int = None
 
-    def __init__(self, save_dir, game, file_name="negotiations.csv"):
-        self.save_dir = save_dir
-        negotiations_path = os.path.join(save_dir, file_name)
+    def __attrs_post_init__(self):
+        negotiations_path = os.path.join(self.save_dir, self.file_name)
         self.neg_hist = pd.read_csv(negotiations_path)
-        self.game = game
-        self.issues = game.issues
         self.n_agents = len(self.game.sides)
-        self.enc = None
+        self.issues = self.game.issues
 
     def compute_metrics(self):
         """
@@ -41,10 +51,12 @@ class EvaluateNegotiations:
         self.neg_hist["payoffs"] = self.neg_hist.apply(
             lambda x: self.label_to_payoff(x["issues_state"], x["agent_id"]), axis=1
         )
+        if self.check_faithfulness:
+            self.neg_hist["faithfulness"] = self.neg_hist["message"].apply(lambda x: self.check_faithfulness_of_message(x))
+
         self.neg_hist[
             ["total_payoff", "normalized_payoff", "issue_payoff", "normalized_issue_payoff"]
         ] = self.neg_hist.apply(lambda x: self.payoff_analysis(x["payoffs"], x["agent_id"]), axis=1).apply(pd.Series)
-
         print(self.neg_hist)
         output_path = os.path.join(self.save_dir, "processed_negotiation.csv")
         #  TODO implement saving of the file
@@ -67,6 +79,7 @@ class EvaluateNegotiations:
         if type(issue_state) == str:
             issue_state = eval(issue_state)
 
+        key = None
         try:
             # for agent_id in range(self.n_agents):
             for key, value in issue_state.items():
@@ -79,8 +92,8 @@ class EvaluateNegotiations:
                 idx = issue_payoff_labels.index(value)
                 payoff = issue_payoffs[idx]
                 payoffs.append({str(agent_id): {key: [payoff, min_payoff, max_payoff]}})
-        except:
-            print(f"'{key}' not found in issues.")
+        except Exception as e:
+            print(f"'{key}' not found in issues. - {e}")
         return payoffs
 
     def payoff_analysis(self, payoffs, agent_id):
@@ -121,7 +134,39 @@ class EvaluateNegotiations:
         """
         pass
 
+    def check_faithfulness_of_message(self, message, model_name="gpt-3.5-turbo"):
+        key = get_api_key(key="OPENAI_API_KEY")
+        model = ChatModel(model_name=model_name,model_key=key)
+        issues = ", ".join([issue.name for issue in self.issues])
+        faithfulness_prompt = """
+These are the issues being discusses {issues}. 
+In the following message, if an issue is being discussed extract the offer being provided
+
+acceptable format:
+```json{
+    "issue_name_0": "<stated offer>",
+    "issue_name_1": "<stated offer>",
+    ...
+}
+
+Example 1: 
+Comment: After considering your offer of $7,200, I believe we can reach a mutually beneficial agreement. How about we settle on $6,800? 
+
+{
+    "new car": "$7200"
+}
+
+```
+
+Message: {message}
+""".replace("{issues}", issues).replace("{message}", message)
+        print(faithfulness_prompt)
+        try:
+            output = model([HumanMessage(faithfulness_prompt)])
+        except:
+            output = {}
+        return output
+
     def estimate_tokens(self, message, text_col="note"):
-        if self.enc == None: self.enc = tiktoken.encoding_for_model(message["model_name"])
-        input_tokens = len(self.enc.encode(message[text_col]))
-        return input_tokens
+        message = len(message[text_col].split())
+        return message

@@ -3,11 +3,11 @@ defaults:
   - hydra: inference
   - experiments: hotel_negotiation
 
-# is part of model settings
-# model_provider: openai # can be `openai` or `azure`
-
 # path to work directory
 work_dir: ${hydra:runtime.cwd}
+
+# faithfulness
+check_faithfulness: True
 
 # for debugging
 debug_mode: False
@@ -15,13 +15,13 @@ verbosity: 1
 
 # path to data directory
 data_dir: ${work_dir}/data
-agents_dir: ${work_dir}/data/agents
-games_dir: ${work_dir}/data/games
-issues_dir: ${work_dir}/data/issues
-models_dir: ${work_dir}/data/model_settings
-note_prompts_dir: ${work_dir}/data/note_prompts
-message_prompts_dir: ${work_dir}/data/message_prompts
-communication_protocols_dir: ${work_dir}/data/communication_protocols
+agents_dir: ${data_dir}/agents
+games_dir: ${data_dir}/games
+issues_dir: ${data_dir}/issues
+models_dir: ${data_dir}/model_settings
+note_prompts_dir: ${data_dir}/note_prompts
+message_prompts_dir: ${data_dir}/message_prompts
+communication_protocols_dir: ${data_dir}/communication_protocols
 
 # path to output directory, created dynamically by hydra
 output_dir: ${hydra:runtime.output_dir}

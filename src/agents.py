@@ -11,7 +11,6 @@ log = logging.getLogger("my-logger")
 
 @define
 class NegotiationAgent:
-
     # message params
     msg_prompt: str
     msg_max_len: int
@@ -55,7 +54,8 @@ class NegotiationAgent:
         self.msg_prompt = self.get_msg_note_prompt(self.msg_prompt, is_note=False)
         # get api key
         api_key = get_api_key(fname=self.model_key_path, key=self.model_key)
-        # instantiate model
+        # api_key_mappings = {"openai": "OPENAI_API_KEY", "azure":"AZURE_API_KEY", "anthropic":"ANTHROPIC_API_KEY"}
+        # api_key = get_api_key(fname=model_key_path, key=api_key_mappings[model_provider])
         self.model = ChatModel(
             model_name=self.model_name, model_provider=self.model_provider, model_key=api_key,
             temperature=self.temperature, debug_mode=self.debug_mode, budget=self.model_budget,
@@ -255,3 +255,4 @@ Your payoff values are noted below. Adopt these values as your preferences while
         self.create_static_system_prompt(shared_description=game_shared_desc,
                                          side_description=game_side_desc,
                                          formatted_issues=formatted_issues)
+

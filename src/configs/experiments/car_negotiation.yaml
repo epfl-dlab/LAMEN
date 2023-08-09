@@ -1,27 +1,24 @@
-agents_path: ${data_dir}/agents
-games_path: ${data_dir}/games
-issues_path: ${data_dir}/issues
-models_path: ${data_dir}/model_settings
-note_prompts_path: data/note_prompts
-message_prompts_path: data/message_prompts
-communication_protocols_path: ${data_dir}/communication_protocols
-
-defaults:
-  - agents:
-
 game:
-  file: ${data_dir}/games/car_dealership.json
+  _target_: games.Game
+  kwargs: ${games_dir}/car_dealership.yaml
+  general_game_rules: ${games_dir}/general_rules.yaml
 
-stop_condition: ""
-max_rounds: 10
-budget: 10.
+agent_1:
+  _target_: agents.NegotiationAgent
+  model_budget: 2.
+  agent_description: ${agents_dir}/car_salesperson.yaml
+  communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
+  generation_parameters: ${models_dir}/openai_4_0_0.yaml
 
-agents: 
-  - agent_1: 
-      agent_description: "${data_dir}/agents/car_salesperson.json"
-      communication: ${data_dir}/communication_protocols/auto_regressive_50_50.json
-      generation_parameters: ${data_dir}/model_settings/openai_4_0_0.json
-  - agent_2: 
-      agent_description: "${data_dir}/agents/car_buyer_2.json"
-      communication: ${data_dir}/communication_protocols/auto_regressive_50_50.json
-      generation_parameters: ${data_dir}/model_settings/openai_4_0_0.json
+agent_2:
+  _target_: agents.NegotiationAgent
+  model_budget: 2.
+  agent_description: ${agents_dir}/car_buyer.yaml
+  communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
+  generation_parameters: ${models_dir}/openai_4_0_0.yaml
+
+negotiation_protocol:
+  max_rounds: 10
+  stop_condition: ""
+  start_agent_index: 0
+  save_folder: ${output_dir}

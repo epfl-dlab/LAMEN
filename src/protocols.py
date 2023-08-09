@@ -90,7 +90,7 @@ class NegotiationProtocol:
             round_num += 1
 
     def evaluate(self):
-        nego_eval = EvaluateNegotiations(self.save_folder, self.game)
+        nego_eval = EvaluateNegotiations(self.save_folder, self.game, check_faithfulness=self.check_faithfulness)
         nego_eval.compute_metrics()
 
     def _format_round_print(self, round_num, total_rounds, t1=0., t2=0., start=False):

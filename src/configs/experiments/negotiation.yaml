@@ -1,23 +1,24 @@
-agents_path: ${data_dir}/agents
-games_path: ${data_dir}/games
-issues_path: ${data_dir}/issues
-models_path: ${data_dir}/model_settings
-note_prompts_path: data/note_prompts
-message_prompts_path: data/message_prompts
-communication_protocols_path: ${data_dir}/communication_protocols
-
 game:
-  file: ${data_dir}/games/rio_copa.json
+  _target_: games.Game
+  general_game_rules: ${games_dir}/general_rules.yaml
+  kwargs: ${games_dir}/rio_copa.yaml
 
-stop_condition: ""
-max_rounds: 5
+agent_1:
+  _target_: agents.NegotiationAgent
+  model_budget: 2.
+  agent_description: ${agents_dir}/pj_green.yaml
+  communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
+  generation_parameters: ${models_dir}/openai_4_0_0.yaml
 
-agents: 
-  - agent_1: 
-      agent_description: "${data_dir}/agents/pj_green.json"
-      communication: ${data_dir}/communication_protocols/auto_regressive_100_100.json
-      generation_parameters: ${data_dir}/model_settings/openai_4_0_0.json
-  - agent_2: 
-      agent_description: "${data_dir}/agents/hp_costa.json"
-      communication: ${data_dir}/communication_protocols/auto_regressive_100_100.json
-      generation_parameters: ${data_dir}/model_settings/openai_4_0_0.json
+agent_2:
+  _target_: agents.NegotiationAgent
+  model_budget: 2.
+  agent_description: ${agents_dir}/hp_costa.yaml
+  communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
+  generation_parameters: ${models_dir}/openai_4_0_0.yaml
+
+negotiation_protocol:
+  max_rounds: 10
+  stop_condition: ""
+  start_agent_index: 0
+  save_folder: ${output_dir}

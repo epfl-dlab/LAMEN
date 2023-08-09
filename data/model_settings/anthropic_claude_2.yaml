@@ -1,0 +1,3 @@
+model_provider: anthropic
+model_name: claude-2
+temperature: 0
