@@ -28,10 +28,6 @@ import os
 import numpy as np
 import yaml
 from attr import define
-
-import json
-from datetime import datetime as dt
-from utils import read_json
 from typing import Optional
 
 
@@ -43,7 +39,8 @@ class Game:
     issue_weights: list
     scale: tuple = (1, 1)
     sides: list = None
-    general_game_rules: str = None
+    rules: list = []
+    rules_prompt: str = ''
 
     def __attrs_post_init__(self):
         # load in the issues in correct format
@@ -64,12 +61,9 @@ class Game:
             issue.payoffs = payoffs
 
     def add_general_rules(self):
-        if self.general_game_rules is not None:
-            with open(self.general_game_rules, 'r') as f:
-                general_rules_data = yaml.safe_load(f)
-
-            self.description = self.description + " " + general_rules_data['prompt']
-            for rule in general_rules_data['rules']:
+        if self.rules_prompt is not None and (isinstance(self.rules, list) and any(self.rules)):
+            self.description = self.description + " " + self.rules_prompt
+            for rule in self.rules:
                 self.description += '\n' + rule
 
     def get_system_msg(self):
@@ -188,8 +182,8 @@ def load_game(game_path: str, general_rules: Optional[str] = None) -> dict:
         with open(general_rules, 'r') as f:
             general_rules_data = yaml.safe_load(f)
 
-            game["description"] = game["description"] + " " + general_rules_data['prompt']
-            for rule in general_rules_data['rules']:
-                game['description'] += '\n' + rule
+        game.rules_prompt = general_rules_data['rules_prompt']
+        game.rules = general_rules_data['rules']
+        game.add_general_rules()
 
     return game

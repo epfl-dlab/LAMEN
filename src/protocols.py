@@ -53,7 +53,8 @@ class NegotiationProtocol:
     start_agent_index: int = 0
     num_agreed_issues: int = 0
     save_folder: str = 'data/logs'
-    verbosity: int = 0
+    check_faithfulness: bool = False
+    verbosity: int = 1
 
     def __attrs_post_init__(self):
         os.makedirs(self.save_folder, exist_ok=True)
@@ -64,6 +65,10 @@ class NegotiationProtocol:
             self.agent_1, self.agent_2 = self.agent_2, self.agent_1
 
     def run(self):
+        printv(f'Starting negotiations protocol with agents:\n'
+               f'{self.agent_1.internal_description}\n'
+               f'{self.agent_2.internal_description}\n', self.verbosity)
+
         completed = False
         round_num = 0
         while not completed:
@@ -90,7 +95,8 @@ class NegotiationProtocol:
             round_num += 1
 
     def evaluate(self):
-        nego_eval = EvaluateNegotiations(self.save_folder, self.game, check_faithfulness=self.check_faithfulness)
+        nego_eval = EvaluateNegotiations(save_dir=self.save_folder, game=self.game,
+                                         check_faithfulness=self.check_faithfulness)
         nego_eval.compute_metrics()
 
     def _format_round_print(self, round_num, total_rounds, t1=0., t2=0., start=False):

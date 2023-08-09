@@ -1,4 +1,4 @@
-prompt: "Remember the following negotiation rules:"
+rules_prompt: "Remember the following negotiation rules:"
 rules:
   - "Your total payoff is the sum of your payoffs on all issues."
   - "A valid agreement occurs only when all issues are decided. Partial agreements result in a total payoff to you of zero."

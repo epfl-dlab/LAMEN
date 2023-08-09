@@ -3,6 +3,7 @@ from typing import List, Union
 import tiktoken
 from abc import ABC
 import json
+import yaml
 from retry import retry
 from utils import get_api_key
 import openai
@@ -279,10 +280,10 @@ def get_model_pricing(model_name):
     return model_details['prompt_cost'], model_details['completion_cost']
 
 
-def get_model_details(model_name, fpath='data/llm_model_details.json'):
+def get_model_details(model_name, fpath='data/llm_model_details.yaml'):
     try:
         with open(fpath) as f:
-            details = json.load(f)
+            details = yaml.safe_load(f)
     except Exception as e:
         print(f'error: unable to load model details - {e}')
         details = {}
@@ -293,10 +294,10 @@ def get_model_details(model_name, fpath='data/llm_model_details.json'):
 
     return details[model_name]
 
-def get_api_settings(api_provider, fpath='data/api_settings/apis.json'):
+def get_api_settings(api_provider, fpath='data/api_settings/apis.yaml'):
     try:
         with open(fpath) as f:
-            details = json.load(f)
+            details = yaml.safe_load(f)
     except Exception as e:
         print(f'error: unable to load model details - {e}')
         details = {}

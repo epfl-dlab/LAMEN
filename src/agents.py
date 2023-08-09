@@ -43,7 +43,7 @@ class NegotiationAgent:
     external_description: dict = {}
     system_description: SystemMessage = SystemMessage('')
 
-    verbosity: int = 0
+    verbosity: int = 1
     debug_mode: bool = False
 
     init_settings = locals()

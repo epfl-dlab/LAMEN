@@ -1,5 +1,5 @@
 name: new car
-type: distributive
+issue_type: distributive
 descriptions:
 - "The issue at hand is the price of the car. You want to get as much money as possible, but not scare the customer away"
 - "The issue at hand is the price of the car. You want to pay as little money as possible, but enough to convince the sales person to sell you the car."

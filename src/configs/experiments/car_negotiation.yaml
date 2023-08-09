@@ -1,11 +1,12 @@
 game:
   _target_: games.Game
   kwargs: ${games_dir}/car_dealership.yaml
-  general_game_rules: ${games_dir}/general_rules.yaml
+  game_rules: ${data_dir}/general_game_rules.yaml
 
 agent_1:
   _target_: agents.NegotiationAgent
   model_budget: 2.
+  verbosity: ${verbosity}
   agent_description: ${agents_dir}/car_salesperson.yaml
   communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
   generation_parameters: ${models_dir}/openai_4_0_0.yaml
@@ -13,6 +14,7 @@ agent_1:
 agent_2:
   _target_: agents.NegotiationAgent
   model_budget: 2.
+  verbosity: ${verbosity}
   agent_description: ${agents_dir}/car_buyer.yaml
   communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
   generation_parameters: ${models_dir}/openai_4_0_0.yaml
@@ -22,3 +24,4 @@ negotiation_protocol:
   stop_condition: ""
   start_agent_index: 0
   save_folder: ${output_dir}
+  verbosity: ${verbosity}

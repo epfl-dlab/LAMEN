@@ -1,20 +1,20 @@
 defaults:
   - _self_
   - hydra: inference
-  - experiments: hotel_negotiation
-
-# path to work directory
-work_dir: ${hydra:runtime.cwd}
+  - experiments: car_negotiation
 
 # faithfulness
 check_faithfulness: True
 
 # for debugging
 debug_mode: False
-verbosity: 1
+verbosity: 2
 
+# path to work directory
+work_dir: ${hydra:runtime.cwd}
 # path to data directory
 data_dir: ${work_dir}/data
+# path to various objects in data directory
 agents_dir: ${data_dir}/agents
 games_dir: ${data_dir}/games
 issues_dir: ${data_dir}/issues
