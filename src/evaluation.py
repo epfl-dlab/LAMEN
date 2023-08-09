@@ -11,9 +11,9 @@ class EvaluateNegotiations:
     - provide summary statistics on both sides
     - look at doc for advice https://docs.google.com/document/d/1H9fGwmUllIBkFj2_KFPLiJKi4T8DMeJNFO8Wv_f-wQM/edit
     """
-    def __init__(self, save_dir, game, file_name="negotiations.csv", check_faithfulness=False):
+    def __init__(self, save_dir, game, file_name="negotiations.csv", check_message_for_offers=False):
         self.save_dir=save_dir
-        self.check_faithfulness=check_faithfulness
+        self.check_message_for_offers=check_message_for_offers
         negotiations_path = os.path.join(save_dir, file_name)
         self.neg_hist = pd.read_csv(negotiations_path)
         self.game = game 
@@ -42,8 +42,8 @@ class EvaluateNegotiations:
         self.neg_hist["payoffs"] = self.neg_hist.apply(
             lambda x: self.label_to_payoff(x["issues_state"], x["agent_id"]), axis=1
         )
-        if self.check_faithfulness:
-            self.neg_hist["faithfulness"] = self.neg_hist["message"].apply(lambda x: self.check_faithfulness_of_message(x))
+        if self.check_message_for_offers:
+            self.neg_hist["offers_in_message"] = self.neg_hist["message"].apply(lambda x: self.check_message_for_offers(x))
 
         self.neg_hist[
             ["total_payoff", "normalized_payoff", "issue_payoff", "normalized_issue_payoff"]
@@ -125,11 +125,11 @@ class EvaluateNegotiations:
         """
         pass
 
-    def check_faithfulness_of_message(self, message, model_name="gpt-3.5-turbo"):
+    def check_message_for_offers(self, message, model_name="gpt-3.5-turbo"):
         key = get_api_key(key="OPENAI_API_KEY")
         model = ChatModel(model_name=model_name,model_key=key)
         issues = ", ".join([issue.name for issue in self.issues])
-        faithfulness_prompt = """
+        message_offer_prompt = """
 These are the issues being discusses {issues}. 
 In the following message, if an issue is being discussed extract the offer being provided
 
@@ -144,16 +144,16 @@ Example 1:
 Comment: After considering your offer of $7,200, I believe we can reach a mutually beneficial agreement. How about we settle on $6,800? 
 
 {
-    "new car": "$7200"
+    "new car": "$6,800"
 }
 
 ```
 
 Message: {message}
 """.replace("{issues}", issues).replace("{message}", message)
-        print(faithfulness_prompt)
+        print(message_offer_prompt)
         try:
-            output = model([HumanMessage(faithfulness_prompt)])
+            output = model([HumanMessage(message_offer_prompt)])
         except:
             output = {}
         return output
