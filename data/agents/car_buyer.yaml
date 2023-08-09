@@ -1,0 +1,10 @@
+internal_description:
+  name: Monica Mayer
+  gender: female
+  profession: lawyer
+  age: 31
+  personality_type: gentle
+
+external_description:
+  gender: female
+  age: early-thirties

@@ -1,0 +1,11 @@
+internal_description:
+  name: John Franklin
+  gender: male
+  profession: car salesperson
+  age: 45
+  personality_type: sleazy
+
+external_description:
+  name: Mr. Franklin
+  gender: male
+  age: middle-aged

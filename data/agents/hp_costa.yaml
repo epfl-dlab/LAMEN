@@ -1,0 +1,12 @@
+internal_description:
+  name: H.P. Costa
+  gender: male
+  profession: "president, majority stockholder"
+  age: 55
+  personality_type: aggressive
+
+external_description:
+  name: H.P. Costa
+  gender: male
+  age: late-fifties
+  profession: "president, majority stockholder"

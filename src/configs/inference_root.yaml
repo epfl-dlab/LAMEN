@@ -3,20 +3,25 @@ defaults:
   - hydra: inference
   - experiments: car_negotiation
 
-model_provider: openai # can be `openai` or `azure`
-
-# path to work directory
-work_dir: ${hydra:runtime.cwd}
-
-# faithfulness
+# faithfulness
 check_faithfulness: True
 
 # for debugging
 debug_mode: False
-verbosity: 1
+verbosity: 2
 
+# path to work directory
+work_dir: ${hydra:runtime.cwd}
 # path to data directory
 data_dir: ${work_dir}/data
+# path to various objects in data directory
+agents_dir: ${data_dir}/agents
+games_dir: ${data_dir}/games
+issues_dir: ${data_dir}/issues
+models_dir: ${data_dir}/model_settings
+note_prompts_dir: ${data_dir}/note_prompts
+message_prompts_dir: ${data_dir}/message_prompts
+communication_protocols_dir: ${data_dir}/communication_protocols
 
 # path to output directory, created dynamically by hydra
 output_dir: ${hydra:runtime.output_dir}

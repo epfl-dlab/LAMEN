@@ -4,7 +4,11 @@ import tiktoken
 import pandas as pd
 from model_utils import AIMessage, HumanMessage, SystemMessage, ChatModel
 from utils import get_api_key
+from games import Game
+from attr import define
 
+
+@define
 class EvaluateNegotiations:
     """
     - read note history 
@@ -15,12 +19,11 @@ class EvaluateNegotiations:
         self.save_dir=save_dir
         self.check_message_for_offers=check_message_for_offers
         negotiations_path = os.path.join(save_dir, file_name)
+
         self.neg_hist = pd.read_csv(negotiations_path)
-        self.game = game 
-        self.issues = game.issues
         self.n_agents = len(self.game.sides)
-        self.enc = None
-    
+        self.issues = self.game.issues
+
     def compute_metrics(self):
         """
         - Absolute Payoff Outcomes (individual, joined, per-issue-type)
@@ -50,9 +53,8 @@ class EvaluateNegotiations:
         ] = self.neg_hist.apply(lambda x: self.payoff_analysis(x["payoffs"], x["agent_id"]), axis=1).apply(pd.Series)
         print(self.neg_hist)
         output_path = os.path.join(self.save_dir, "processed_negotiation.csv")
-        # TODO implement saving of the file
+        #  TODO implement saving of the file
         self.neg_hist.to_csv(output_path, index=False)
-
 
     def language_analysis(self, vocab_path):
         """
@@ -68,9 +70,10 @@ class EvaluateNegotiations:
         """
         payoffs = []
         # ensure dictionary
-        if type(issue_state)==str:
+        if type(issue_state) == str:
             issue_state = eval(issue_state)
 
+        key = None
         try:
             # for agent_id in range(self.n_agents):
             for key, value in issue_state.items():
@@ -83,8 +86,8 @@ class EvaluateNegotiations:
                 idx = issue_payoff_labels.index(value)
                 payoff = issue_payoffs[idx]
                 payoffs.append({str(agent_id): {key: [payoff, min_payoff, max_payoff]}})
-        except: 
-            print(f"'{key}' not found in issues.")
+        except Exception as e:
+            print(f"'{key}' not found in issues. - {e}")
         return payoffs
 
     def payoff_analysis(self, payoffs, agent_id):
@@ -111,7 +114,7 @@ class EvaluateNegotiations:
                     total_min_payoff += min_payoff
                     issue_payoffs.append([agent_id, issue_name, payoff])
                     normalized_issue_payoffs.append([agent_id, issue_name, payoff / (max_payoff - min_payoff)])
-        
+
         try:
             normalized_total_payoff = total_payoff / (total_max_payoff - total_min_payoff)
         except ZeroDivisionError:
@@ -161,4 +164,3 @@ Message: {message}
     def estimate_tokens(self, message, text_col="note"):
         message = len(message[text_col].split())
         return message
-

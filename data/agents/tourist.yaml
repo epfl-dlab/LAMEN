@@ -1,0 +1,10 @@
+internal_description:
+  name: Rachel De Vries
+  gender: female
+  profession: banker
+  age: 51
+  personality_type: rude
+
+external_description:
+  gender: female
+  age: middle-age
