@@ -1,9 +1,10 @@
 defaults:
   - _self_
   - hydra: inference
-  - experiments: car_negotiation
+  - experiments: hotel_negotiation
 
-model_provider: openai # can be `openai` or `azure`
+# is part of model settings
+# model_provider: openai # can be `openai` or `azure`
 
 # path to work directory
 work_dir: ${hydra:runtime.cwd}
@@ -14,6 +15,13 @@ verbosity: 1
 
 # path to data directory
 data_dir: ${work_dir}/data
+agents_dir: ${work_dir}/data/agents
+games_dir: ${work_dir}/data/games
+issues_dir: ${work_dir}/data/issues
+models_dir: ${work_dir}/data/model_settings
+note_prompts_dir: ${work_dir}/data/note_prompts
+message_prompts_dir: ${work_dir}/data/message_prompts
+communication_protocols_dir: ${work_dir}/data/communication_protocols
 
 # path to output directory, created dynamically by hydra
 output_dir: ${hydra:runtime.output_dir}

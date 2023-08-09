@@ -3,21 +3,23 @@ import os
 import tiktoken
 import pandas as pd
 
+
 class EvaluateNegotiations:
     """
     - read note history 
     - provide summary statistics on both sides
     - look at doc for advice https://docs.google.com/document/d/1H9fGwmUllIBkFj2_KFPLiJKi4T8DMeJNFO8Wv_f-wQM/edit
     """
+
     def __init__(self, save_dir, game, file_name="negotiations.csv"):
-        self.save_dir=save_dir
+        self.save_dir = save_dir
         negotiations_path = os.path.join(save_dir, file_name)
         self.neg_hist = pd.read_csv(negotiations_path)
-        self.game = game 
+        self.game = game
         self.issues = game.issues
         self.n_agents = len(self.game.sides)
         self.enc = None
-    
+
     def compute_metrics(self):
         """
         - Absolute Payoff Outcomes (individual, joined, per-issue-type)
@@ -45,9 +47,8 @@ class EvaluateNegotiations:
 
         print(self.neg_hist)
         output_path = os.path.join(self.save_dir, "processed_negotiation.csv")
-        # TODO implement saving of the file
+        #  TODO implement saving of the file
         self.neg_hist.to_csv(output_path, index=False)
-
 
     def language_analysis(self, vocab_path):
         """
@@ -63,7 +64,7 @@ class EvaluateNegotiations:
         """
         payoffs = []
         # ensure dictionary
-        if type(issue_state)==str:
+        if type(issue_state) == str:
             issue_state = eval(issue_state)
 
         try:
@@ -78,7 +79,7 @@ class EvaluateNegotiations:
                 idx = issue_payoff_labels.index(value)
                 payoff = issue_payoffs[idx]
                 payoffs.append({str(agent_id): {key: [payoff, min_payoff, max_payoff]}})
-        except: 
+        except:
             print(f"'{key}' not found in issues.")
         return payoffs
 
@@ -106,7 +107,7 @@ class EvaluateNegotiations:
                     total_min_payoff += min_payoff
                     issue_payoffs.append([agent_id, issue_name, payoff])
                     normalized_issue_payoffs.append([agent_id, issue_name, payoff / (max_payoff - min_payoff)])
-        
+
         try:
             normalized_total_payoff = total_payoff / (total_max_payoff - total_min_payoff)
         except ZeroDivisionError:
@@ -120,12 +121,7 @@ class EvaluateNegotiations:
         """
         pass
 
-
     def estimate_tokens(self, message, text_col="note"):
         if self.enc == None: self.enc = tiktoken.encoding_for_model(message["model_name"])
         input_tokens = len(self.enc.encode(message[text_col]))
         return input_tokens
-
-    
-
-    

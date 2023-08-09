@@ -186,7 +186,6 @@ class ChatModel:
                 engine=self.model_name,
                 messages=data,
                 temperature=self.temperature,
-                # max_tokens=self.max_tokens,
                 **self.generation_params
             )
         else:
@@ -194,7 +193,6 @@ class ChatModel:
                 model=self.model_name,
                 messages=data,
                 temperature=self.temperature,
-                # max_tokens=self.max_tokens,
                 **self.generation_params
             )
 

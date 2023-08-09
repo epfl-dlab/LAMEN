@@ -1,71 +1,69 @@
 import os
-import time
-import csv
-from datetime import datetime as dt
 from model_utils import SystemMessage, HumanMessage, ChatModel
-from evaluation import EvaluateNegotiations
 from utils import get_api_key, printv
-# from omegaconf import DictConfig
 import re
 import json
+from attr import define, field
 
 import logging
-
 log = logging.getLogger("my-logger")
 
 
-# def create_agent_description(agent_dict, path='../data/agents'):
-#     # TODO: think of sensible comparison axes, e.g., age, profession, sex, etc.
-#     pass
-#
-#
-# def load_agent_description(agent_path) -> str:
-#     # TODO: load agent json and join into single string
-#     pass
-
-
+@define
 class NegotiationAgent:
-    def __init__(self, agent_name=None, init_description=None,
-                 msg_prompt=None, note_prompt=None,
-                 msg_max_len=64, note_max_len=64,
-                 msg_input_msg_history=-1, msg_input_note_history=-1,
-                 note_input_msg_history=-1, note_input_note_history=-1,
-                 model_name="gpt-4", model_provider='openai', model_key='dlab_openai_key',
-                 model_key_path='secrets.json', verbosity=2, debug_mode=False, **kwargs) -> None:
-        """
-        Basic agent class
-        """
-        self.init_settings = locals()
-        self.verbosity = verbosity
 
-        self.system_description = ''
-        self.init_description = init_description
-        self.agent_name = agent_name
+    # message params
+    msg_prompt: str
+    msg_max_len: int
+    msg_input_msg_history: str
+    msg_input_note_history: str
 
-        # message params
-        self.msg_prompt_path, self.msg_max_len = msg_prompt, msg_max_len
-        self.msg_prompt = self.get_msg_note_prompt(msg_prompt, is_note=False)
-        self.msg_input_msg_history, self.msg_input_note_history = msg_input_msg_history, msg_input_note_history
-        # notes params
-        self.note_prompt_path, self.note_max_len = note_prompt, note_max_len
-        self.note_prompt = self.get_msg_note_prompt(note_prompt, is_note=True)
-        self.note_input_msg_history, self.note_input_note_history = note_input_msg_history, note_input_note_history
-        # generation parameters
-        self.generation_parameters = kwargs
-        # model
-        self.model_name = model_name
-        api_key = get_api_key(fname=model_key_path, key=model_key)
+    # notes params
+    note_prompt: str
+    note_max_len: int
+    note_input_msg_history: int
+    note_input_note_history: int
+
+    # model
+    model: ChatModel = None
+    model_name: str = 'gpt-4'
+    model_provider: str = 'openai'
+    model_key_path: str = 'secrets.json'
+    model_key: str = 'dlab_openai_key'
+    model_budget: float = 5.
+    temperature: float = 0.
+
+    # keep track of what agents think they can achieve
+    notes_history: list = []
+    msg_history: list = []
+    achievable_payoffs: dict = {}
+
+    # agent character
+    agent_name: str = None
+    internal_description: dict = {}
+    external_description: dict = {}
+    system_description: SystemMessage = SystemMessage('')
+
+    verbosity: int = 0
+    debug_mode: bool = False
+
+    init_settings = locals()
+
+    def __attrs_post_init__(self):
+        # read in prompts
+        self.note_prompt = self.get_msg_note_prompt(self.note_prompt, is_note=True)
+        self.msg_prompt = self.get_msg_note_prompt(self.msg_prompt, is_note=False)
+        # get api key
+        api_key = get_api_key(fname=self.model_key_path, key=self.model_key)
+        # instantiate model
         self.model = ChatModel(
-            model_name=model_name, model_provider=model_provider, model_key=api_key,debug_mode=debug_mode,
-            **self.generation_parameters
+            model_name=self.model_name, model_provider=self.model_provider, model_key=api_key,
+            temperature=self.temperature, debug_mode=self.debug_mode, budget=self.model_budget,
         )
+        self.agent_name = self.internal_description['name']
 
-        # keep track of what agents think they can achieve
-        self.achievable_payoffs = {}
-        self.issue_payoffs = {}
-
-        self.notes_history = []
-        self.msg_history = []
+    def init_agent_from_transcript(self):
+        pass
 
     def generate_message(self, c_msg_history):
         # msg prompt structure
@@ -197,14 +195,14 @@ class NegotiationAgent:
     def get_settings(self):
         return self.init_settings
     
-    def create_static_system_prompt(self, shared_description, side_description, issues_format):
+    def create_static_system_prompt(self, shared_description, side_description, formatted_issues):
         initial_story = f"""
 {shared_description}
 {side_description}
 \nDescription of your qualities:
-{self.init_description} 
+{self.internal_description} 
 Your payoff values are noted below. Adopt these values as your preferences while negotiating.
-{issues_format}"""
+{formatted_issues}"""
         self.system_description = SystemMessage(initial_story)
         printv(f'\n[system prompt]\n{initial_story}\n', self.verbosity, 1)
 
@@ -236,7 +234,7 @@ Your payoff values are noted below. Adopt these values as your preferences while
         if len(self.notes_history) > 0:
             _, last_note = self.notes_history[-1]
 
-            state_regex = re.compile(r"{[\s\S]*?}" )
+            state_regex = re.compile(r"{[\s\S]*?}")
             state_str = state_regex.search(last_note)
             if state_str is not None:
                 try:
@@ -249,154 +247,11 @@ Your payoff values are noted below. Adopt these values as your preferences while
 
         return state
 
-    def __repr__(self):
-        return f"{self.init_description}"
+    def copy_game_data(self, game, agent_idx):
 
-
-class NegotiationProtocol:
-    """
-    Run negotiations
-    """
-    def __init__(self, agents, game, start_agent_index=0, stop_condition='context_fill', max_rounds=2,
-                 save_folder='data/results', verbosity=2):
-
-        os.makedirs(save_folder, exist_ok=True)
-        self.save_folder = save_folder
-        self.verbosity = verbosity
-
-        self.max_rounds = max_rounds
-        self.stop_condition = stop_condition
-        self.game = game
-        game_shared_description = game.description
-        print(game_shared_description)
-
-
-        self.agents = agents
-        for i, agent in enumerate(agents):
-            issues_format = game.format_all_issues(i)
-            agent_side = self.game.sides[i][0]
-            print("AGENT_SIDE", agent_side)
-            agent.create_static_system_prompt(game_shared_description, agent_side, issues_format)
-
-        # move the agent order to respect start agent index
-        self.agents = self.agents if start_agent_index == 0 else [self.agents[1], self.agents[0]]
-        self.num_agreed_issues = 0
-
-    def run(self):
-        # conduct rounds of negotiation until a stop_condition is hit
-        # after each respective agent step, call check_completion()
-        completed = False
-        round_num = 0
-        while not completed:
-            ts = []
-            t = time.time()
-            self._format_round_print(round_num=round_num, total_rounds=self.max_rounds, start=True)
-            self.agents[0].step(self.agents[1].msg_history)
-            completed = self.check_completion(agent=self.agents[1],
-                                              c_msg_history=self.agents[0].msg_history,
-                                              num_rounds=round_num)
-            self.save_results(agent=self.agents[0], round_num=round_num, agent_id=0)
-            ts.append(time.time() - t)
-            t = time.time()
-
-            if not completed:
-                self.agents[1].step(self.agents[0].msg_history)
-                self.save_results(agent=self.agents[1], round_num=round_num, agent_id=1)
-                completed = self.check_completion(agent=self.agents[0],
-                                                  c_msg_history=self.agents[1].msg_history,
-                                                  num_rounds=round_num)
-            ts.append(time.time() - t)
-            self._format_round_print(round_num=round_num, total_rounds=self.max_rounds,
-                                     t1=ts[-1], t2=ts[-2])
-            round_num += 1
-
-    def evaluate(self):
-        nego_eval = EvaluateNegotiations(self.save_folder, self.game)
-        nego_eval.compute_metrics()
-
-    def _format_round_print(self, round_num, total_rounds, t1=0., t2=0., start=False):
-        prompt_costs, completion_costs = 0, 0
-        for a in self.agents:
-            prompt_costs += a.model.session_prompt_costs
-            completion_costs += a.model.session_completion_costs
-        tc = prompt_costs + completion_costs
-
-        if start:
-            s = f'\n\nROUND [{round_num}/{total_rounds}]: ' \
-                f'session costs: ${tc : .2f} (prompt: ${prompt_costs : .1f} | completion: ${completion_costs :.1f}), ' \
-                f'agreed issues: {self.num_agreed_issues}\n\n'
-        else:
-            s = f'\n\nROUND END [{round_num}/{total_rounds}]: time {t1: .1f}s | {t2: .1f}s\n\n'
-
-        printv(s, self.verbosity)
-
-    def check_completion(self, agent, c_msg_history, num_rounds) -> bool:
-        # 1. all issues are agreed upon
-        # 2. max rounds reached
-        # 3. ran out of context tokens
-        #   -> a. stop
-        #   -> b. drop history
-        #   -> c. fancier stuff, e.g., memory bank search etc.
-        # 4. ran out of compute budget
-
-        completed = False
-
-        # 1
-        agreed, state = self.compare_issues(return_issues=True)
-        if agreed:
-            completed = True
-            printv(f'[completed] (issues) - {state}', self.verbosity)
-        # 2
-        if num_rounds >= self.max_rounds:
-            completed = True
-            printv(f'[completed] (num_rounds) - {num_rounds}/{self.max_rounds}', self.verbosity)
-        # 3
-        if not agent.check_context_len_step(c_msg_history):
-            completed = True
-            printv(f'[completed] (context overflow)', self.verbosity)
-
-        # 4
-        if agent.model.budget <= 0:
-            completed = True
-            printv(f'[completed] (ran out of compute budget)', self.verbosity)
-
-        return completed
-
-    def compare_issues(self, return_issues=False):
-        is1 = self.agents[0].get_issues_state()
-        is2 = self.agents[1].get_issues_state()
-
-        if not any(is1) or not any(is2):
-            agreed, agreed_issues = False, []
-        else:
-            is_keys = is2.keys()
-            agreed_issues = [k for k in is_keys if is1.get(k) == is2.get(k)]
-            agreed = len(agreed_issues) == len(is_keys)
-            self.num_agreed_issues = len(agreed_issues)
-
-        if return_issues:
-            return agreed, agreed_issues
-
-        return agreed
-
-    def save_results(self, agent, round_num, agent_id):        
-        headers = ['agent_name', "agent_id", 'round', 'note', 'message', 'issues_state', 'timestamp','model_name']
-        fname = 'negotiations.csv'
-        csv_path = os.path.join(self.save_folder, fname)
-        csv_path_exists = os.path.exists(csv_path)
-        with open(csv_path, 'a') as f:
-            writer = csv.writer(f)
-            if not csv_path_exists:
-                writer.writerow(headers)
-
-
-            note = '' if len(agent.notes_history) == 0 else agent.notes_history[-1][1]
-            msg = '' if len(agent.msg_history) == 0 else agent.msg_history[-1][1]
-            issues_state = agent.get_issues_state()
-            timestamp = dt.strftime(dt.now(), '%Y%m%d_%H%M%S')
-            model_name = agent.model_name
-            data = [agent.agent_name,agent_id, round_num, note, msg, issues_state, timestamp, model_name]
-            try:
-                writer.writerow(data)
-            except Exception as e:
-                print(f'warning: failed to write row! - {e}')
+        formatted_issues = game.format_all_issues(agent_idx)
+        game_shared_desc = game.description
+        game_side_desc = game.sides[agent_idx][0]
+        self.create_static_system_prompt(shared_description=game_shared_desc,
+                                         side_description=game_side_desc,
+                                         formatted_issues=formatted_issues)

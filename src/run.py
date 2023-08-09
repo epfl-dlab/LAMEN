@@ -1,14 +1,11 @@
 import hydra
-import json
-import fire
-import os
 import uuid
-from omegaconf import DictConfig, OmegaConf
-from utils import read_json, dictionary_to_string, get_api_key
+from omegaconf import DictConfig
+from utils import read_json, dictionary_to_string
 
-from agents import NegotiationAgent, NegotiationProtocol
-from games import load_game, Game, Issue
-from evaluation import EvaluateNegotiations
+from agents import NegotiationAgent
+from protocols import NegotiationProtocol
+from games import load_game, Game
 
 
 class AgentMetadata:
@@ -27,7 +24,6 @@ def main(cfg: DictConfig):
     agents_raw = cfg["agents"]
     debug_mode = cfgg["debug_mode"]
     verbosity = cfgg["verbosity"]
-
 
     # initialize agents with their stories
     agents = []  # list will store agent metadata
@@ -61,6 +57,7 @@ def main(cfg: DictConfig):
                                       max_rounds=max_rounds, save_folder=save_folder)
     negotiation.run()
     negotiation.evaluate()
+
 
 if __name__ == "__main__":
     main()
