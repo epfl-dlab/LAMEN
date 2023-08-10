@@ -39,10 +39,10 @@ class Game:
     description: str
     issues: list
     issue_weights: list
-    scale: tuple = field(factory=(1, 1))
-    sides: list = field(factory=None)
+    scale: tuple = field(default=(1, 1))
+    sides: list = field(default=None)
     rules: list = field(factory=list)
-    rules_prompt: str = field(factory='')
+    rules_prompt: str = field(default='')
 
     def __attrs_post_init__(self):
         # load in the issues in correct format
@@ -108,8 +108,8 @@ class Issue:
     descriptions: str
     payoffs: list
     payoff_labels: list
-    num_steps: int = field(factory=10)
-    issue_type: str = field(factory='custom')
+    num_steps: int = field(default=10)
+    issue_type: str = field(default='custom')
 
     def __attrs_post_init__(self):
         self.set_payoff_table()

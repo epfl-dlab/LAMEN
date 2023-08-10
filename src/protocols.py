@@ -53,13 +53,13 @@ class NegotiationProtocol:
     game: Game
     agent_1: NegotiationAgent
     agent_2: NegotiationAgent
-    max_rounds: int = field(factory=10)
-    stop_condition: str = field(factory='max_rounds')
-    start_agent_index: int = field(factory=0)
-    num_agreed_issues: int = field(factory=0)
-    save_folder: str = field(factory='data/logs')
-    check_faithfulness: bool = field(factory=False)
-    verbosity: int = field(factory=1)
+    max_rounds: int = field(default=10)
+    stop_condition: str = field(default='max_rounds')
+    start_agent_index: int = field(default=0)
+    num_agreed_issues: int = field(default=0)
+    save_folder: str = field(default='data/logs')
+    check_faithfulness: bool = field(default=False)
+    verbosity: int = field(default=1)
 
     def __attrs_post_init__(self):
         os.makedirs(self.save_folder, exist_ok=True)

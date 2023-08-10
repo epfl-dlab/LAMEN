@@ -26,23 +26,23 @@ class NegotiationAgent:
 
     # model
     model: ChatModel = None
-    model_name: str = 'gpt-4'
-    model_provider: str = 'openai'
-    model_key_path: str = 'secrets.json'
-    model_key: str = 'OPENAI_API_KEY'
-    model_budget: float = 5.
-    temperature: float = 0.
+    model_name: str = field(default='gpt-4')
+    model_provider: str = field(default='openai')
+    model_key_path: str = field(default='secrets.json')
+    model_key: str = field(default='OPENAI_API_KEY')
+    model_budget: float = field(default=5.)
+    temperature: float = field(default=0.)
 
     # keep track of what agents think they can achieve
     notes_history: list = field(factory=list)
     msg_history: list = field(factory=list)
-    achievable_payoffs: dict = {}
+    achievable_payoffs: dict = field(factory=dict)
 
     # agent character
     agent_name: str = None
-    internal_description: dict = {}
-    external_description: dict = {}
-    system_description: SystemMessage = SystemMessage('')
+    internal_description: dict = field(factory=dict)
+    external_description: dict = field(factory=dict)
+    system_description: SystemMessage = field(default=SystemMessage(''))
 
     verbosity: int = 1
     debug_mode: bool = False
