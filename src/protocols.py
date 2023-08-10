@@ -81,7 +81,9 @@ class NegotiationProtocol:
             t = time.time()
 
             self._format_round_print(round_num=round_num, total_rounds=self.max_rounds, start=True)
-            self.agent_1.step(copy.deepcopy(self.agent_2.msg_history))
+
+            c_msg_history_ext = [(self.agent_2.agent_name_ext, msg) for (_, msg) in self.agent_2.msg_history]
+            self.agent_1.step(c_msg_history_ext)
             log.debug(f"Agent 1 note history after step: {self.agent_1.notes_history}")
             completed = self.check_completion(agent=self.agent_1,
                                               c_msg_history=self.agent_1.msg_history,
@@ -91,7 +93,8 @@ class NegotiationProtocol:
             t = time.time()
 
             if not completed:
-                self.agent_2.step(self.agent_1.msg_history)
+                c_msg_history_ext = [(self.agent_1.agent_name_ext, msg) for (_, msg) in self.agent_1.msg_history]
+                self.agent_2.step(c_msg_history_ext)
                 self.save_results(agent=self.agent_2, round_num=round_num, agent_id=1)
                 completed = self.check_completion(agent=self.agent_2,
                                                   c_msg_history=self.agent_2.msg_history,

@@ -40,6 +40,7 @@ class NegotiationAgent:
 
     # agent character
     agent_name: str = None
+    agent_name_ext: str = None
     internal_description: dict = field(factory=dict)
     external_description: dict = field(factory=dict)
     system_description: SystemMessage = field(default=SystemMessage(''))
@@ -63,6 +64,7 @@ class NegotiationAgent:
             temperature=self.temperature, debug_mode=self.debug_mode, budget=self.model_budget,
         )
         self.agent_name = self.internal_description['name']
+        self.agent_name_ext = self.external_description['name']
 
     def init_agent_from_transcript(self):
         pass

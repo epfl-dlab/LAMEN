@@ -7,7 +7,7 @@ agent_1:
   _target_: agents.NegotiationAgent
   model_budget: 2.
   verbosity: ${verbosity}
-  agent_description: ${agents_dir}/pj_green.yaml
+  agent_description: ${agents_dir}/anon.yaml  # pj_green.yaml
   communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
   generation_parameters: ${models_dir}/openai_4_0_0.yaml
 
@@ -15,7 +15,7 @@ agent_2:
   _target_: agents.NegotiationAgent
   model_budget: 2.
   verbosity: ${verbosity}
-  agent_description: ${agents_dir}/hp_costa.yaml
+  agent_description: ${agents_dir}/anon.yaml  # hp_costa.yaml
   communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
   generation_parameters: ${models_dir}/openai_4_0_0.yaml
 
