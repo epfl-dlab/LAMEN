@@ -8,6 +8,11 @@ from agents import NegotiationAgent
 from games import Game, Issue
 from evaluation import EvaluateNegotiations
 from model_utils import ChatModel
+import logging 
+
+from logger import get_logger
+import copy
+log = get_logger()
 
 
 @define
@@ -74,9 +79,11 @@ class NegotiationProtocol:
         while not completed:
             ts = []
             t = time.time()
+
             self._format_round_print(round_num=round_num, total_rounds=self.max_rounds, start=True)
-            self.agent_1.step(self.agent_2.msg_history)
-            completed = self.check_completion(agent=self.agent_2,
+            self.agent_1.step(copy.deepcopy(self.agent_2.msg_history))
+            log.debug(f"Agent 1 note history after step: {self.agent_1.notes_history}")
+            completed = self.check_completion(agent=self.agent_1,
                                               c_msg_history=self.agent_1.msg_history,
                                               num_rounds=round_num)
             self.save_results(agent=self.agent_1, round_num=round_num, agent_id=0)
@@ -86,7 +93,7 @@ class NegotiationProtocol:
             if not completed:
                 self.agent_2.step(self.agent_1.msg_history)
                 self.save_results(agent=self.agent_2, round_num=round_num, agent_id=1)
-                completed = self.check_completion(agent=self.agent_1,
+                completed = self.check_completion(agent=self.agent_2,
                                                   c_msg_history=self.agent_2.msg_history,
                                                   num_rounds=round_num)
             ts.append(time.time() - t)
@@ -149,7 +156,9 @@ class NegotiationProtocol:
 
     def compare_issues(self, return_issues=False):
         is1 = self.agent_1.get_issues_state()
+        log.debug(f"Issues for agent 1: {is1}")
         is2 = self.agent_2.get_issues_state()
+        log.debug(f"Issues for agent 2: {is2}")
 
         if not any(is1) or not any(is2):
             agreed, agreed_issues = False, []
@@ -157,6 +166,7 @@ class NegotiationProtocol:
             is_keys = is2.keys()
             agreed_issues = [k for k in is_keys if is1.get(k) == is2.get(k)]
             agreed = len(agreed_issues) == len(is_keys)
+
             self.num_agreed_issues = len(agreed_issues)
 
         if return_issues:

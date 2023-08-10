@@ -8,7 +8,7 @@ check_faithfulness: True
 
 # for debugging
 debug_mode: False
-verbosity: 2
+verbosity: 1
 
 # path to work directory
 work_dir: ${hydra:runtime.cwd}

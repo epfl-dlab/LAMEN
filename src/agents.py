@@ -5,8 +5,9 @@ import re
 import json
 from attr import define, field
 
-import logging
-log = logging.getLogger("my-logger")
+from logger import get_logger
+import copy
+log = get_logger()
 
 
 @define
@@ -28,13 +29,13 @@ class NegotiationAgent:
     model_name: str = 'gpt-4'
     model_provider: str = 'openai'
     model_key_path: str = 'secrets.json'
-    model_key: str = 'dlab_openai_key'
+    model_key: str = 'OPENAI_API_KEY'
     model_budget: float = 5.
     temperature: float = 0.
 
     # keep track of what agents think they can achieve
-    notes_history: list = []
-    msg_history: list = []
+    notes_history: list = field(factory=list)
+    msg_history: list = field(factory=list)
     achievable_payoffs: dict = {}
 
     # agent character
@@ -53,7 +54,8 @@ class NegotiationAgent:
         self.note_prompt = self.get_msg_note_prompt(self.note_prompt, is_note=True)
         self.msg_prompt = self.get_msg_note_prompt(self.msg_prompt, is_note=False)
         # get api key
-        api_key = get_api_key(fname=self.model_key_path, key=self.model_key)
+        api_key_mappings = {"openai": "OPENAI_API_KEY", "azure":"AZURE_API_KEY", "anthropic":"ANTHROPIC_API_KEY"}
+        api_key = get_api_key(fname=self.model_key_path, key=api_key_mappings[self.model_provider])
         # api_key_mappings = {"openai": "OPENAI_API_KEY", "azure":"AZURE_API_KEY", "anthropic":"ANTHROPIC_API_KEY"}
         # api_key = get_api_key(fname=model_key_path, key=api_key_mappings[model_provider])
         self.model = ChatModel(
@@ -71,6 +73,7 @@ class NegotiationAgent:
         user_msg = self.prepare_msg_note_input(c_msg_history)
         printv(f'\nMSG PROMPT\n {user_msg} \n', self.verbosity, 1)
         context = [self.system_description, HumanMessage(user_msg)]
+        log.debug(f"Context: {context}")
         msg = self.model(context)
         self.msg_history.append((self.agent_name, msg))
 
@@ -101,9 +104,9 @@ class NegotiationAgent:
         :return: context msg
         """
         # to check generative capacity moving forward without overriding real history
-        n_h = self.notes_history.copy()
-        m_h = self.msg_history.copy()
-        cm_h = c_msg_history.copy()
+        n_h = copy.deepcopy(self.notes_history)
+        m_h = copy.deepcopy(self.msg_history)
+        cm_h = copy.deepcopy(c_msg_history)
 
         # is this the first message?
         first_msg_note = (len(n_h) == 0 or len(m_h) == 0) and len(cm_h) == 0
@@ -196,6 +199,7 @@ class NegotiationAgent:
         return self.init_settings
     
     def create_static_system_prompt(self, shared_description, side_description, formatted_issues):
+    # TODO optionally add external description.
         initial_story = f"""
 {shared_description}
 {side_description}
@@ -239,6 +243,7 @@ Your payoff values are noted below. Adopt these values as your preferences while
             if state_str is not None:
                 try:
                     state = json.loads(state_str[0])
+                    log.debug(f"Issue state for agent {self.agent_name}: {state}")
                 except Exception as e:
                     print(f'error: unable to retrieve valid state from notes - {e}')
 
@@ -251,7 +256,8 @@ Your payoff values are noted below. Adopt these values as your preferences while
 
         formatted_issues = game.format_all_issues(agent_idx)
         game_shared_desc = game.description
-        game_side_desc = game.sides[agent_idx][0]
+        game_side_desc = game.sides[agent_idx]
+        log.debug(f"Agent side description: {game_side_desc}")
         self.create_static_system_prompt(shared_description=game_shared_desc,
                                          side_description=game_side_desc,
                                          formatted_issues=formatted_issues)

@@ -29,7 +29,9 @@ import numpy as np
 import yaml
 from attr import define
 from typing import Optional
+from logger import get_logger
 
+log = get_logger()
 
 @define
 class Game:
@@ -56,7 +58,7 @@ class Game:
         for issue, w in zip(self.issues, issue_weights.transpose()):
             payoffs = []
             for po, w_, s in zip(issue.payoffs, w, self.scale):
-                po = (np.asarray(po) * w_ * s).astype(int)  # integer values only, TODO: make sure rounding is sensible!
+                po = (np.asarray(po) * w_ * s).round(3)  # integer values only, TODO: make sure rounding is sensible!
                 payoffs.append(po)
             issue.payoffs = payoffs
 
@@ -102,7 +104,6 @@ class Game:
 
 @define
 class Issue:
-
     name: str
     descriptions: str
     payoffs: list
@@ -114,6 +115,7 @@ class Issue:
         self.set_payoff_table()
 
     def set_payoff_table(self):
+        log.debug("Setting payoff tables")
         # both sides want the same thing
         if self.issue_type == 'compatible':
             m1 = np.linspace(0, 1, self.num_steps)

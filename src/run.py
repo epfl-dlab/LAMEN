@@ -1,8 +1,7 @@
 import yaml
 import hydra
 from hydra.utils import instantiate
-import omegaconf
-from omegaconf import DictConfig, OmegaConf, open_dict
+from omegaconf import DictConfig, open_dict
 from protocols import NegotiationProtocol
 from utils import unpack_nested_yaml
 
