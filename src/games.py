@@ -27,7 +27,7 @@ Each issue is a dictionary of format:
 import os
 import numpy as np
 import yaml
-from attr import define
+from attr import define, field
 from typing import Optional
 from logger import get_logger
 
@@ -39,10 +39,10 @@ class Game:
     description: str
     issues: list
     issue_weights: list
-    scale: tuple = (1, 1)
-    sides: list = None
-    rules: list = []
-    rules_prompt: str = ''
+    scale: tuple = field(factory=(1, 1))
+    sides: list = field(factory=None)
+    rules: list = field(factory=list)
+    rules_prompt: str = field(factory='')
 
     def __attrs_post_init__(self):
         # load in the issues in correct format
@@ -108,8 +108,8 @@ class Issue:
     descriptions: str
     payoffs: list
     payoff_labels: list
-    num_steps: int = 10
-    issue_type: str = 'custom'
+    num_steps: int = field(factory=10)
+    issue_type: str = field(factory='custom')
 
     def __attrs_post_init__(self):
         self.set_payoff_table()

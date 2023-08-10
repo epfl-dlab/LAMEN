@@ -1,7 +1,7 @@
 defaults:
   - _self_
   - hydra: inference
-  - experiments: car_negotiation
+  - experiments: negotiation
 
 # faithfulness
 check_faithfulness: True
