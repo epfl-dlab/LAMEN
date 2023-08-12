@@ -23,7 +23,7 @@ def main(cfg: DictConfig):
                                                agent_2=agent_2,
                                                **cfg.experiments.negotiation_protocol)
     negotiation_protocol.run()
-
+    negotiation_protocol.evaluate()
 
 if __name__ == "__main__":
     main()

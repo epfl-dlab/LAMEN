@@ -58,7 +58,7 @@ class NegotiationProtocol:
     start_agent_index: int = field(default=0)
     num_agreed_issues: int = field(default=0)
     save_folder: str = field(default='data/logs')
-    check_faithfulness: bool = field(default=False)
+    check_message_for_offers: bool = field(default=False)
     verbosity: int = field(default=1)
 
     def __attrs_post_init__(self):
@@ -106,7 +106,7 @@ class NegotiationProtocol:
 
     def evaluate(self):
         nego_eval = EvaluateNegotiations(save_dir=self.save_folder, game=self.game,
-                                         check_faithfulness=self.check_faithfulness)
+                                         check_message_for_offers=self.check_message_for_offers)
         nego_eval.compute_metrics()
 
     def _format_round_print(self, round_num, total_rounds, t1=0., t2=0., start=False):

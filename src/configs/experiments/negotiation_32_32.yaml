@@ -1,14 +1,14 @@
 game:
   _target_: games.Game
   game_rules: ${data_dir}/general_game_rules.yaml
-  kwargs: ${games_dir}/rio_copa.yaml
+  kwargs: ${games_dir}/rio_copa_1.yaml
 
 agent_1:
   _target_: agents.NegotiationAgent
   model_budget: 2.
   verbosity: ${verbosity}
   agent_description: ${agents_dir}/anon.yaml  # pj_green.yaml
-  communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
+  communication: ${communication_protocols_dir}/auto_regressive_32_32.yaml
   generation_parameters: ${models_dir}/openai_4_0_0.yaml
 
 agent_2:
@@ -16,11 +16,11 @@ agent_2:
   model_budget: 2.
   verbosity: ${verbosity}
   agent_description: ${agents_dir}/anon.yaml  # hp_costa.yaml
-  communication: ${communication_protocols_dir}/auto_regressive_50_50.yaml
+  communication: ${communication_protocols_dir}/auto_regressive_32_32.yaml
   generation_parameters: ${models_dir}/openai_4_0_0.yaml
 
 negotiation_protocol:
-  max_rounds: 1
+  max_rounds: 10
   stop_condition: ""
   start_agent_index: 0
   save_folder: ${output_dir}

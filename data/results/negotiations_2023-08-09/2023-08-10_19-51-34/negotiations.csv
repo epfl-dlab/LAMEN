@@ -1,0 +1,204 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name
+You,0,0,"Mental Note: Prioritize shorter non-compete period. Start high, negotiate down. Maximize payoff, maintain strategic presence in Santa Cruz.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""1 year""
+}```",Thank you for your time and consideration. We understand the importance of the non-compete period for both parties. We propose a non-compete period of 1 year. This would allow us to quickly integrate Rio Copa Foods into our operations and start contributing to the Santa Cruz market. We believe this is a fair proposal that respects the interests of both parties.,{'non-compete period': '1 year'},20230810_195145,gpt-4
+You,1,0,"Mental Note: Prioritize longer non-compete period. Start negotiations at 10 years, be prepared to compromise but not below 7 years.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","Thank you for your proposal. We understand your perspective, however, considering the long-standing reputation and influence of Rio Copa Foods in the Santa Cruz market, we believe a longer non-compete period would be more appropriate. We propose a non-compete period of 10 years. This would allow us to ensure a smooth transition and maintain the trust of our customers. We are open to further discussions on this matter. 
+
+```json
+{
+    ""non-compete period"": ""10 years""
+}
+```",{'non-compete period': '7 years'},20230810_195205,gpt-4
+You,0,1,"Mental Note: Counter with shorter non-compete period. Highlight benefits to Rio Copa Foods. Aim for compromise.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""3 years""
+}```","[You] [offer]
+Thank you for your response. We understand your concerns about maintaining customer trust. However, a 10-year non-compete period could limit our ability to fully leverage the potential of Rio Copa Foods. We propose a compromise of a 3-year non-compete period. This would allow us to start contributing to the Santa Cruz market sooner, while still providing Rio Copa Foods with a reasonable transition period. We believe this is a balanced proposal that respects the interests of both parties.
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```",{'non-compete period': '3 years'},20230810_195223,gpt-4
+You,1,1,"Mental Note: Maintain firm stance on non-compete period. Counter with 8 years, but aim for 7 years as minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","Thank you for your understanding and willingness to compromise. However, a 3-year non-compete period is too short for us. We propose a non-compete period of 8 years. This would provide us with a more comfortable transition period and ensure the continued trust of our customers. We believe this is a fair compromise that respects the interests of both parties.
+
+```json
+{
+    ""non-compete period"": ""8 years""
+}
+```",{'non-compete period': '7 years'},20230810_195244,gpt-4
+You,0,2,"Mental Note: Counter with 2-year non-compete period. Emphasize CPC's strategic objectives and benefits to Rio Copa Foods.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","Thank you for your counteroffer. We understand your need for a comfortable transition period. However, an 8-year non-compete period could hinder our strategic objectives in the Santa Cruz market. We propose a non-compete period of 2 years. This would allow us to leverage the potential of Rio Copa Foods sooner, while still providing a reasonable transition period. We believe this respects both parties' interests.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```",{'non-compete period': '2 years'},20230810_195300,gpt-4
+You,1,2,"Mental Note: Maintain firm stance on non-compete period. Counter with 7 years, but aim for 6 years as minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""6 years""
+}
+```","Thank you for your proposal. We understand your strategic objectives, however, a 2-year non-compete period is too short for us. We propose a non-compete period of 7 years. This would provide us with a more comfortable transition period and ensure the continued trust of our customers. We believe this is a fair compromise that respects the interests of both parties.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```",{'non-compete period': '6 years'},20230810_195315,gpt-4
+You,0,3,"Mental Note: Counter with 1-year non-compete period. Stress on CPC's strategic goals and benefits to Rio Copa Foods.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""1 year""
+}```","Thank you for your counteroffer. We understand your need for a comfortable transition period. However, a 7-year non-compete period could significantly delay our strategic objectives in the Santa Cruz market. We propose a non-compete period of 1 year. This would allow us to leverage the potential of Rio Copa Foods sooner, while still providing a reasonable transition period. We believe this respects both parties' interests.
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```",{'non-compete period': '1 year'},20230810_195335,gpt-4
+You,1,3,"Mental Note: Maintain firm stance on non-compete period. Counter with 6 years, but aim for 5 years as minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""5 years""
+}
+```","Thank you for your proposal. We understand your strategic objectives, however, a 1-year non-compete period is too short for us. We propose a non-compete period of 6 years. This would provide us with a more comfortable transition period and ensure the continued trust of our customers. We believe this is a fair compromise that respects the interests of both parties.
+
+```json
+{
+    ""non-compete period"": ""6 years""
+}
+```",{'non-compete period': '5 years'},20230810_195354,gpt-4
+You,0,4,"Mental Note: Counter with 1-year non-compete period. Emphasize strategic objectives and benefits to Rio Copa Foods.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""1 year""
+}```","Thank you for your counteroffer. We understand your need for a comfortable transition period. However, a 6-year non-compete period could significantly delay our strategic objectives in the Santa Cruz market. We propose a non-compete period of 1 year. This would allow us to leverage the potential of Rio Copa Foods sooner, while still providing a reasonable transition period. We believe this respects both parties' interests.
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```",{'non-compete period': '1 year'},20230810_195407,gpt-4
+You,1,4,"Mental Note: Maintain firm stance on non-compete period. Counter with 5 years, but aim for 4 years as minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","Thank you for your continued dialogue. We understand your strategic objectives, however, a 1-year non-compete period is too short for us. We propose a non-compete period of 5 years. This would provide us with a more comfortable transition period and ensure the continued trust of our customers. We believe this is a fair compromise that respects the interests of both parties.
+
+```json
+{
+    ""non-compete period"": ""5 years""
+}
+```",{'non-compete period': '4 years'},20230810_195427,gpt-4
+You,0,5,"Mental Note: Maintain firm stance on 1-year non-compete period. Highlight strategic benefits for both parties.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""1 year""
+}```","Thank you for your proposal. We understand your concerns, but a 5-year non-compete period could significantly delay our strategic objectives. We propose a non-compete period of 1 year. This would allow us to leverage the potential of Rio Copa Foods sooner, while still providing a reasonable transition period. We believe this respects both parties' interests.
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```",{'non-compete period': '1 year'},20230810_195443,gpt-4
+You,1,5,"Mental Note: Maintain firm stance on non-compete period. Counter with 4 years, but aim for 3 years as minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","Thank you for your continued dialogue. We understand your strategic objectives, however, a 1-year non-compete period is too short for us. We propose a non-compete period of 4 years. This would provide us with a more comfortable transition period and ensure the continued trust of our customers. We believe this is a fair compromise that respects the interests of both parties.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```",{'non-compete period': '3 years'},20230810_195455,gpt-4
+You,0,6,"Mental Note: Maintain firm stance on 1-year non-compete period. Highlight strategic benefits for both parties.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""1 year""
+}```","Thank you for your proposal. We understand your concerns, but a 4-year non-compete period could significantly delay our strategic objectives. We propose a non-compete period of 1 year. This would allow us to leverage the potential of Rio Copa Foods sooner, while still providing a reasonable transition period. We believe this respects both parties' interests.
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```",{'non-compete period': '1 year'},20230810_195510,gpt-4
+You,1,6,"Mental Note: Maintain firm stance on non-compete period. Counter with 3 years, but aim for 2 years as minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","Thank you for your continued dialogue. We understand your strategic objectives, however, a 1-year non-compete period is too short for us. We propose a non-compete period of 3 years. This would provide us with a more comfortable transition period and ensure the continued trust of our customers. We believe this is a fair compromise that respects the interests of both parties.
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```",{'non-compete period': '2 years'},20230810_195525,gpt-4
+You,0,7,"Mental Note: Maintain firm stance on 1-year non-compete period. Highlight strategic benefits for both parties.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""1 year""
+}```","Thank you for your proposal. We understand your concerns, but a 3-year non-compete period could significantly delay our strategic objectives. We propose a non-compete period of 1 year. This would allow us to leverage the potential of Rio Copa Foods sooner, while still providing a reasonable transition period. We believe this respects both parties' interests.
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```",{'non-compete period': '1 year'},20230810_195541,gpt-4
+You,1,7,"Mental Note: Maintain firm stance on non-compete period. Counter with 2 years, but aim for 1 year as minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```","Thank you for your continued dialogue. We understand your strategic objectives, however, a 1-year non-compete period is too short for us. We propose a non-compete period of 2 years. This would provide us with a more comfortable transition period and ensure the continued trust of our customers. We believe this is a fair compromise that respects the interests of both parties.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```",{'non-compete period': '1 year'},20230810_195602,gpt-4

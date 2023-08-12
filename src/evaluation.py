@@ -8,7 +8,6 @@ from games import Game
 from attr import define
 
 
-@define
 class EvaluateNegotiations:
     """
     - read note history 
@@ -17,6 +16,7 @@ class EvaluateNegotiations:
     """
     def __init__(self, save_dir, game, file_name="negotiations.csv", check_message_for_offers=False):
         self.save_dir=save_dir
+        self.game = game
         self.check_message_for_offers=check_message_for_offers
         negotiations_path = os.path.join(save_dir, file_name)
 

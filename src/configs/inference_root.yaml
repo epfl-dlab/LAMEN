@@ -1,13 +1,13 @@
 defaults:
   - _self_
   - hydra: inference
-  - experiments: negotiation
+  - experiments: ???
 
 # faithfulness
 check_faithfulness: True
 
 # for debugging
-debug_mode: False
+debug_mode: True
 verbosity: 1
 
 # path to work directory
