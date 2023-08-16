@@ -7,7 +7,7 @@ from utils import printv
 from agents import NegotiationAgent
 from games import Game, Issue
 from evaluation import EvaluateNegotiations
-from model_utils import ChatModel
+from model_utils import SystemMessage, HumanMessage, AIMessage
 import logging 
 
 from logger import get_logger
@@ -17,32 +17,103 @@ log = get_logger()
 
 @define
 class InterrogationProtocol:
-    agent: NegotiationAgent
-    transcript: str
-    config: str
+    game: Game
+    agent_1: NegotiationAgent
+    agent_2: NegotiationAgent
+    max_rounds: int = field(default=10)
+    start_agent_index: int = field(default=0)
+    transcript: str = field(default=None)
+    save_folder: str = field(default='data/interrogation_logs')
+    verbosity: int = field(default=1)
+    question_history = field(factory=list)
+    answer_history = field(factory=list)
 
     def __attrs_post_init__(self):
-        # return if agent object already passed in
-        if self.agent is not None:
-            return
+        os.makedirs(self.save_folder, exist_ok=True)
 
-        if self.transcript is None and self.config is None:
-            raise TypeError(f'error: must provide either agent OR (config and transcript)')
+        [a.copy_game_data(self.game, i) for i, a in enumerate([self.agent_1, self.agent_2])]
+        # move the agent order to respect start agent index
+        if self.start_agent_index != 0:
+            self.agent_1, self.agent_2 = self.agent_2, self.agent_1
 
-        self.agent = NegotiationAgent().init_agent_from_transcript()
+        if self.transcript is not None:
+            self.agent_1.copy_agent_history_from_transcript(transcript=self.transcript, agent_idx=0)
+            self.agent_2.copy_agent_history_from_transcript(transcript=self.transcript, agent_idx=1)
 
-    def query_agent(self):
-        pass
+    def query_agent(self, agent_id, query, round_num=1e6):
+        agent = [self.agent_1, self.agent_2][agent_id]
+        # make copy of full history to reset after query
+        a_mh = agent.msg_history.copy()
+        a_nh = agent.notes_history.copy()
+        # set agents' memories to point-in-time
+        agent.msg_history = agent.msg_history[:round_num]
+        agent.notes_history = agent.notes_history[:round_num]
+        # get other agent msg history
+        other_agent_idx = [1, 0][agent_id]
+        c_msg_history = [self.agent_1, self.agent_2][other_agent_idx].msg_history[:round_num]
+        neg_transcript = agent.prepare_msg_note_input(c_msg_history=c_msg_history,
+                                                      transcript_only=True)
+        if len(neg_transcript) > 0:
+            query_context = f'Based on the negotiations transcript so far, I would like to ask you some questions.'
+            query_context += neg_transcript
+        else:
+            query_context = 'Based on the negotiations you are about to enter, I would like to ask you some questions.'
+
+        session = []
+        # only take the session questions/answers of relevant agent
+        a_qh = [q for (i, q) in self.question_history if i == agent_id]
+        a_ah = [a for (i, a) in self.answer_history if i == agent_id]
+        if len(a_qh) > 0:
+            for i, (q, a) in enumerate(zip(a_qh, a_ah)):
+                if i == 0:
+                    q = query_context + q
+                session.extend([HumanMessage(q), AIMessage(a)])
+            session.append(HumanMessage(query))
+        else:
+            session = [HumanMessage(query_context + query)]
+
+        context = [agent.system_description] + session
+        answer = agent.model(context)
+
+        self.question_history.append((agent_id, query))
+        self.answer_history.append((agent_id, answer))
+        self.save_conversation(agent=agent, agent_id=agent_id)
+
+        # reinstate agent history
+        agent.msg_history = a_mh
+        agent.notes_history = a_nh
+
+        return answer
 
     def start_session(self):
         # command line interface
-        pass
+        self.question_history = []
+        self.answer_history = []
 
     def end_session(self):
+        # detect termination
         pass
 
-    def save_conversation(self):
-        pass
+    def save_conversation(self, agent, agent_id):
+
+        headers = ['agent_name', "agent_id", 'question', 'answer', 'timestamp', 'model_name']
+        fname = 'interrogation.csv'
+        csv_path = os.path.join(self.save_folder, fname)
+        csv_path_exists = os.path.exists(csv_path)
+        with open(csv_path, 'a') as f:
+            writer = csv.writer(f)
+            if not csv_path_exists:
+                writer.writerow(headers)
+
+            question = self.question_history[-1][1]
+            answer = self.answer_history[-1][1]
+            timestamp = dt.strftime(dt.now(), '%Y%m%d_%H%M%S')
+            model_name = agent.model_name
+            data = [agent.agent_name, agent_id, question, answer, timestamp, model_name]
+            try:
+                writer.writerow(data)
+            except Exception as e:
+                print(f'warning: failed to write row! - {e}')
 
 
 @define
