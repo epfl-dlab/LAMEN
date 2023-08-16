@@ -85,20 +85,23 @@ class NegotiationProtocol:
             c_msg_history_ext = [(self.agent_2.agent_name_ext, msg) for (_, msg) in self.agent_2.msg_history]
             self.agent_1.step(c_msg_history_ext)
             log.debug(f"Agent 1 note history after step: {self.agent_1.notes_history}")
-            completed = self.check_completion(agent=self.agent_1,
+            completed, completion_reason = self.check_completion(agent=self.agent_1,
                                               c_msg_history=self.agent_1.msg_history,
                                               num_rounds=round_num)
-            self.save_results(agent=self.agent_1, round_num=round_num, agent_id=0)
+            self.save_results(agent=self.agent_1, 
+                        round_num=round_num, agent_id=0, 
+                        completion_reason=completion_reason)
             ts.append(time.time() - t)
             t = time.time()
 
             if not completed:
                 c_msg_history_ext = [(self.agent_1.agent_name_ext, msg) for (_, msg) in self.agent_1.msg_history]
                 self.agent_2.step(c_msg_history_ext)
-                self.save_results(agent=self.agent_2, round_num=round_num, agent_id=1)
-                completed = self.check_completion(agent=self.agent_2,
+                completed, completion_reason = self.check_completion(agent=self.agent_2,
                                                   c_msg_history=self.agent_2.msg_history,
                                                   num_rounds=round_num)
+                self.save_results(agent=self.agent_2, round_num=round_num, agent_id=1, completion_reason=completion_reason)
+
             ts.append(time.time() - t)
             self._format_round_print(round_num=round_num, total_rounds=self.max_rounds,
                                      t1=ts[-1], t2=ts[-2])
@@ -135,27 +138,30 @@ class NegotiationProtocol:
         # 4. ran out of compute budget
 
         completed = False
-
+        completion_reason = "in-progress"
         # 1
         agreed, state = self.compare_issues(return_issues=True)
         if agreed:
             completed = True
+            completion_reason = "issues agreed upon"
             printv(f'[completed] (issues) - {state}', self.verbosity)
         # 2
         if num_rounds >= self.max_rounds:
             completed = True
+            completion_reason = "max rounds reached"
             printv(f'[completed] (num_rounds) - {num_rounds}/{self.max_rounds}', self.verbosity)
         # 3
         if not agent.check_context_len_step(c_msg_history):
             completed = True
+            completion_reason = "context overflow"
             printv(f'[completed] (context overflow)', self.verbosity)
-
         # 4
         if agent.model.budget <= 0:
             completed = True
+            completion_reason = "out of compute budget"
             printv(f'[completed] (ran out of compute budget)', self.verbosity)
 
-        return completed
+        return completed, completion_reason
 
     def compare_issues(self, return_issues=False):
         is1 = self.agent_1.get_issues_state()
@@ -177,8 +183,8 @@ class NegotiationProtocol:
 
         return agreed
 
-    def save_results(self, agent, round_num, agent_id):
-        headers = ['agent_name', "agent_id", 'round', 'note', 'message', 'issues_state', 'timestamp', 'model_name']
+    def save_results(self, agent, round_num, agent_id, completion_reason):
+        headers = ['agent_name', "agent_id", 'round', 'note', 'message', 'issues_state', 'timestamp', 'model_name', 'completion_reason']
         fname = 'negotiations.csv'
         csv_path = os.path.join(self.save_folder, fname)
         csv_path_exists = os.path.exists(csv_path)
@@ -192,7 +198,7 @@ class NegotiationProtocol:
             issues_state = agent.get_issues_state()
             timestamp = dt.strftime(dt.now(), '%Y%m%d_%H%M%S')
             model_name = agent.model_name
-            data = [agent.agent_name, agent_id, round_num, note, msg, issues_state, timestamp, model_name]
+            data = [agent.agent_name, agent_id, round_num, note, msg, issues_state, timestamp, model_name, completion_reason]
             try:
                 writer.writerow(data)
             except Exception as e:

@@ -112,7 +112,8 @@ class Issue:
     issue_type: str = field(default='custom')
 
     def __attrs_post_init__(self):
-        self.set_payoff_table()
+        if not any(self.payoffs):
+            self.set_payoff_table()
 
     def set_payoff_table(self):
         log.debug("Setting payoff tables")

@@ -1,0 +1,33 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason
+You,0,0,"Mental Note: Prioritize longer non-compete period. Start high, be firm but flexible. Consider mutual benefits and strategic implications for CPC in Santa Cruz.
+
+```json
+{
+    ""non-compete period"": ""10 years""
+}```",We value the non-compete period highly. We propose a 10-year period. This ensures stability and growth for both parties in the Santa Cruz market.,{'non-compete period': '10 years'},20230816_093144,gpt-4,in-progress
+You,1,0,"Mental Note: Aim for shortest non-compete period. Start negotiations at 0 years, but consider up to 3 years for a satisfactory agreement.
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","I understand your concerns. However, a shorter non-compete period would be more beneficial for us. How about we consider a 3-year non-compete period instead?",{'non-compete period': '3 years'},20230816_093155,gpt-4,in-progress
+You,0,1,"Mental Note: Counter with 8 years, show flexibility but maintain high non-compete period. Highlight mutual benefits.
+
+```json
+{
+    ""non-compete period"": ""8 years""
+}```","We appreciate your perspective. However, an 8-year non-compete period would be more beneficial for both parties. It ensures a stable market presence for CPC in Santa Cruz.",{'non-compete period': '8 years'},20230816_093204,gpt-4,in-progress
+You,1,1,"Mental Note: Counter with 2 years, but be prepared to settle for up to 4 years. 
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We appreciate your viewpoint. However, a 4-year non-compete period would be more agreeable to us. It still provides CPC a stable presence while benefiting us.",{'non-compete period': '4 years'},20230816_093212,gpt-4,in-progress
+You,0,2,"Mental Note: Counter with 7 years, maintain high non-compete period. Emphasize strategic importance for CPC.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}```","We understand your position. However, a 7-year non-compete period would be more advantageous for CPC's strategic objectives in Santa Cruz. Let's consider this.",{'non-compete period': '7 years'},20230816_093219,gpt-4,max rounds reached

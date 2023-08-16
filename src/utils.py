@@ -1,7 +1,13 @@
 import json
 import yaml
 import omegaconf
+from hydra import initialize, compose
+import hydra
 
+from omegaconf import OmegaConf, open_dict
+from hydra.core.global_hydra import GlobalHydra
+from hydra.core.hydra_config import HydraConfig
+from omegaconf import DictConfig, OmegaConf
 
 def printv(msg, v=0, v_min=0):
     # convenience print function
@@ -76,3 +82,16 @@ def unpack_nested_yaml(x):
                 pass
             unpack_nested_yaml(x)
     return x
+
+def load_hydra_config(config_path, config_name="config"):
+    """
+    Loads hydra from a .config run.
+    """
+    GlobalHydra.instance().clear()
+    hydra.initialize(config_path=config_path, version_base=None)
+    cfg = hydra.compose(config_name=config_name, return_hydra_config=True)
+    HydraConfig().cfg = cfg
+    OmegaConf.resolve(cfg)
+    with open_dict(cfg['experiments']):
+        y = unpack_nested_yaml(cfg['experiments'])
+    return cfg

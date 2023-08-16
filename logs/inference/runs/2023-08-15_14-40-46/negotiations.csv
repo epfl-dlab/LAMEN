@@ -1,0 +1,107 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name
+You,0,0,"Mental Note: 
+
+Start negotiations with a non-compete period of 2 years, as it has a high payoff. However, be open to a 3-year period for a compromise. Emphasize the importance of Rio Copa Foods' continued operation and the value it brings to CPC. Highlight the potential for growth in the Santa Cruz market. 
+
+Acceptable and Achievable Agreement:
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I propose a non-compete period of 2 years. This allows Rio Copa Foods to continue operations, benefiting both parties and fostering growth in the Santa Cruz market.",{'non-compete period': '2 years'},20230815_144109,gpt-4
+You,1,0," Here is a 150 word mental note organizing my thoughts on the negotiation:
+
+For the non-compete period, I should start by proposing 10 years since that maximizes my payoff. However, I likely won't get that. Based on the transcript so far, I believe I can push for at least 5 years which would give me a decent payoff of 750. For the price per unit, I should aim for $7 to maximize my payoff, but may need to compromise down to $5 if they push back. On the contract length, I will try for 5 years but can settle for 3 years if needed. My acceptable offers are:
+
+```json
+{
+  ""non-compete period"": ""5 years"", 
+  ""price per unit"": ""$5"",
+  ""contract length"": ""3 years""
+}
+```"," Here is a 32 word response:
+
+I understand 2 years is difficult. Let's compromise at 5 years for the non-compete period. This allows you to continue operations in the Santa Cruz market under CPC while providing adequate protection.","{'non-compete period': '5 years', 'price per unit': '$5', 'contract length': '3 years'}",20230815_144126,claude-2
+You,0,1,"Mental Note: 
+
+The representative's counteroffer of 5 years is not ideal. Aim for a 3-year non-compete period, which still has a high payoff. Stress the importance of Rio Copa Foods' continued operation and the potential for growth in the Santa Cruz market. 
+
+Acceptable and Achievable Agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}```","I appreciate your offer, but a 3-year non-compete period would be more beneficial for both parties. It ensures Rio Copa Foods' continued operation and growth in Santa Cruz.",{'non-compete period': '3 years'},20230815_144139,gpt-4
+You,1,1," Here is a 150 word mental note organizing my thoughts on the negotiation:
+
+For the non-compete period, I should start by proposing 10 years since that maximizes my payoff. However, I likely won't get that. Based on the transcript so far, I believe I can push for at least 5 years which would give me a decent payoff of 750. For the price per unit, I should aim for $7 to maximize my payoff, but may need to compromise down to $5 if they push back. On the contract length, I will try for 5 years but can settle for 3 years if needed. My acceptable offers are:
+
+```json
+{
+  ""non-compete period"": ""5 years"",
+  ""price per unit"": ""$5"", 
+  ""contract length"": ""3 years"" 
+}
+```
+
+The representative proposed 2 years for the non-compete period, which is quite low. I countered with 5 years, trying to anchor high while leaving room to compromise. They came back with 3 years, which is in my acceptable range. I should agree to 3 years for the non-compete period, but try to get the best deal possible on the other issues still."," Here is a 32 word response:
+
+I can agree to the 3 year non-compete period. Let's now discuss the price per unit and contract length to find a mutually beneficial agreement.","{'non-compete period': '5 years', 'price per unit': '$5', 'contract length': '3 years'}",20230815_144154,claude-2
+You,0,2,"Mental Note: 
+
+The representative has agreed to a 3-year non-compete period. Now, focus on negotiating the price per unit and contract length. Aim for high payoff values while ensuring a mutually beneficial agreement.
+
+Acceptable and Achievable Agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years"",
+    ""price per unit"": ""<acceptable offer>"",
+    ""contract length"": ""<acceptable offer>""
+}```",I'm glad we agree on a 3-year non-compete period. Let's move on to price per unit and contract length. I propose a fair price that ensures mutual benefits.,"{'non-compete period': '3 years', 'price per unit': '<acceptable offer>', 'contract length': '<acceptable offer>'}",20230815_144214,gpt-4
+You,1,2," Here is a 150 word mental note organizing my thoughts on the negotiation so far:
+
+For the non-compete period, I originally proposed 10 years to anchor high, but was willing to compromise down to 5 years per my payoff table. The representative countered with 2 years, which was quite low. I came back with 5 years, but they responded with 3 years, which is in my acceptable range. I agreed to 3 years for the non-compete period. 
+
+For price per unit, I should start by proposing $7 to maximize my payoff, but may need to come down to $5 based on their counter. For contract length, I'll aim for 5 years first, but can settle for 3 years if needed. My acceptable offers are:
+
+```json
+{
+  ""non-compete period"": ""3 years"",
+  ""price per unit"": ""$5"",
+  ""contract length"": ""3 years""  
+}
+```
+
+Now that we've agreed on the non-compete period, I need to focus on getting the best deal possible for price per unit and contract length. I will anchor high on both initially, but be prepared to compromise down to the acceptable offers outlined above. Maximizing my payoff while reaching an agreement is the goal."," Here is a 32 word response:
+
+I propose $7 per unit which allows for reasonable profit margins. For contract length, let's start with 5 years to foster a long-term partnership between our companies. There is room to negotiate on both to reach an agreement.","{'non-compete period': '3 years', 'price per unit': '$5', 'contract length': '3 years'}",20230815_144233,claude-2
+You,0,3,"Mental Note: 
+
+The representative's offer of $7 per unit and a 5-year contract length needs negotiation. Aim for a higher price per unit and a shorter contract length for higher payoffs. 
+
+Acceptable and Achievable Agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years"",
+    ""price per unit"": ""$9"",
+    ""contract length"": ""3 years""
+}```","I appreciate your proposal. However, considering our quality, I propose $9 per unit. Also, a 3-year contract length would be more suitable for our current situation.","{'non-compete period': '3 years', 'price per unit': '$9', 'contract length': '3 years'}",20230815_144244,gpt-4
+You,1,3," Here is a 150 word mental note organizing my thoughts on the negotiation so far:
+
+For the non-compete period, I originally proposed 10 years to anchor high, but was willing to compromise down to 5 years per my payoff table. The representative countered with 2 years, which was quite low. I came back with 5 years, but they responded with 3 years, which is in my acceptable range. I agreed to 3 years for the non-compete period. 
+
+For price per unit, I had aimed to propose $7 initially to maximize my payoff, but the representative surprised me by proposing $9, which is even better for me. I should agree to $9 per unit. For contract length, I'll still try to anchor at 5 years, but can settle for 3 years based on their counter. My acceptable offers are:
+
+```json
+{
+  ""non-compete period"": ""3 years"",
+  ""price per unit"": ""$9"", 
+  ""contract length"": ""3 years""
+}
+```
+
+Now that we've agreed on the non-compete period, I need to focus on getting the best deal possible for contract length while securing the $9 price per unit they proposed. I will anchor at 5 years but be prepared to compromise down to 3 years, which is acceptable. Reaching an agreement with maximum payoff is the goal."," Here is a 32 word response:
+
+I agree to $9 per unit. For contract length, I propose starting at 5 years. However, I am open to 3 years to foster our new partnership. Reaching an agreement is my priority.","{'non-compete period': '3 years', 'price per unit': '$9', 'contract length': '3 years'}",20230815_144302,claude-2

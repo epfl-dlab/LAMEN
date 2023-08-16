@@ -25,4 +25,4 @@ negotiation_protocol:
   start_agent_index: 0
   save_folder: ${output_dir}
   verbosity: ${verbosity}
-  check_messages_for_offers: ${check_messages_for_offers}
+  check_message_for_offers: ${check_message_for_offers}

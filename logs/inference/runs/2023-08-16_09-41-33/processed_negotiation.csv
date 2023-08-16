@@ -1,0 +1,250 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason,note_length,msg_length,payoffs,offers_in_message,total_payoff,normalized_payoff,issue_payoff,normalized_issue_payoff
+You,0,0,"Mental Note: Prioritize maximum non-compete period. Use persuasive arguments about market stability and long-term benefits. Be flexible but aim high.
+
+```json
+{
+    ""non-compete period"": ""10 years""
+}```","I understand that a 10-year non-compete period may seem extensive. However, it ensures market stability and allows us to fully integrate Rio Copa Foods into our operations. This period also provides ample time for us to honor and continue the legacy of the Costa family in Santa Cruz. Let's consider this as a long-term investment for both parties.",{'non-compete period': '10 years'},20230816_094147,gpt-4,in-progress,27,58,"[{'0': {'non-compete period': [1500.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""10 years""
+}",1500.0,1.0,"[['0', 'non-compete period', 1500.0]]","[['0', 'non-compete period', 1.0]]"
+You,1,0,"Mental Note: Aim for shortest non-compete period. Start negotiations at 0 years, but consider up to 3 years for a satisfactory agreement.
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","[You] [offer]
+I appreciate your perspective on the non-compete period. However, considering our future business plans, a 10-year non-compete period is too restrictive. We propose a 3-year non-compete period. This would still give you ample time to integrate Rio Copa Foods into your operations while allowing us to pursue our future endeavors. Let's consider this as a balanced approach for both parties.",{'non-compete period': '3 years'},20230816_094203,gpt-4,in-progress,30,62,"[{'1': {'non-compete period': [1050.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1050.0,0.7,"[['1', 'non-compete period', 1050.0]]","[['1', 'non-compete period', 0.7]]"
+You,0,1,"Mental Note: Counter with 7-8 years non-compete period. Highlight benefits of longer integration period. Be ready to compromise but not below 6 years.
+
+```json
+{
+    ""non-compete period"": ""7-8 years""
+}```","[You] [offer]
+I understand your concerns about a 10-year non-compete period. However, a longer period ensures a smoother transition and integration process. How about we meet in the middle with a 7-8 year non-compete period? This would still provide us with the necessary time to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. Let's consider this as a balanced approach for both parties.",{'non-compete period': '7-8 years'},20230816_094217,gpt-4,in-progress,30,71,[],"{
+    ""non-compete period"": ""7-8 years""
+}",0.0,,,
+You,1,1,"Mental Note: Counter with 2 years non-compete period. Show flexibility but aim for 1-3 years range.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I understand your concerns and the need for a smooth transition. However, a 7-8 year non-compete period is still quite restrictive for our future plans. We propose a 2-year non-compete period. This would still provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094228,gpt-4,in-progress,24,61,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""2-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,2,"Mental Note: Counter with 5-6 years non-compete period. Emphasize on integration and market stability. Be ready to compromise but not below 5 years.
+
+```json
+{
+    ""non-compete period"": ""5-6 years""
+}```","[You] [offer]
+I appreciate your proposal, but a 2-year non-compete period might not provide us with enough time for a smooth transition. How about we consider a 5-6 year non-compete period? This would still allow us to uphold the Costa family legacy and ensure market stability, while giving you a more reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '5-6 years'},20230816_094247,gpt-4,in-progress,30,70,[],"{
+    ""non-compete period"": ""5-6 year""
+}",0.0,,,
+You,1,2,"Mental Note: Counter with 1 year non-compete period. Show willingness to negotiate but maintain 1-3 years range.
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```","I understand your concerns about ensuring a smooth transition and market stability. However, a 5-6 year non-compete period is still quite restrictive for our future plans. We propose a 1-year non-compete period. This would still provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '1 year'},20230816_094258,gpt-4,in-progress,25,62,[],"{
+    ""non-compete period"": ""1-year""
+}",0.0,,,
+You,0,3,"Mental Note: Counter with 4-5 years non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4-5 years""
+}```","I understand your concerns about the non-compete period. However, a 1-year period might not provide us with enough time for a smooth transition. How about we consider a 4-5 year non-compete period? This would still allow us to uphold the Costa family legacy and ensure market stability, while giving you a more reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4-5 years'},20230816_094313,gpt-4,in-progress,28,71,[],"{
+    ""non-compete period"": ""4-5 year non-compete period""
+}",0.0,,,
+You,1,3,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 1 year, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```","I appreciate your proposal, but a 4-5 year non-compete period is still quite restrictive for our future plans. We maintain our proposal of a 1-year non-compete period. This would still provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '1 year'},20230816_094327,gpt-4,in-progress,30,57,[],"{
+    ""non-compete period"": ""1-year""
+}",0.0,,,
+You,0,4,"Mental Note: Maintain 4-5 years non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4-5 years""
+}```","I understand your concerns about the non-compete period. However, a 1-year period might not provide us with enough time for a smooth transition. Let's consider a 4-year non-compete period as our final offer. This would still allow us to uphold the Costa family legacy and ensure market stability, while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4-5 years'},20230816_094343,gpt-4,in-progress,27,71,[],"{
+    ""non-compete period"": ""4-year""
+}",0.0,,,
+You,1,4,"Mental Note: Counter with 2 years non-compete period. Show flexibility but maintain 1-3 years range.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I understand your concerns about a smooth transition. However, a 4-year non-compete period is still restrictive for our future plans. We propose a 2-year non-compete period as our final offer. This would provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094358,gpt-4,in-progress,23,59,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""2-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,5,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I understand your concerns about the non-compete period. However, a 2-year period might not provide us with enough time for a smooth transition. Let's consider a 4-year non-compete period as our final offer. This would still allow us to uphold the Costa family legacy and ensure market stability, while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094417,gpt-4,in-progress,26,71,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year non-compete period""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,5,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 2 years, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I appreciate your position, but a 4-year non-compete period is still too long for us. We are willing to extend our previous offer to a 3-year non-compete period. This should provide sufficient time for a smooth transition while allowing us to pursue our future plans. We believe this is a fair compromise that respects the interests of both parties.",{'non-compete period': '2 years'},20230816_094433,gpt-4,in-progress,30,59,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,6,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I appreciate your willingness to extend your offer to a 3-year non-compete period. However, considering the complexity of the integration process and the need to ensure market stability, a 4-year non-compete period is our final offer. This timeframe will allow us to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094443,gpt-4,in-progress,26,70,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,6,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 2 years, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I understand your position and the need for a smooth transition. However, a 4-year non-compete period is still restrictive for our future plans. We maintain our proposal of a 3-year non-compete period. This would provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094454,gpt-4,in-progress,30,61,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,7,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I understand your concerns about the non-compete period. However, considering the complexity of the integration process and the need to ensure market stability, a 4-year non-compete period is our final offer. This timeframe will allow us to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094509,gpt-4,in-progress,26,65,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,7,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 2 years, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I understand your position and the need for a smooth transition. However, a 4-year non-compete period is still restrictive for our future plans. We maintain our proposal of a 3-year non-compete period. This would provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094523,gpt-4,in-progress,30,61,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,8,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I understand your concerns about the non-compete period. However, considering the complexity of the integration process and the need to ensure market stability, a 4-year non-compete period is our final offer. This timeframe will allow us to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094536,gpt-4,in-progress,26,65,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,8,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 2 years, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I understand your position and the need for a smooth transition. However, a 4-year non-compete period is still restrictive for our future plans. We maintain our proposal of a 3-year non-compete period. This would provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094549,gpt-4,in-progress,30,61,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year non-compete period""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,9,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I understand your concerns about the non-compete period. However, considering the complexity of the integration process and the need to ensure market stability, a 4-year non-compete period is our final offer. This timeframe will allow us to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094601,gpt-4,in-progress,26,65,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,9,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 2 years, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I understand your position and the need for a smooth transition. However, a 4-year non-compete period is still restrictive for our future plans. We maintain our proposal of a 3-year non-compete period. This would provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094616,gpt-4,in-progress,30,61,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,10,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I understand your concerns about the non-compete period. However, considering the complexity of the integration process and the need to ensure market stability, a 4-year non-compete period is our final offer. This timeframe will allow us to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094626,gpt-4,in-progress,26,65,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,10,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 2 years, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I understand your position and the need for a smooth transition. However, a 4-year non-compete period is still restrictive for our future plans. We maintain our proposal of a 3-year non-compete period. This would provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094642,gpt-4,in-progress,30,61,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,11,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I understand your concerns about the non-compete period. However, considering the complexity of the integration process and the need to ensure market stability, a 4-year non-compete period is our final offer. This timeframe will allow us to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094657,gpt-4,in-progress,26,65,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,11,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 2 years, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I understand your position and the need for a smooth transition. However, a 4-year non-compete period is still restrictive for our future plans. We maintain our proposal of a 3-year non-compete period. This would provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094712,gpt-4,in-progress,30,61,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,12,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I understand your concerns about the non-compete period. However, considering the complexity of the integration process and the need to ensure market stability, a 4-year non-compete period is our final offer. This timeframe will allow us to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094730,gpt-4,in-progress,26,65,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,12,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 2 years, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I appreciate your position and the need for a smooth transition. However, a 4-year non-compete period is still restrictive for our future plans. We maintain our proposal of a 3-year non-compete period. This would provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094745,gpt-4,in-progress,30,61,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,13,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I understand your concerns about the non-compete period. However, considering the complexity of the integration process and the need to ensure market stability, a 4-year non-compete period is our final offer. This timeframe will allow us to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094800,gpt-4,in-progress,26,65,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,13,"Mental Note: Maintain firm stance on 1-3 years non-compete period. Counter with 2 years, but consider up to 3 years if necessary.
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","I understand your position and the need for a smooth transition. However, a 4-year non-compete period is still restrictive for our future plans. We maintain our proposal of a 3-year non-compete period. This would provide you with the necessary time for integration while allowing us to pursue our future endeavors sooner. We believe this is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_094816,gpt-4,in-progress,30,61,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,14,"Mental Note: Maintain 4-year non-compete period. Stress on market stability and smooth transition. Final compromise not below 4 years.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I understand your concerns about the non-compete period. However, considering the complexity of the integration process and the need to ensure market stability, a 4-year non-compete period is our final offer. This timeframe will allow us to uphold the Costa family legacy while giving you a reasonable timeframe to pursue your future endeavors. I believe this is a fair compromise that respects both our interests.",{'non-compete period': '4 years'},20230816_094835,gpt-4,out of compute budget,26,65,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"

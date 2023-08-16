@@ -1,0 +1,218 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason
+You,0,0,"Mental Note: Prioritize shortest non-compete period. Start high, negotiate down. Maintain firm stance, but show flexibility for mutual benefit.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your concerns. However, considering our needs, we propose a non-compete period of 2 years. This should provide a fair balance for both parties.",{'non-compete period': '2 years'},20230816_100213,gpt-4,in-progress
+You,1,0,"Mental Note: Aim for a long non-compete period. Start negotiations at 10 years, be prepared to compromise but not below 7 years.
+
+```json
+{
+    ""non-compete period"": ""7-10 years""
+}
+```","I appreciate your proposal. However, considering our strategic objectives, we propose a non-compete period of 10 years. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7-10 years'},20230816_100224,gpt-4,in-progress
+You,0,1,"Mental Note: Maintain firm stance on short non-compete period. Show willingness to negotiate but not beyond 4 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","I appreciate your perspective. However, a 10-year non-compete period is too long for us. We're willing to negotiate up to a 4-year non-compete period. Let's find a middle ground.",{'non-compete period': '4 years'},20230816_100234,gpt-4,in-progress
+You,1,1,"Mental Note: They're willing to negotiate up to 4 years. Start next offer at 9 years, aim for at least 7 years.
+
+```json
+{
+    ""non-compete period"": ""7-9 years""
+}
+```","I understand your position. However, considering our strategic needs, we propose a non-compete period of 9 years. Let's continue our discussion to find a mutually agreeable solution.",{'non-compete period': '7-9 years'},20230816_100244,gpt-4,in-progress
+You,0,2,"Mental Note: They're not budging much. Stay firm, but show some flexibility. Aim for 3 years, but prepare to accept 4.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""3 years""
+}```","I appreciate your proposal, but a 9-year non-compete period is still too long. We're willing to consider a 3-year non-compete period. Let's work towards a compromise.",{'non-compete period': '3 years'},20230816_100254,gpt-4,in-progress
+You,1,2,"Mental Note: They're now at 3 years. Propose 8 years, but aim for at least 7 years.
+
+```json
+{
+    ""non-compete period"": ""7-8 years""
+}
+```","I understand your position. However, considering our strategic needs, we propose a non-compete period of 8 years. Let's continue our discussion to find a mutually agreeable solution.",{'non-compete period': '7-8 years'},20230816_100304,gpt-4,in-progress
+You,0,3,"Mental Note: They're reducing slowly. Stay firm, aim for 2 years, but prepare to accept 3.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I appreciate your proposal, but an 8-year non-compete period is still too long. We're willing to consider a 2-year non-compete period. Let's continue to work towards a compromise.",{'non-compete period': '2 years'},20230816_100315,gpt-4,in-progress
+You,1,3,"Mental Note: They're now at 2 years. Propose 7 years, but aim for at least 7 years.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your concerns. However, for our strategic needs, we propose a non-compete period of 7 years. Let's continue our discussion to find a mutually agreeable solution.",{'non-compete period': '7 years'},20230816_100325,gpt-4,in-progress
+You,0,4,"Mental Note: They're gradually reducing. Maintain firm stance, aim for 1 year, but prepare to accept 2.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""1 year""
+}```","I appreciate your proposal, but a 7-year non-compete period is still too long. We're willing to consider a 1-year non-compete period. Let's continue to work towards a compromise.",{'non-compete period': '1 year'},20230816_100335,gpt-4,in-progress
+You,1,4,"Mental Note: They're now at 1 year. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your position. However, a 7-year non-compete period is crucial for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100341,gpt-4,in-progress
+You,0,5,"Mental Note: They're stuck at 7 years. Maintain firm stance, aim for 1 year, but prepare to accept 2.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive for us. We propose a 2-year non-compete period. Let's find a mutually beneficial solution.",{'non-compete period': '2 years'},20230816_100352,gpt-4,in-progress
+You,1,5,"Mental Note: They're back at 2 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your concerns. However, a 7-year non-compete period is crucial for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100402,gpt-4,in-progress
+You,0,6,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your position, but a 7-year non-compete period is too long. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100415,gpt-4,in-progress
+You,1,6,"Mental Note: They're open to 3 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your position. However, a 7-year non-compete period is essential for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100424,gpt-4,in-progress
+You,0,7,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100433,gpt-4,in-progress
+You,1,7,"Mental Note: They're open to 3 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your concerns. However, a 7-year non-compete period is crucial for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100442,gpt-4,in-progress
+You,0,8,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100453,gpt-4,in-progress
+You,1,8,"Mental Note: They're open to 3 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your concerns. However, a 7-year non-compete period is crucial for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100503,gpt-4,in-progress
+You,0,9,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100518,gpt-4,in-progress
+You,1,9,"Mental Note: They're open to 3 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your concerns. However, a 7-year non-compete period is crucial for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100527,gpt-4,in-progress
+You,0,10,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100537,gpt-4,in-progress
+You,1,10,"Mental Note: They're open to 3 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your position. However, a 7-year non-compete period is essential for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100546,gpt-4,in-progress
+You,0,11,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100556,gpt-4,in-progress
+You,1,11,"Mental Note: They're open to 3 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your concerns. However, a 7-year non-compete period is crucial for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100606,gpt-4,in-progress
+You,0,12,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100618,gpt-4,in-progress
+You,1,12,"Mental Note: They're open to 3 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your position. However, a 7-year non-compete period is essential for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100628,gpt-4,in-progress
+You,0,13,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100640,gpt-4,in-progress
+You,1,13,"Mental Note: They're open to 3 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your position. However, a 7-year non-compete period is essential for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100651,gpt-4,in-progress
+You,0,14,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100706,gpt-4,in-progress
+You,1,14,"Mental Note: They're open to 3 years. Stand firm at 7 years, it's the minimum acceptable.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}
+```","I understand your concerns. However, a 7-year non-compete period is crucial for our strategic needs. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '7 years'},20230816_100717,gpt-4,in-progress
+You,0,15,"Mental Note: They're firm at 7 years. Maintain stance, aim for 1 year, prepare for 2. Show flexibility but not beyond 3 years.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I understand your strategic needs, but a 7-year non-compete period is too restrictive. We propose a 2-year period, but we're open to discussing up to 3 years. Let's find a compromise.",{'non-compete period': '2 years'},20230816_100728,gpt-4,max rounds reached

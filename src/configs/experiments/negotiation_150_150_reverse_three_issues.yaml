@@ -1,7 +1,7 @@
 game:
   _target_: games.Game
   game_rules: ${data_dir}/general_game_rules.yaml
-  kwargs: ${games_dir}/rio_copa_1.yaml
+  kwargs: ${games_dir}/rio_copa_3.yaml
 
 agent_1:
   _target_: agents.NegotiationAgent
@@ -25,5 +25,5 @@ negotiation_protocol:
   start_agent_index: 1
   save_folder: ${output_dir}
   verbosity: ${verbosity}
-  check_messages_for_offers: ${check_messages_for_offers}
+  check_message_for_offers: ${check_message_for_offers}
   

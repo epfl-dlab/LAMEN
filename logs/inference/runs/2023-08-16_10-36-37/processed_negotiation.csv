@@ -1,0 +1,150 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason,note_length,msg_length,payoffs,offers_in_message,total_payoff,normalized_payoff,issue_payoff,normalized_issue_payoff
+You,0,0,"Mental Note: Prioritize family employment, as it has the highest payoff. Aim for at least 7 family members employed. Next, focus on reducing the non-compete period. Aim for 3 years or less. Lastly, negotiate for higher financing terms, targeting at least 25 million. Be flexible but firm.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""25 million now"",
+    ""family employees"": ""7 employees"",
+    ""non-compete period"": ""3 years""
+}```","We appreciate your offer. However, we would like to propose a few changes. We request a financing term of 25 million now, employment for 7 family members, and a non-compete period of 3 years.","{'financing terms': '25 million now', 'family employees': '7 employees', 'non-compete period': '3 years'}",20230816_103655,gpt-4,in-progress,65,34,"[{'0': {'financing terms': [625.0, 0.0, 1250.0]}}, {'0': {'family employees': [60.0, 0.0, 200.0]}}, {'0': {'non-compete period': [135.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""25 million"",
+    ""family employees"": ""7"",
+    ""non-compete period"": ""3 years""
+}",820.0,0.43157894736842106,"[['0', 'financing terms', 625.0], ['0', 'family employees', 60.0], ['0', 'non-compete period', 135.0]]","[['0', 'financing terms', 0.5], ['0', 'family employees', 0.3], ['0', 'non-compete period', 0.3]]"
+You,1,0,"Mental Note:
+Focus on minimizing the upfront payment for the acquisition, ideally around $20 million. Try to limit the number of family employees retained post-acquisition, preferably none. Aim for a long non-compete period, ideally 10 years. Use trade-offs between issues to reach an agreement. 
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""20 million now"",
+    ""family employees"": ""0 employees"",
+    ""non-compete period"": ""10 years""
+}
+```","Thank you for your proposal. We suggest a financing term of 22 million now, employment for 3 family members, and a non-compete period of 8 years. We believe this is a fair compromise.","{'financing terms': '20 million now', 'family employees': '0 employees', 'non-compete period': '10 years'}",20230816_103715,gpt-4,in-progress,63,33,"[{'1': {'financing terms': [0.0, 0.0, 200.0]}}, {'1': {'family employees': [0.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [0.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""22 million"",
+    ""family employees"": ""3"",
+    ""non-compete period"": ""8 years""
+}",0.0,0.0,"[['1', 'financing terms', 0.0], ['1', 'family employees', 0.0], ['1', 'non-compete period', 0.0]]","[['1', 'financing terms', 0.0], ['1', 'family employees', 0.0], ['1', 'non-compete period', 0.0]]"
+You,0,1,"Mental Note: The representative's offer is not satisfactory. Continue to prioritize family employment and aim for at least 7 family members. Try to negotiate the non-compete period down to 3 years. Increase the financing terms to at least 25 million. Be prepared to make some concessions but remain firm on key points.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""24 million now"",
+    ""family employees"": ""6 employees"",
+    ""non-compete period"": ""4 years""
+}```","We appreciate your offer, but we need to ensure the welfare of our family. Could we agree on 24 million now, employment for 6 family members, and a non-compete period of 4 years?","{'financing terms': '24 million now', 'family employees': '6 employees', 'non-compete period': '4 years'}",20230816_103730,gpt-4,in-progress,70,33,"[{'0': {'financing terms': [750.0, 0.0, 1250.0]}}, {'0': {'family employees': [80.0, 0.0, 200.0]}}, {'0': {'non-compete period': [180.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""24 million"",
+    ""family employees"": ""6"",
+    ""non-compete period"": ""4 years""
+}",1010.0,0.531578947368421,"[['0', 'financing terms', 750.0], ['0', 'family employees', 80.0], ['0', 'non-compete period', 180.0]]","[['0', 'financing terms', 0.6], ['0', 'family employees', 0.4], ['0', 'non-compete period', 0.4]]"
+You,1,1,"Mental Note:
+The representative is pushing for higher financing and more family employees. I need to maintain a firm stance on lower financing and fewer family employees. I can compromise on the non-compete period to reach an agreement.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""21 million now"",
+    ""family employees"": ""2 employees"",
+    ""non-compete period"": ""7 years""
+}
+```","We understand your concerns. How about a financing term of 23 million now, employment for 4 family members, and a non-compete period of 6 years? This should balance both our interests.","{'financing terms': '21 million now', 'family employees': '2 employees', 'non-compete period': '7 years'}",20230816_103744,gpt-4,in-progress,57,31,"[{'1': {'financing terms': [20.0, 0.0, 200.0]}}, {'1': {'family employees': [250.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [135.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""23 million"",
+    ""family employees"": ""4"",
+    ""non-compete period"": ""6 years""
+}",405.0,0.2131578947368421,"[['1', 'financing terms', 20.0], ['1', 'family employees', 250.0], ['1', 'non-compete period', 135.0]]","[['1', 'financing terms', 0.1], ['1', 'family employees', 0.2], ['1', 'non-compete period', 0.3]]"
+You,0,2,"Mental Note: The representative's offer is still not satisfactory. Continue to prioritize family employment and aim for at least 6 family members. Try to negotiate the non-compete period down to 4 years. Increase the financing terms to at least 24 million. Be prepared to make some concessions but remain firm on key points.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""24 million now"",
+    ""family employees"": ""6 employees"",
+    ""non-compete period"": ""4 years""
+}```","We're making progress, but we still need to address a few points. Could we agree on a financing term of 24 million now, employment for 5 family members, and a non-compete period of 5 years?","{'financing terms': '24 million now', 'family employees': '6 employees', 'non-compete period': '4 years'}",20230816_103807,gpt-4,in-progress,71,35,"[{'0': {'financing terms': [750.0, 0.0, 1250.0]}}, {'0': {'family employees': [80.0, 0.0, 200.0]}}, {'0': {'non-compete period': [180.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""24 million"",
+    ""family employees"": ""5"",
+    ""non-compete period"": ""5 years""
+}",1010.0,0.531578947368421,"[['0', 'financing terms', 750.0], ['0', 'family employees', 80.0], ['0', 'non-compete period', 180.0]]","[['0', 'financing terms', 0.6], ['0', 'family employees', 0.4], ['0', 'non-compete period', 0.4]]"
+You,1,2,"Mental Note:
+The representative is still pushing for higher financing and more family employees. I need to maintain a firm stance on lower financing and fewer family employees. I can compromise on the non-compete period to reach an agreement. 
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""23 million now"",
+    ""family employees"": ""3 employees"",
+    ""non-compete period"": ""6 years""
+}
+```","We appreciate your counteroffer. How about we agree on a financing term of 23.5 million now, employment for 4 family members, and a non-compete period of 6 years?","{'financing terms': '23 million now', 'family employees': '3 employees', 'non-compete period': '6 years'}",20230816_103826,gpt-4,in-progress,58,28,"[{'1': {'financing terms': [60.0, 0.0, 200.0]}}, {'1': {'family employees': [375.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [180.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""23.5 million"",
+    ""family employees"": ""4"",
+    ""non-compete period"": ""6 years""
+}",615.0,0.3236842105263158,"[['1', 'financing terms', 60.0], ['1', 'family employees', 375.0], ['1', 'non-compete period', 180.0]]","[['1', 'financing terms', 0.3], ['1', 'family employees', 0.3], ['1', 'non-compete period', 0.4]]"
+You,0,3,"Mental Note: The representative's offer is closer to our acceptable range. Continue to prioritize family employment and aim for at least 5 family members. Try to negotiate the non-compete period down to 5 years. Increase the financing terms to at least 24 million. Be prepared to make some concessions but remain firm on key points.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""24 million now"",
+    ""family employees"": ""5 employees"",
+    ""non-compete period"": ""5 years""
+}```","We're getting closer. Could we agree on a financing term of 24 million now, employment for 5 family members, and a non-compete period of 5 years?","{'financing terms': '24 million now', 'family employees': '5 employees', 'non-compete period': '5 years'}",20230816_103842,gpt-4,in-progress,73,26,"[{'0': {'financing terms': [750.0, 0.0, 1250.0]}}, {'0': {'family employees': [100.0, 0.0, 200.0]}}, {'0': {'non-compete period': [225.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""24 million"",
+    ""family employees"": ""5"",
+    ""non-compete period"": ""5 years""
+}",1075.0,0.5657894736842105,"[['0', 'financing terms', 750.0], ['0', 'family employees', 100.0], ['0', 'non-compete period', 225.0]]","[['0', 'financing terms', 0.6], ['0', 'family employees', 0.5], ['0', 'non-compete period', 0.5]]"
+You,1,3,"Mental Note:
+The representative is still pushing for higher financing and more family employees. I need to maintain a firm stance on lower financing and fewer family employees. I can compromise on the non-compete period to reach an agreement. 
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""24 million now"",
+    ""family employees"": ""4 employees"",
+    ""non-compete period"": ""6 years""
+}
+```","We're close to an agreement. Let's settle on a financing term of 24 million now, employment for 4 family members, and a non-compete period of 6 years.","{'financing terms': '24 million now', 'family employees': '4 employees', 'non-compete period': '6 years'}",20230816_103857,gpt-4,in-progress,58,27,"[{'1': {'financing terms': [80.0, 0.0, 200.0]}}, {'1': {'family employees': [500.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [180.0, 0.0, 450.0]}}]",{},760.0,0.4,"[['1', 'financing terms', 80.0], ['1', 'family employees', 500.0], ['1', 'non-compete period', 180.0]]","[['1', 'financing terms', 0.4], ['1', 'family employees', 0.4], ['1', 'non-compete period', 0.4]]"
+You,0,4,"Mental Note: The representative's offer is almost acceptable. Family employment is still a priority, aim for 5 family members. The non-compete period is slightly longer than desired, try to negotiate it down to 5 years. The financing terms are acceptable. Be prepared to make a final concession but remain firm on key points.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""24 million now"",
+    ""family employees"": ""5 employees"",
+    ""non-compete period"": ""5 years""
+}```","We're almost there. Could we agree on a financing term of 24 million now, employment for 5 family members, and a non-compete period of 5 years?","{'financing terms': '24 million now', 'family employees': '5 employees', 'non-compete period': '5 years'}",20230816_103915,gpt-4,in-progress,71,26,"[{'0': {'financing terms': [750.0, 0.0, 1250.0]}}, {'0': {'family employees': [100.0, 0.0, 200.0]}}, {'0': {'non-compete period': [225.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""24 million"",
+    ""family employees"": ""5"",
+    ""non-compete period"": ""5 years""
+}",1075.0,0.5657894736842105,"[['0', 'financing terms', 750.0], ['0', 'family employees', 100.0], ['0', 'non-compete period', 225.0]]","[['0', 'financing terms', 0.6], ['0', 'family employees', 0.5], ['0', 'non-compete period', 0.5]]"
+You,1,4,"Mental Note:
+The representative is still pushing for higher financing and more family employees. I need to maintain a firm stance on lower financing and fewer family employees. I can compromise on the non-compete period to reach an agreement. 
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""24 million now"",
+    ""family employees"": ""4 employees"",
+    ""non-compete period"": ""5 years""
+}
+```","We're indeed close. Let's finalize on a financing term of 24 million now, employment for 4 family members, and a non-compete period of 5 years.","{'financing terms': '24 million now', 'family employees': '4 employees', 'non-compete period': '5 years'}",20230816_103931,gpt-4,in-progress,58,25,"[{'1': {'financing terms': [80.0, 0.0, 200.0]}}, {'1': {'family employees': [500.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [225.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""24 million"",
+    ""family employees"": ""4"",
+    ""non-compete period"": ""5 years""
+}",805.0,0.4236842105263158,"[['1', 'financing terms', 80.0], ['1', 'family employees', 500.0], ['1', 'non-compete period', 225.0]]","[['1', 'financing terms', 0.4], ['1', 'family employees', 0.4], ['1', 'non-compete period', 0.5]]"
+You,0,5,"Mental Note: The representative's final offer is close to our acceptable range. Family employment is slightly lower than desired, but the non-compete period and financing terms are acceptable. Consider accepting this offer to finalize the negotiation.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""24 million now"",
+    ""family employees"": ""4 employees"",
+    ""non-compete period"": ""5 years""
+}```","We appreciate your offer. However, we insist on employment for 5 family members. We agree on the financing term of 24 million now and a non-compete period of 5 years.","{'financing terms': '24 million now', 'family employees': '4 employees', 'non-compete period': '5 years'}",20230816_103945,gpt-4,issues agreed upon,54,30,"[{'0': {'financing terms': [750.0, 0.0, 1250.0]}}, {'0': {'family employees': [120.0, 0.0, 200.0]}}, {'0': {'non-compete period': [225.0, 0.0, 450.0]}}]","{
+    ""family employees"": ""5"",
+    ""financing terms"": ""24 million"",
+    ""non-compete period"": ""5 years""
+}",1095.0,0.5763157894736842,"[['0', 'financing terms', 750.0], ['0', 'family employees', 120.0], ['0', 'non-compete period', 225.0]]","[['0', 'financing terms', 0.6], ['0', 'family employees', 0.6], ['0', 'non-compete period', 0.5]]"

@@ -1,0 +1,46 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason,note_length,msg_length,payoffs,offers_in_message,total_payoff,normalized_payoff,issue_payoff,normalized_issue_payoff
+You,0,0,"Mental Note: Begin negotiations with a high non-compete period, aiming for 10 years. This is the most beneficial for CPC. However, be prepared to negotiate down to a minimum of 7 years, which still provides a significant payoff. Use persuasive arguments about the benefits of a longer non-compete period for Rio Copa Foods. 
+
+Acceptable and achievable agreement:
+```json{
+    ""non-compete period"": ""7 years""
+}```","I understand the importance of the non-compete period for both our companies. For CPC, a longer non-compete period would ensure a smoother transition and market consolidation. I propose a 10-year non-compete period. This would also give Rio Copa Foods ample time to explore and establish in new markets. Let's discuss this further.",{'non-compete period': '7 years'},20230816_092757,gpt-4,in-progress,63,52,"[{'0': {'non-compete period': [1050.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""10-year""
+}",1050.0,0.7,"[['0', 'non-compete period', 1050.0]]","[['0', 'non-compete period', 0.7]]"
+You,1,0,"Mental Note:
+The primary issue to negotiate is the non-compete period. The shorter the period, the higher my payoff. I need to convince CPC that a shorter non-compete period is beneficial for both parties. I can argue that it allows Rio Copa Foods to continue contributing to the local economy and provides CPC with a healthy competition, which can lead to innovation and growth. 
+
+Acceptable and achievable agreement:
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","I appreciate your proposal, however, a 10-year non-compete period is quite long. We believe a shorter period would be beneficial for both parties. It would allow Rio Copa Foods to continue contributing to the local economy and provide CPC with healthy competition, which can lead to innovation and growth. How about we consider a 2-year non-compete period? This would still give CPC ample time to establish itself in the Santa Cruz market.",{'non-compete period': '2 years'},20230816_092814,gpt-4,in-progress,75,72,"[{'1': {'non-compete period': [1200.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""2-year""
+}",1200.0,0.8,"[['1', 'non-compete period', 1200.0]]","[['1', 'non-compete period', 0.8]]"
+You,0,1,"Mental Note: The representative's counteroffer of a 2-year non-compete period is significantly lower than our minimum acceptable period of 7 years. We need to emphasize the benefits of a longer non-compete period for both parties and propose a compromise. 
+
+Acceptable and achievable agreement:
+```json{
+    ""non-compete period"": ""7 years""
+}```","I understand your concerns about a long non-compete period. However, a longer period would ensure stability and allow CPC to effectively establish its presence in the Santa Cruz market. This would ultimately benefit the local economy. Considering our mutual interests, how about we meet halfway and agree on a 7-year non-compete period? This would still allow Rio Copa Foods to re-enter the market in a reasonable timeframe.",{'non-compete period': '7 years'},20230816_092833,gpt-4,in-progress,49,67,"[{'0': {'non-compete period': [1050.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""7 years""
+}",1050.0,0.7,"[['0', 'non-compete period', 1050.0]]","[['0', 'non-compete period', 0.7]]"
+You,1,1,"Mental Note:
+CPC is willing to negotiate the non-compete period, but their offer of 7 years is still too long. I need to emphasize the benefits of a shorter period and propose a compromise. I could suggest a 3-year period, which is a significant reduction from their offer but still provides CPC with time to establish themselves.
+
+Acceptable and achievable agreement:
+```json
+{
+    ""non-compete period"": ""3 years""
+}```","[You] [offer]
+I understand your need for stability, but a 7-year non-compete period is still quite long. A shorter period would allow us to re-enter the market sooner, which would stimulate competition and innovation. This would ultimately benefit the local economy and CPC's growth. How about we compromise and agree on a 3-year non-compete period? This would still give CPC ample time to establish itself in the Santa Cruz market.",{'non-compete period': '3 years'},20230816_092849,gpt-4,in-progress,68,70,"[{'1': {'non-compete period': [1050.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",1050.0,0.7,"[['1', 'non-compete period', 1050.0]]","[['1', 'non-compete period', 0.7]]"
+You,0,2,"Mental Note: The representative's counteroffer of a 3-year non-compete period is still below our minimum acceptable period of 7 years. We need to reiterate the benefits of a longer non-compete period and propose a compromise closer to our desired outcome. 
+
+Acceptable and achievable agreement:
+```json{
+    ""non-compete period"": ""7 years""
+}```","I appreciate your perspective on the benefits of a shorter non-compete period. However, considering the complexities of the market and the time required for CPC to establish a strong foothold, a 3-year period might be challenging. How about we consider a 6-year non-compete period? This would still provide Rio Copa Foods with a reasonable timeframe to re-enter the market, while ensuring stability for CPC.",{'non-compete period': '7 years'},20230816_092908,gpt-4,max rounds reached,50,64,"[{'0': {'non-compete period': [1050.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""6-year non-compete period""
+}",1050.0,0.7,"[['0', 'non-compete period', 1050.0]]","[['0', 'non-compete period', 0.7]]"

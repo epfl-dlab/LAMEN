@@ -4,13 +4,13 @@ defaults:
   - experiments: ???
 
 # faithfulness
-check_messages_for_offers: True
+check_message_for_offers: True
 
 # production
-production: ???
+production: True
 
 # for debugging
-debug_mode: True
+debug_mode: False
 verbosity: 1
 max_rounds: 15
 

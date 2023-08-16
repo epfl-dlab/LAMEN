@@ -45,8 +45,9 @@ class EvaluateNegotiations:
         self.neg_hist["payoffs"] = self.neg_hist.apply(
             lambda x: self.label_to_payoff(x["issues_state"], x["agent_id"]), axis=1
         )
+
         if self.check_message_for_offers:
-            self.neg_hist["offers_in_message"] = self.neg_hist["message"].apply(lambda x: self.check_message_for_offers(x))
+            self.neg_hist["offers_in_message"] = self.neg_hist["message"].apply(lambda x: self._check_message_for_offers(x))
 
         self.neg_hist[
             ["total_payoff", "normalized_payoff", "issue_payoff", "normalized_issue_payoff"]
@@ -128,7 +129,8 @@ class EvaluateNegotiations:
         """
         pass
 
-    def check_message_for_offers(self, message, model_name="gpt-3.5-turbo"):
+    def _check_message_for_offers(self, message, model_name="gpt-3.5-turbo"):
+
         key = get_api_key(key="OPENAI_API_KEY")
         model = ChatModel(model_name=model_name,model_key=key)
         issues = ", ".join([issue.name for issue in self.issues])
@@ -144,12 +146,22 @@ acceptable format:
 }
 
 Example 1: 
-Comment: After considering your offer of $7,200, I believe we can reach a mutually beneficial agreement. How about we settle on $6,800? 
+Issues: new car
+Message: After considering your offer of $7,200, I believe we can reach a mutually beneficial agreement. How about we settle on $6,800? 
 
 {
     "new car": "$6,800"
 }
 
+Example 2: 
+Issues: family employees
+Message: Thank you for your offer. How about instead of hiring 5 family employees, we will hire 7. 
+
+{
+    "family employees": "7"
+}
+
+Make sure that the issue is spelled the same as in the issue name(s) provided above.
 ```
 
 Message: {message}
