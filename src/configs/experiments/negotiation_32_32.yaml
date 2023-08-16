@@ -20,8 +20,9 @@ agent_2:
   generation_parameters: ${models_dir}/openai_4_0_0.yaml
 
 negotiation_protocol:
-  max_rounds: 10
+  max_rounds: ${max_rounds}
   stop_condition: ""
   start_agent_index: 0
   save_folder: ${output_dir}
   verbosity: ${verbosity}
+  check_message_for_offers: ${check_message_for_offers}

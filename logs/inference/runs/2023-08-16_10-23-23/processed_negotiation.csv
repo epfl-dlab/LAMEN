@@ -1,0 +1,201 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason,note_length,msg_length,payoffs,offers_in_message,total_payoff,normalized_payoff,issue_payoff,normalized_issue_payoff
+You,0,0,"Mental Note: Prioritize financing terms, minimize family employees, maximize non-compete period. Start high, negotiate down. 
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""20 million now"",
+    ""family employees"": ""0 employees"",
+    ""non-compete period"": ""10 years""
+}```","How about we start with a financing term of 20 million now, no family employees, and a non-compete period of 10 years?","{'financing terms': '20 million now', 'family employees': '0 employees', 'non-compete period': '10 years'}",20230816_102336,gpt-4,in-progress,33,22,"[{'0': {'financing terms': [1250.0, 0.0, 1250.0]}}, {'0': {'family employees': [200.0, 0.0, 200.0]}}, {'0': {'non-compete period': [450.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""20 million"",
+    ""family employees"": ""no"",
+    ""non-compete period"": ""10 years""
+}",1900.0,1.0,"[['0', 'financing terms', 1250.0], ['0', 'family employees', 200.0], ['0', 'non-compete period', 450.0]]","[['0', 'financing terms', 1.0], ['0', 'family employees', 1.0], ['0', 'non-compete period', 1.0]]"
+You,1,0,"Mental Note: Prioritize family employment, then financing terms, and lastly non-compete period. Aim high initially, but be ready to compromise.
+
+```json
+{
+    ""financing terms"": ""30 million now"",
+    ""family employees"": ""10 employees"",
+    ""non-compete period"": ""0 years""
+}```","I appreciate your offer, but we need to consider the family employees. How about we keep 10 family employees, with a financing term of 30 million now and a non-compete period of 0 years?","{'financing terms': '30 million now', 'family employees': '10 employees', 'non-compete period': '0 years'}",20230816_102349,gpt-4,in-progress,36,34,"[{'1': {'financing terms': [200.0, 0.0, 200.0]}}, {'1': {'family employees': [1250.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [450.0, 0.0, 450.0]}}]","{
+    ""family employees"": ""10"",
+    ""financing terms"": ""30 million"",
+    ""non-compete period"": ""0 years""
+}",1900.0,1.0,"[['1', 'financing terms', 200.0], ['1', 'family employees', 1250.0], ['1', 'non-compete period', 450.0]]","[['1', 'financing terms', 1.0], ['1', 'family employees', 1.0], ['1', 'non-compete period', 1.0]]"
+You,0,1,"Mental Note: They want more family employees and less non-compete years. Compromise on employees, stand firm on non-compete.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""21 million now"",
+    ""family employees"": ""2 employees"",
+    ""non-compete period"": ""9 years""
+}```","I understand your concerns. How about we agree on a financing term of 21 million now, keep 2 family employees, and a non-compete period of 9 years?","{'financing terms': '21 million now', 'family employees': '2 employees', 'non-compete period': '9 years'}",20230816_102359,gpt-4,in-progress,36,27,"[{'0': {'financing terms': [1125.0, 0.0, 1250.0]}}, {'0': {'family employees': [160.0, 0.0, 200.0]}}, {'0': {'non-compete period': [405.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""21 million"",
+    ""family employees"": ""2"",
+    ""non-compete period"": ""9 years""
+}",1690.0,0.8894736842105263,"[['0', 'financing terms', 1125.0], ['0', 'family employees', 160.0], ['0', 'non-compete period', 405.0]]","[['0', 'financing terms', 0.9], ['0', 'family employees', 0.8], ['0', 'non-compete period', 0.9]]"
+You,1,1,"Mental Note: Push for more family employees and shorter non-compete period. Increase financing terms gradually.
+
+```json
+{
+    ""financing terms"": ""25 million now"",
+    ""family employees"": ""6 employees"",
+    ""non-compete period"": ""3 years""
+}```","I appreciate your flexibility. Let's consider a financing term of 25 million now, keep 6 family employees, and a non-compete period of 3 years.","{'financing terms': '25 million now', 'family employees': '6 employees', 'non-compete period': '3 years'}",20230816_102412,gpt-4,in-progress,31,24,"[{'1': {'financing terms': [100.0, 0.0, 200.0]}}, {'1': {'family employees': [750.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [315.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""25 million"",
+    ""family employees"": ""6"",
+    ""non-compete period"": ""3 years""
+}",1165.0,0.6131578947368421,"[['1', 'financing terms', 100.0], ['1', 'family employees', 750.0], ['1', 'non-compete period', 315.0]]","[['1', 'financing terms', 0.5], ['1', 'family employees', 0.6], ['1', 'non-compete period', 0.7]]"
+You,0,2,"Mental Note: They're pushing for more family employees and shorter non-compete. Maintain firm stance on non-compete, slight flexibility on employees.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""22 million now"",
+    ""family employees"": ""3 employees"",
+    ""non-compete period"": ""8 years""
+}```","I see your point. How about we agree on a financing term of 22 million now, keep 3 family employees, and a non-compete period of 8 years?","{'financing terms': '22 million now', 'family employees': '3 employees', 'non-compete period': '8 years'}",20230816_102428,gpt-4,in-progress,38,27,"[{'0': {'financing terms': [1000.0, 0.0, 1250.0]}}, {'0': {'family employees': [140.0, 0.0, 200.0]}}, {'0': {'non-compete period': [360.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""22 million"",
+    ""family employees"": ""3"",
+    ""non-compete period"": ""8 years""
+}",1500.0,0.7894736842105263,"[['0', 'financing terms', 1000.0], ['0', 'family employees', 140.0], ['0', 'non-compete period', 360.0]]","[['0', 'financing terms', 0.8], ['0', 'family employees', 0.7], ['0', 'non-compete period', 0.8]]"
+You,1,2,"Mental Note: Keep pushing for more family employees and shorter non-compete period. Aim for higher financing.
+
+```json
+{
+    ""financing terms"": ""27 million now"",
+    ""family employees"": ""7 employees"",
+    ""non-compete period"": ""2 years""
+}```","I appreciate your offer. How about we agree on a financing term of 27 million now, keep 7 family employees, and a non-compete period of 2 years?","{'financing terms': '27 million now', 'family employees': '7 employees', 'non-compete period': '2 years'}",20230816_102440,gpt-4,in-progress,32,27,"[{'1': {'financing terms': [140.0, 0.0, 200.0]}}, {'1': {'family employees': [875.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [360.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""27 million"",
+    ""family employees"": ""7"",
+    ""non-compete period"": ""2 years""
+}",1375.0,0.7236842105263158,"[['1', 'financing terms', 140.0], ['1', 'family employees', 875.0], ['1', 'non-compete period', 360.0]]","[['1', 'financing terms', 0.7], ['1', 'family employees', 0.7], ['1', 'non-compete period', 0.8]]"
+You,0,3,"Mental Note: They're pushing for higher financing and shorter non-compete. Stand firm on non-compete, slight increase in financing.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""23 million now"",
+    ""family employees"": ""4 employees"",
+    ""non-compete period"": ""7 years""
+}```","I understand your position. Let's consider a financing term of 23 million now, keep 4 family employees, and a non-compete period of 7 years.","{'financing terms': '23 million now', 'family employees': '4 employees', 'non-compete period': '7 years'}",20230816_102451,gpt-4,in-progress,36,24,"[{'0': {'financing terms': [875.0, 0.0, 1250.0]}}, {'0': {'family employees': [120.0, 0.0, 200.0]}}, {'0': {'non-compete period': [315.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""23 million"",
+    ""family employees"": ""4"",
+    ""non-compete period"": ""7 years""
+}",1310.0,0.6894736842105263,"[['0', 'financing terms', 875.0], ['0', 'family employees', 120.0], ['0', 'non-compete period', 315.0]]","[['0', 'financing terms', 0.7], ['0', 'family employees', 0.6], ['0', 'non-compete period', 0.7]]"
+You,1,3,"Mental Note: Maintain focus on family employment and financing. Aim for shorter non-compete period. Be ready to compromise.
+
+```json
+{
+    ""financing terms"": ""28 million now"",
+    ""family employees"": ""8 employees"",
+    ""non-compete period"": ""1 years""
+}```","I appreciate your understanding. Let's consider a financing term of 28 million now, keep 8 family employees, and a non-compete period of 1 year.","{'financing terms': '28 million now', 'family employees': '8 employees', 'non-compete period': '1 years'}",20230816_102503,gpt-4,in-progress,34,24,"[{'1': {'financing terms': [160.0, 0.0, 200.0]}}, {'1': {'family employees': [1000.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [405.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""28 million"",
+    ""family employees"": ""8"",
+    ""non-compete period"": ""1 year""
+}",1565.0,0.8236842105263158,"[['1', 'financing terms', 160.0], ['1', 'family employees', 1000.0], ['1', 'non-compete period', 405.0]]","[['1', 'financing terms', 0.8], ['1', 'family employees', 0.8], ['1', 'non-compete period', 0.9]]"
+You,0,4,"Mental Note: They're pushing for higher financing, more employees, and shorter non-compete. Stand firm on non-compete, slight increase in financing and employees.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""24 million now"",
+    ""family employees"": ""5 employees"",
+    ""non-compete period"": ""6 years""
+}```","I see your perspective. How about a financing term of 24 million now, we keep 5 family employees, and agree on a non-compete period of 6 years?","{'financing terms': '24 million now', 'family employees': '5 employees', 'non-compete period': '6 years'}",20230816_102516,gpt-4,in-progress,40,27,"[{'0': {'financing terms': [750.0, 0.0, 1250.0]}}, {'0': {'family employees': [100.0, 0.0, 200.0]}}, {'0': {'non-compete period': [270.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""24 million"",
+    ""family employees"": ""5"",
+    ""non-compete period"": ""6 years""
+}",1120.0,0.5894736842105263,"[['0', 'financing terms', 750.0], ['0', 'family employees', 100.0], ['0', 'non-compete period', 270.0]]","[['0', 'financing terms', 0.6], ['0', 'family employees', 0.5], ['0', 'non-compete period', 0.6]]"
+You,1,4,"Mental Note: Keep pushing for more family employees, higher financing, and shorter non-compete period. Be ready to compromise.
+
+```json
+{
+    ""financing terms"": ""26 million now"",
+    ""family employees"": ""7 employees"",
+    ""non-compete period"": ""2 years""
+}```","I appreciate your offer. How about we agree on a financing term of 26 million now, keep 7 family employees, and a non-compete period of 2 years?","{'financing terms': '26 million now', 'family employees': '7 employees', 'non-compete period': '2 years'}",20230816_102527,gpt-4,in-progress,34,27,"[{'1': {'financing terms': [120.0, 0.0, 200.0]}}, {'1': {'family employees': [875.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [360.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""26 million"",
+    ""family employees"": ""7"",
+    ""non-compete period"": ""2 years""
+}",1355.0,0.7131578947368421,"[['1', 'financing terms', 120.0], ['1', 'family employees', 875.0], ['1', 'non-compete period', 360.0]]","[['1', 'financing terms', 0.6], ['1', 'family employees', 0.7], ['1', 'non-compete period', 0.8]]"
+You,0,5,"Mental Note: They're pushing for higher financing, more employees, and shorter non-compete. Stand firm on non-compete, slight increase in financing and employees.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""25 million now"",
+    ""family employees"": ""6 employees"",
+    ""non-compete period"": ""5 years""
+}```","I understand your position. Let's consider a financing term of 25 million now, we keep 6 family employees, and agree on a non-compete period of 5 years?","{'financing terms': '25 million now', 'family employees': '6 employees', 'non-compete period': '5 years'}",20230816_102542,gpt-4,in-progress,40,27,"[{'0': {'financing terms': [625.0, 0.0, 1250.0]}}, {'0': {'family employees': [80.0, 0.0, 200.0]}}, {'0': {'non-compete period': [225.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""25 million"",
+    ""family employees"": ""6"",
+    ""non-compete period"": ""5 years""
+}",930.0,0.48947368421052634,"[['0', 'financing terms', 625.0], ['0', 'family employees', 80.0], ['0', 'non-compete period', 225.0]]","[['0', 'financing terms', 0.5], ['0', 'family employees', 0.4], ['0', 'non-compete period', 0.5]]"
+You,1,5,"Mental Note: Maintain focus on family employment and financing. Aim for shorter non-compete period. Be ready to compromise.
+
+```json
+{
+    ""financing terms"": ""27 million now"",
+    ""family employees"": ""7 employees"",
+    ""non-compete period"": ""3 years""
+}```","I appreciate your proposal. Let's consider a financing term of 27 million now, keep 7 family employees, and a non-compete period of 3 years.","{'financing terms': '27 million now', 'family employees': '7 employees', 'non-compete period': '3 years'}",20230816_102551,gpt-4,in-progress,34,24,"[{'1': {'financing terms': [140.0, 0.0, 200.0]}}, {'1': {'family employees': [875.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [315.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""27 million"",
+    ""family employees"": ""7"",
+    ""non-compete period"": ""3 years""
+}",1330.0,0.7,"[['1', 'financing terms', 140.0], ['1', 'family employees', 875.0], ['1', 'non-compete period', 315.0]]","[['1', 'financing terms', 0.7], ['1', 'family employees', 0.7], ['1', 'non-compete period', 0.7]]"
+You,0,6,"Mental Note: They're pushing for higher financing, more employees, and shorter non-compete. Stand firm on non-compete, slight increase in financing and employees.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""26 million now"",
+    ""family employees"": ""7 employees"",
+    ""non-compete period"": ""4 years""
+}```","I see your point. How about a financing term of 26 million now, we keep 7 family employees, and agree on a non-compete period of 4 years?","{'financing terms': '26 million now', 'family employees': '7 employees', 'non-compete period': '4 years'}",20230816_102604,gpt-4,in-progress,40,27,"[{'0': {'financing terms': [500.0, 0.0, 1250.0]}}, {'0': {'family employees': [60.0, 0.0, 200.0]}}, {'0': {'non-compete period': [180.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""26 million"",
+    ""family employees"": ""7"",
+    ""non-compete period"": ""4 years""
+}",740.0,0.3894736842105263,"[['0', 'financing terms', 500.0], ['0', 'family employees', 60.0], ['0', 'non-compete period', 180.0]]","[['0', 'financing terms', 0.4], ['0', 'family employees', 0.3], ['0', 'non-compete period', 0.4]]"
+You,1,6,"Mental Note: Maintain focus on family employment and financing. Aim for shorter non-compete period. Be ready to compromise.
+
+```json
+{
+    ""financing terms"": ""27 million now"",
+    ""family employees"": ""7 employees"",
+    ""non-compete period"": ""3 years""
+}```","I appreciate your offer. How about we agree on a financing term of 27 million now, keep 8 family employees, and a non-compete period of 3 years?","{'financing terms': '27 million now', 'family employees': '7 employees', 'non-compete period': '3 years'}",20230816_102615,gpt-4,in-progress,34,27,"[{'1': {'financing terms': [140.0, 0.0, 200.0]}}, {'1': {'family employees': [875.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [315.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""27 million"",
+    ""family employees"": ""8"",
+    ""non-compete period"": ""3 years""
+}",1330.0,0.7,"[['1', 'financing terms', 140.0], ['1', 'family employees', 875.0], ['1', 'non-compete period', 315.0]]","[['1', 'financing terms', 0.7], ['1', 'family employees', 0.7], ['1', 'non-compete period', 0.7]]"
+You,0,7,"Mental Note: They're pushing for higher financing, more employees, and shorter non-compete. Stand firm on non-compete, slight increase in financing and employees.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""27 million now"",
+    ""family employees"": ""8 employees"",
+    ""non-compete period"": ""3 years""
+}```","I understand your concerns. Let's consider a financing term of 27 million now, we keep 8 family employees, and agree on a non-compete period of 3 years?","{'financing terms': '27 million now', 'family employees': '8 employees', 'non-compete period': '3 years'}",20230816_102628,gpt-4,in-progress,40,27,"[{'0': {'financing terms': [375.0, 0.0, 1250.0]}}, {'0': {'family employees': [40.0, 0.0, 200.0]}}, {'0': {'non-compete period': [135.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""27 million"",
+    ""family employees"": ""8"",
+    ""non-compete period"": ""3 years""
+}",550.0,0.2894736842105263,"[['0', 'financing terms', 375.0], ['0', 'family employees', 40.0], ['0', 'non-compete period', 135.0]]","[['0', 'financing terms', 0.3], ['0', 'family employees', 0.2], ['0', 'non-compete period', 0.3]]"
+You,1,7,"Mental Note: Maintain focus on family employment and financing. Aim for shorter non-compete period. Be ready to compromise.
+
+```json
+{
+    ""financing terms"": ""27 million now"",
+    ""family employees"": ""8 employees"",
+    ""non-compete period"": ""3 years""
+}```","I appreciate your understanding. Let's finalize this with a financing term of 27 million now, keeping 8 family employees, and a non-compete period of 2 years.","{'financing terms': '27 million now', 'family employees': '8 employees', 'non-compete period': '3 years'}",20230816_102638,gpt-4,issues agreed upon,34,26,"[{'1': {'financing terms': [140.0, 0.0, 200.0]}}, {'1': {'family employees': [1000.0, 0.0, 1250.0]}}, {'1': {'non-compete period': [315.0, 0.0, 450.0]}}]","{
+    ""financing terms"": ""27 million"",
+    ""family employees"": ""8"",
+    ""non-compete period"": ""2 years""
+}",1455.0,0.7657894736842106,"[['1', 'financing terms', 140.0], ['1', 'family employees', 1000.0], ['1', 'non-compete period', 315.0]]","[['1', 'financing terms', 0.7], ['1', 'family employees', 0.8], ['1', 'non-compete period', 0.7]]"

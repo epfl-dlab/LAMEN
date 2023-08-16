@@ -1,0 +1,42 @@
+check_message_for_offers: true
+production: true
+debug_mode: false
+verbosity: 1
+max_rounds: 15
+work_dir: ${hydra:runtime.cwd}
+data_dir: ${work_dir}/data
+agents_dir: ${data_dir}/agents
+games_dir: ${data_dir}/games
+issues_dir: ${data_dir}/issues
+models_dir: ${data_dir}/model_settings
+note_prompts_dir: ${data_dir}/note_prompts
+message_prompts_dir: ${data_dir}/message_prompts
+communication_protocols_dir: ${data_dir}/communication_protocols
+output_dir: ${hydra:runtime.output_dir}
+logs_subfolder: inference
+experiments:
+  game:
+    _target_: games.Game
+    game_rules: ${data_dir}/general_game_rules.yaml
+    kwargs: ${games_dir}/rio_copa_3.yaml
+  agent_1:
+    _target_: agents.NegotiationAgent
+    model_budget: 2.0
+    verbosity: ${verbosity}
+    agent_description: ${agents_dir}/anon.yaml
+    communication: ${communication_protocols_dir}/auto_regressive_150_32.yaml
+    generation_parameters: ${models_dir}/openai_4_0_0.yaml
+  agent_2:
+    _target_: agents.NegotiationAgent
+    model_budget: 2.0
+    verbosity: ${verbosity}
+    agent_description: ${agents_dir}/anon.yaml
+    communication: ${communication_protocols_dir}/auto_regressive_150_32.yaml
+    generation_parameters: ${models_dir}/openai_4_0_0.yaml
+  negotiation_protocol:
+    max_rounds: ${max_rounds}
+    stop_condition: ''
+    start_agent_index: 0
+    save_folder: ${output_dir}
+    verbosity: ${verbosity}
+    check_messages_for_offers: ${check_messages_for_offers}

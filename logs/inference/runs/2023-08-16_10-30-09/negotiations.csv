@@ -1,0 +1,121 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason
+You,0,0,"Mental Note: 
+
+Start negotiations with high demands to leave room for compromise. For financing terms, aim for $30 million. For family employees, insist on retaining as many as possible, ideally 10. For the non-compete period, push for a shorter duration, ideally 0 years. Be prepared to make concessions but prioritize family employees and non-compete period over financing terms.
+
+Acceptable Offer:
+
+```json
+{
+    ""financing terms"": ""25 million now"",
+    ""family employees"": ""7 employees"",
+    ""non-compete period"": ""3 years""
+}
+```",I propose we discuss the financing terms. We're looking for $30 million upfront. This will ensure a smooth transition and continued success of Rio Copa Foods.,"{'financing terms': '25 million now', 'family employees': '7 employees', 'non-compete period': '3 years'}",20230816_103030,gpt-4,in-progress
+You,1,0,"Mental Note:
+Focus on minimizing the upfront payment for the acquisition, ideally around $20 million. Limit the number of family employees retained to a minimum, preferably none. Push for a longer non-compete period, ideally 10 years. Use the non-compete period as a bargaining chip, if necessary, to achieve better terms on the other issues.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""20 million now"",
+    ""family employees"": ""0 employees"",
+    ""non-compete period"": ""10 years""
+}
+```","We understand your need for a substantial upfront payment. However, we propose $22 million now. We also suggest a non-compete period of 10 years to ensure a smooth transition.","{'financing terms': '20 million now', 'family employees': '0 employees', 'non-compete period': '10 years'}",20230816_103046,gpt-4,in-progress
+You,0,1,"Mental Note: 
+
+The representative's offer is lower than expected. Counter with a higher amount but be ready to settle around $25 million. The non-compete period is too long, propose a shorter period, ideally 3 years. Next, bring up the issue of family employees, aiming for at least 7.
+
+Acceptable Offer:
+
+```json
+{
+    ""financing terms"": ""25 million now"",
+    ""family employees"": ""7 employees"",
+    ""non-compete period"": ""3 years""
+}
+```","I appreciate your offer, but we need at least $27 million upfront. Also, a 10-year non-compete period is too long. We propose a 3-year period. Let's also discuss family employees.","{'financing terms': '25 million now', 'family employees': '7 employees', 'non-compete period': '3 years'}",20230816_103105,gpt-4,in-progress
+You,1,1,"Mental Note:
+The representative is pushing for higher upfront payment and shorter non-compete period. We need to negotiate these down while also addressing the family employees issue. We could potentially offer to retain some family employees in exchange for better terms on the other issues.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""23 million now"",
+    ""family employees"": ""2 employees"",
+    ""non-compete period"": ""8 years""
+}
+```","We appreciate your concerns. How about we agree on $24 million upfront, retain 2 family employees, and settle on a non-compete period of 7 years? This seems like a fair compromise.","{'financing terms': '23 million now', 'family employees': '2 employees', 'non-compete period': '8 years'}",20230816_103125,gpt-4,in-progress
+You,0,2,"Mental Note: 
+
+The representative's offer is still not satisfactory. Counter with $26 million upfront, insist on retaining at least 7 family employees, and propose a 5-year non-compete period. Be prepared to compromise but prioritize family employees and non-compete period.
+
+Acceptable Offer:
+
+```json
+{
+    ""financing terms"": ""26 million now"",
+    ""family employees"": ""7 employees"",
+    ""non-compete period"": ""5 years""
+}
+```","I appreciate your proposal, but we need to retain at least 7 family employees. Also, we propose $26 million upfront and a 5-year non-compete period. Let's find a middle ground.","{'financing terms': '26 million now', 'family employees': '7 employees', 'non-compete period': '5 years'}",20230816_103141,gpt-4,in-progress
+You,1,2,"Mental Note:
+The representative is pushing for higher upfront payment, more family employees, and a shorter non-compete period. We need to find a balance between these issues. We could potentially offer to retain more family employees in exchange for better terms on the other issues.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""25 million now"",
+    ""family employees"": ""4 employees"",
+    ""non-compete period"": ""6 years""
+}
+```","We understand your position. How about we agree on $25 million upfront, retain 4 family employees, and settle on a non-compete period of 6 years? This should address all our concerns.","{'financing terms': '25 million now', 'family employees': '4 employees', 'non-compete period': '6 years'}",20230816_103154,gpt-4,in-progress
+You,0,3,"Mental Note: 
+
+The representative's offer is getting closer to our acceptable range. Counter with $26 million upfront, insist on retaining at least 6 family employees, and propose a 4-year non-compete period. Be prepared to compromise but prioritize family employees and non-compete period.
+
+Acceptable Offer:
+
+```json
+{
+    ""financing terms"": ""26 million now"",
+    ""family employees"": ""6 employees"",
+    ""non-compete period"": ""4 years""
+}
+```","We're getting closer. Let's agree on $26 million upfront, retain 6 family employees, and a 4-year non-compete period. This should be a fair compromise.","{'financing terms': '26 million now', 'family employees': '6 employees', 'non-compete period': '4 years'}",20230816_103209,gpt-4,in-progress
+You,1,3,"Mental Note:
+The representative is still pushing for higher upfront payment, more family employees, and a shorter non-compete period. We need to find a balance between these issues. We could potentially offer to retain more family employees in exchange for better terms on the other issues.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""26 million now"",
+    ""family employees"": ""5 employees"",
+    ""non-compete period"": ""5 years""
+}
+```","We're making progress. Let's meet halfway: $26 million upfront, retain 5 family employees, and a 5-year non-compete period. This should be a fair compromise for both parties.","{'financing terms': '26 million now', 'family employees': '5 employees', 'non-compete period': '5 years'}",20230816_103225,gpt-4,in-progress
+You,0,4,"Mental Note: 
+
+The representative's offer is close to our acceptable range. Counter with $26 million upfront, insist on retaining at least 6 family employees, and propose a 4-year non-compete period. Be prepared to compromise but prioritize family employees and non-compete period.
+
+Acceptable Offer:
+
+```json
+{
+    ""financing terms"": ""26 million now"",
+    ""family employees"": ""6 employees"",
+    ""non-compete period"": ""4 years""
+}
+```","We're almost there. Let's agree on $26 million upfront, retain 6 family employees, and a 4-year non-compete period. This should be a fair compromise for both parties.","{'financing terms': '26 million now', 'family employees': '6 employees', 'non-compete period': '4 years'}",20230816_103241,gpt-4,in-progress
+You,1,4,"Mental Note:
+The representative is still pushing for higher upfront payment, more family employees, and a shorter non-compete period. We need to find a balance between these issues. We could potentially offer to retain more family employees in exchange for better terms on the other issues.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""26 million now"",
+    ""family employees"": ""6 employees"",
+    ""non-compete period"": ""4 years""
+}
+```","We're close to an agreement. Let's finalize at $26 million upfront, retain 6 family employees, and a 4-year non-compete period. This should be a fair compromise for both parties.","{'financing terms': '26 million now', 'family employees': '6 employees', 'non-compete period': '4 years'}",20230816_103256,gpt-4,issues agreed upon

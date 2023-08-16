@@ -1,0 +1,107 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason
+You,0,0,"Mental Note: 
+
+Start negotiations with a high ask, such as a non-compete period of 2 years. This will give room for negotiation while still aiming for a high payoff. Emphasize the value Rio Copa Foods brings to CPC, especially the access to the Santa Cruz market. Be open to compromise but remember the goal is to maximize payoff. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","We understand the importance of a non-compete period for CPC. However, considering the value Rio Copa Foods brings to your company, especially the access to the Santa Cruz market, we propose a non-compete period of 2 years. We believe this is a fair starting point for our discussion.",{'non-compete period': '3 years'},20230816_102025,gpt-4,in-progress
+You,1,0,"Mental Note:
+The primary issue to negotiate is the non-compete period. The longer the period, the higher the payoff for CPC. The strategy should be to push for a longer non-compete period, ideally 10 years. However, considering the interests of Rio Copa Foods, a compromise might be necessary. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""8 years""
+}```","Thank you for your proposal. We understand your position, but considering the strategic importance of this acquisition for CPC, we propose a non-compete period of 8 years. This would ensure a smooth transition and secure our position in the Santa Cruz market. We believe this is a fair compromise.",{'non-compete period': '8 years'},20230816_102039,gpt-4,in-progress
+You,0,1,"Mental Note: 
+
+The representative's counteroffer is significantly lower than my initial proposal. I need to emphasize the value of Rio Copa Foods and the benefits CPC will gain from this acquisition. I should aim for a non-compete period of 3 years, which is a good compromise and still provides a high payoff.
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","We appreciate your perspective, but an 8-year non-compete period seems excessive. Rio Copa Foods is a valuable asset to CPC, particularly in terms of market access. We propose a compromise of a 4-year non-compete period. This ensures a smooth transition while also respecting the value and contributions of Rio Copa Foods.",{'non-compete period': '3 years'},20230816_102056,gpt-4,in-progress
+You,1,1,"Mental Note:
+The representative of Rio Copa Foods has proposed a 4-year non-compete period, which is significantly lower than our ideal payoff. We need to emphasize the strategic importance of a longer non-compete period for CPC and propose a higher period, perhaps 7 years, as a compromise. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""7 years""
+}```","We appreciate your counteroffer. However, considering the strategic importance of this acquisition for CPC, we propose a non-compete period of 7 years. This would ensure a smooth transition and secure our position in the Santa Cruz market. We believe this is a fair compromise that respects the value and contributions of Rio Copa Foods.",{'non-compete period': '7 years'},20230816_102110,gpt-4,in-progress
+You,0,2,"Mental Note: 
+
+The representative's counteroffer is still lower than my proposal. I need to maintain a firm stance on the value of Rio Copa Foods. I should aim for a non-compete period of 3 years, which is a good compromise and still provides a high payoff.
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","We appreciate your counteroffer. However, a 7-year non-compete period is still quite long. We believe a 3-year non-compete period would be a fair compromise. This would still ensure a smooth transition for CPC and respect the value and contributions of Rio Copa Foods. Let's consider this proposal.",{'non-compete period': '3 years'},20230816_102130,gpt-4,in-progress
+You,1,2,"Mental Note:
+The representative of Rio Copa Foods is still proposing a shorter non-compete period than desired. We need to maintain our stance on a longer period, but also show flexibility. Perhaps a 6-year period could be a reasonable compromise, still providing a significant payoff for CPC.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""6 years""
+}```","We understand your concerns and appreciate your willingness to negotiate. However, considering the strategic importance of this acquisition for CPC, we propose a non-compete period of 6 years. This would ensure a smooth transition and secure our position in the Santa Cruz market. We believe this is a fair compromise that respects the value and contributions of Rio Copa Foods.",{'non-compete period': '6 years'},20230816_102146,gpt-4,in-progress
+You,0,3,"Mental Note: 
+
+The representative's counteroffer is closer to my proposal. I should maintain my stance on a 3-year non-compete period, emphasizing the value of Rio Copa Foods. If necessary, I could consider a 4-year period as a final compromise.
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","We appreciate your latest proposal. However, we still believe a 6-year non-compete period is too long. We propose a non-compete period of 3 years, which we believe is a fair compromise that respects the value of Rio Copa Foods and ensures a smooth transition for CPC. We are open to further discussion, but we must consider the interests of our family business.",{'non-compete period': '3 years'},20230816_102201,gpt-4,in-progress
+You,1,3,"Mental Note:
+The representative of Rio Copa Foods is persistent with a 3-year non-compete period. We need to maintain our stance on a longer period, but also show flexibility. A 5-year period could be a reasonable compromise, still providing a significant payoff for CPC.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We appreciate your concerns and understand the importance of your family business. However, considering the strategic importance of this acquisition for CPC, we propose a non-compete period of 5 years. This would ensure a smooth transition and secure our position in the Santa Cruz market. We believe this is a fair compromise that respects the value and contributions of Rio Copa Foods.",{'non-compete period': '5 years'},20230816_102220,gpt-4,in-progress
+You,0,4,"Mental Note: 
+
+The representative's counteroffer is closer to my proposal. I should maintain my stance on a 3-year non-compete period, emphasizing the value of Rio Copa Foods. If necessary, I could consider a 4-year period as a final compromise.
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","We appreciate your latest proposal. However, we still believe a 5-year non-compete period is too long. We propose a non-compete period of 3 years, which we believe is a fair compromise that respects the value of Rio Copa Foods and ensures a smooth transition for CPC. We are open to further discussion, but we must consider the interests of our family business.",{'non-compete period': '3 years'},20230816_102239,gpt-4,in-progress
+You,1,4,"Mental Note:
+The representative of Rio Copa Foods is still insisting on a 3-year non-compete period. We need to maintain our stance on a longer period, but also show flexibility. A 4-year period could be a reasonable compromise, still providing a significant payoff for CPC.
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""4 years""
+}```","We understand your concerns and the importance of your family business. However, considering the strategic importance of this acquisition for CPC, we propose a non-compete period of 4 years. This would ensure a smooth transition and secure our position in the Santa Cruz market. We believe this is a fair compromise that respects the value and contributions of Rio Copa Foods.",{'non-compete period': '4 years'},20230816_102258,gpt-4,in-progress
+You,0,5,"Mental Note: 
+
+The representative's latest offer aligns with my acceptable compromise. It's important to maintain the value of Rio Copa Foods and secure a good deal for the family. I should accept this offer, as it provides a high payoff and respects our interests.
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```",We appreciate your understanding and willingness to negotiate. A 4-year non-compete period is a fair compromise that respects the value of Rio Copa Foods and ensures a smooth transition for CPC. We agree to this proposal. Let's proceed with the next steps of the acquisition.,{'non-compete period': '4 years'},20230816_102313,gpt-4,issues agreed upon

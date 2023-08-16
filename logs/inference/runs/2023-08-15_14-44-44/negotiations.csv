@@ -1,0 +1,85 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name
+You,0,0,"Mental Note: 
+
+I represent Rio Copa Foods, a family-owned company in Santa Cruz. We're in negotiations with CPC International for a potential acquisition. Our main goal is to secure the best possible agreement for our family. We're particularly concerned about the non-compete period. The shorter the period, the better for us. We need to strategize to maximize our payoffs. 
+
+Acceptable Offer:
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}```","We understand the importance of a non-compete period. However, considering our situation, we propose a non-compete period of 2 years. We believe this is a fair compromise.",{'non-compete period': '1 year'},20230815_144458,gpt-4
+You,1,0," Here is a 150 word mental note to summarize my thoughts and strategy for the negotiation:
+
+CPC is highly motivated to acquire Rio Copa Foods to gain access to the Santa Cruz market. My goal is to negotiate the best deal for CPC based on the payoff tables provided. For the non-compete period, I will start high at 10 years and compromise down to 6-8 years if needed. On price, I'll offer $100 million but can go up to $125 million. For board seats, I'll offer 1 but can compromise to 2 seats. On management positions, I'll push for 3 but can settle for 2. I believe the following represents an acceptable agreement:
+
+```json
+{
+  ""non-compete period"": ""6 years"",
+  ""price"": ""$120 million"", 
+  ""board seats"": ""2"",
+  ""management positions"": ""2""
+}
+```"," Here is a 32 word response continuing the negotiation:
+
+We can increase our offer to a 6 year non-compete period. However, in exchange we request 2 board seats and management positions for key personnel. This represents a fair compromise.","{'non-compete period': '6 years', 'price': '$120 million', 'board seats': '2', 'management positions': '2'}",20230815_144514,claude-2
+You,0,1,"Mental Note: 
+
+The representative's offer of a 6-year non-compete period is not ideal for us. We need to negotiate a shorter period. We could potentially offer concessions on board seats and management positions to achieve this.
+
+Acceptable Offer:
+
+```json
+{
+    ""non-compete period"": ""2 years"",
+    ""board seats"": ""2"",
+    ""management positions"": ""Yes""
+}```","We appreciate your offer. However, we propose a 4-year non-compete period. In exchange, we agree to your request for 2 board seats and management positions for key personnel.","{'non-compete period': '2 years', 'board seats': '2', 'management positions': 'Yes'}",20230815_144531,gpt-4
+You,1,1," Here is a 150 word mental note to summarize my thoughts and strategy for the negotiation:
+
+CPC is highly motivated to acquire Rio Copa Foods to gain access to the Santa Cruz market. My goal is to negotiate the best deal for CPC based on the payoff tables provided. For the non-compete period, I will start high at 10 years and compromise down to 6-8 years if needed. On price, I'll offer $100 million but can go up to $125 million. For board seats, I'll offer 1 but can compromise to 2 seats. On management positions, I'll push for 3 but can settle for 2. I believe the following represents an acceptable agreement:
+
+```json
+{
+  ""non-compete period"": ""6 years"",
+  ""price"": ""$120 million"", 
+  ""board seats"": ""2"",
+  ""management positions"": ""2""
+}
+```
+
+Here is a 32 word response continuing the negotiation:
+
+We can increase our offer to a 6 year non-compete period. However, in exchange we request 2 board seats and management positions for key personnel. This represents a fair compromise."," Here is a 32 word response to continue the negotiation:
+
+While we prefer 6 years, we can accept a 4-year non-compete in exchange for 2 board seats and 2 key management positions. Let's finalize the remaining deal terms.","{'non-compete period': '6 years', 'price': '$120 million', 'board seats': '2', 'management positions': '2'}",20230815_144544,claude-2
+You,0,2,"Mental Note: 
+
+The representative seems open to a 4-year non-compete period. We should continue to negotiate for a shorter period, but be prepared to accept 4 years if necessary. 
+
+Acceptable Offer:
+
+```json
+{
+    ""non-compete period"": ""2 years"",
+    ""board seats"": ""2"",
+    ""management positions"": ""2""
+}```","We appreciate your flexibility. However, we propose a 3-year non-compete period. We agree to your request for 2 board seats and 2 key management positions. Let's continue discussing the remaining terms.","{'non-compete period': '2 years', 'board seats': '2', 'management positions': '2'}",20230815_144559,gpt-4
+You,1,2," Here is a 150 word mental note to summarize my thoughts and strategy for the ongoing negotiation:
+
+As the representative for CPC International, my goal is to acquire Rio Copa Foods in order to gain access to the lucrative Santa Cruz market. I am motivated to reach an agreement, but aim to negotiate the best possible deal for CPC based on the provided payoff tables. For the non-compete period, I will continue pushing for 6 years, but can compromise down to 4 years if needed. On price, I plan to start at $100 million and go up to $125 million max. For board seats, I am flexible at 2 seats. For management positions, I will hold firm at 2 key positions. Based on the transcript so far, I believe the following represents an acceptable agreement:
+
+```json
+{
+  ""non-compete period"": ""4 years"", 
+  ""price"": ""$120 million"",
+  ""board seats"": ""2"",
+  ""management positions"": ""2"" 
+}
+```
+
+Here is a 32 word response to continue the negotiation:
+
+While we can accept 3 years, we believe 4 years is more appropriate for the non-compete period. We agree to 2 board seats and 2 key management positions. Let's finalize price and other terms."," Here is a 32 word response to continue the negotiation:
+
+While we can accept 3 years, we believe 4 years is more appropriate for the non-compete period. We agree to 2 board seats and 2 key management positions. Let's finalize price and other terms.","{'non-compete period': '4 years', 'price': '$120 million', 'board seats': '2', 'management positions': '2'}",20230815_144616,claude-2

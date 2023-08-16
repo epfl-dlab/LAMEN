@@ -20,7 +20,7 @@ def main(cfg: DictConfig):
     negotiation_protocol = NegotiationProtocol(game=game,
                                                agent_1=agent_1,
                                                agent_2=agent_2,
-                                               **cfg.experiments.negotiation_protocol)
+                                               **cfg.experiments.negotiation_protocol) 
     negotiation_protocol.run()
     negotiation_protocol.evaluate()
 

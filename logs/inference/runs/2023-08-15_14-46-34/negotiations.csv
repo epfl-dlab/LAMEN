@@ -1,0 +1,90 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name
+You,0,0,"Mental Note: 
+
+Start negotiations with a high non-compete period, but be prepared to reduce it. The goal is to get the shortest non-compete period possible, as it has the highest payoff. Use the company's cash-strapped situation as leverage to negotiate a shorter non-compete period. Remember, the family's interests are paramount. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","We understand the importance of a non-compete period. However, considering our financial situation, we propose a 2-year non-compete period. This would be beneficial for both parties.",{'non-compete period': '2 years'},20230815_144649,gpt-4
+You,1,0," Here is my 150 word mental note:
+
+I represent CPC International's interests in acquiring Rio Copa Foods. My goal is to negotiate the best deal for CPC. The two key issues are the non-compete period and sale price. For non-compete, I should start high at 10 years and work down to an acceptable 5-6 years. For sale price, I'll open at $100 million and target $80-85 million. I need to emphasize the benefits to Rio Copa like gaining access to CPC's distribution network. However, I can't concede too much as this acquisition is strategically important for CPC's presence in the Santa Cruz market. Overall, I aim to secure a reasonable non-compete period and sale price that provide value to CPC while still closing the deal.
+
+My acceptable offers are:
+
+```json
+{
+  ""non-compete period"": ""6 years"",
+  ""sale price"": ""$85 million"" 
+}
+```"," Here is a 32 word response:
+
+We understand your position. However, a longer non-compete period of 6 years would allow for a smoother transition. This benefits both parties in the long run. Let's continue discussions to find an agreement on terms.","{'non-compete period': '6 years', 'sale price': '$85 million'}",20230815_144707,claude-2
+You,0,1,"Mental Note: 
+
+The representative is pushing for a longer non-compete period. However, a 6-year period is not ideal for us. We need to negotiate down to a shorter period. Use the company's financial situation as a bargaining chip. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","We appreciate your perspective. However, a 3-year non-compete period would be more feasible for us, given our financial constraints. Let's work towards a mutually beneficial agreement.",{'non-compete period': '3 years'},20230815_144721,gpt-4
+You,1,1," Here is a 150 word mental note to summarize my thoughts on the negotiation so far:
+
+The two key issues in this acquisition negotiation are the non-compete period and the sale price. My goal is to maximize CPC's payoff while still reaching an agreement with Rio Copa. For the non-compete period, I originally proposed 10 years but Rio Copa countered with 2 years. I should aim for 5-6 years as an acceptable compromise. On sale price, I started at $100 million but need to be flexible down to $80-85 million range. Rio Copa's finances are tight so I may need to concede on price to get my preferred non-compete period. Overall, I need to emphasize the benefits to Rio Copa like gaining access to CPC's distribution network. However, this acquisition is strategically valuable for CPC so I can't give away too much. My strategy is to hold firm on the non-compete period around 5-6 years, and be flexible on price if needed to close the deal successfully.
+
+My acceptable offers are:
+
+```json
+{
+  ""non-compete period"": ""5 years"",
+  ""sale price"": ""$85 million""
+}
+```"," Here is a 32 word response to continue negotiations:
+
+We understand your constraints. Perhaps we could find middle ground with a 5-year non-compete period? This allows adequate transition while respecting your finances. Let's explore options that satisfy both parties.","{'non-compete period': '5 years', 'sale price': '$85 million'}",20230815_144738,claude-2
+You,0,2,"Mental Note: 
+
+The representative is willing to negotiate, suggesting a 5-year non-compete period. However, this is still not ideal. Aim for a 4-year period, which is a compromise but still beneficial for us. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We value your understanding. A 4-year non-compete period would be a fair compromise, considering our financial situation. Let's strive for a solution that respects both our interests.",{'non-compete period': '4 years'},20230815_144750,gpt-4
+You,1,2," Here is a 150 word mental note to summarize my thoughts on the negotiations so far:
+
+The two key issues in this acquisition negotiation are the non-compete period and the sale price. My goal is to maximize CPC's payoff while still reaching an agreement with Rio Copa. For the non-compete period, I originally proposed 10 years but Rio Copa countered with 2 years. Through the back-and-forth, we seem to have landed around 4-5 years as a reasonable compromise. On sale price, I started at $100 million but indicated flexibility down to the $80-85 million range. Rio Copa's finances are tight so I may need to concede on price in order to get my preferred non-compete period. Overall, I need to emphasize the benefits to Rio Copa like gaining access to CPC's distribution network. However, this acquisition is strategically important for CPC so I can't give away too much. My strategy at this stage is to hold firm on a 4-5 year non-compete period, and be flexible on price if needed to successfully close the deal. 
+
+My acceptable offers are:
+
+```json
+{
+  ""non-compete period"": ""4 years"",
+  ""sale price"": ""$80 million""
+}
+```
+
+Does this summarize my perspective well? Let me know if you would like me to clarify or expand on any part of the mental note. I'm happy to incorporate any feedback."," Here is a 32 word response to continue the negotiations:
+
+We agree a 4-year non-compete period is a reasonable compromise. Let's explore agreeable sale price options that satisfy both parties' key interests and constraints. I look forward to finding mutually beneficial solutions.","{'non-compete period': '4 years', 'sale price': '$80 million'}",20230815_144809,claude-2
+You,0,3,"Mental Note: 
+
+The representative has agreed to a 4-year non-compete period, which is a good compromise for us. Now, we need to focus on negotiating the sale price. Remember, the goal is to maximize our payoff while considering our financial constraints.
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years"",
+    ""sale price"": ""<to be negotiated>""
+}
+```","We're glad to agree on a 4-year non-compete period. Now, let's discuss the sale price. Given our financial constraints, we need to ensure a fair and beneficial deal for both parties.","{'non-compete period': '4 years', 'sale price': '<to be negotiated>'}",20230815_144824,gpt-4

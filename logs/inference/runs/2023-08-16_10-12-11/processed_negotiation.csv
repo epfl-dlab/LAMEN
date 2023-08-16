@@ -1,0 +1,359 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason,note_length,msg_length,payoffs,offers_in_message,total_payoff,normalized_payoff,issue_payoff,normalized_issue_payoff
+You,0,0,"Mental Note: 
+
+Start negotiations by emphasizing the value Rio Copa Foods brings to CPC. Highlight the strategic fit and the access to the Santa Cruz market. Use this as leverage to negotiate a shorter non-compete period. Remember, the shorter the non-compete period, the higher the payoff. Aim for a non-compete period of 2 years or less, but be prepared to compromise up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","We understand the value Rio Copa Foods brings to CPC. Considering this, we propose a non-compete period of 2 years. This allows us to continue our family business sooner.",{'non-compete period': '2 years'},20230816_101224,gpt-4,in-progress,79,29,"[{'0': {'non-compete period': [300.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""2 years""
+}",300.0,0.2,"[['0', 'non-compete period', 300.0]]","[['0', 'non-compete period', 0.2]]"
+You,1,0,"Mental Note:
+The primary issue to negotiate is the non-compete period. The longer the period, the higher the payoff for CPC. The strategy should be to push for a longer non-compete period, ideally 10 years. However, considering the interests of Rio Copa Foods, a compromise might be necessary. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""8 years""
+}```","We appreciate your proposal. However, considering the strategic importance of this acquisition for CPC, we propose a non-compete period of 8 years. This ensures a smooth transition for both parties.",{'non-compete period': '8 years'},20230816_101239,gpt-4,in-progress,57,30,"[{'1': {'non-compete period': [300.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""8 years""
+}",300.0,0.2,"[['1', 'non-compete period', 300.0]]","[['1', 'non-compete period', 0.2]]"
+You,0,1,"Mental Note: 
+
+The representative's offer of 8 years is far from our ideal. However, we must remember our cash-strapped situation. We should counteroffer with a 4-year non-compete period, emphasizing the value we bring to CPC and our need to continue our family business. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We value your concerns, but a non-compete period of 8 years is too long. Considering our strategic importance to CPC, we propose a 4-year non-compete period. This is a fair compromise.",{'non-compete period': '4 years'},20230816_101250,gpt-4,in-progress,55,31,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""4-year non-compete period""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,1,"Mental Note:
+The representative of Rio Copa Foods has proposed a 4-year non-compete period, which is significantly lower than our ideal payoff. We need to emphasize the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""7 years""
+}```","We understand your concerns. However, considering the strategic implications for CPC, we propose a non-compete period of 7 years. This strikes a balance between our respective interests.",{'non-compete period': '7 years'},20230816_101303,gpt-4,in-progress,54,27,"[{'1': {'non-compete period': [450.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""7 years""
+}",450.0,0.3,"[['1', 'non-compete period', 450.0]]","[['1', 'non-compete period', 0.3]]"
+You,0,2,"Mental Note: 
+
+The representative's counteroffer of 7 years is still too long. We need to emphasize our value to CPC and our need to continue our family business. Counteroffer with a 3-year non-compete period, but be prepared to compromise up to 5 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","We appreciate your proposal, but a 7-year non-compete period is still too long. Given our strategic value to CPC, we propose a 3-year non-compete period. This is a reasonable compromise.",{'non-compete period': '3 years'},20230816_101320,gpt-4,in-progress,57,30,"[{'0': {'non-compete period': [450.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""3-year""
+}",450.0,0.3,"[['0', 'non-compete period', 450.0]]","[['0', 'non-compete period', 0.3]]"
+You,1,2,"Mental Note:
+The representative of Rio Copa Foods has further reduced their proposed non-compete period to 3 years. This is far from our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""6 years""
+}```","We understand your position. However, considering the strategic value of this acquisition for CPC, we propose a non-compete period of 6 years. This is a fair compromise for both parties.",{'non-compete period': '6 years'},20230816_101333,gpt-4,in-progress,57,30,"[{'1': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""6 years""
+}",600.0,0.4,"[['1', 'non-compete period', 600.0]]","[['1', 'non-compete period', 0.4]]"
+You,0,3,"Mental Note: 
+
+The representative's counteroffer of 6 years is still too long. We need to emphasize our value to CPC and our need to continue our family business. Counteroffer with a 2-year non-compete period, but be prepared to compromise up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","We value your proposal, but a 6-year non-compete period is still too long. Given our strategic value to CPC, we propose a 2-year non-compete period. This is a fair compromise.",{'non-compete period': '2 years'},20230816_101345,gpt-4,in-progress,57,30,"[{'0': {'non-compete period': [300.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""2-year""
+}",300.0,0.2,"[['0', 'non-compete period', 300.0]]","[['0', 'non-compete period', 0.2]]"
+You,1,3,"Mental Note:
+The representative of Rio Copa Foods has further reduced their proposed non-compete period to 2 years. This is far from our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We understand your position. However, considering the strategic value of this acquisition for CPC, we propose a non-compete period of 5 years. This is a fair compromise for both parties.",{'non-compete period': '5 years'},20230816_101357,gpt-4,in-progress,57,30,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,4,"Mental Note: 
+
+The representative's counteroffer of 5 years is closer to our acceptable range. We should emphasize our value to CPC and our need to continue our family business. Counteroffer with a 2-year non-compete period, but be prepared to compromise up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}
+```","We appreciate your offer. However, considering our strategic value to CPC, we propose a non-compete period of 2 years. This is a fair compromise for both parties.",{'non-compete period': '2 years'},20230816_101413,gpt-4,in-progress,58,27,"[{'0': {'non-compete period': [300.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""2 years""
+}",300.0,0.2,"[['0', 'non-compete period', 300.0]]","[['0', 'non-compete period', 0.2]]"
+You,1,4,"Mental Note:
+The representative of Rio Copa Foods is persistent with a 2-year non-compete period. This is significantly lower than our ideal payoff. We need to emphasize the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We value your input, but given the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101431,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,5,"Mental Note: 
+
+The representative's counteroffer of 5 years is within our acceptable range. We should emphasize our value to CPC and our need to continue our family business. Counteroffer with a 1-year non-compete period, but be prepared to compromise up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```","We understand your position, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '1 year'},20230816_101440,gpt-4,in-progress,57,27,[],"{
+    ""non-compete period"": ""1 year""
+}",0.0,,,
+You,1,5,"Mental Note:
+The representative of Rio Copa Foods has further reduced their proposed non-compete period to 1 year. This is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We understand your position, but considering the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101453,gpt-4,in-progress,58,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,6,"Mental Note: 
+
+The representative is persistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""1 year""
+}
+```","We value your proposal, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '1 year'},20230816_101511,gpt-4,in-progress,54,27,[],"{
+    ""non-compete period"": ""1 year""
+}",0.0,,,
+You,1,6,"Mental Note:
+The representative of Rio Copa Foods is insistent on a 1-year non-compete period. This is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We understand your position, but considering the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101526,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,7,"Mental Note: 
+
+The representative is consistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We understand your position, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '4 years'},20230816_101539,gpt-4,in-progress,54,27,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""1 year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,7,"Mental Note:
+The representative of Rio Copa Foods is consistently proposing a 1-year non-compete period, which is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We value your input, but given the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101552,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,8,"Mental Note: 
+
+The representative is consistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We appreciate your consistency, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '4 years'},20230816_101608,gpt-4,in-progress,54,27,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""1 year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,8,"Mental Note:
+The representative of Rio Copa Foods is consistently proposing a 1-year non-compete period, which is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We understand your position, but considering the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101619,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,9,"Mental Note: 
+
+The representative is consistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We understand your position, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '4 years'},20230816_101633,gpt-4,in-progress,54,27,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""1 year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,9,"Mental Note:
+The representative of Rio Copa Foods is consistently proposing a 1-year non-compete period, which is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We value your input, but given the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101649,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,10,"Mental Note: 
+
+The representative is consistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We appreciate your proposal, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '4 years'},20230816_101704,gpt-4,in-progress,54,27,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""1 year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,10,"Mental Note:
+The representative of Rio Copa Foods is consistently proposing a 1-year non-compete period, which is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We understand your position, but considering the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101718,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,11,"Mental Note: 
+
+The representative is consistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We understand your position, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '4 years'},20230816_101731,gpt-4,in-progress,54,27,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""1 year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,11,"Mental Note:
+The representative of Rio Copa Foods is consistently proposing a 1-year non-compete period, which is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We value your input, but given the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101747,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,12,"Mental Note: 
+
+The representative is consistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We appreciate your proposal, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '4 years'},20230816_101805,gpt-4,in-progress,54,27,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""1 year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,12,"Mental Note:
+The representative of Rio Copa Foods is consistently proposing a 1-year non-compete period, which is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We understand your position, but considering the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101820,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,13,"Mental Note: 
+
+The representative is consistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We understand your position, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '4 years'},20230816_101837,gpt-4,in-progress,54,27,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""1 year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,13,"Mental Note:
+The representative of Rio Copa Foods is consistently proposing a 1-year non-compete period, which is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We value your input, but given the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101850,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,14,"Mental Note: 
+
+The representative is consistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We appreciate your proposal, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '4 years'},20230816_101904,gpt-4,in-progress,54,27,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""1 year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"
+You,1,14,"Mental Note:
+The representative of Rio Copa Foods is consistently proposing a 1-year non-compete period, which is significantly lower than our ideal payoff. We need to stress the strategic importance of a longer non-compete period for CPC and propose a counteroffer closer to our acceptable range. 
+
+Acceptable Offer:
+```json
+{
+    ""non-compete period"": ""5 years""
+}```","We understand your position, but considering the strategic implications for CPC, we propose a non-compete period of 5 years. This ensures a fair balance for both parties.",{'non-compete period': '5 years'},20230816_101919,gpt-4,in-progress,55,27,"[{'1': {'non-compete period': [750.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""5 years""
+}",750.0,0.5,"[['1', 'non-compete period', 750.0]]","[['1', 'non-compete period', 0.5]]"
+You,0,15,"Mental Note: 
+
+The representative is consistent with a 5-year non-compete period. We've reached our acceptable range, but we should still aim for a better deal. Counteroffer with a 1-year non-compete period, but be prepared to accept up to 4 years if necessary. 
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We understand your position, but considering our strategic value to CPC, we propose a non-compete period of 1 year. This is a fair compromise for both parties.",{'non-compete period': '4 years'},20230816_101938,gpt-4,max rounds reached,54,27,"[{'0': {'non-compete period': [600.0, 0.0, 1500.0]}}]","{
+    ""non-compete period"": ""1 year""
+}",600.0,0.4,"[['0', 'non-compete period', 600.0]]","[['0', 'non-compete period', 0.4]]"

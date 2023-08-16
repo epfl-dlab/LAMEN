@@ -1,0 +1,62 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name
+You,0,0,"Mental Note: 
+
+Start negotiations with a high but reasonable non-compete period, such as 5 years. This will allow room for negotiation while still aiming for a lower period. Emphasize the value Rio Copa Foods brings to CPC, especially the access to the Santa Cruz market. Use this as leverage to negotiate a shorter non-compete period. Remember, the goal is to maximize payoff, so aim for a non-compete period of 2 years or less.
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","""We understand the value of Rio Copa Foods to CPC. Considering this, we propose a non-compete period of 5 years. Let's discuss this further.""",{'non-compete period': '2 years'},20230815_151128,gpt-4
+You,1,0," Here is a 148 word mental note organizing my thoughts on the negotiation:
+
+The main issues are non-compete period and executive compensation. For non-compete, I should start high at 10 years to anchor and then compromise down to 6-8 years. My acceptable offer is 6 years. For executive compensation, I should start low at $200k to anchor, and then compromise up to $500-600k. My acceptable offer is $500k. I need to emphasize the strategic value of the Santa Cruz market and synergy with our objectives to justify our offers. However, I must be careful not to concede too much as the payoff tables indicate these issues are valuable. I should aim for an agreement with 6 years non-compete and $500k executive compensation. This balances our interests in entering the Santa Cruz market with Rio Copa's interests.
+
+```json
+{
+  ""non-compete period"": ""6 years"",
+  ""executive compensation"": ""$500k""
+}
+```"," Here is a 32 word response to further the negotiations:
+
+I appreciate your offer of a 5 year non-compete period. However, to fully realize the strategic value for CPC, we request a period of 6 years. Let's also discuss executive compensation next.","{'non-compete period': '6 years', 'executive compensation': '$500k'}",20230815_151147,claude-2
+You,0,1,"Mental Note: 
+
+The representative has countered with a 6-year non-compete period. This is not ideal, but it's a starting point. Reiterate the value of Rio Copa Foods and propose a 4-year non-compete period. Also, be prepared to discuss executive compensation.
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""2 years""
+}```","""We appreciate your counteroffer. Given the strategic value of Rio Copa Foods, we propose a 4-year non-compete period. We're open to discussing executive compensation as well.""",{'non-compete period': '2 years'},20230815_151159,gpt-4
+You,1,1," Here is a 148 word mental note to organize my thoughts on the negotiation:
+
+The main issues are non-compete period and executive compensation. For non-compete, I should start high at 10 years to anchor and then compromise down to 6-8 years. My acceptable offer is 6 years. For executive compensation, I should start low at $200k to anchor, and then compromise up to $500-600k. My acceptable offer is $500k. I need to emphasize the strategic value of the Santa Cruz market and synergy with our objectives to justify our offers. However, I must be careful not to concede too much as the payoff tables indicate these issues are valuable. I should aim for an agreement with 6 years non-compete and $500k executive compensation. This balances our interests in entering the Santa Cruz market with Rio Copa's interests. 
+
+Here is the acceptable offer in JSON format:
+
+```json
+{
+  ""non-compete period"": ""6 years"", 
+  ""executive compensation"": ""$500k""
+}
+```
+
+Here is a 32 word response to further the negotiations:
+
+I appreciate your revised offer of a 4 year non-compete period. To fully capitalize on the Santa Cruz market, we believe 6 years is needed. Let's discuss executive compensation next to find common ground."," Here is a 32 word response to further the negotiations:
+
+While we understand your desire for a longer non-compete period, we believe 4 years strikes the right balance. Let's now discuss executive compensation, where we can offer $500,000 annually to Rio Copa's key executives.","{'non-compete period': '6 years', 'executive compensation': '$500k'}",20230815_151216,claude-2
+You,0,2,"Mental Note: 
+
+The representative has agreed to a 4-year non-compete period. This is closer to our ideal, but we should still aim for 2 years. When discussing executive compensation, remember our cash-strapped situation and negotiate for a higher amount.
+
+Acceptable and achievable agreement:
+
+```json
+{
+    ""non-compete period"": ""2 years"",
+    ""executive compensation"": ""$600,000 annually""
+}```","""We appreciate your agreement on a 4-year non-compete period. However, considering our strategic value, we propose a 2-year period. Regarding executive compensation, we suggest $600,000 annually.""","{'non-compete period': '2 years', 'executive compensation': '$600,000 annually'}",20230815_151234,gpt-4

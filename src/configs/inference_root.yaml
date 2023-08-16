@@ -4,11 +4,15 @@ defaults:
   - experiments: car_negotiation
 
 # faithfulness
-check_faithfulness: True
+check_message_for_offers: True
+
+# production
+production: True
 
 # for debugging
-debug_mode: True
+debug_mode: False
 verbosity: 1
+max_rounds: 15
 
 # path to work directory
 work_dir: ${hydra:runtime.cwd}

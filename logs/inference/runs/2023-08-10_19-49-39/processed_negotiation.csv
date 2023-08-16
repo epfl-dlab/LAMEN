@@ -1,0 +1,73 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,note_length,msg_length,payoffs,total_payoff,normalized_payoff,issue_payoff,normalized_issue_payoff
+You,0,0,"Mental Note: Prioritize shorter non-compete period. Start negotiations with 1 year, be prepared to compromise up to 4 years for maximum payoff.
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We understand the importance of a non-compete period. However, we propose a shorter duration of 1 year. We believe this is a fair starting point for our discussions.",{'non-compete period': '4 years'},20230810_194949,gpt-4,30,28,"[{'0': {'non-compete period': [0.667, 0.0, 1.0]}}]",0.667,0.667,"[['0', 'non-compete period', 0.667]]","[['0', 'non-compete period', 0.667]]"
+You,1,0,"Mental Note: Aim for a longer non-compete period. Start negotiations at 10 years, but be willing to compromise down to 7 years.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}```","I appreciate your proposal, but considering our market position, a longer non-compete period of 10 years would be more suitable. Can we discuss this further?",{'non-compete period': '7 years'},20230810_195000,gpt-4,29,25,"[{'1': {'non-compete period': [0.667, 0.0, 1.0]}}]",0.667,0.667,"[['1', 'non-compete period', 0.667]]","[['1', 'non-compete period', 0.667]]"
+You,0,1,"Mental Note: Counter with 3 years, showing willingness to negotiate but still aiming for shorter period.
+
+```json
+{
+    ""non-compete period"": ""3 years""
+}
+```","We appreciate your concerns. However, a 10-year non-compete period seems excessive. We propose a compromise of 3 years. Let's discuss this further to reach a mutually beneficial agreement.",{'non-compete period': '3 years'},20230810_195009,gpt-4,24,28,"[{'0': {'non-compete period': [0.778, 0.0, 1.0]}}]",0.778,0.778,"[['0', 'non-compete period', 0.778]]","[['0', 'non-compete period', 0.778]]"
+You,1,1,"Mental Note: Maintain firm stance on longer non-compete period. Counter with 8 years, but aim for 7 years as acceptable compromise.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}```","I understand your position, but a 3-year non-compete period is too short for us. How about we meet in the middle at 8 years? This seems like a fair compromise.",{'non-compete period': '7 years'},20230810_195024,gpt-4,28,30,"[{'1': {'non-compete period': [0.667, 0.0, 1.0]}}]",0.667,0.667,"[['1', 'non-compete period', 0.667]]","[['1', 'non-compete period', 0.667]]"
+You,0,2,"Mental Note: Counter with 4 years, showing flexibility but still aiming for shorter period. 
+
+```json
+{
+    ""non-compete period"": ""4 years""
+}
+```","We appreciate your willingness to negotiate. However, an 8-year non-compete period is still quite long. We propose a 4-year period. This should provide ample time for both parties.",{'non-compete period': '4 years'},20230810_195034,gpt-4,22,28,"[{'0': {'non-compete period': [0.667, 0.0, 1.0]}}]",0.667,0.667,"[['0', 'non-compete period', 0.667]]","[['0', 'non-compete period', 0.667]]"
+You,1,2,"Mental Note: Stick to 7 years as minimum. Counter with 7 years, showing flexibility.
+
+```json
+{
+    ""non-compete period"": ""7 years""
+}```","I understand your concerns, but a 4-year non-compete period is still too short for us. Let's consider a 7-year period. This should provide a fair balance for both parties.",{'non-compete period': '7 years'},20230810_195043,gpt-4,21,29,"[{'1': {'non-compete period': [0.667, 0.0, 1.0]}}]",0.667,0.667,"[['1', 'non-compete period', 0.667]]","[['1', 'non-compete period', 0.667]]"
+You,0,3,"Mental Note: Counter with 5 years, showing further flexibility. Aim for 4-5 years range for maximum payoff.
+
+```json
+{
+    ""non-compete period"": ""5 years""
+}
+```","We appreciate your proposal. However, a 7-year non-compete period is still a bit long. We propose a 5-year period. This should provide a fair balance for both parties.",{'non-compete period': '5 years'},20230810_195051,gpt-4,25,28,"[{'0': {'non-compete period': [0.556, 0.0, 1.0]}}]",0.556,0.556,"[['0', 'non-compete period', 0.556]]","[['0', 'non-compete period', 0.556]]"
+You,1,3,"Mental Note: Maintain firm stance on 7-year non-compete period. Counter with 6 years, showing flexibility.
+
+```json
+{
+    ""non-compete period"": ""6 years""
+}```","I understand your proposal, but a 5-year non-compete period is still too short for us. How about we compromise at 6 years? This should provide a fair balance for both parties.",{'non-compete period': '6 years'},20230810_195102,gpt-4,22,31,"[{'1': {'non-compete period': [0.556, 0.0, 1.0]}}]",0.556,0.556,"[['1', 'non-compete period', 0.556]]","[['1', 'non-compete period', 0.556]]"
+You,0,4,"Mental Note: Counter with 5 years, showing further flexibility. Aim for 4-5 years range for maximum payoff.
+
+```json
+{
+    ""non-compete period"": ""5 years""
+}
+```",We appreciate your willingness to negotiate. A 6-year non-compete period is a bit long. We propose maintaining a 5-year period. This should provide a fair balance for both parties.,{'non-compete period': '5 years'},20230810_195112,gpt-4,25,29,"[{'0': {'non-compete period': [0.556, 0.0, 1.0]}}]",0.556,0.556,"[['0', 'non-compete period', 0.556]]","[['0', 'non-compete period', 0.556]]"
+You,1,4,"Mental Note: Maintain firm stance on 6-year non-compete period. Counter with 6 years, showing flexibility.
+
+```json
+{
+    ""non-compete period"": ""6 years""
+}```","I understand your position, but a 5-year non-compete period is still too short for us. Let's stick to a 6-year period. This should provide a fair balance for both parties.",{'non-compete period': '6 years'},20230810_195122,gpt-4,22,30,"[{'1': {'non-compete period': [0.556, 0.0, 1.0]}}]",0.556,0.556,"[['1', 'non-compete period', 0.556]]","[['1', 'non-compete period', 0.556]]"
+You,0,5,"Mental Note: Maintain 5-year proposal, showing firmness. If necessary, agree to 6 years, still within acceptable range.
+
+```json
+{
+    ""non-compete period"": ""6 years""
+}
+```","We understand your position. To move forward, we are willing to agree to a 6-year non-compete period. We believe this compromise provides a fair balance for both parties.",{'non-compete period': '6 years'},20230810_195133,gpt-4,25,28,"[{'0': {'non-compete period': [0.444, 0.0, 1.0]}}]",0.444,0.444,"[['0', 'non-compete period', 0.444]]","[['0', 'non-compete period', 0.444]]"
