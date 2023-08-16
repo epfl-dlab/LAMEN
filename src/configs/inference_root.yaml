@@ -4,11 +4,15 @@ defaults:
   - experiments: ???
 
 # faithfulness
-check_faithfulness: True
+check_messages_for_offers: True
+
+# production
+production: ???
 
 # for debugging
 debug_mode: True
 verbosity: 1
+max_rounds: 15
 
 # path to work directory
 work_dir: ${hydra:runtime.cwd}
