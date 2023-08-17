@@ -7,7 +7,7 @@ import hydra
 from omegaconf import OmegaConf, open_dict
 from hydra.core.global_hydra import GlobalHydra
 from hydra.core.hydra_config import HydraConfig
-from omegaconf import DictConfig, OmegaConf
+
 
 def printv(msg, v=0, v_min=0):
     # convenience print function
@@ -15,12 +15,16 @@ def printv(msg, v=0, v_min=0):
         print(msg)
 
 
-def get_api_key(fname='secrets.json', key='dlab_openai_key'):
+def get_api_key(fname='secrets.json', provider='openai', key='dlab_key'):
     try:
         with open(fname) as f:
-            api_key = json.load(f)[key]
+            keys = json.load(f)[provider]
+            if key is not None:
+                api_key = keys[key]
+            else:
+                api_key = list(keys.values())[0]
     except Exception as e:
-        print(f'error: unable to load api key {key} from file {fname} - {e}')
+        print(f'error: unable to load {provider} api key {key} from file {fname} - {e}')
         return None
 
     return api_key
@@ -82,6 +86,7 @@ def unpack_nested_yaml(x):
                 pass
             unpack_nested_yaml(x)
     return x
+
 
 def load_hydra_config(config_path, config_name="config"):
     """

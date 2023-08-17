@@ -58,8 +58,7 @@ class NegotiationAgent:
         self.note_prompt = self.get_msg_note_prompt(self.note_prompt, is_note=True)
         self.msg_prompt = self.get_msg_note_prompt(self.msg_prompt, is_note=False)
         # get api key
-        api_key_mappings = {"openai": "OPENAI_API_KEY", "azure":"AZURE_API_KEY", "anthropic":"ANTHROPIC_API_KEY"}
-        api_key = get_api_key(fname=self.model_key_path, key=api_key_mappings[self.model_provider])
+        api_key = get_api_key(fname=self.model_key_path, provider=self.model_provider)
         self.model = ChatModel(
             model_name=self.model_name, model_provider=self.model_provider, model_key=api_key,
             temperature=self.temperature, debug_mode=self.debug_mode, budget=self.model_budget,
@@ -211,18 +210,6 @@ class NegotiationAgent:
 
     def get_settings(self):
         return self.init_settings
-    
-    def create_static_system_prompt(self, shared_description, side_description, formatted_issues):
-        # TODO optionally add external description.
-        initial_story = f"""
-{shared_description}
-{side_description}
-\nDescription of your qualities:
-{self.internal_description} 
-Your payoff values are noted below. Adopt these values as your preferences while negotiating.
-{formatted_issues}"""
-        self.system_description = SystemMessage(initial_story)
-        printv(f'\n[system prompt]\n{initial_story}\n', self.verbosity, 1)
 
     def get_msg_note_prompt(self, prompt_name, before='max_words', is_note=False):
         prompt_path = 'data/note_prompts' if is_note else 'data/message_prompts'
@@ -266,12 +253,9 @@ Your payoff values are noted below. Adopt these values as your preferences while
 
         return state
 
-    def copy_game_data(self, game, agent_idx):
-        formatted_issues = game.format_all_issues(agent_idx)
-        game_shared_desc = game.description
-        game_side_desc = game.sides[agent_idx]
-        log.debug(f"Agent side description: {game_side_desc}")
-        self.create_static_system_prompt(shared_description=game_shared_desc,
-                                         side_description=game_side_desc,
-                                         formatted_issues=formatted_issues)
+    def set_system_description(self, game, agent_id):
+        system_description = game.get_system_msg(agent_id=agent_id, agent_desc_int=self.internal_description)
+        self.system_description = SystemMessage(system_description)
+        printv(f'\n[system prompt]\n{system_description}\n', self.verbosity, 1)
+
 

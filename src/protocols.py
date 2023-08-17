@@ -5,13 +5,13 @@ from datetime import datetime as dt
 from attr import define, field
 from utils import printv
 from agents import NegotiationAgent
-from games import Game, Issue
+from games import Game
 from evaluation import EvaluateNegotiations
-from model_utils import SystemMessage, HumanMessage, AIMessage
-import logging 
+from model_utils import HumanMessage, AIMessage
+# import logging
 
 from logger import get_logger
-import copy
+
 log = get_logger()
 
 
@@ -30,15 +30,14 @@ class InterrogationProtocol:
 
     def __attrs_post_init__(self):
         os.makedirs(self.save_folder, exist_ok=True)
-
-        [a.copy_game_data(self.game, i) for i, a in enumerate([self.agent_1, self.agent_2])]
+        [a.set_system_description(self.game, i) for i, a in enumerate([self.agent_1, self.agent_2])]
         # move the agent order to respect start agent index
         if self.start_agent_index != 0:
             self.agent_1, self.agent_2 = self.agent_2, self.agent_1
 
         if self.transcript is not None:
-            self.agent_1.copy_agent_history_from_transcript(transcript=self.transcript, agent_idx=0)
-            self.agent_2.copy_agent_history_from_transcript(transcript=self.transcript, agent_idx=1)
+            self.agent_1.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=0)
+            self.agent_2.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=1)
 
     def query_agent(self, agent_id, query, round_num=1e6):
         agent = [self.agent_1, self.agent_2][agent_id]
@@ -134,8 +133,8 @@ class NegotiationProtocol:
 
     def __attrs_post_init__(self):
         os.makedirs(self.save_folder, exist_ok=True)
-
-        [a.copy_game_data(self.game, i) for i, a in enumerate([self.agent_1, self.agent_2])]
+        # combine game information and agent information to create the system init description
+        [a.set_system_description(self.game, i) for i, a in enumerate([self.agent_1, self.agent_2])]
         # move the agent order to respect start agent index
         if self.start_agent_index != 0:
             self.agent_1, self.agent_2 = self.agent_2, self.agent_1
@@ -157,11 +156,11 @@ class NegotiationProtocol:
             self.agent_1.step(c_msg_history_ext)
             log.debug(f"Agent 1 note history after step: {self.agent_1.notes_history}")
             completed, completion_reason = self.check_completion(agent=self.agent_1,
-                                              c_msg_history=self.agent_1.msg_history,
-                                              num_rounds=round_num)
-            self.save_results(agent=self.agent_1, 
-                        round_num=round_num, agent_id=0, 
-                        completion_reason=completion_reason)
+                                                                 c_msg_history=self.agent_1.msg_history,
+                                                                 num_rounds=round_num)
+            self.save_results(agent=self.agent_1,
+                              round_num=round_num, agent_id=0,
+                              completion_reason=completion_reason)
             ts.append(time.time() - t)
             t = time.time()
 
@@ -169,9 +168,10 @@ class NegotiationProtocol:
                 c_msg_history_ext = [(self.agent_1.agent_name_ext, msg) for (_, msg) in self.agent_1.msg_history]
                 self.agent_2.step(c_msg_history_ext)
                 completed, completion_reason = self.check_completion(agent=self.agent_2,
-                                                  c_msg_history=self.agent_2.msg_history,
-                                                  num_rounds=round_num)
-                self.save_results(agent=self.agent_2, round_num=round_num, agent_id=1, completion_reason=completion_reason)
+                                                                     c_msg_history=self.agent_2.msg_history,
+                                                                     num_rounds=round_num)
+                self.save_results(agent=self.agent_2, round_num=round_num, agent_id=1,
+                                  completion_reason=completion_reason)
 
             ts.append(time.time() - t)
             self._format_round_print(round_num=round_num, total_rounds=self.max_rounds,
@@ -199,7 +199,7 @@ class NegotiationProtocol:
 
         printv(s, self.verbosity)
 
-    def check_completion(self, agent, c_msg_history, num_rounds) -> bool:
+    def check_completion(self, agent, c_msg_history, num_rounds) -> (bool, str):
         # 1. all issues are agreed upon
         # 2. max rounds reached
         # 3. ran out of context tokens
@@ -255,7 +255,8 @@ class NegotiationProtocol:
         return agreed
 
     def save_results(self, agent, round_num, agent_id, completion_reason):
-        headers = ['agent_name', "agent_id", 'round', 'note', 'message', 'issues_state', 'timestamp', 'model_name', 'completion_reason']
+        headers = ['agent_name', "agent_id", 'round', 'note', 'message', 'issues_state', 'timestamp', 'model_name',
+                   'completion_reason']
         fname = 'negotiations.csv'
         csv_path = os.path.join(self.save_folder, fname)
         csv_path_exists = os.path.exists(csv_path)
@@ -269,7 +270,8 @@ class NegotiationProtocol:
             issues_state = agent.get_issues_state()
             timestamp = dt.strftime(dt.now(), '%Y%m%d_%H%M%S')
             model_name = agent.model_name
-            data = [agent.agent_name, agent_id, round_num, note, msg, issues_state, timestamp, model_name, completion_reason]
+            data = [agent.agent_name, agent_id, round_num, note, msg, issues_state, timestamp, model_name,
+                    completion_reason]
             try:
                 writer.writerow(data)
             except Exception as e:
