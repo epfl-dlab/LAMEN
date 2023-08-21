@@ -33,6 +33,7 @@ from logger import get_logger
 
 log = get_logger()
 
+
 @define
 class Game:
     name: str
@@ -70,15 +71,28 @@ class Game:
             for rule in self.rules:
                 self.description += '\n' + rule
 
-    def get_system_msg(self):
-        pass
+    def get_system_msg(self, agent_id, agent_desc_int):
+        # TODO: optionally, incorporate agent_desc_ext
+        log.debug(f"Agent {agent_id} side description: {self.sides[agent_id]}")
+        initial_story = f"""
+{self.description}
+{self.sides[agent_id]}
+\nDescription of your qualities:
+{agent_desc_int} 
+Your payoff values are noted below. Adopt these values as your preferences while negotiating.
+{self.format_all_issues(agent_id)}"""
+        return initial_story
 
     def load_issues(self, issues_path="data/issues/"):
         issues = []
         for issue in self.issues:
             if isinstance(issue, str):
-                fname = os.path.join(issues_path, issue + '.yaml')
+                if not issue.endswith('.yaml'):
+                    issue += '.yaml'
+                fname = os.path.join(issues_path, issue)
                 issues.append(Issue.load(fname))
+            if isinstance(issue, dict):
+                issues.append(Issue.from_dict(issue))
         if len(issues) > 0:
             self.issues = issues
 
@@ -167,7 +181,7 @@ class Issue:
             return dict_0, dict_1
         else:
             raise NotImplementedError(f"Category not in payoffs, payoff_labels, descriptions")
-    
+
     def format_issue(self, idx):
         issue_format = self.name + "\n"
         # descending order on issue weights for prompt

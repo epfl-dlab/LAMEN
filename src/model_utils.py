@@ -9,6 +9,7 @@ from utils import get_api_key
 import openai
 import time
 from datetime import datetime as dt
+from attr import define, field
 
 
 class BaseMessage(ABC):
@@ -60,56 +61,51 @@ class SystemMessage(BaseMessage):
         return SystemMessage(self.content + "\n" + otherSystem.content)
     
 
+@define
 class ChatModel:
-    def __init__(self, model_key: str = None, model_key_path=None, model_key_name=None,
-                 model_provider: str = "openai", model_name: str = "gpt-3.5-turbo", temperature: float = 0.0,
-                 budget=10., debug_mode=False, **kwargs) -> None:
-        """
-        Basic LLM API model wrapper class
 
-        # TODO: (1) error handling
-        #       (2) expand support
-        #       (3) move to aiohttp REST API calls
-        #       (4) add streaming mode
-        # prepare payload
-        # make the call
-        # process output
-        """
+    """
+    Basic LLM API model wrapper class
 
-        # get the correct api-key from environment
-        # TODO: improve how we get API keys.
-        # @td NOTE: use simple function 'get_api_key()' I added to utils.py
-        api_key_mappings = {"openai": "OPENAI_API_KEY", "azure":"AZURE_API_KEY", "anthropic":"ANTHROPIC_API_KEY"}
-        if model_key is None:
-            model_key = get_api_key(fname=model_key_path, key=api_key_mappings[model_provider])
-            print(model_key)
+    # TODO: (1) error handling
+    #       (2) expand support
+    #       (3) move to aiohttp REST API calls
+    #       (4) add streaming mode
+    # prepare payload
+    # make the call
+    # process output
+    """
+    model_provider: str = 'openai'
+    model_name: str = 'gpt-3.5-turbo'
+    model_key: str = field(default=None)
+    model_key_path: str = field(default='secrets.json')
+    model_key_name: str = field(default=None)
 
-        self.model_key = model_key
-        self.model_provider = model_provider
+    debug_mode: bool = False
+    temperature: float = 0.0
+    generation_params: dict = field(factory=dict)
 
-        self.debug_mode = debug_mode
-        #  generation params
-        self._model_name, self.model_name = model_name, model_name  #
-        self.temperature = temperature
-        self.generation_params = kwargs
+    # keep track of costs
+    budget: float = 10.
+    session_prompt_costs: float = 0.
+    session_completion_costs: float = 0.
 
+    def __attrs_post_init__(self):
+
+        if self.model_key is None:
+            self.model_key = get_api_key(fname=self.model_key_path, provider=self.model_provider,
+                                         key=self.model_key_name)
         # get model api details
-        model_details = get_model_details(model_name)
+        model_details = get_model_details(self.model_name)
         self.context_max_tokens = model_details['max_tokens']
         self.prompt_cost = model_details['prompt_cost']
         self.completion_cost = model_details['completion_cost']
         self.tpm = model_details['tpm']
         self.rpm = model_details['rpm']
-
-        # keep track of costs
-        self.budget = budget
-        self.session_prompt_costs = 0
-        self.session_completion_costs = 0
-
         # get api info
-        self.api_info = get_api_settings(model_provider)
+        self.api_info = get_api_settings(self.model_provider)
 
-        #  only single generations currently implemented
+        # only single generations currently implemented
         if self.generation_params.get("n", 1) >= 2:
             raise NotImplementedError("Need to implement for more than one generation.")
 
@@ -236,7 +232,6 @@ class ChatModel:
 
         else:
             raise NotImplementedError(f"'{self.model_name}' has not yet been implemented")
-            
 
     def check_context_len(self, context: List[BaseMessage], max_gen_tokens: int) -> bool:
         """Calculate how many tokens we have left. 
@@ -293,6 +288,7 @@ def get_model_details(model_name, fpath='data/llm_model_details.yaml'):
         raise KeyError(f'error: no details available for model {model_name} - pick one of {models}')
 
     return details[model_name]
+
 
 def get_api_settings(api_provider, fpath='data/api_settings/apis.yaml'):
     try:
