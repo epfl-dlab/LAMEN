@@ -3,6 +3,4 @@
 *secrets.json
 *.idea/
 .ipynb_checkpoints/
-logs/
-logs/*
-
+deprecated

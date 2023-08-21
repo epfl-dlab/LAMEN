@@ -54,11 +54,13 @@ class Game:
 
     def reweigh_issues(self):
         # normalize weights to [0, 1]
-        issue_weights = np.asarray(self.issue_weights) / np.sum(self.issue_weights, axis=1, keepdims=True)
+        iw = np.asarray(self.issue_weights)
+        iws = np.sum(iw, axis=1, keepdims=True)
+        issue_weights = (iw / iws)
         for issue, w in zip(self.issues, issue_weights.transpose()):
             payoffs = []
             for po, w_, s in zip(issue.payoffs, w, self.scale):
-                po = (np.asarray(po) * w_ * s).round(3)  # integer values only, TODO: make sure rounding is sensible!
+                po = (np.asarray(po) / max(po) * w_ * s).round(3)  # integer values only, TODO: make sure rounding is sensible!
                 payoffs.append(po)
             issue.payoffs = payoffs
 
@@ -168,7 +170,11 @@ class Issue:
     
     def format_issue(self, idx):
         issue_format = self.name + "\n"
-        for label, payoff in zip(self.payoff_labels[idx], self.payoffs[idx]):
+        # descending order on issue weights for prompt
+        indices = np.argsort(self.payoffs[idx])[::-1]
+        payoffs = self.payoffs[idx][indices]
+        payoff_labels = np.asarray(self.payoff_labels[idx])[indices]
+        for label, payoff in zip(payoff_labels, payoffs):
             issue_format += f"{label}, {payoff}\n"
         return issue_format
 
