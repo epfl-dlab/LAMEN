@@ -69,8 +69,8 @@ class NegotiationAgent:
     def copy_agent_history_from_transcript(self, transcript: str, agent_id: int):
         transcript = pd.read_csv(transcript)
         transcript = transcript[transcript['agent_id'] == agent_id]
-        self.msg_history = transcript['message'].to_list
-        self.notes_history = transcript['note'].to_list
+        self.msg_history = [(self.agent_name, m) for m in transcript['message'].to_list()]
+        self.notes_history = [(self.agent_name, m) for m in transcript['note'].to_list()]
 
     def generate_message(self, c_msg_history):
         # msg prompt structure
