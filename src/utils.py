@@ -100,3 +100,41 @@ def load_hydra_config(config_path, config_name="config"):
     with open_dict(cfg['experiments']):
         y = unpack_nested_yaml(cfg['experiments'])
     return cfg
+
+
+def fill_defaults(x, defaults_file='data/negotiations_defaults.yaml'):
+    defaults = yaml.safe_load(defaults_file)
+
+    key_pairing = {
+        'game': 'game',
+        'agent_1': 'agent',
+        'agent_2': 'agent',
+        'negotiation_protocol': 'negotiation_protocol'
+    }
+
+    def _fill_defaults(x_, d):
+        leaf = {'value', 'type', 'desc'}
+        for k, v in x_.items():
+            d_ = d.get(key_pairing.get(k, k))
+            if set(d_.keys() == leaf):
+                pass  # check type
+            else:
+                if isinstance(v, (dict, omegaconf.dictconfig.DictConfig)):
+                    # k -> dictionary: check if all mandatory keys are present
+                    v_filled = {}
+                    for dk, dv in d_.items():
+                        v_ = v.get(dk)
+                        if v_ is None:
+                            v_filled[dk] = dv
+                        else:
+                            v_filled[dk] = v_
+                    x_[k] = v_filled
+                    _fill_defaults(x_, d)
+                else:
+                    # k -> not pointing to a dictionary, replace all keys w/ defaults
+                    x_[k] = d_
+                    _fill_defaults(x_, d)
+        return x_
+
+    x = _fill_defaults(x, defaults)
+    return x

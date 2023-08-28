@@ -1,0 +1,125 @@
+game:
+  game_rules:
+    value: data/general_game_rules.yaml
+    type: str
+    desc: list of rules that govern the negotiations
+  name:
+    value: my game
+    type: str
+    desc: name of the game
+  description:
+    value: You are about to negotiate a number of issues with a representative from the opposing side.
+    type: str
+    desc: description of the game visible to both negotiating agents
+  sides:
+    value:
+      - ""
+      - ""
+    type: list(str)
+    desc: (optional) individual side descriptions for each negotiating agent
+  issue_weights:
+    value:
+      - [1]
+      - [1]
+    type: list(list(float)
+    desc: relative importance of each issue per agent, e.g., [0.5, 0.5] means both issues are as important
+  scale:
+    value:
+      - 100
+      - 100
+    type: list(int)
+    desc: total utility each agent can achieve
+  issues:
+    value: "error: please pass in at least one issue"
+    type: list(str, dict)
+    desc: (required) can be either a list of .yaml files or inline dictionaries describing Issue objects
+
+agent:
+  model_budget:
+    value: 5.
+    type: float
+    desc: the total compute budget available to an agent, e.g. to make API calls
+  verbosity:
+    value: 1
+    type: int
+    desc: verbosity level to print ongoing negotiations -- 0 = not verbose, 1+ increasingly verbose
+  internal_description:
+      value:
+        name: You
+      type: dict
+      desc: description of the agent only visible to the agent itself, e.g., age, character traits, profession
+  external_description:
+      value:
+        name: Representative
+      type: dict
+      desc: description of the agent visible to the other negotiating agent
+  msg_input_msg_history:
+    value: -1
+    type: int
+    desc: how much of the message history is available to an agent writing a message, -1 means every message is available
+  msg_input_note_history:
+    value: -1
+    type: int
+    desc: how much of the message history is available to an agent writing a note, -1 means every message is available
+  msg_max_len:
+    value: 32
+    type: int
+    desc: amount of words an agent may use to write messages
+  msg_prompt:
+    value: prompt_0.txt
+    type: str
+    desc: prompt used to illicit agent messages. Either a .txt file in data/message_prompts/ on inline string.
+  note_input_msg_history:
+    value: -1
+    type: int
+    desc: how much of the notes history is available to an agent writing a message, -1 means every note is available
+  note_input_note_history:
+    value: -1
+    type: int
+    desc: how much of the notes history is available to an agent writing a note, -1 means every note is available
+  note_max_len:
+    value: 32
+    type: int
+    desc: amount of words an agent may use to write mental notes
+  note_prompt:
+    value: prompt_0.txt
+    type: str
+    desc: prompt used to illicit agent mental notes. Either a .txt file in data/note_prompts/ on inline string.
+  model_provider:
+    value: openai
+    type: str
+    desc: model provider used to create the LLM negotiating agent
+  model_name:
+    value: gpt-4
+    type: str
+    desc: specific model from model_provider to use
+  temperature:
+    value: 0.
+    type: float
+    desc: (if available) level of variation in LLM generation
+
+negotiation_protocol:
+  max_rounds:
+    value: 15
+    type: int
+    desc: number of negotiation rounds available to reach a deal
+  stop_condition:
+    value: ""
+    type: str
+    desc: when to stop negotiations
+  start_agent_index:
+    value: 0
+    type: int
+    desc: which agent starts the negotiations
+  save_folder:
+    value: logs
+    type: str
+    desc: name of folder to log results
+  verbosity:
+    value: 1
+    type: int
+    desc: verbosity level to print ongoing negotiations -- 0 = not verbose, 1+ increasingly verbose
+  check_message_for_offers:
+    value: False
+    type: bool
+    desc: weather to check the external message outputs for offers made
