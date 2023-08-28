@@ -1,7 +1,7 @@
 game:
   _target_: games.Game
   game_rules: ${data_dir}/general_game_rules.yaml
-  kwargs: ???
+  kwargs: ${games_dir}/rio_copa_3.yaml
 
 agent_1:
   _target_: agents.NegotiationAgent

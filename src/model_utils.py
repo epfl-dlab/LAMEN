@@ -84,6 +84,17 @@ class ChatModel:
     debug_mode: bool = False
     temperature: float = 0.0
     generation_params: dict = field(factory=dict)
+    context_max_tokens: int = 256
+    prompt_cost: float = 0
+    completion_cost: float = 0
+    tpm: int = 0
+    rpm: int = 0
+    api_info: dict = field(factory=dict)
+    messages: list = field(factory=list)
+    response: str = ""
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+
 
     # keep track of costs
     budget: float = 10.
@@ -97,7 +108,9 @@ class ChatModel:
                                          key=self.model_key_name)
         # get model api details
         model_details = get_model_details(self.model_name)
+        print(model_details)
         self.context_max_tokens = model_details['max_tokens']
+        print(self.context_max_tokens)
         self.prompt_cost = model_details['prompt_cost']
         self.completion_cost = model_details['completion_cost']
         self.tpm = model_details['tpm']

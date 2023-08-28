@@ -69,8 +69,8 @@ class NegotiationAgent:
     def copy_agent_history_from_transcript(self, transcript: str, agent_id: int):
         transcript = pd.read_csv(transcript)
         transcript = transcript[transcript['agent_id'] == agent_id]
-        self.msg_history = transcript['message'].to_list
-        self.notes_history = transcript['note'].to_list
+        self.msg_history = [(self.agent_name, m) for m in transcript['message'].to_list()]
+        self.notes_history = [(self.agent_name, m) for m in transcript['note'].to_list()]
 
     def generate_message(self, c_msg_history):
         # msg prompt structure
@@ -156,6 +156,7 @@ class NegotiationAgent:
                 neg_history.append(('offer', cm_h.pop()))
 
         neg_history = neg_history[::-1]
+
         neg_transcript = ''
         for i_type, (a, i) in neg_history:
             neg_transcript += f'[{a}] [{i_type}]\n{i}\n'
@@ -169,7 +170,6 @@ class NegotiationAgent:
                               f'<start transcript>\n{neg_transcript}\n<end transcript>\n\n'
         if transcript_only:
             return neg_history
-
         next_prompt = self.msg_prompt if msg else self.note_prompt
         if first_msg_note:
             to_replace = "Reflect on the negotiations transcript so far."
@@ -177,11 +177,15 @@ class NegotiationAgent:
             next_prompt = next_prompt.replace(to_replace, replacement)
 
             user_msg = next_prompt
+
             if len(neg_transcript) > 0:
                 user_msg += neg_history
         else:
             user_msg = next_prompt
-            user_msg += neg_history
+            if type(neg_history)==list:
+                user_msg += "\n".join(neg_history)
+            else:
+                user_msg += neg_history
 
         return user_msg
 
@@ -190,7 +194,6 @@ class NegotiationAgent:
         self.generate_note(c_msg_history)
         # create external message
         new_msg = self.generate_message(c_msg_history)
-
         return new_msg
 
     def check_context_len_step(self, c_msg_history) -> bool:

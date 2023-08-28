@@ -130,14 +130,30 @@ class NegotiationProtocol:
     save_folder: str = field(default='data/logs')
     check_message_for_offers: bool = field(default=False)
     verbosity: int = field(default=1)
+    transcript: str = None
+    round_num: int = 0
 
     def __attrs_post_init__(self):
-        os.makedirs(self.save_folder, exist_ok=True)
+        try: 
+            os.makedirs(self.save_folder, exist_ok=True)
+        except:
+            pass
         # combine game information and agent information to create the system init description
         [a.set_system_description(self.game, i) for i, a in enumerate([self.agent_1, self.agent_2])]
         # move the agent order to respect start agent index
         if self.start_agent_index != 0:
             self.agent_1, self.agent_2 = self.agent_2, self.agent_1
+            
+        if self.transcript is not None: 
+            self.save_folder = "/".join(self.transcript.split("/")[:-1])
+            self.agent_1.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=0)
+            self.agent_2.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=1)
+
+            if len(self.agent_1.msg_history) > len(self.agent_2.msg_history):
+                self.round_num = len(self.agent_1.msg_history)
+                self.agent_1, self.agent_2 = self.agent_2, self.agent_1
+            else:
+                self.round_num = len(self.agent_2.msg_history)
 
     def run(self):
         printv(f'Starting negotiations protocol with agents:\n'
@@ -145,7 +161,7 @@ class NegotiationProtocol:
                f'{self.agent_2.internal_description}\n', self.verbosity)
 
         completed = False
-        round_num = 0
+        round_num = self.round_num
         while not completed:
             ts = []
             t = time.time()

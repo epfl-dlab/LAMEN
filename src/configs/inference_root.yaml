@@ -4,10 +4,11 @@ defaults:
   - experiments: car_negotiation
 
 # faithfulness
-check_message_for_offers: True
+check_message_for_offers: False
 
 # production
 production: True
+rereun_experiments: True
 
 # for debugging
 debug_mode: False
