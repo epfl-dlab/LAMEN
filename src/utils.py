@@ -102,39 +102,62 @@ def load_hydra_config(config_path, config_name="config"):
     return cfg
 
 
-def fill_defaults(x, defaults_file='data/negotiations_defaults.yaml'):
-    defaults = yaml.safe_load(defaults_file)
-
+def fill_defaults(x, defaults_file='data/negotiation_defaults.yaml'):
+    """
+    A negotiation is defined as a yaml file containing at least a user-defined 'game' description.
+    The other objects are: agent_1, agent_2, and the negotiation_protocol
+    For each dictionary, we check for required values in the 'defaults' file.
+    Each default_file entry either points to a dictionary or a {value, type, desc} triplet (a 'leaf')
+    IF pointing at dictionary: continue recursion
+    ELIF: pointing at leaf: fill-in default if empty and exit
+    ELSE: pointing at user-defined 'free' variable: exit
+    """
+    defaults = yaml.safe_load(open(defaults_file))
     key_pairing = {
         'game': 'game',
         'agent_1': 'agent',
         'agent_2': 'agent',
         'negotiation_protocol': 'negotiation_protocol'
     }
+    # minimal key check: at least a game object must be described
+    xk = list(x.keys())
+    min_keys = list(key_pairing.keys())
+    if 'game' not in xk:
+        raise ValueError('error: no game object defined in YAML file!')
+    for mk in min_keys:
+        if mk not in xk:
+            x[mk] = {}
 
-    def _fill_defaults(x_, d):
-        leaf = {'value', 'type', 'desc'}
+    def _is_leaf(k, leaf={'value', 'type', 'desc'}):
+        # helper function to determine end of recursion
+        return set(k) == leaf
+
+    def _fill_defaults_recursion(x_, d):
+        # continue recursion until either: (1) a leave, or (2) a user-defined free variable is found
         for k, v in x_.items():
-            d_ = d.get(key_pairing.get(k, k))
-            if set(d_.keys() == leaf):
-                pass  # check type
+            d_ = d.get(key_pairing.get(k, k), {})
+            if _is_leaf(d_.keys()):
+                if v is None or (isinstance(v, dict) and not any(v)):
+                    # defaults are never None or empty dicts
+                    x_[k] = d_['value']
+                else:
+                    # not implemented: check type
+                    pass
             else:
                 if isinstance(v, (dict, omegaconf.dictconfig.DictConfig)):
-                    # k -> dictionary: check if all mandatory keys are present
-                    v_filled = {}
+                    # check if all mandatory keys are present
+                    v_filled = v
                     for dk, dv in d_.items():
                         v_ = v.get(dk)
-                        if v_ is None:
-                            v_filled[dk] = dv
-                        else:
-                            v_filled[dk] = v_
+                        v_filled[dk] = {} if v_ is None else v_
                     x_[k] = v_filled
-                    _fill_defaults(x_, d)
+                    # recursion step to fill nested dictionaries, e.g., 'internal_description'
+                    _fill_defaults_recursion(x_[k], d_)
                 else:
-                    # k -> not pointing to a dictionary, replace all keys w/ defaults
-                    x_[k] = d_
-                    _fill_defaults(x_, d)
+                    # user defined 'free' variable, e.g. inside 'internal_description' of agent
+                    pass
         return x_
 
-    x = _fill_defaults(x, defaults)
+    x = _fill_defaults_recursion(x, defaults)
+
     return x
