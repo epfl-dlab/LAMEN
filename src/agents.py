@@ -218,7 +218,14 @@ class NegotiationAgent:
         prompt_path = 'data/note_prompts' if is_note else 'data/message_prompts'
         max_len = self.note_max_len if is_note else self.msg_max_len
         prompt = open(os.path.join(prompt_path, prompt_name + ".txt")).read()
-        prompt = prompt.replace("{" + before + "}", f"{max_len}")
+        if is_note:
+            if max_len > 0:
+                prompt += f'\nYour note can not exceed {max_len} words.'
+            prompt += open(os.path.join(prompt_path, 'note_standard_suffix.txt')).read()
+        else:
+            if max_len > 0:
+                prompt += f'\nYour offer can never exceed {max_len} words.'
+        # prompt = prompt.replace("{" + before + "}", f"{max_len}")
 
         return prompt
 
