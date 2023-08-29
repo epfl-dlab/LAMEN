@@ -1,8 +1,9 @@
 import time
+from typing import List
 import os
 import csv
 from datetime import datetime as dt
-from attr import define, field
+from attrs import define, field
 from utils import printv
 from agents import NegotiationAgent
 from games import Game
@@ -15,14 +16,21 @@ from logger import get_logger
 log = get_logger()
 
 
+
 @define
 class InterrogationProtocol:
+    """
+    Run negotiations
+    """
     game: Game
     agent_1: NegotiationAgent
     agent_2: NegotiationAgent
+    questions: list
+    style: str
     max_rounds: int = field(default=10)
     start_agent_index: int = field(default=0)
     transcript: str = field(default=None)
+    check_messages_for_offers: str = field(default=None)
     save_folder: str = field(default='data/interrogation_logs')
     verbosity: int = field(default=1)
     question_history = field(factory=list)
@@ -38,6 +46,17 @@ class InterrogationProtocol:
         if self.transcript is not None:
             self.agent_1.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=0)
             self.agent_2.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=1)
+            
+    def run(self):
+        # iterate through questions and over rounds
+        if self.style=="final_round":
+            for q in self.questions:
+                self.query_agents(query=q)
+                
+        if self.style=="all_rounds":
+            for i in range((max(len(self.agent_1.msg_history), len(self.agent_2.msg_history)))):
+                for q in self.questions:
+                    self.query_agents(query=q, round_num=i)
 
     def query_agent(self, agent_id, query, round_num=1e6):
         agent = [self.agent_1, self.agent_2][agent_id]
@@ -83,6 +102,10 @@ class InterrogationProtocol:
         agent.notes_history = a_nh
 
         return answer
+    
+    def query_agents(self, query, round_num=1e-6):
+        self.query_agent(agent_id=0, query=query, round_num=round_num)
+        self.query_agent(agent_id=0, query=query, round_num=round_num)
 
     def start_session(self):
         # command line interface

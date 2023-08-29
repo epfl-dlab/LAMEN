@@ -49,45 +49,31 @@ class EvaluateNegotiations:
             E.g., action words, placating words, threats etc.
 
         """
-        if not self.processed_exists:
-            n_rounds = len(self.neg_hist)
-            self.neg_hist["note_length"] = self.neg_hist.apply(
-                lambda x: self.estimate_tokens(x, "note"), axis=1
-            )
-            self.neg_hist["msg_length"] = self.neg_hist.apply(
-                lambda x: self.estimate_tokens(x, "message"), axis=1
-            )
-            print(self.neg_hist.groupby("agent_name")[["note_length", "msg_length"]].mean())
-            self.neg_hist["payoffs"] = self.neg_hist.apply(
-                lambda x: self.label_to_payoff(x["issues_state"], x["agent_id"]), axis=1
-            )
+        n_rounds = len(self.neg_hist)
+        self.neg_hist["note_length"] = self.neg_hist.apply(
+            lambda x: self.estimate_tokens(x, "note"), axis=1
+        )
+        self.neg_hist["msg_length"] = self.neg_hist.apply(
+            lambda x: self.estimate_tokens(x, "message"), axis=1
+        )
+        print(self.neg_hist.groupby("agent_name")[["note_length", "msg_length"]].mean())
+        self.neg_hist["payoffs"] = self.neg_hist.apply(
+            lambda x: self.label_to_payoff(x["issues_state"], x["agent_id"]), axis=1
+        )
 
-            self.neg_hist["offers_in_message"] = self.neg_hist["message"].apply(
-                lambda x: self._check_message_for_offers(x))
-
-            self.neg_hist[
-                ["total_payoff", "normalized_payoff", "issue_payoff", "normalized_issue_payoff"]
-            ] = self.neg_hist.apply(lambda x: self.payoff_analysis(x["payoffs"], x["agent_id"]), axis=1).apply(pd.Series)
-            print(self.neg_hist)
-            output_path = os.path.join(self.save_dir, "processed_negotiation.csv")
-            #  TODO implement saving of the file
-            self.neg_hist.to_csv(output_path, index=False)
+        self.neg_hist["offers_in_message"] = self.neg_hist["message"].apply(
+            lambda x: self._check_text_for_offers(x))
         
-        else:
-            if len(self.neg_hist[self.neg_hist["normalized_payoff"].isna()]) > 0:
-                # if processed already exists and we want to do some new processing on it.
-                self.neg_hist["payoffs"] = self.neg_hist.apply(
-                    lambda x: self.label_to_payoff(x["issues_state"], x["agent_id"]), axis=1
-                )
-                self.neg_hist[
-                    ["total_payoff", "normalized_payoff", "issue_payoff", "normalized_issue_payoff"]
-                ] = self.neg_hist.apply(lambda x: self.payoff_analysis(x["payoffs"], x["agent_id"]), axis=1).apply(pd.Series)
-                output_path = os.path.join(self.save_dir, "processed_negotiation.csv")
-                #  TODO implement saving of the file
-                print(self.neg_hist)
-                print(output_path)
-                self.neg_hist.to_csv(output_path, index=False)
-            
+        self.neg_hist["offers_in_note"] = self.neg_hist["note"].apply(
+            lambda x: self._check_text_for_offers(x))
+
+        self.neg_hist[
+            ["total_payoff", "normalized_payoff", "issue_payoff", "normalized_issue_payoff"]
+        ] = self.neg_hist.apply(lambda x: self.payoff_analysis(x["payoffs"], x["agent_id"]), axis=1).apply(pd.Series)
+
+        output_path = os.path.join(self.save_dir, "processed_negotiation.csv")
+        self.neg_hist.to_csv(output_path, index=False)
+        
             
     def language_analysis(self, vocab_path):
         """
@@ -187,7 +173,7 @@ class EvaluateNegotiations:
             # If value not found, return lexicographically closest element's index
             return min_index
 
-    def _check_message_for_offers(self, message):
+    def _check_text_for_offers(self, message):
         api_key = get_api_key(provider=self.model_provider, key=self.model_key)
         model = ChatModel(model_name=self.model_name, model_key=api_key)
         issues = ", ".join([issue.name for issue in self.issues])
@@ -199,7 +185,7 @@ Format each offer as follows:
     "issue_name_1": "<stated offer>",
     ...
 }
-Make sure that the name of the issue is spelled exactly as provided!
+Make sure that the name of the issue is spelled exactly as provided and that only issues from those that are provided are included.
 
 Example 1: 
 Issues: price

@@ -1,0 +1,6 @@
+questions:
+  - "What is the acceptable offer for the other agent?"
+  - "For the negotiating partner, which issues do they care more about?"
+  - "For the negotiating partner, which issues do they care less about?"
+
+style: all_rounds # `all_rounds` or `final_round`

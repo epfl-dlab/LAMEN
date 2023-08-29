@@ -1,7 +1,8 @@
 defaults:
   - _self_
   - hydra: inference
-  - experiments: car_negotiation
+  - experiments: negotiation_32_32
+  - interrogations: simple
 
 # faithfulness
 check_message_for_offers: False
