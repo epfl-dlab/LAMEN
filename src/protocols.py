@@ -3,9 +3,14 @@ from typing import List
 import os
 import csv
 from datetime import datetime as dt
+<<<<<<< HEAD
 
 import attr
 from attrs import define, field
+=======
+from attr import define, field
+import attr
+>>>>>>> b84522f3c3300b0c87e58171c19a5dce8968a92f
 from utils import printv
 from agents import NegotiationAgent
 from games import Game
@@ -26,19 +31,25 @@ class InterrogationProtocol:
     game: Game = attr.ib()
     agent_1: NegotiationAgent = attr.ib()
     agent_2: NegotiationAgent = attr.ib()
-    style: str = field(default="")
     questions: list = field(factory=list)
+    stop_condition: str = field(default="")
+    check_message_for_offers: str = field(default="")
+    style: str = field(default="")
     max_rounds: int = field(default=10)
     start_agent_index: int = field(default=0)
     transcript: str = field(default=None)
     check_messages_for_offers: str = field(default=None)
-    save_folder: str = field(default='data/interrogation_logs')
-    verbosity: int = 1
+    save_folder: str = field(default="data/interrogation_logs/")
+    verbosity: int = field(default=1)
     question_history = field(factory=list)
     answer_history = field(factory=list)
 
     def __attrs_post_init__(self):
-        os.makedirs(self.save_folder, exist_ok=True)
+        # self.save_folder = "data/interrogation_logs/"
+        try: 
+            os.makedirs(self.save_folder, exist_ok=True)
+        except:
+            pass
         [a.set_system_description(self.game, i) for i, a in enumerate([self.agent_1, self.agent_2])]
         # move the agent order to respect start agent index
         if self.start_agent_index != 0:
@@ -60,6 +71,7 @@ class InterrogationProtocol:
                     self.query_agents(query=q, round_num=i)
 
     def query_agent(self, agent_id, query, round_num=1e6):
+        round_num = int(round_num)
         agent = [self.agent_1, self.agent_2][agent_id]
         # make copy of full history to reset after query
         a_mh = agent.msg_history.copy()
@@ -106,7 +118,7 @@ class InterrogationProtocol:
 
     def query_agents(self, query, round_num=1e-6):
         self.query_agent(agent_id=0, query=query, round_num=round_num)
-        self.query_agent(agent_id=0, query=query, round_num=round_num)
+        self.query_agent(agent_id=1, query=query, round_num=round_num)
 
     def start_session(self):
         # command line interface

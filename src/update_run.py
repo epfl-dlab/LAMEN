@@ -23,7 +23,7 @@ def main(cfg: DictConfig):
 
     for run in runs:
         try:
-            cfgg = load_hydra_config(os.path.join("..", run, ".hydra/"))
+            cfg = load_hydra_config(os.path.join("..", run, ".hydra/"))
         except (FileNotFoundError, MissingMandatoryValue) as e:
             print(f"{e}")
             continue
@@ -34,24 +34,22 @@ def main(cfg: DictConfig):
         #     _ = unpack_nested_yaml(cfg['experiments'])
         if os.path.exists(os.path.join(run, "negotiations.csv")):
             transcript_path = os.path.join(run, "negotiations.csv")
-            game = instantiate(cfgg.experiments.game)
-            agent_1 = instantiate(cfgg.experiments.agent_1)
-            agent_2 = instantiate(cfgg.experiments.agent_2)
-            # negotiation_protocol = NegotiationProtocol(game=game,
-            #                                            agent_1=agent_1,
-            #                                            agent_2=agent_2,
-            #                                            transcript=transcript_path,
-            #                                            **cfgg.experiments.negotiation_protocol)
-            # if not os.path.exists(os.path.join(run, "processed_negotiation.csv")):
-            #     negotiation_protocol.run()
-            # #  negotiation_protocol.evaluate()
+            game = instantiate(cfg.experiments.game)
+            agent_1 = instantiate(cfg.experiments.agent_1)
+            agent_2 = instantiate(cfg.experiments.agent_2)
+            negotiation_protocol = NegotiationProtocol(game=game,
+                                                    agent_1=agent_1,
+                                                    agent_2=agent_2,
+                                                    transcript=transcript_path,
+                                                    **cfg.experiments.negotiation_protocol) 
+            if not os.path.exists(os.path.join(run, "processed_negotiation.csv")):
+                negotiation_protocol.run()
+                
+            cfg.experiments.negotiation_protocol.save_folder=run
 
-            interrogation_protocol = InterrogationProtocol(
-                                                           game=game,
-                                                           agent_1=agent_1,
-                                                           agent_2=agent_2,
-                **cfgg.experiments.negotiation_protocol)
-
+            interrogation_protocol = InterrogationProtocol(questions=cfg.interrogations.questions, style="final_round", game=game,
+                                                        agent_1=agent_1,
+                                                        agent_2=agent_2, **cfg.experiments.negotiation_protocol)
             interrogation_protocol.run()
 
             time.sleep(5)
