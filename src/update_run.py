@@ -38,21 +38,15 @@ def main(cfg: DictConfig):
             agent_1 = instantiate(cfg.experiments.agent_1)
             agent_2 = instantiate(cfg.experiments.agent_2)
             negotiation_protocol = NegotiationProtocol(game=game,
-                                                    agent_1=agent_1,
-                                                    agent_2=agent_2,
-                                                    transcript=transcript_path,
-                                                    **cfg.experiments.negotiation_protocol) 
+                                                       agent_1=agent_1,
+                                                       agent_2=agent_2,
+                                                       transcript=transcript_path,
+                                                       **cfg.experiments.negotiation_protocol)
             if not os.path.exists(os.path.join(run, "processed_negotiation.csv")):
                 negotiation_protocol.run()
-                
-            cfg.experiments.negotiation_protocol.save_folder=run
 
-            interrogation_protocol = InterrogationProtocol(questions=cfg.interrogations.questions, style="final_round", game=game,
-                                                        agent_1=agent_1,
-                                                        agent_2=agent_2, **cfg.experiments.negotiation_protocol)
-            interrogation_protocol.run()
-
-            time.sleep(5)
+            negotiation_protocol.interrogate(questions=cfg.interrogations.questions,
+                                             interrogation_style=cfg.interrogations.style)
 
 
 if __name__ == "__main__":

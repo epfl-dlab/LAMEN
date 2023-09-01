@@ -3,14 +3,8 @@ from typing import List
 import os
 import csv
 from datetime import datetime as dt
-<<<<<<< HEAD
-
 import attr
-from attrs import define, field
-=======
 from attr import define, field
-import attr
->>>>>>> b84522f3c3300b0c87e58171c19a5dce8968a92f
 from utils import printv
 from agents import NegotiationAgent
 from games import Game
@@ -32,16 +26,12 @@ class InterrogationProtocol:
     agent_1: NegotiationAgent = attr.ib()
     agent_2: NegotiationAgent = attr.ib()
     questions: list = field(factory=list)
-    stop_condition: str = field(default="")
-    check_message_for_offers: str = field(default="")
     style: str = field(default="")
-    max_rounds: int = field(default=10)
     start_agent_index: int = field(default=0)
-    transcript: str = field(default=None)
-    check_messages_for_offers: str = field(default=None)
     save_folder: str = field(default="data/interrogation_logs/")
     verbosity: int = field(default=1)
     question_history = field(factory=list)
+    transcript: str = field(default=None)
     answer_history = field(factory=list)
 
     def __attrs_post_init__(self):
@@ -170,10 +160,8 @@ class NegotiationProtocol:
     round_num: int = 0
 
     def __attrs_post_init__(self):
-        try:
+        if self.save_folder is not None:
             os.makedirs(self.save_folder, exist_ok=True)
-        except:
-            pass
         # combine game information and agent information to create the system init description
         [a.set_system_description(self.game, i) for i, a in enumerate([self.agent_1, self.agent_2])]
         # move the agent order to respect start agent index
@@ -234,6 +222,14 @@ class NegotiationProtocol:
         nego_eval = EvaluateNegotiations(save_dir=self.save_folder, game=self.game,
                                          check_message_for_offers=self.check_message_for_offers)
         nego_eval.compute_metrics()
+        
+    def interrogate(self, questions, interrogation_style):
+        nego_interro = InterrogationProtocol(save_folder=self.save_folder, 
+                                             game=self.game, agent_1=self.agent_1, 
+                                             agent_2=self.agent_2, questions=questions,
+                                             style=interrogation_style, start_agent_index=self.start_agent_index,
+                                             verbosity=self.verbosity)
+        nego_interro.run()
 
     def _format_round_print(self, round_num, total_rounds, t1=0., t2=0., start=False):
         prompt_costs, completion_costs = 0, 0

@@ -2,7 +2,7 @@ import time
 import hydra
 from hydra.utils import instantiate
 from omegaconf import DictConfig, open_dict
-from protocols import NegotiationProtocol, InterrogationProtocol
+from protocols import NegotiationProtocol
 from utils import unpack_nested_yaml
 
 
@@ -20,15 +20,8 @@ def main(cfg: DictConfig):
                                                **cfg.experiments.negotiation_protocol)
     negotiation_protocol.run()
     negotiation_protocol.evaluate()
+    # negotiation_protocol.interrogate()
     # time.sleep(5)
-    #
-    # interrogation_protocol = InterrogationProtocol(game=game,
-    #                                                agent_1=agent_1,
-    #                                                agent_2=agent_2,
-    #                                                **cfg.experiments.negotiation_protocol,
-    #                                                **cfg.interrogations)
-    #
-    # interrogation_protocol.run()
 
 
 if __name__ == "__main__":
