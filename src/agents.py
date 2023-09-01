@@ -16,25 +16,25 @@ log = get_logger()
 @define
 class NegotiationAgent:
     # message params
-    msg_prompt: str
-    msg_max_len: int
-    msg_input_msg_history: str
-    msg_input_note_history: str
+    msg_prompt: str = 'prompt_0'
+    msg_max_len: int = 64
+    msg_input_msg_history: int = -1
+    msg_input_note_history: int = -1
 
     # notes params
-    note_prompt: str
-    note_max_len: int
-    note_input_msg_history: int
-    note_input_note_history: int
+    note_prompt: str = 'prompt_0'
+    note_max_len: int = 64
+    note_input_msg_history: int = -1
+    note_input_note_history: int = -1
 
     # model
-    model: ChatModel = None
-    model_name: str = field(default='gpt-4')
-    model_provider: str = field(default='openai')
-    model_key_path: str = field(default='secrets.json')
-    model_key: str = field(default='OPENAI_API_KEY')
-    model_budget: float = field(default=5.)
-    temperature: float = field(default=0.)
+    model: ChatModel = field(default=None)
+    model_name: str = 'gpt-4'
+    model_provider: str = 'openai'
+    model_key_path: str = 'secrets.json'
+    model_key: str = 'OPENAI_API_KEY'
+    model_budget: float = 5.
+    temperature: float = 0.
 
     # keep track of what agents think they can achieve
     notes_history: list = field(factory=list)
@@ -42,8 +42,8 @@ class NegotiationAgent:
     achievable_payoffs: dict = field(factory=dict)
 
     # agent character
-    agent_name: str = None
-    agent_name_ext: str = None
+    agent_name: str = 'You'
+    agent_name_ext: str = 'Representative'
     internal_description: dict = field(factory=dict)
     external_description: dict = field(factory=dict)
     system_description: SystemMessage = field(default=SystemMessage(''))
@@ -63,8 +63,8 @@ class NegotiationAgent:
             model_name=self.model_name, model_provider=self.model_provider, model_key=api_key,
             temperature=self.temperature, debug_mode=self.debug_mode, budget=self.model_budget,
         )
-        self.agent_name = self.internal_description['name']
-        self.agent_name_ext = self.external_description['name']
+        self.agent_name = self.internal_description.get('name', 'You')
+        self.agent_name_ext = self.external_description.get('name', 'Representative')
 
     def copy_agent_history_from_transcript(self, transcript: str, agent_id: int):
         transcript = pd.read_csv(transcript)
@@ -217,7 +217,9 @@ class NegotiationAgent:
     def get_msg_note_prompt(self, prompt_name, before='max_words', is_note=False):
         prompt_path = 'data/note_prompts' if is_note else 'data/message_prompts'
         max_len = self.note_max_len if is_note else self.msg_max_len
-        prompt = open(os.path.join(prompt_path, prompt_name + ".txt")).read()
+        if not prompt_name.endswith('.txt'):
+            prompt_name += '.txt'
+        prompt = open(os.path.join(prompt_path, prompt_name)).read()
         if is_note:
             if max_len > 0:
                 prompt += f'\nYour note can not exceed {max_len} words.'

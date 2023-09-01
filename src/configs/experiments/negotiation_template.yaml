@@ -29,12 +29,11 @@ agent_1:
   _target_: agents.NegotiationAgent
   model_budget: 2.
   verbosity: ${verbosity}
-  agent_description:
-    internal_description:
-      name: Mirabel de Vries
-      age: 29
-    external_description:
-      name: M. de Vries
+  internal_description:
+    name: Mirabel de Vries
+    age: 29
+  external_description:
+    name: M. de Vries
   msg_max_len: 32
   msg_prompt: "Reflect on the negotiations so far and make an offer that fits your strategy using less than {max_words} words."
   note_max_len: 32
@@ -49,12 +48,11 @@ agent_2:
   _target_: agents.NegotiationAgent
   model_budget: 2.
   verbosity: ${verbosity}
-  agent_description:
-    internal_description:
-      name: Johnny Doe
-      age: 22
-    external_description:
-      name: J. Doe
+  internal_description:
+    name: Johnny Doe
+    age: 22
+  external_description:
+    name: J. Doe
   msg_max_len: 32
   msg_prompt: "Reflect on the negotiations so far and make an offer that fits your strategy using less than {max_words} words."
   note_max_len: 32

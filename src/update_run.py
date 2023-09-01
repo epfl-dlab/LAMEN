@@ -5,9 +5,10 @@ from omegaconf import DictConfig, open_dict
 from omegaconf.errors import MissingMandatoryValue
 from protocols import NegotiationProtocol, InterrogationProtocol
 import glob
-import os 
+import os
 from utils import load_hydra_config
 from copy import copy
+
 
 @hydra.main(version_base=None, config_path="configs", config_name="inference_root")
 def main(cfg: DictConfig):
@@ -15,10 +16,11 @@ def main(cfg: DictConfig):
     # with open_dict(cfg['experiments']):
     #     _ = unpack_nested_yaml(cfg['experiments'])
     # print(OmegaConf.to_yaml(y))
-    runs = glob.glob("logs/inference/runs/*")
-    runs = [k for k in runs if k >= "logs/inference/runs/2023-08-21_13-35"]
-    runs = ["logs/inference/runs/2023-08-29_16-45-45"]
-    
+    # runs = glob.glob("logs/inference/runs/*")
+    # runs = [k for k in runs if k >= "logs/inference/runs/2023-08-21_13-35"]
+    # runs = ["logs/inference/runs/2023-08-29_16-45-45"]
+    runs = ["logs/inference/runs/2023-08-30_11-09-13"]
+
     for run in runs:
         try:
             cfgg = load_hydra_config(os.path.join("..", run, ".hydra/"))
@@ -26,7 +28,7 @@ def main(cfg: DictConfig):
             print(f"{e}")
             continue
 
-        run = os.path.join("/scratch/venia/socialgpt/GPTeam", run)
+        # run = os.path.join("/scratch/venia/socialgpt/GPTeam", run)
 
         # with open_dict(cfg['experiments']):
         #     _ = unpack_nested_yaml(cfg['experiments'])
@@ -35,24 +37,24 @@ def main(cfg: DictConfig):
             game = instantiate(cfgg.experiments.game)
             agent_1 = instantiate(cfgg.experiments.agent_1)
             agent_2 = instantiate(cfgg.experiments.agent_2)
-            negotiation_protocol = NegotiationProtocol(game=game,
-                                                    agent_1=agent_1,
-                                                    agent_2=agent_2,
-                                                    transcript=transcript_path,
-                                                    **cfgg.experiments.negotiation_protocol) 
-            if not os.path.exists(os.path.join(run, "processed_negotiation.csv")):
-                negotiation_protocol.run()
-            # negotiation_protocol.evaluate()
+            # negotiation_protocol = NegotiationProtocol(game=game,
+            #                                            agent_1=agent_1,
+            #                                            agent_2=agent_2,
+            #                                            transcript=transcript_path,
+            #                                            **cfgg.experiments.negotiation_protocol)
+            # if not os.path.exists(os.path.join(run, "processed_negotiation.csv")):
+            #     negotiation_protocol.run()
+            # #  negotiation_protocol.evaluate()
 
+            interrogation_protocol = InterrogationProtocol(
+                                                           game=game,
+                                                           agent_1=agent_1,
+                                                           agent_2=agent_2,
+                **cfgg.experiments.negotiation_protocol)
 
-            interrogation_protocol = InterrogationProtocol(questions=[], style="", game=game,
-                                                        agent_1=agent_1,
-                                                        agent_2=agent_2, **cfgg.experiments.negotiation_protocol)
-            
             interrogation_protocol.run()
 
             time.sleep(5)
-
 
 
 if __name__ == "__main__":
