@@ -42,16 +42,17 @@ def main(cfg: DictConfig):
                                                     **cfg.experiments.negotiation_protocol) 
             if not os.path.exists(os.path.join(run, "processed_negotiation.csv")):
                 negotiation_protocol.run()
-                
-            cfg.experiments.negotiation_protocol.save_folder=run
+            
+            negotiation_protocol.interrogate(questions=cfg.interrogations.questions, interrogation_style=cfg.interrogations.style)  
+            # cfg.experiments.negotiation_protocol.save_folder=run
 
-            interrogation_protocol = InterrogationProtocol(questions=cfg.interrogations.questions, style="final_round", game=game,
-                                                        agent_1=agent_1,
-                                                        agent_2=agent_2, **cfg.experiments.negotiation_protocol)
+            # interrogation_protocol = InterrogationProtocol(questions=cfg.interrogations.questions, style="final_round", game=game,
+            #                                             agent_1=agent_1,
+            #                                             agent_2=agent_2, **cfg.experiments.negotiation_protocol)
 
-            interrogation_protocol.run()
+            # interrogation_protocol.run()
 
-            time.sleep(5)
+            # time.sleep(5)
 
 
 

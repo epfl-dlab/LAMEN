@@ -20,15 +20,9 @@ def main(cfg: DictConfig):
                                             **cfg.experiments.negotiation_protocol) 
     negotiation_protocol.run()
     negotiation_protocol.evaluate()
+    negotiation_protocol.interrogate()
     time.sleep(5)
 
-    interrogation_protocol = InterrogationProtocol(game=game,
-                                                   agent_1=agent_1,
-                                                   agent_2=agent_2,
-                                                   **cfg.experiments.negotiation_protocol,
-                                                   **cfg.interrogations)
-    
-    interrogation_protocol.run()
 
 if __name__ == "__main__":
     main()
