@@ -3,7 +3,7 @@ import hydra
 from hydra.utils import instantiate
 from omegaconf import DictConfig, open_dict
 from protocols import NegotiationProtocol, InterrogationProtocol
-from utils import unpack_nested_yaml
+from utils import unpack_nested_yaml, fill_defaults
 
 
 @hydra.main(version_base=None, config_path="configs", config_name="inference_root")

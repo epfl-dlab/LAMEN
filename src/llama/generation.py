@@ -307,7 +307,7 @@ class Llama:
             max_gen_len = self.model.params.max_seq_len - 1
         prompt_tokens = []
         unsafe_requests = []
-        for dialog in dialogs:
+        for dialog in [dialogs]:
             unsafe_requests.append(
                 any([tag in msg["content"] for tag in SPECIAL_TAGS for msg in dialog])
             )

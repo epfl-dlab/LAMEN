@@ -3,7 +3,7 @@ game:
     value: games.Game
     type: str
     desc: object type
-  game_rules:
+  rules:
     value: data/general_game_rules.yaml
     type: str
     desc: list of rules that govern the negotiations

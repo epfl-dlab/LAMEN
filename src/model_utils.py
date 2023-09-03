@@ -12,7 +12,7 @@ from datetime import datetime as dt
 from attr import define, field
 from llama import Llama
 
-LLAMA_DIRECTORY = "/dlabdata1/llama/"
+LLAMA_DIRECTORY = "/home/ubuntu/llama/" 
 
 class BaseMessage(ABC):
     def format_prompt(self, before, to):
@@ -142,14 +142,20 @@ class ChatModel:
             return f"<{dt.strftime(dt.now(), '%H%M%S_%f')}> lorem ipsum dolor sit amet"
 
         response = self._generate(data)
-
         # TODO: error handling
-        prompt_tokens = self.estimate_tokens(messages=messages)
+
+        # prompt_tokens = self.estimate_tokens(messages=messages)
+        # TODO figure out why estimation doesn't work for llama
+        prompt_tokens = 0
+
         completion_tokens = 0
 
 
         # keep track of budget and costs
-        pc, cc, _ = self.estimate_cost(input_tokens=self.prompt_tokens, output_tokens=self.completion_tokens)
+        # pc, cc, _ = self.estimate_cost(input_tokens=self.prompt_tokens, output_tokens=self.completion_tokens)
+        # TODO figure out why estimation doesn't work for llama
+
+        pc, cc = 0,0
         self.session_prompt_costs += pc
         self.session_completion_costs += cc
         self.budget -= (pc + cc)
@@ -188,15 +194,19 @@ class ChatModel:
         # estimate the cost of making a call given a prompt
         # and expected length
         # @td NOTE: standard 8 tokens are put per message
+        if "llama" in self.model_name:
+            return 0
         try:
             enc = tiktoken.encoding_for_model(self.model_name)
         except KeyError as e:
             enc = tiktoken.encoding_for_model("gpt-4")
         msg_token_penalty = 8
-
-        if isinstance(messages, list):
+        print(messages)
+        for m in messages:
             all_messages = ""
-            for m in messages:
+            if isinstance(m, dict):
+                all_messages += m["content"]
+            else:
                 all_messages += m.text()
         else:
             all_messages = messages
@@ -268,20 +278,23 @@ class ChatModel:
             if "chat" in self.model_name:
                 result = self.model.chat_completion(
                     data,
-                    max_gen_len=self.context_max_tokens,
+                    max_gen_len=64,
                     temperature=self.temperature,
                     top_p=1
                 )
             else:
                 result = self.model.text_completion(
                     data,
-                    max_gen_len=self.context_max_tokens,
+                    max_gen_len=64,
                     temperature=self.temperature,
                     top_p=1
                 )
-            self.response = AIMessage(result)
+            
+            self.response = AIMessage(result[0]["generation"]["content"])
+
             self.prompt_tokens = self.estimate_tokens(data)
             self.completion_tokens = self.estimate_tokens(self.response.content)
+            return self.response
         else:
             raise NotImplementedError(f"'{self.model_name}' has not yet been implemented")
 
@@ -298,7 +311,8 @@ class ChatModel:
 
         # openai adds 8 default tokens per request¨
         msg_token_penalty = 8
-        context_tokens = self.estimate_tokens(context)
+        # context_tokens = self.estimate_tokens(context)
+        context_tokens = 0
         tokens_left = self.context_max_tokens - (context_tokens + msg_token_penalty + max_gen_tokens)
         got_space = tokens_left > 0
 
