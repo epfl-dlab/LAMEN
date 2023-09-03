@@ -226,11 +226,11 @@ class NegotiationProtocol:
                                          check_message_for_offers=self.check_message_for_offers)
         nego_eval.compute_metrics()
         
-    def interrogate(self, questions, interrogation_style):
+    def interrogate(self, questions, style):
         nego_interro = InterrogationProtocol(save_folder=self.save_folder, 
                                              game=self.game, agent_1=self.agent_1, 
                                              agent_2=self.agent_2, questions=questions,
-                                             style=interrogation_style, start_agent_index=self.start_agent_index,
+                                             style=style, start_agent_index=self.start_agent_index,
                                              verbosity=self.verbosity)
         nego_interro.run()
 

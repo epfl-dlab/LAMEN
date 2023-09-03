@@ -12,3 +12,4 @@ openai:
   api_base: "https://api.openai.com/v1/chat/completions"
   headers:
     content-type: "application/json"
+meta: None

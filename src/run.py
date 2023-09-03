@@ -9,7 +9,7 @@ from utils import unpack_nested_yaml
 @hydra.main(version_base=None, config_path="configs", config_name="inference_root")
 def main(cfg: DictConfig):
     with open_dict(cfg['experiments']):
-        _ = unpack_nested_yaml(cfg['experiments'])
+        _ = unpack_nested_yaml(cfg['experiments'])  
 
     game = instantiate(cfg.experiments.game)
     agent_1 = instantiate(cfg.experiments.agent_1)
@@ -20,7 +20,7 @@ def main(cfg: DictConfig):
                                             **cfg.experiments.negotiation_protocol) 
     negotiation_protocol.run()
     negotiation_protocol.evaluate()
-    negotiation_protocol.interrogate()
+    negotiation_protocol.interrogate(**cfg.interrogations)
     time.sleep(5)
 
 

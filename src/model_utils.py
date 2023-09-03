@@ -1,5 +1,5 @@
 import requests
-from typing import List, Union
+from typing import List, Union, TypedDict
 import tiktoken
 from abc import ABC
 import json
@@ -10,7 +10,9 @@ import openai
 import time
 from datetime import datetime as dt
 from attr import define, field
+from llama import Llama
 
+LLAMA_DIRECTORY = "/dlabdata1/llama/"
 
 class BaseMessage(ABC):
     def format_prompt(self, before, to):
@@ -19,6 +21,9 @@ class BaseMessage(ABC):
 
     def prepare_for_generation(self):
         return {"role": self.role, "content": self.content}
+    
+    def prepare_for_completion(self):
+        return self.content
 
     def text(self):
         return self.content
@@ -59,7 +64,7 @@ class SystemMessage(BaseMessage):
     def __add__(self, otherSystem):
         # i think this is the only class that will require adding.
         return SystemMessage(self.content + "\n" + otherSystem.content)
-    
+
 
 @define
 class ChatModel:
@@ -80,6 +85,7 @@ class ChatModel:
     model_key: str = field(default=None)
     model_key_path: str = field(default='secrets.json')
     model_key_name: str = field(default=None)
+    model: str = field(default=None)
 
     debug_mode: bool = False
     temperature: float = 0.0
@@ -121,12 +127,15 @@ class ChatModel:
         # only single generations currently implemented
         if self.generation_params.get("n", 1) >= 2:
             raise NotImplementedError("Need to implement for more than one generation.")
+        
+        # init model if llama
+        self.model = self.init_model()
 
     def __call__(self, messages: List[BaseMessage]):
         """
         Generate tokens.
         """
-        data = self.prepare_for_generation(messages, self.model_provider)
+        data = self.prepare_for_generation(messages, self.model_provider, self.model_name)
 
         if self.debug_mode:
             time.sleep(0.2)  # small wait to see sensible msg timestamps
@@ -163,6 +172,17 @@ class ChatModel:
         total_cost = input_cost + output_cost
 
         return input_cost, output_cost, total_cost
+
+    def init_model(self):
+        if "llama" in self.model_name:
+                return Llama.build(
+                ckpt_dir=f"{LLAMA_DIRECTORY}{self.model_name}/",
+                tokenizer_path=f"{LLAMA_DIRECTORY}tokenizer.model",
+                max_seq_len=self.context_max_tokens,
+                max_batch_size=1,
+            )
+        else:
+            return None
 
     def estimate_tokens(self, messages: Union[List[BaseMessage], str]):
         # estimate the cost of making a call given a prompt
@@ -242,7 +262,26 @@ class ChatModel:
             self.completion_tokens = self.estimate_tokens(self.response.content)
             # except Exception as e:
             # print(f'[error] failed to generate response - {e}')
-
+            
+        elif self.model_provider == "meta":
+            # prepare AI message of the model outputs
+            if "chat" in self.model_name:
+                result = self.model.chat_completion(
+                    data,
+                    max_gen_len=self.context_max_tokens,
+                    temperature=self.temperature,
+                    top_p=1
+                )
+            else:
+                result = self.model.text_completion(
+                    data,
+                    max_gen_len=self.context_max_tokens,
+                    temperature=self.temperature,
+                    top_p=1
+                )
+            self.response = AIMessage(result)
+            self.prompt_tokens = self.estimate_tokens(data)
+            self.completion_tokens = self.estimate_tokens(self.response.content)
         else:
             raise NotImplementedError(f"'{self.model_name}' has not yet been implemented")
 
@@ -269,7 +308,7 @@ class ChatModel:
         return f'ChatModel("model_name"={self.model_name}, "model_provider"={self.model_provider})'
 
     @staticmethod
-    def prepare_for_generation(messages, model_provider):
+    def prepare_for_generation(messages, model_provider, model_name=None):
         if (model_provider == "openai") or (model_provider == "azure"):
             return [k.prepare_for_generation() for k in messages]
         
@@ -281,6 +320,11 @@ class ChatModel:
                 else:
                     full_prompt+=f"Assistant: {msg.content}\n\n"
             return full_prompt + "\n\nAssistant:"
+        
+        elif model_provider=="meta":
+            if "chat" in model_name:
+                return [k.prepare_for_generation() for k in messages]
+            return [k.prepare_for_completion() for k in messages]
 
 
 def get_model_pricing(model_name):

@@ -1,0 +1,3 @@
+model_provider: meta
+model_name: llama-2-7b-chat
+temperature: 0

@@ -1,7 +1,7 @@
 defaults:
   - _self_
   - hydra: inference
-  - experiments: negotiation_32_32
+  - experiments: test_llama
   - interrogations: simple
 
 # faithfulness
@@ -14,7 +14,7 @@ rereun_experiments: True
 # for debugging
 debug_mode: False
 verbosity: 1
-max_rounds: 15
+max_rounds: 5
 
 # path to work directory
 work_dir: ${hydra:runtime.cwd}

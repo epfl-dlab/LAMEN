@@ -28,3 +28,9 @@ claude-2:
   completion_cost: 0.03268
   rpm: 0
   tpm: 0
+llama-2-7b-chat:
+  max_tokens: 4096
+  prompt_cost: 0
+  completion_cost: 0
+  rpm: 0
+  tpm: 0
