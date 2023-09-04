@@ -10,6 +10,7 @@ from attr import define, field
 
 from logger import get_logger
 import copy
+from model_utils import check_text_for_offers
 log = get_logger()
 
 
@@ -35,6 +36,9 @@ class NegotiationAgent:
     model_key: str = field(default='OPENAI_API_KEY')
     model_budget: float = field(default=5.)
     temperature: float = field(default=0.)
+    
+    # issue state extraction approach
+    use_chatgpt: bool = field(default=True)
 
     # keep track of what agents think they can achieve
     notes_history: list = field(factory=list)
@@ -65,6 +69,10 @@ class NegotiationAgent:
         )
         self.agent_name = self.internal_description['name']
         self.agent_name_ext = self.external_description['name']
+        
+        # smarter acceptable offer extraction
+        if "llama" in self.model_name:
+            self.use_chatgpt = True
 
     def copy_agent_history_from_transcript(self, transcript: str, agent_id: int):
         transcript = pd.read_csv(transcript)
@@ -229,7 +237,7 @@ class NegotiationAgent:
 
         return prompt
 
-    def get_issues_state(self) -> dict:
+    def get_issues_state(self, issues) -> dict:
         """
         Each mental note should conclude with the current issues state.
         The regext should retrieve the following:
@@ -248,20 +256,31 @@ class NegotiationAgent:
         state = {}
         if len(self.notes_history) > 0:
             _, last_note = self.notes_history[-1]
-
-            state_regex = re.compile(r"{[\s\S]*?}")
-            state_str = state_regex.search(last_note)
-            if state_str is not None:
-                try:
-                    state = json.loads(state_str[0])
-                    log.debug(f"Issue state for agent {self.agent_name}: {state}")
+            if self.use_chatgpt:
+                try: 
+                    state = json.loads(check_text_for_offers(last_note, issues))
                 except Exception as e:
                     print(f'error: unable to retrieve valid state from notes - {e}')
+            else:
+                state_regex = re.compile(r"{[\s\S]*?}")
+                state_str = state_regex.search(last_note)
+                if state_str is not None:
+                    try:
+                        state = json.loads(state_str[0])
+                        log.debug(f"Issue state for agent {self.agent_name}: {state}")
+                    except Exception as e:
+                        print(f'error: unable to retrieve valid state from notes - {e}')
 
-                if any(state):
-                    self.achievable_payoffs = state
+            if any(state):
+                self.achievable_payoffs = state
 
         return state
+
+
+    def estimate_tokens(self, message, text_col="note"):
+        # TODO: use estimate token from ChatModel class
+        message = len(message[text_col].split())
+        return message
 
     def set_system_description(self, game, agent_id):
         system_description = game.get_system_msg(agent_id=agent_id, agent_desc_int=self.internal_description)

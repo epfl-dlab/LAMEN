@@ -9,6 +9,7 @@ from hydra.core.global_hydra import GlobalHydra
 from hydra.core.hydra_config import HydraConfig
 
 
+
 def printv(msg, v=0, v_min=0):
     # convenience print function
     if v > v_min:
@@ -161,3 +162,4 @@ def fill_defaults(x, defaults_file='data/negotiation_defaults.yaml'):
     x = _fill_defaults_recursion(x, defaults)
 
     return x
+

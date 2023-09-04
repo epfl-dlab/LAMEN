@@ -2,11 +2,10 @@
 import os
 # import tiktoken
 import pandas as pd
-from model_utils import HumanMessage, ChatModel  # AIMessage, SystemMessage
 from utils import get_api_key
+from model_utils import check_text_for_offers
 from games import Game
 from attr import define, field
-
 
 @define
 class EvaluateNegotiations:
@@ -62,10 +61,10 @@ class EvaluateNegotiations:
         )
 
         self.neg_hist["offers_in_message"] = self.neg_hist["message"].apply(
-            lambda x: self._check_text_for_offers(x))
+            lambda x: check_text_for_offers(x, self.issues))
         
         self.neg_hist["offers_in_note"] = self.neg_hist["note"].apply(
-            lambda x: self._check_text_for_offers(x))
+            lambda x: check_text_for_offers(x, self.issues))
 
         self.neg_hist[
             ["total_payoff", "normalized_payoff", "issue_payoff", "normalized_issue_payoff"]
@@ -172,49 +171,6 @@ class EvaluateNegotiations:
                     min_index = i
             # If value not found, return lexicographically closest element's index
             return min_index
-
-    def _check_text_for_offers(self, message):
-        api_key = get_api_key(provider=self.model_provider, key=self.model_key)
-        model = ChatModel(model_name=self.model_name, model_key=api_key)
-        issues = ", ".join([issue.name for issue in self.issues])
-        message_offer_prompt = """
-In the following message, if an issue is being discussed extract the offer being provided
-Format each offer as follows:
-{
-    "issue_name_0": "<stated offer>",
-    "issue_name_1": "<stated offer>",
-    ...
-}
-Make sure that the name of the issue is spelled exactly as provided and that only issues from those that are provided are included.
-
-Example 1: 
-Issues: price
-Message: After considering your offer of $7,200, I believe we can reach an agreement. How about we settle on $6,800? 
-Offers:
-{
-    "price": "$6,800"
-}
-
-Example 2: 
-Issues: family employees
-Message: Thank you for your offer. How about instead of hiring 5 family employees, we will hire 7. 
-Offers:
-{
-    "family employees": "7"
-}
-```
-
-Issues: These are the issues being discusses {issues}. 
-Message: {message}
-Offers:
-""".replace("{issues}", issues).replace("{message}", message)
-        print(message_offer_prompt)
-        try:
-            output = model([HumanMessage(message_offer_prompt)])
-        except Exception as e:
-            output = {}
-            print(f'error: failed to extract offers from message - {e}')
-        return output
 
     def estimate_tokens(self, message, text_col="note"):
         # TODO: use estimate token from ChatModel class

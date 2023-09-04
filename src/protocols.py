@@ -286,9 +286,9 @@ class NegotiationProtocol:
         return completed, completion_reason
 
     def compare_issues(self, return_issues=False):
-        is1 = self.agent_1.get_issues_state()
+        is1 = self.agent_1.get_issues_state(self.game.issues)
         log.debug(f"Issues for agent 1: {is1}")
-        is2 = self.agent_2.get_issues_state()
+        is2 = self.agent_2.get_issues_state(self.game.issues)
         log.debug(f"Issues for agent 2: {is2}")
 
         if not any(is1) or not any(is2):
@@ -318,7 +318,7 @@ class NegotiationProtocol:
 
             note = '' if len(agent.notes_history) == 0 else agent.notes_history[-1][1]
             msg = '' if len(agent.msg_history) == 0 else agent.msg_history[-1][1]
-            issues_state = agent.get_issues_state()
+            issues_state = agent.get_issues_state(self.game.issues)
             timestamp = dt.strftime(dt.now(), '%Y%m%d_%H%M%S')
             model_name = agent.model_name
             data = [agent.agent_name, agent_id, round_num, note, msg, issues_state, timestamp, model_name,

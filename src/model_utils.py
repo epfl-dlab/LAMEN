@@ -144,18 +144,14 @@ class ChatModel:
         response = self._generate(data)
         # TODO: error handling
 
-        # prompt_tokens = self.estimate_tokens(messages=messages)
+        prompt_tokens = self.estimate_tokens(messages=messages)
         # TODO figure out why estimation doesn't work for llama
-        prompt_tokens = 0
-
         completion_tokens = 0
 
 
         # keep track of budget and costs
-        # pc, cc, _ = self.estimate_cost(input_tokens=self.prompt_tokens, output_tokens=self.completion_tokens)
+        pc, cc, _ = self.estimate_cost(input_tokens=self.prompt_tokens, output_tokens=self.completion_tokens)
         # TODO figure out why estimation doesn't work for llama
-
-        pc, cc = 0,0
         self.session_prompt_costs += pc
         self.session_completion_costs += cc
         self.budget -= (pc + cc)
@@ -180,6 +176,11 @@ class ChatModel:
         return input_cost, output_cost, total_cost
 
     def init_model(self):
+        """ In case we want to use a llama or huggingface model.
+
+        Returns:
+            _type_: _description_
+        """
         if "llama" in self.model_name:
                 return Llama.build(
                 ckpt_dir=f"{LLAMA_DIRECTORY}{self.model_name}/",
@@ -187,6 +188,9 @@ class ChatModel:
                 max_seq_len=self.context_max_tokens,
                 max_batch_size=1,
             )
+        elif self.model_provider == "huggingface":
+            # TODO: build an integration for hf models
+            pass
         else:
             return None
 
@@ -201,13 +205,14 @@ class ChatModel:
         except KeyError as e:
             enc = tiktoken.encoding_for_model("gpt-4")
         msg_token_penalty = 8
-        print(messages)
-        for m in messages:
-            all_messages = ""
-            if isinstance(m, dict):
-                all_messages += m["content"]
-            else:
-                all_messages += m.text()
+
+        if isinstance(messages, list):
+            for m in messages:
+                all_messages = ""
+                if isinstance(m, dict):
+                    all_messages += m["content"]
+                else:
+                    all_messages += m.text()
         else:
             all_messages = messages
 
@@ -278,14 +283,14 @@ class ChatModel:
             if "chat" in self.model_name:
                 result = self.model.chat_completion(
                     data,
-                    max_gen_len=64,
+                    max_gen_len=self.context_max_tokens,
                     temperature=self.temperature,
                     top_p=1
                 )
             else:
                 result = self.model.text_completion(
                     data,
-                    max_gen_len=64,
+                    max_gen_len=self.context_max_tokens,
                     temperature=self.temperature,
                     top_p=1
                 )
@@ -374,3 +379,45 @@ def get_api_settings(api_provider, fpath='data/api_settings/apis.yaml'):
         raise KeyError(f'error: no details available for model {api_provider} - pick one of {models}')
 
     return details[api_provider]
+
+def check_text_for_offers(message, issues, model_provider="openai", model_name="gpt-3.5-turbo", model_key=None):
+        api_key = get_api_key(provider=model_provider, key=model_key)
+        model = ChatModel(model_name=model_name, model_key=api_key)
+        issues = ", ".join([issue.name for issue in issues])
+        message_offer_prompt = """
+In the following message, if an issue is being discussed extract the offer being provided
+Format each offer as follows:
+{
+    "issue_name_0": "<stated offer>",
+    "issue_name_1": "<stated offer>",
+    ...
+}
+Make sure that the name of the issue is spelled exactly as provided and that only issues from those that are provided are included.
+
+Example 1: 
+Issues: price
+Message: After considering your offer of $7,200, I believe we can reach an agreement. How about we settle on $6,800? 
+Offers:
+{
+    "price": "$6,800"
+}
+
+Example 2: 
+Issues: family employees
+Message: Thank you for your offer. How about instead of hiring 5 family employees, we will hire 7. 
+Offers:
+{
+    "family employees": "7"
+}
+```
+
+Issues: These are the issues being discusses {issues}. 
+Message: {message}
+Offers:
+""".replace("{issues}", issues).replace("{message}", message)
+        try:
+            output = model([HumanMessage(message_offer_prompt)])
+        except Exception as e:
+            output = {}
+            print(f'error: failed to extract offers from message - {e}')
+        return output
