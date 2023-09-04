@@ -17,16 +17,16 @@ log = get_logger()
 @define
 class NegotiationAgent:
     # message params
-    msg_prompt: str
-    msg_max_len: int
-    msg_input_msg_history: str
-    msg_input_note_history: str
+    msg_prompt: str = 'prompt_0'
+    msg_max_len: int = 64
+    msg_input_msg_history: int = -1
+    msg_input_note_history: int = -1
 
     # notes params
-    note_prompt: str
-    note_max_len: int
-    note_input_msg_history: int
-    note_input_note_history: int
+    note_prompt: str = 'prompt_0'
+    note_max_len: int = 64
+    note_input_msg_history: int = -1
+    note_input_note_history: int = -1
 
     # model
     model: ChatModel = None
@@ -46,8 +46,8 @@ class NegotiationAgent:
     achievable_payoffs: dict = field(factory=dict)
 
     # agent character
-    agent_name: str = None
-    agent_name_ext: str = None
+    agent_name: str = 'You'
+    agent_name_ext: str = 'Representative'
     internal_description: dict = field(factory=dict)
     external_description: dict = field(factory=dict)
     system_description: SystemMessage = field(default=SystemMessage(''))
@@ -73,6 +73,7 @@ class NegotiationAgent:
         # smarter acceptable offer extraction
         if "llama" in self.model_name:
             self.use_chatgpt = True
+
 
     def copy_agent_history_from_transcript(self, transcript: str, agent_id: int):
         transcript = pd.read_csv(transcript)
@@ -225,7 +226,9 @@ class NegotiationAgent:
     def get_msg_note_prompt(self, prompt_name, before='max_words', is_note=False):
         prompt_path = 'data/note_prompts' if is_note else 'data/message_prompts'
         max_len = self.note_max_len if is_note else self.msg_max_len
-        prompt = open(os.path.join(prompt_path, prompt_name + ".txt")).read()
+        if not prompt_name.endswith('.txt'):
+            prompt_name += '.txt'
+        prompt = open(os.path.join(prompt_path, prompt_name)).read()
         if is_note:
             if max_len > 0:
                 prompt += f'\nYour note can not exceed {max_len} words.'

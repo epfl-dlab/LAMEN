@@ -114,9 +114,7 @@ class ChatModel:
                                          key=self.model_key_name)
         # get model api details
         model_details = get_model_details(self.model_name)
-        print(model_details)
         self.context_max_tokens = model_details['max_tokens']
-        print(self.context_max_tokens)
         self.prompt_cost = model_details['prompt_cost']
         self.completion_cost = model_details['completion_cost']
         self.tpm = model_details['tpm']

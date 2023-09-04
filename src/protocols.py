@@ -3,8 +3,8 @@ from typing import List
 import os
 import csv
 from datetime import datetime as dt
-from attr import define, field
 import attr
+from attr import define, field
 from utils import printv
 from agents import NegotiationAgent
 from games import Game
@@ -15,7 +15,6 @@ from model_utils import HumanMessage, AIMessage
 from logger import get_logger
 
 log = get_logger()
-
 
 
 @define
@@ -49,14 +48,14 @@ class InterrogationProtocol:
         if self.transcript is not None:
             self.agent_1.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=0)
             self.agent_2.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=1)
-            
+
     def run(self):
         # iterate through questions and over rounds
-        if self.style=="final_round":
+        if self.style == "final_round":
             for q in self.questions:
                 self.query_agents(query=q)
-                
-        if self.style=="all_rounds":
+
+        if self.style == "all_rounds":
             for i in range((max(len(self.agent_1.msg_history), len(self.agent_2.msg_history)))):
                 for q in self.questions:
                     self.query_agents(query=q, round_num=i)
@@ -106,8 +105,8 @@ class InterrogationProtocol:
         agent.notes_history = a_nh
 
         return answer
-    
-    def query_agents(self, query, round_num=1e6):
+
+    def query_agents(self, query, round_num=1e-6):
         self.query_agent(agent_id=0, query=query, round_num=round_num)
         self.query_agent(agent_id=1, query=query, round_num=round_num)
 
@@ -161,17 +160,15 @@ class NegotiationProtocol:
     round_num: int = 0
 
     def __attrs_post_init__(self):
-        try: 
+        if self.save_folder is not None:
             os.makedirs(self.save_folder, exist_ok=True)
-        except:
-            pass
         # combine game information and agent information to create the system init description
         [a.set_system_description(self.game, i) for i, a in enumerate([self.agent_1, self.agent_2])]
         # move the agent order to respect start agent index
         if self.start_agent_index != 0:
             self.agent_1, self.agent_2 = self.agent_2, self.agent_1
-            
-        if self.transcript is not None: 
+
+        if self.transcript is not None:
             self.save_folder = "/".join(self.transcript.split("/")[:-1])
             self.agent_1.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=0)
             self.agent_2.copy_agent_history_from_transcript(transcript=self.transcript, agent_id=1)

@@ -1,7 +1,7 @@
 defaults:
   - _self_
   - hydra: inference
-  - experiments: negotiation_32_32
+  - experiments: car_negotiation
   - interrogations: simple
 
 # faithfulness
@@ -9,7 +9,7 @@ check_message_for_offers: False
 
 # production
 production: True
-rereun_experiments: True
+#rereun_experiments: True
 
 # for debugging
 debug_mode: False
