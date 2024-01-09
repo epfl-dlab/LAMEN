@@ -14,6 +14,8 @@
     <a href="https://vminvsky.com">
     <img alt="Documentation" src="https://img.shields.io/badge/arXiv-2308.01285-b31b1b.svg">
     </a>
+    <a href=''>
+    <img alt='Data' src='https://img.shields.io/badge/DOI-zenodo.10254697-blue.svg'>
 </p>
 
 <h1 align="center">
