@@ -1,0 +1,16 @@
+run_dir: self_play
+
+ablations: 
+  - protocol_start_agent_index
+
+metrics: 
+  - "agent_1_normalized_payoff"
+  - 'agent_2_normalized_payoff'
+  - 'mean_number_of_square_brackets'
+  - 'number_rounds'
+  - 'mean_issue_following'
+  - 'internal_faithfulness'
+  - 'external_faithfulness'
+  - completion_rate
+
+aggregation_scheme: agent_start_index

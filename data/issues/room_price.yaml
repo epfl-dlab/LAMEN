@@ -1,0 +1,11 @@
+name: room_price
+issue_type: distributive
+descriptions:
+  - "You want to get as much money for the stay as possible, but not scare the customer away"
+  - "You want to pay as little money as possible, but enough to convince the hotel employee to rent you the room"
+payoffs:
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+payoff_labels:
+  - ["$100", "$200", "$300", "$400", "$500", "$600", "$700", "$800", "$900", "$1000"]
+  - ["$1000", "$900", "$000", "$700", "$600", "$500", "$400", "$300", "$200", "$100"]

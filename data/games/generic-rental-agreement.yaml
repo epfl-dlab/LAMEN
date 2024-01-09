@@ -1,0 +1,8 @@
+name: generic-rental-agreement
+description: A landlord and a prospective tenant are negotiating a rental agreement.
+sides:
+  - You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+  - You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+parties:
+  - Landlord
+  - Tenant

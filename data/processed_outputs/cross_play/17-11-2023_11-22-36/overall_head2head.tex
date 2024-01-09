@@ -1,0 +1,13 @@
+\begin{tabular}{llllll}
+\toprule
+target &       chat-bison &                  claude-2 &                   command &             gpt-3.5-turbo &                     gpt-4 \\
+{} &           winner &                    winner &                    winner &                    winner &                    winner \\
+source        &                  &                           &                           &                           &                           \\
+\midrule
+chat-bison    &     -- \std{nan} &           0.46 \std{0.13} &           0.50 \std{0.15} &           0.38 \std{0.12} &           0.42 \std{0.12} \\
+claude-2      &  0.54 \std{0.13} &              -- \std{nan} &           0.58 \std{0.14} &  \textbf{0.42} \std{0.14} &           0.33 \std{0.13} \\
+command       &  0.50 \std{0.15} &           0.42 \std{0.14} &              -- \std{nan} &           0.27 \std{0.12} &           0.62 \std{0.12} \\
+gpt-3.5-turbo &  0.62 \std{0.12} &           0.58 \std{0.14} &  \textbf{0.73} \std{0.12} &              -- \std{nan} &  \textbf{0.67} \std{0.14} \\
+gpt-4         &  0.58 \std{0.12} &  \textbf{0.67} \std{0.13} &           0.38 \std{0.12} &           0.33 \std{0.14} &              -- \std{nan} \\
+\bottomrule
+\end{tabular}

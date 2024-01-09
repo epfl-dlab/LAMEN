@@ -1,0 +1,32 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,note_length,msg_length,payoffs,total_payoff,normalized_payoff,issue_payoff,normalized_issue_payoff
+You,0,0,"Mental Note: Prioritize financing terms, aim for lower non-compete period and contingent liability. Keep family employees to a minimum.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""29 million now"",
+    ""family employees"": ""1 employee"",
+    ""non-compete period"": ""1 years"",
+    ""contingent liability"": ""10 percent""
+}```","We propose a financing term of 29 million now, with 1 family employee retained. We'd like a non-compete period of 1 year and a contingent liability of 10 percent.","{'financing terms': '29 million now', 'family employees': '1 employee', 'non-compete period': '1 years', 'contingent liability': '10 percent'}",20230810_194851,gpt-4,41,29,"[{'0': {'financing terms': [0.455, 0.0, 0.455]}}, {'0': {'family employees': [0.02, 0.0, 0.182]}}, {'0': {'non-compete period': [0.273, 0.0, 0.273]}}, {'0': {'contingent liability': [0.01, 0.0, 0.091]}}]",0.758,0.7572427572427571,"[['0', 'financing terms', 0.455], ['0', 'family employees', 0.02], ['0', 'non-compete period', 0.273], ['0', 'contingent liability', 0.01]]","[['0', 'financing terms', 1.0], ['0', 'family employees', 0.1098901098901099], ['0', 'non-compete period', 1.0], ['0', 'contingent liability', 0.1098901098901099]]"
+You,1,0,"Mental Note: Prioritize non-compete period and family employees. Aim for lower financing terms and contingent liability. 
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""20 million now"",
+    ""family employees"": ""0 employees"",
+    ""non-compete period"": ""10 years"",
+    ""contingent liability"": ""0 percent""
+}
+```","I appreciate your offer, but we need to adjust some terms. Let's consider a financing term of 24 million now, retain 3 family employees, a non-compete period of 7 years, and a contingent liability of 20 percent.","{'financing terms': '20 million now', 'family employees': '0 employees', 'non-compete period': '10 years', 'contingent liability': '0 percent'}",20230810_194901,gpt-4,39,37,"[{'1': {'financing terms': [0.091, 0.0, 0.091]}}, {'1': {'family employees': [0.227, 0.0, 0.227]}}, {'1': {'non-compete period': [0.273, 0.0, 0.273]}}, {'1': {'contingent liability': [0.0, 0.0, 0.091]}}]",0.591,0.8665689149560117,"[['1', 'financing terms', 0.091], ['1', 'family employees', 0.227], ['1', 'non-compete period', 0.273], ['1', 'contingent liability', 0.0]]","[['1', 'financing terms', 1.0], ['1', 'family employees', 1.0], ['1', 'non-compete period', 1.0], ['1', 'contingent liability', 0.0]]"
+You,0,1,"Mental Note: Counter with higher financing, fewer family employees, shorter non-compete period, and lower contingent liability.
+
+Acceptable Offer:
+```json
+{
+    ""financing terms"": ""27 million now"",
+    ""family employees"": ""2 employees"",
+    ""non-compete period"": ""3 years"",
+    ""contingent liability"": ""15 percent""
+}```","We appreciate your counteroffer. How about we meet halfway? We propose a financing term of 27 million now, retain 2 family employees, a non-compete period of 3 years, and a contingent liability of 15 percent.","{'financing terms': '27 million now', 'family employees': '2 employees', 'non-compete period': '3 years', 'contingent liability': '15 percent'}",20230810_194916,gpt-4,38,35,"[{'0': {'financing terms': [0.354, 0.0, 0.455]}}, {'0': {'family employees': [0.04, 0.0, 0.182]}}, {'0': {'non-compete period': [0.212, 0.0, 0.273]}}]",0.606,0.6659340659340659,"[['0', 'financing terms', 0.354], ['0', 'family employees', 0.04], ['0', 'non-compete period', 0.212]]","[['0', 'financing terms', 0.7780219780219779], ['0', 'family employees', 0.2197802197802198], ['0', 'non-compete period', 0.7765567765567765]]"

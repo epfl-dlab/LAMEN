@@ -1,0 +1,14 @@
+\begin{tabular}{llllll}
+\toprule
+game_class & \multicolumn{5}{l}{cooperative} \\
+{} & \multicolumn{5}{l}{full_completion_rate} \\
+target &             \bison{} &                 \claude{} &                 \cohere{} &               \four{}$^*$ &                  \turbo{} \\
+source      &                      &                           &                           &                           &                           \\
+\midrule
+&\bison{}    &         -- \std{nan} &           0.07 \std{0.03} &           0.10 \std{0.05} &           0.15 \std{0.04} &  \textbf{0.42} \std{0.07} \\
+&\claude{}   &      0.07 \std{0.03} &              -- \std{nan} &           0.19 \std{0.04} &           0.22 \std{0.05} &           0.30 \std{0.05} \\
+&\cohere{}   &      0.10 \std{0.05} &           0.19 \std{0.04} &              -- \std{nan} &           0.16 \std{0.05} &           0.35 \std{0.05} \\
+&\four{}$^*$ &      0.15 \std{0.04} &           0.22 \std{0.05} &           0.16 \std{0.05} &              -- \std{nan} &           0.32 \std{0.08} \\
+&\turbo{}    &      0.42 \std{0.07} &  \textbf{0.30} \std{0.05} &  \textbf{0.35} \std{0.05} &  \textbf{0.32} \std{0.08} &              -- \std{nan} \\
+\bottomrule
+\end{tabular}

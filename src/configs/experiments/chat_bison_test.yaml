@@ -1,0 +1,18 @@
+game:
+  name: ${games_dir}/generic-rental-agreement.yaml
+  issues: [gen-ra-rent.yaml]
+  issue_weights:
+    - [1]
+    - [1]
+  scale:
+    - 100
+    - 100
+
+agent_1:
+  generation_parameters: ${models_dir}/google_bison.yaml
+
+agent_2:
+  generation_parameters: ${models_dir}/google_bison.yaml
+
+negotiation_protocol:
+  format_as_dialogue: True

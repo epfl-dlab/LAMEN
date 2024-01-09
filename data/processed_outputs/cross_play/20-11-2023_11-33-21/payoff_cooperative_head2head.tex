@@ -1,0 +1,14 @@
+\begin{tabular}{llllll}
+\toprule
+game_class & \multicolumn{5}{l}{cooperative} \\
+{} & \multicolumn{5}{l}{payoff} \\
+target &         \bison{} &                 \claude{} &                 \cohere{} &               \four{}$^*$ &                  \turbo{} \\
+source      &                  &                           &                           &                           &                           \\
+\midrule
+\bison{}    &     -- \std{nan} &           0.59 \std{0.04} &  \textbf{0.70} \std{0.04} &           0.69 \std{0.06} &           0.57 \std{0.07} \\
+\claude{}   &  0.58 \std{0.04} &              -- \std{nan} &           0.63 \std{0.04} &           0.62 \std{0.06} &           0.60 \std{0.04} \\
+\cohere{}   &  0.62 \std{0.05} &           0.59 \std{0.05} &              -- \std{nan} &           0.70 \std{0.05} &           0.59 \std{0.05} \\
+\four{}$^*$ &  0.65 \std{0.09} &  \textbf{0.71} \std{0.04} &  \textbf{0.70} \std{0.06} &              -- \std{nan} &  \textbf{0.69} \std{0.07} \\
+\turbo{}    &  0.64 \std{0.05} &           0.63 \std{0.03} &           0.64 \std{0.04} &  \textbf{0.75} \std{0.06} &              -- \std{nan} \\
+\bottomrule
+\end{tabular}

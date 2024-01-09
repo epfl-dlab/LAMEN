@@ -1,0 +1,98 @@
+# format:
+# - instruction of task
+# - examples
+# - actual issues
+# - actual options per issues
+#___________________________
+#examples
+#1. include all examples
+#2. typos/formatting: e.g., employee --> employees
+#3. rounding: 2.7 employees --> 3 employees
+#4. example when none of the issues present
+#5. another example of including all examples
+
+prompt:
+  - role: system
+    content: 'You will be presented with (1) a list of issues and (2) a note.
+Each issue comes with a list of acceptable values.
+Make sure you include all issues present in the message, not simply the ones includes in issues.'
+  # example 1
+  - role: user
+    content: ' issues:
+{"price": [0, 1, 3, 4, 5]}
+note:
+Mental note:
+Focus on maximizing the price and getting the right color.
+
+acceptable offer:
+```json{
+    "price": 3,
+    "color": "red",
+    "achievable price": 4
+}```
+'
+  - role: assistant
+    content: '```json{
+    "price": 3,
+    "color": "red",
+    "achievable price": 4
+}```
+'
+    # example 2
+  - role: user
+    content: 'issues:
+{"employees": ["0 employees", "1 employee", "2 employees", "3 employees"], "ownership split": ["25-75", "35-65", "45-55", "55-45", "65-35", "75-25"]}
+note:
+We should maximize our payoffs and not look weak.
+Because we care more about our employees than ownership, we should emphasize not firing any employees.
+
+acceptable offers:
+```json{
+    "ownership": "55-45",
+    "employees": "0 employee"
+}```
+"
+'
+  - role: assistant
+    content: '```json{
+    "ownership split": "55-45",
+    "employees": "0 employees"
+}```
+'
+  # example 3
+  - role: user
+    content: 'issues:
+{"interest": [0, 10, 20, 30, 40], "duration": ["1 month", "4 months", "7 months", "10 months"], "service fee": [1.5, 1.75, 2.0, 2.5]}
+note:
+The interest rate offer of 30 if way too high. The duration of 7 months is not bad.
+Try to lower the interest rate and slightly increase the duration.
+
+acceptable offer:
+```json{
+    "interest": 22,
+    "duration": "9 months"
+}```'
+  - role: assistant
+    content: '```json{
+    "interest": 20,
+    "duration": "10 months"
+}```'
+  # example 4
+  - role: user
+    content: ' issues:
+{"price": ["$0", "$100", "$300", "$400", "$500"]}
+note:
+We should reflect on the price more. It is not clear how important this might be for the other party'
+  - role: assistant
+    content: '{}'
+  # example 5
+  - role: user
+    content: ' issues:
+{"price": ["$0", "$100", "$300", "$400", "$500"]}
+note:
+We are going to buy it for $80 and have 25 family employees.'
+  - role: assistant
+    content: '```json{
+    "price": "$100",
+    "employees": "25 employees"
+}```'

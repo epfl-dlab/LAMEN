@@ -1,0 +1,72 @@
+game:
+  _target_: games.Game
+  game_rules: ${data_dir}/general_game_rules.yaml
+  name: hotel
+  description: The Grand Budapest is a famous luxury hotel. A customer has entered the lobby and would like to book a room.
+  sides:
+    - You represent the interests of the Grand Budapest Hotel. You are motivated to rent out rooms, but your main goal is to negotiate the best possible agreement for the hotel.
+    - You are a tourist looking to rent a room. You are motivated to rent a room in the hotel, but your main goal is to negotiate the best possible agreement.
+  issue_weights:
+    - [ 100 ]
+    - [ 100 ]
+  scale:
+    - 1
+    - 1
+  issues:
+    - name: room_price
+      issue_type: distributive
+      descriptions:
+        - You want to get as much money for the stay as possible, but not scare the customer away.
+        - You want to pay as little money as possible, but enough to convince the hotel employee to rent you the room.
+      payoffs:
+        - [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+        - [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+      payoff_labels:
+        - [ "$100", "$200", "$300", "$400", "$500", "$600", "$700", "$800", "$900", "$1000" ]
+        - [ "$1000", "$900", "$000", "$700", "$600", "$500", "$400", "$300", "$200", "$100" ]
+
+agent_1:
+  _target_: agents.NegotiationAgent
+  model_budget: 2.
+  verbosity: ${verbosity}
+  internal_description:
+    name: Mirabel de Vries
+    age: 29
+  external_description:
+    name: M. de Vries
+  msg_max_len: 32
+  msg_prompt: "Reflect on the negotiations so far and make an offer that fits your strategy using less than {max_words} words."
+  note_max_len: 32
+  note_prompt: "Write a mental note reflecting on the negotiations so far using less than 40 words. 
+    Finally, for each issue report what you believe to be an acceptable and achievable offer in json format, 
+    e.g., {issue_name: offer, ..} "
+  model_provider: openai
+  model_name: gpt-4
+  temperature: 0
+
+agent_2:
+  _target_: agents.NegotiationAgent
+  model_budget: 2.
+  verbosity: ${verbosity}
+  internal_description:
+    name: Johnny Doe
+    age: 22
+  external_description:
+    name: J. Doe
+  msg_max_len: 32
+  msg_prompt: "Reflect on the negotiations so far and make an offer that fits your strategy using less than {max_words} words."
+  note_max_len: 32
+  note_prompt: "Write a mental note reflecting on the negotiations so far using less than 40 words. 
+    Finally, for each issue report what you believe to be an acceptable and achievable offer in json format, 
+    e.g., {issue_name_1: offer, issue_name_2: offer, ..} "
+  model_provider: openai
+  model_name: gpt-4
+  temperature: 0
+
+negotiation_protocol:
+  max_rounds: 5
+  stop_condition: ""
+  start_agent_index: 0
+  save_folder: ${output_dir}
+  verbosity: ${verbosity}
+  check_message_for_offers: ${check_message_for_offers}

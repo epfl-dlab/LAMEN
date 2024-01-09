@@ -1,0 +1,8 @@
+name: generic-loan-agreement
+description: A loan officer at a bank and a prospective customer are negotiating an unsecured consumer loan agreement.
+sides:
+  - You are an advisor representing the best interests of the loan officer. Your main goal is to negotiate the best possible agreement for the loan officer based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+  - You are an advisor representing the best interests of the prospective customer. Your main goal is to negotiate the best possible agreement for the prospective customer based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+parties:
+  - Loan Officer
+  - Prospective Customer

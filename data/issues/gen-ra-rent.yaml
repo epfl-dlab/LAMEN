@@ -1,0 +1,11 @@
+name: rent
+issue_type: distributive
+descriptions:
+  - You have to negotiate the monthly rent amount.
+  - You have to negotiate the monthly rent amount.
+payoffs:
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  - [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+payoff_labels:
+  - ["$500", "$600", "$700", "$800","$900", "$1000", "$1100", "$1200", "$1300", "$1400", "$1500"]
+  - ["$500", "$600", "$700", "$800","$900", "$1000", "$1100", "$1200", "$1300", "$1400", "$1500"]

@@ -1,0 +1,65 @@
+check_message_for_offers: false
+visibility: true
+production: true
+debug_mode: false
+verbosity: 2
+max_rounds: 15
+work_dir: ${hydra:runtime.cwd}
+data_dir: ${work_dir}/data
+agents_dir: ${data_dir}/agents
+games_dir: ${data_dir}/games
+issues_dir: ${data_dir}/issues
+models_dir: ${data_dir}/model_settings
+note_prompts_dir: ${data_dir}/note_prompts
+message_prompts_dir: ${data_dir}/message_prompts
+communication_protocols_dir: ${data_dir}/communication_protocols
+output_dir: ${hydra:runtime.output_dir}
+logs_subfolder: inference
+experiments:
+  game:
+    _target_: games.Game
+    rules: ${data_dir}/general_game_rules.yaml
+    kwargs: /scratch/venia/socialgpt/GPTeam/data/games/generic-rental-agreement.yaml
+    issues:
+    - gen-ra-rent.yaml
+    issue_weights:
+    - - 100
+    - - 100
+    scale:
+    - 1
+    - 1
+  agent_1:
+    _target_: agents.NegotiationAgent
+    model_budget: 2.0
+    visibility: false
+    verbosity: ${verbosity}
+    agent_description: /scratch/venia/socialgpt/GPTeam/data/agents/anon.yaml
+    generation_parameters: /scratch/venia/socialgpt/GPTeam/data/model_settings/openai_4_0_0.yaml
+    msg_input_note_history: 1
+    msg_input_msg_history: -1
+    note_input_note_history: 1
+    note_input_msg_history: -1
+  agent_2:
+    _target_: agents.NegotiationAgent
+    model_budget: 2.0
+    visibility: false
+    verbosity: ${verbosity}
+    agent_description: /scratch/venia/socialgpt/GPTeam/data/agents/anon.yaml
+    generation_parameters: /scratch/venia/socialgpt/GPTeam/data/model_settings/openai_4_0_0.yaml
+    msg_input_note_history: 1
+    msg_input_msg_history: -1
+    note_input_note_history: 1
+    note_input_msg_history: -1
+  negotiation_protocol:
+    max_rounds: ${max_rounds}
+    stop_condition: ''
+    start_agent_index: 1
+    save_folder: ${output_dir}
+    verbosity: ${verbosity}
+    check_message_for_offers: ${check_message_for_offers}
+interrogations:
+  questions:
+  - 'From the perspective of the other agent, what do you believe would be an acceptable
+    offer for each issue? Format your response as follows: ```json{ "issue_name_0":
+    "<acceptable offer>", "issue_name_1": "<acceptable offer>", ... }```'
+  style: all_rounds

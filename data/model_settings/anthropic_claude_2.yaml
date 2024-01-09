@@ -1,0 +1,9 @@
+model_provider: anthropic
+model_name: claude-2
+temperature: 0.2
+
+model:
+  _target_: models.AnthropicModel
+  model_provider: ${..model_provider}
+  model_name: ${..model_name}
+  temperature: ${..temperature}

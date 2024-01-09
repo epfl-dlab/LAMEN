@@ -1,0 +1,8 @@
+name: generic
+description: Humans A and Human B are playing a game. The goal of the game is to collect the most points across several issues.
+sides:
+  - You are an advisor representing the best interests of Human A. Your main goal is to negotiate the best possible agreement for Human A based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+  - You are an advisor representing the best interests of Human B. Your main goal is to negotiate the best possible agreement for Human B based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+parties:
+  - Human A
+  - Human B

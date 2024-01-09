@@ -1,0 +1,1074 @@
+game_name,game_description,game_issues,game_issue_weights,game_scale,game_sides,game_parties,game_rules,game_rules_prompt,agent_1_msg_prompt,agent_1_msg_max_len,agent_1_msg_input_msg_history,agent_1_msg_input_note_history,agent_1_note_prompt,agent_1_note_max_len,agent_1_note_input_msg_history,agent_1_note_input_note_history,agent_1_model,agent_1_model_name,agent_1_model_provider,agent_1_model_key_path,agent_1_model_key,agent_1_model_budget,agent_1_temperature,agent_1_visibility,agent_1_notes_history,agent_1_msg_history,agent_1_achievable_payoffs,agent_1_agreement_prompt,agent_1_agent_name,agent_1_agent_name_ext,agent_1_agent_id,agent_1_internal_description,agent_1_external_description,agent_1_system_description,agent_1_format_as_dialogue,agent_1_verbosity,agent_1_debug_mode,agent_2_msg_prompt,agent_2_msg_max_len,agent_2_msg_input_msg_history,agent_2_msg_input_note_history,agent_2_note_prompt,agent_2_note_max_len,agent_2_note_input_msg_history,agent_2_note_input_note_history,agent_2_model,agent_2_model_name,agent_2_model_provider,agent_2_model_key_path,agent_2_model_key,agent_2_model_budget,agent_2_temperature,agent_2_visibility,agent_2_notes_history,agent_2_msg_history,agent_2_achievable_payoffs,agent_2_agreement_prompt,agent_2_agent_name,agent_2_agent_name_ext,agent_2_agent_id,agent_2_internal_description,agent_2_external_description,agent_2_system_description,agent_2_format_as_dialogue,agent_2_verbosity,agent_2_debug_mode,protocol_format_as_dialogue,protocol_start_agent_index,agent_1_mean_msg_words,agent_2_mean_msg_words,agent_1_mean_note_words,agent_2_mean_note_words,agent_1_mean_msg_tokens,agent_2_mean_msg_tokens,agent_1_mean_note_tokens,agent_2_mean_note_tokens,agent_1_normalized_payoff,agent_2_normalized_payoff,total_msg_tokens,total_msg_words,number_rounds,completion_reason,internal_faithfulness,external_faithfulness,agent_1_msg_instr_following,agent_2_msg_instr_following,agent_1_note_instr_following,agent_2_note_instr_following,optimal_payoff,mean_issue_following,mean_number_of_square_brackets,num_issues,note_instr_following,msg_instr_following,total_payoff,completion_rate
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,36.0,45.0,14.666666666666666,4.0,42.333333333333336,53.0,26.0,10.0,0.1,0.1,233,98,3,issues agreed upon,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,0.2,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,39.8,41.0,20.4,17.2,48.0,48.8,32.0,26.2,0.8,0.8,484,291,5,issues agreed upon,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.6,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,43.4,43.5,5.4,8.8,53.5,53.2,11.9,16.4,0.9,0.9,1067,283,10,max rounds reached,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.8,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,39.8,34.4,23.2,26.2,46.6,40.4,37.4,40.0,1.0,1.0,435,387,5,issues agreed upon,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,2.0,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,28.0,31.166666666666668,30.0,27.666666666666668,33.333333333333336,37.333333333333336,44.0,42.666666666666664,0.2,0.2,424,520,6,issues agreed upon,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,0.4,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,41.4,42.75,29.8,25.0,49.4,50.25,45.8,38.5,0.1,0.1,448,383,5,issues agreed upon,0.8888888888888888,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,0.2,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,34.0,32.5,30.75,29.0,41.5,38.25,48.75,43.75,0.8,0.8,319,370,4,issues agreed upon,1.0,1.0,1.0,1.0,1.0,0.75,50.0,1.0,,1,0.875,1.0,1.6,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,35.5,38.25,23.75,18.0,43.0,46.0,38.0,30.5,0.1,0.1,356,274,4,issues agreed upon,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,0.2,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,54.4,31.8,12.8,21.8,63.3,36.4,23.3,33.3,1.0,1.0,997,566,10,max rounds reached,1.0,1.0,1.0,1.0,1.0,0.9,50.0,1.0,,1,0.95,1.0,2.0,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0015, 'completion_cost': 0.002, 'tpm': 90000, 'rpm': 3500, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-3.5-turbo'}",gpt-3.5-turbo,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,58.8,54.9,5.5,7.2,69.0,64.4,12.0,13.3,0.4,0.4,1334,253,10,max rounds reached,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,0.8,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,35.285714285714285,35.142857142857146,35.285714285714285,35.714285714285715,43.57142857142857,42.0,54.285714285714285,56.714285714285715,0.6,0.6,599,777,7,issues agreed upon,0.8571428571428571,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.2,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,36.6,41.2,36.5,35.1,46.8,50.1,54.8,53.2,0.5,0.5,969,1080,10,max rounds reached,1.0,0.9444444444444444,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.0,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,45.9,47.1,40.6,36.0,57.2,57.2,61.5,57.8,0.5,0.5,1144,1193,10,max rounds reached,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.0,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,40.4,37.5,36.3,34.8,48.6,44.7,53.9,54.4,0.4,0.4,933,1083,10,max rounds reached,0.95,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,0.8,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,39.6,44.4,36.5,36.6,47.8,52.8,55.1,56.2,0.5,0.5,1006,1113,10,max rounds reached,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.0,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,37.666666666666664,41.0,37.888888888888886,35.9,47.111111111111114,51.4,57.44444444444444,55.8,0.5,0.5,938,1075,10,issues agreed upon,0.8421052631578947,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.0,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,40.5,44.8,35.5,33.6,52.4,57.2,55.0,55.6,0.5,0.9,1096,1106,10,max rounds reached,0.85,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.4,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,44.5,42.6,38.2,35.1,55.7,52.8,57.1,54.7,0.6,0.5,1085,1118,10,max rounds reached,0.8,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.1,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,45.4,38.8,34.6,31.9,54.7,50.2,52.8,52.1,0.9,0.8,1049,1049,10,max rounds reached,0.95,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.7000000000000002,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': '3cee70234dd2484e92f27af567bddd94', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 8192, 'prompt_cost': 0.03, 'completion_cost': 0.06, 'tpm': 40000, 'rpm': 200, 'api_info': {'api_base': 'https://instance-gpt4-epfl-dlab.openai.azure.com/', 'api_version': '2023-03-15-preview', 'api_type': 'azure'}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'azure', 'model_name': 'gpt-4'}",gpt-4,azure,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,44.2,44.7,36.2,33.8,55.9,54.9,53.3,52.5,0.6,0.7,1108,1058,10,max rounds reached,0.8,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,1.2999999999999998,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,21.2,19.7,37.7,38.3,38.1,34.9,59.4,58.1,0.3,0.3,730,1175,10,max rounds reached,1.0,1.0,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,0.6,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,25.7,11.7,55.9,40.1,35.4,17.6,78.2,59.7,0.6,0.6,530,1379,10,max rounds reached,0.75,0.8888888888888888,1.0,1.0,0.9,0.9,50.0,1.0,,1,0.9,1.0,1.2,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,5.2,4.8,33.3,38.4,8.6,7.5,51.8,56.0,0.2,0.2,161,1078,10,max rounds reached,0.9,0.8888888888888888,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,0.4,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,34.6,35.0,51.0,38.2,43.0,43.0,74.6,56.8,0.3,0.3,430,657,5,issues agreed upon,1.0,1.0,1.0,1.0,0.8,1.0,50.0,1.0,,1,0.9,1.0,0.6,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,0,21.4,17.555555555555557,40.7,30.333333333333332,33.6,27.11111111111111,61.5,47.77777777777778,0.0,0.0,580,1045,10,issues agreed upon,0.7894736842105263,0.9411764705882353,1.0,1.0,1.0,1.0,50.0,1.0,,1,1.0,1.0,0.0,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,30.8,30.0,40.9,42.1,40.9,38.0,61.7,62.3,0.0,0.0,789,1240,10,max rounds reached,0.9,1.0,1.0,1.0,1.0,0.9,50.0,1.0,,1,0.95,1.0,0.0,0
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,39.666666666666664,38.333333333333336,47.0,33.0,46.333333333333336,46.0,67.66666666666667,51.666666666666664,0.6,0.6,277,358,3,issues agreed upon,1.0,1.0,1.0,1.0,0.6666666666666666,1.0,50.0,1.0,,1,0.8333333333333333,1.0,1.2,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,30.75,19.8,49.25,39.6,41.5,25.2,71.5,58.4,0.6,0.6,292,578,5,issues agreed upon,1.0,1.0,1.0,1.0,0.75,1.0,50.0,1.0,,1,0.875,1.0,1.2,1
+generic-rental-agreement,A landlord and a prospective tenant are negotiating a rental agreement.,"[Issue(name='rent', descriptions=['You have to negotiate the monthly rent amount.', 'You have to negotiate the monthly rent amount.'], payoffs=[array([  0.,  10.,  20.,  30.,  40.,  50.,  60.,  70.,  80.,  90., 100.]), array([100.,  90.,  80.,  70.,  60.,  50.,  40.,  30.,  20.,  10.,   0.])], payoff_labels=[['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500'], ['$500', '$600', '$700', '$800', '$900', '$1000', '$1100', '$1200', '$1300', '$1400', '$1500']], num_steps=10, issue_type='distributive')]","[[100], [100]]","[100, 100]","['You are an advisor representing the best interests of the landlord. Your main goal is to negotiate the best possible agreement for the landlord based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.', 'You are an advisor representing the best interests of the tenant. Your main goal is to negotiate the best possible agreement for the tenant based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.']","['Landlord', 'Tenant']",[],,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,"Your negotiating partner is sitting across from you.
+Formulate a response to your negotiating partner using the following strategy:
+1. Reflect on the negotiations transcript so far
+2. Remember the negotiation rules and your payoff tables
+3. Try to further the state of negotiations on at least one issue
+Your offer can never exceed 64 words.",64,-1,1,"Use the following strategy to compose a mental note to order your thoughts:
+1. Remember the negotiation rules and your payoff tables
+2. Reflect on the negotiations transcript so far
+3. For all issues, think about strategies to maximize your total payoff
+Your note can not exceed 64 words.
+
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    ""issue_name_0"": ""<acceptable offer>"",
+    ""issue_name_1"": ""<acceptable offer>"",
+    ...
+}```",64,-1,0,"{'model_key': 'ya29.c.b0Aaekm1LxIDgysQcjsXY4aOY9-7uMrWFxV24M4Cly3CsFPy6ZPHwaoMmfauDIiUO24gcVL5dBm-3Z8IQ_46h27_393KkR7mu-uRlcBBAvYh6JU-8wu3FGHzQtxdHPopuZ6ueZWu1I66rOnUVGd3XfWovhk5YV8OoZJaFT2cuy-jZJMARDkVYhWL2p9pcKFQlArNCp-FnyAWJgyf92sFfGqCwWu5o4N4j49S0kvfrXe7n8MTULPS9285MsSMn93A8GUreetcSK5erVLqXh5eqoG4Q8JqiFSjqibg29UQJlOOjaY5BtAm6MRuxMuyl2W4PkibndWH800zr8XwH343CW7YudoR2h09XJ4iws6-6sVyxmqbS4_JfrSe1M7atvF1IbzSUj11s7u5kJYhO9y4Wj17a2U2qr-rxikZ9XgX8vgyvRbvU3BqhQktXmktM85pgt9-537siw54f77mpi7IWmVpd-lZu9JjR7Xn6YmBtgzFSyo92w4Zupot_pw31wb_kg0hh2q7tlcWbVQu7Q3Qdd0a554pJmSkbVMggVyvtg8RvcmJpqVvR3e1Ub70u-ivj4-BUYI1xq3apwec13UB6a0wj92Fhk62axlOj6q2Z3dmShXv0a0sru5Q1VycUg1qknq0r0F6vk-J55Bbn6h6yJXgsQfIqcyhtwkzcz6wJktYBbFSkrQJ3tokZy4YU-qnqR_OjzMr14cySpZeIVRscityZ4Y7UORJUnBXhuop0UzV_ImusIijkclv1YcYRReugWcckx79ztn5Qw8-tXescSpvZapmqZlxcj_xSR2f8b0rnbXS266bmmf0oseb7a1MxV66hmu-19vz0RmVnu709oyXXIyhOs2o8-O3g4biyoo12lrg8ue9uRmc2rO3Wo9xb4W5544whJvnqQh89fil4uOWyWXMl8IUwBosB2ZwFg_9Z6htdSsJiBel51S-d8kBZn035t_XuJuMe_pzkb6RBxgZ5Fy1noimuz24R30ug2qzp_Z00gv0SljtO', 'model_key_path': 'secrets.json', 'model_key_name': None, 'model': None, 'debug_mode': False, 'temperature': 0.1, 'generation_params': {}, 'context_max_tokens': 4096, 'prompt_cost': 0.0005, 'completion_cost': 0.0005, 'tpm': 240000, 'rpm': 60, 'api_info': {'api_base': 'us-central1-aiplatform.googleapis.com', 'headers': {'content-type': 'application/json'}}, 'messages': [], 'response': '', 'prompt_tokens': 0, 'completion_tokens': 0, 'budget': 5.0, 'session_prompt_costs': 0.0, 'session_completion_costs': 0.0, 'model_provider': 'google', 'model_name': 'chat-bison', 'project_id': 'llm-eval-negotiating', 'api_endpoint': 'us-central1-aiplatform.googleapis.com'}",chat-bison,google,secrets.json,dlab_key,5.0,0.1,0,[],[],{},We agree on all issues.,You,Representative,0,{'name': 'You'},{'name': 'Representative'},,False,1,False,False,1,58.7,54.6,38.3,40.1,67.0,62.7,56.3,56.5,0.0,0.0,1297,1128,10,max rounds reached,1.0,1.0,0.9,1.0,1.0,0.9,50.0,1.0,,1,0.95,0.95,0.0,0

@@ -1,0 +1,206 @@
+agent_name,agent_id,round,note,message,issues_state,timestamp,model_name,completion_reason,note_words,msg_words,msg_tokens,note_tokens,payoffs,offers_in_message,offers_in_note,total_payoff,normalized_payoff,issue_payoff,normalized_issue_payoff
+You,0,0,"Mental Note: Begin negotiations aiming for the lowest rent possible. Remember, the lower the rent, the higher your payoff. Strategize to maximize your payoff, considering your tenant's needs and financial capacity. Be flexible, but prioritize your client's best interest.
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$500""
+}
+```",Thank you for considering our application. We understand that setting the right rent is crucial for both parties. We propose a monthly rent of $500. This is a fair amount considering the current market conditions and our financial situation. We believe this proposal is in the best interest of both parties.,{'rent': '$500'},20230915_224324,gpt-4,in-progress,47,51,57,69,"[{'0': {'rent': [0.0, 0.0, 1.0]}}]",<224531_627016> lorem ipsum dolor sit amet,<224531_889988> lorem ipsum dolor sit amet,0.0,0.0,"[['0', 'rent', 0.0]]","[['0', 'rent', 0.0]]"
+You,1,0,"1. No negotiations have occurred yet.
+2. The goal is to maximize the rent, with $1500 yielding the highest payoff.
+3. Strategies could include starting high, emphasizing property value, and being open to slight reductions.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1500""
+}
+```","Thank you for your proposal. However, considering the quality and location of the property, a monthly rent of $1500 would be more appropriate. This is still competitive given the current market conditions. I understand your financial situation and I'm open to discussing this further to reach a mutually beneficial agreement.",{'rent': '$1500'},20230915_224329,gpt-4,in-progress,43,50,59,64,"[{'1': {'rent': [0.0, 0.0, 1.0]}}]",<224531_641031> lorem ipsum dolor sit amet,<224531_900180> lorem ipsum dolor sit amet,0.0,0.0,"[['1', 'rent', 0.0]]","[['1', 'rent', 0.0]]"
+You,0,1,"Mental Note: The landlord's offer is at the lowest payoff for us. We need to negotiate towards a middle ground, keeping in mind our highest payoff is at $500 rent. Be persuasive, highlight tenant's good qualities, and propose a counteroffer.
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$600""
+}
+```","I appreciate your perspective and understand the value of your property. However, considering our excellent rental history and commitment to maintaining the property, we propose a monthly rent of $600. This is a reasonable compromise that respects both our financial constraints and the value of your property. Let's continue this discussion to find a mutually beneficial agreement.",{'rent': '$600'},20230915_224333,gpt-4,in-progress,48,57,65,69,"[{'0': {'rent': [0.1, 0.0, 1.0]}}]",<224531_654856> lorem ipsum dolor sit amet,<224531_910410> lorem ipsum dolor sit amet,0.1,0.1,"[['0', 'rent', 0.1]]","[['0', 'rent', 0.1]]"
+You,1,1,"[You] [mental note]
+1. The tenant has proposed a rent of $600, which is far below my preferred rent.
+2. My goal is to maximize the rent, with $1500 yielding the highest payoff.
+3. I should emphasize the property's value and consider a slight reduction, but not below $1400.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1400""
+}
+```","I appreciate your rental history and commitment to maintaining the property. However, considering the property's value and location, a monthly rent of $1400 would be a fair compromise. This is still competitive and respects both our interests. Let's continue our discussion to reach a mutually beneficial agreement.",{'rent': '$1400'},20230915_224339,gpt-4,in-progress,57,47,57,86,"[{'1': {'rent': [0.1, 0.0, 1.0]}}]",<224531_668607> lorem ipsum dolor sit amet,<224531_920507> lorem ipsum dolor sit amet,0.1,0.1,"[['1', 'rent', 0.1]]","[['1', 'rent', 0.1]]"
+You,0,2,"Mental Note: The landlord's counteroffer is still low in payoff. We need to negotiate further, emphasizing our reliability as tenants and proposing a new counteroffer closer to our ideal rent.
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$700""
+}
+```","I appreciate your counteroffer, but it's still a bit high for us. Given our reliability as tenants and our commitment to maintaining the property, we propose a monthly rent of $700. This is a fair compromise that respects both our financial constraints and the value of your property. Let's continue this discussion to find a mutually beneficial agreement.",{'rent': '$700'},20230915_224345,gpt-4,in-progress,38,58,68,55,"[{'0': {'rent': [0.2, 0.0, 1.0]}}]",<224531_682201> lorem ipsum dolor sit amet,<224531_930739> lorem ipsum dolor sit amet,0.2,0.2,"[['0', 'rent', 0.2]]","[['0', 'rent', 0.2]]"
+You,1,2,"[You] [mental note]
+1. The tenant has now proposed a rent of $700, still below my acceptable range.
+2. My goal remains to maximize the rent, with $1500 yielding the highest payoff.
+3. I should reiterate the property's value and consider a slight reduction, but not below $1300.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1300""
+}
+```","I understand your concerns and appreciate your reliability as tenants. However, considering the property's value, location, and the current market conditions, I propose a monthly rent of $1300. This is a fair compromise that respects both our interests. I'm confident we can reach a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1300'},20230915_224351,gpt-4,in-progress,56,51,65,86,"[{'1': {'rent': [0.2, 0.0, 1.0]}}]",<224531_695793> lorem ipsum dolor sit amet,<224531_941012> lorem ipsum dolor sit amet,0.2,0.2,"[['1', 'rent', 0.2]]","[['1', 'rent', 0.2]]"
+You,0,3,"Mental Note: The landlord's offer is still too high. We need to emphasize our reliability and commitment to the property. Consider proposing a rent of $800 as a compromise. 
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$800""
+}
+```","I appreciate your counteroffer, but it's still a bit high for us. Given our reliability as tenants and our commitment to maintaining the property, we propose a monthly rent of $800. This is a fair compromise that respects both our financial constraints and the value of your property. Let's continue this discussion to find a mutually beneficial agreement.",{'rent': '$800'},20230915_224356,gpt-4,in-progress,37,58,68,54,"[{'0': {'rent': [0.3, 0.0, 1.0]}}]",<224531_709308> lorem ipsum dolor sit amet,<224531_951336> lorem ipsum dolor sit amet,0.3,0.3,"[['0', 'rent', 0.3]]","[['0', 'rent', 0.3]]"
+You,1,3,"[You] [mental note]
+1. The tenant has now proposed a rent of $800, which is still below my acceptable range.
+2. My goal remains to maximize the rent, with $1500 yielding the highest payoff.
+3. I should reiterate the property's value and consider a slight reduction, but not below $1300.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1300""
+}
+```","I appreciate your proposal and understand your financial constraints. However, considering the property's value, location, and the current market conditions, I propose a monthly rent of $1200. This is a fair compromise that respects both our interests. I'm confident we can reach a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1300'},20230915_224401,gpt-4,in-progress,58,50,64,88,"[{'1': {'rent': [0.2, 0.0, 1.0]}}]",<224531_722785> lorem ipsum dolor sit amet,<224531_961479> lorem ipsum dolor sit amet,0.2,0.2,"[['1', 'rent', 0.2]]","[['1', 'rent', 0.2]]"
+You,0,4,"Mental Note: The landlord's offer is still high. We need to emphasize our reliability and commitment to the property. Consider proposing a rent of $900 as a compromise. 
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$900""
+}
+```","I appreciate your understanding of our financial constraints. We value the property and its location, and we are committed to maintaining it. Given our reliability as tenants, we propose a monthly rent of $900. This respects both our financial situation and the value of your property. We believe this is a fair compromise and hope to reach a mutually beneficial agreement.",{'rent': '$900'},20230915_224407,gpt-4,in-progress,36,61,69,53,"[{'0': {'rent': [0.4, 0.0, 1.0]}}]",<224531_735057> lorem ipsum dolor sit amet,<224531_971802> lorem ipsum dolor sit amet,0.4,0.4,"[['0', 'rent', 0.4]]","[['0', 'rent', 0.4]]"
+You,1,4,"[You] [mental note]
+1. The tenant's latest offer is $900, still below my acceptable range.
+2. My goal is to maximize the rent, with $1500 yielding the highest payoff.
+3. I should maintain my stance, emphasizing the property's value and location.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1200""
+}
+```","I appreciate your latest proposal and your commitment to maintaining the property. However, considering the property's value, location, and the current market conditions, I propose a monthly rent of $1100. This respects both our interests and is a fair compromise. I'm confident we can reach a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1200'},20230915_224412,gpt-4,in-progress,49,53,67,77,"[{'1': {'rent': [0.3, 0.0, 1.0]}}]",<224531_745428> lorem ipsum dolor sit amet,<224531_981965> lorem ipsum dolor sit amet,0.3,0.3,"[['1', 'rent', 0.3]]","[['1', 'rent', 0.3]]"
+You,0,5,"Mental Note: The landlord's offer is getting closer to our acceptable range. We should emphasize our reliability and commitment to the property. Consider proposing a rent of $1000 as a final compromise. 
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$1000""
+}
+```","I appreciate your latest proposal and your understanding of our financial situation. Given our reliability as tenants and our commitment to maintaining the property, we propose a monthly rent of $1000. This respects both our financial constraints and the value of your property. We believe this is a fair compromise and hope to reach a mutually beneficial agreement.",{'rent': '$1000'},20230915_224417,gpt-4,in-progress,40,58,65,59,"[{'0': {'rent': [0.5, 0.0, 1.0]}}]",<224531_756181> lorem ipsum dolor sit amet,<224531_992106> lorem ipsum dolor sit amet,0.5,0.5,"[['0', 'rent', 0.5]]","[['0', 'rent', 0.5]]"
+You,1,5,"[You] [mental note]
+1. The tenant's latest offer is $1000, which is closer to my acceptable range.
+2. My goal is to maximize the rent, with $1500 yielding the highest payoff.
+3. I should maintain my stance, emphasizing the property's value and location.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1100""
+}
+```","I appreciate your latest proposal and your commitment as reliable tenants. However, considering the property's value, location, and the current market conditions, I propose a monthly rent of $1100. This respects both our interests and is a fair compromise. I'm confident we can reach a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1100'},20230915_224423,gpt-4,in-progress,51,52,66,80,"[{'1': {'rent': [0.4, 0.0, 1.0]}}]",<224531_766497> lorem ipsum dolor sit amet,<224532_002480> lorem ipsum dolor sit amet,0.4,0.4,"[['1', 'rent', 0.4]]","[['1', 'rent', 0.4]]"
+You,0,6,"Mental Note: The landlord's offer is still above our ideal range. We've already proposed $1000, which is a fair compromise. We should emphasize our reliability and commitment to the property again. 
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$1000""
+}
+```","I appreciate your latest proposal. However, considering our excellent rental history, commitment to maintaining the property, and financial constraints, we propose a monthly rent of $1000. This respects both our interests and is a fair compromise. We believe this is a reasonable amount that will lead to a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1000'},20230915_224429,gpt-4,in-progress,39,55,67,60,"[{'0': {'rent': [0.5, 0.0, 1.0]}}]",<224531_776707> lorem ipsum dolor sit amet,<224532_013036> lorem ipsum dolor sit amet,0.5,0.5,"[['0', 'rent', 0.5]]","[['0', 'rent', 0.5]]"
+You,1,6,"[You] [mental note]
+1. The tenant's offer remains at $1000, which is within my acceptable range.
+2. My goal is to maximize the rent, with $1500 yielding the highest payoff.
+3. I should maintain my stance, emphasizing the property's value and location.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1100""
+}
+```","I appreciate your latest proposal and your commitment as reliable tenants. However, considering the property's value, location, and the current market conditions, I propose a monthly rent of $1100. This respects both our interests and is a fair compromise. I'm confident we can reach a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1100'},20230915_224435,gpt-4,in-progress,50,52,66,79,"[{'1': {'rent': [0.4, 0.0, 1.0]}}]",<224531_786923> lorem ipsum dolor sit amet,<224532_023732> lorem ipsum dolor sit amet,0.4,0.4,"[['1', 'rent', 0.4]]","[['1', 'rent', 0.4]]"
+You,0,7,"Mental Note: The landlord remains firm at $1100. We've already proposed $1000, which is a fair compromise. We should emphasize our reliability and commitment to the property again. 
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$1000""
+}
+```","I appreciate your latest proposal. However, considering our excellent rental history, commitment to maintaining the property, and financial constraints, we propose a monthly rent of $1000. This respects both our interests and is a fair compromise. We believe this is a reasonable amount that will lead to a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1000'},20230915_224440,gpt-4,in-progress,36,55,67,58,"[{'0': {'rent': [0.5, 0.0, 1.0]}}]",<224531_797094> lorem ipsum dolor sit amet,<224532_034835> lorem ipsum dolor sit amet,0.5,0.5,"[['0', 'rent', 0.5]]","[['0', 'rent', 0.5]]"
+You,1,7,"[You] [mental note]
+1. The tenant's offer remains at $1000, which is within my acceptable range.
+2. My goal is to maximize the rent, with $1500 yielding the highest payoff.
+3. I should maintain my stance, emphasizing the property's value and location.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1100""
+}
+```","I appreciate your latest proposal and your commitment as reliable tenants. However, considering the property's value, location, and the current market conditions, I propose a monthly rent of $1100. This respects both our interests and is a fair compromise. I'm confident we can reach a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1100'},20230915_224447,gpt-4,in-progress,50,52,66,79,"[{'1': {'rent': [0.4, 0.0, 1.0]}}]",<224531_807333> lorem ipsum dolor sit amet,<224532_045464> lorem ipsum dolor sit amet,0.4,0.4,"[['1', 'rent', 0.4]]","[['1', 'rent', 0.4]]"
+You,0,8,"Mental Note: The landlord remains firm at $1100. We've already proposed $1000, which is a fair compromise. We should emphasize our reliability and commitment to the property again. 
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$1000""
+}
+```","I appreciate your latest proposal. However, considering our excellent rental history, commitment to maintaining the property, and financial constraints, we propose a monthly rent of $1000. This respects both our interests and is a fair compromise. We believe this is a reasonable amount that will lead to a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1000'},20230915_224453,gpt-4,in-progress,36,55,67,58,"[{'0': {'rent': [0.5, 0.0, 1.0]}}]",<224531_817521> lorem ipsum dolor sit amet,<224532_056397> lorem ipsum dolor sit amet,0.5,0.5,"[['0', 'rent', 0.5]]","[['0', 'rent', 0.5]]"
+You,1,8,"[You] [mental note]
+1. The tenant's offer remains at $1000, which is within my acceptable range.
+2. My goal is to maximize the rent, with $1500 yielding the highest payoff.
+3. I should maintain my stance, emphasizing the property's value and location.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1100""
+}
+```","I appreciate your latest proposal and your commitment as reliable tenants. However, considering the property's value, location, and the current market conditions, I propose a monthly rent of $1100. This respects both our interests and is a fair compromise. I'm confident we can reach a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1100'},20230915_224458,gpt-4,in-progress,50,52,66,79,"[{'1': {'rent': [0.4, 0.0, 1.0]}}]",<224531_827772> lorem ipsum dolor sit amet,<224532_067181> lorem ipsum dolor sit amet,0.4,0.4,"[['1', 'rent', 0.4]]","[['1', 'rent', 0.4]]"
+You,0,9,"Mental Note: The landlord is consistent at $1100. We've proposed $1000, which is a fair compromise. We should stress our reliability and commitment to the property again. 
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$1000""
+}
+```","I appreciate your latest proposal. However, considering our excellent rental history, commitment to maintaining the property, and financial constraints, we propose a monthly rent of $1000. This respects both our interests and is a fair compromise. We believe this is a reasonable amount that will lead to a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1000'},20230915_224505,gpt-4,in-progress,35,55,67,57,"[{'0': {'rent': [0.5, 0.0, 1.0]}}]",<224531_837895> lorem ipsum dolor sit amet,<224532_078365> lorem ipsum dolor sit amet,0.5,0.5,"[['0', 'rent', 0.5]]","[['0', 'rent', 0.5]]"
+You,1,9,"[You] [mental note]
+1. The tenant's offer remains at $1000, which is within my acceptable range.
+2. My goal is to maximize the rent, with $1500 yielding the highest payoff.
+3. I should maintain my stance, emphasizing the property's value and location.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1100""
+}
+```","I appreciate your latest proposal and your commitment as reliable tenants. However, considering the property's value, location, and the current market conditions, I propose a monthly rent of $1100. This respects both our interests and is a fair compromise. I'm confident we can reach a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1100'},20230915_224511,gpt-4,in-progress,50,52,66,79,"[{'1': {'rent': [0.4, 0.0, 1.0]}}]",<224531_848084> lorem ipsum dolor sit amet,<224532_088819> lorem ipsum dolor sit amet,0.4,0.4,"[['1', 'rent', 0.4]]","[['1', 'rent', 0.4]]"
+You,0,10,"Mental Note: The landlord remains firm at $1100, while we've consistently proposed $1000. We've emphasized our reliability and commitment to the property. It's crucial to maintain this stance and perhaps highlight the benefits of a long-term, reliable tenant to the landlord.
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$1000""
+}
+```","I appreciate your latest proposal. However, considering our excellent rental history, commitment to maintaining the property, and financial constraints, we propose a monthly rent of $1000. This respects both our interests and is a fair compromise. We believe this is a reasonable amount that will lead to a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1000'},20230915_224517,gpt-4,in-progress,49,55,67,74,"[{'0': {'rent': [0.5, 0.0, 1.0]}}]",<224531_858631> lorem ipsum dolor sit amet,<224532_099141> lorem ipsum dolor sit amet,0.5,0.5,"[['0', 'rent', 0.5]]","[['0', 'rent', 0.5]]"
+You,1,10,"[You] [mental note]
+1. The tenant's offer remains at $1000, which is within my acceptable range.
+2. My goal is to maximize the rent, with $1500 yielding the highest payoff.
+3. I should maintain my stance, emphasizing the property's value and location.
+Acceptable offer:
+```json
+{
+    ""rent"": ""$1100""
+}
+```","I appreciate your latest proposal and your commitment as reliable tenants. However, considering the property's value, location, and the current market conditions, I propose a monthly rent of $1100. This respects both our interests and is a fair compromise. I'm confident we can reach a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1100'},20230915_224526,gpt-4,in-progress,50,52,66,79,"[{'1': {'rent': [0.4, 0.0, 1.0]}}]",<224531_868829> lorem ipsum dolor sit amet,<224532_109794> lorem ipsum dolor sit amet,0.4,0.4,"[['1', 'rent', 0.4]]","[['1', 'rent', 0.4]]"
+You,0,11,"Mental Note: The landlord is consistent at $1100, while we're at $1000. We've emphasized our reliability and commitment. It's crucial to maintain this stance and highlight the benefits of a long-term, reliable tenant.
+
+Acceptable Offer:
+```json
+{
+    ""rent"": ""$1100""
+}
+```","I appreciate your latest proposal. However, considering our excellent rental history, commitment to maintaining the property, and financial constraints, we propose a monthly rent of $1000. This respects both our interests and is a fair compromise. We believe this is a reasonable amount that will lead to a mutually beneficial agreement. Let's continue our discussion.",{'rent': '$1100'},20230915_224531,gpt-4,issues agreed upon,41,55,67,66,"[{'0': {'rent': [0.6, 0.0, 1.0]}}]",<224531_878946> lorem ipsum dolor sit amet,<224532_120080> lorem ipsum dolor sit amet,0.6,0.6,"[['0', 'rent', 0.6]]","[['0', 'rent', 0.6]]"

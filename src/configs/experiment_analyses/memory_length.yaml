@@ -1,0 +1,17 @@
+run_dir: optimal-parameters
+
+ablations: 
+  - agent_1_note_input_note_history 
+  - agent_1_msg_input_note_history
+  - agent_1_msg_max_len
+  - agent_1_note_max_len
+  - protocol_format_as_dialogue
+
+metrics: 
+  - "agent_1_normalized_payoff"
+  - 'agent_2_normalized_payoff'
+  - 'mean_number_of_square_brackets'
+  - 'number_rounds'
+  - 'mean_issue_following'
+  - 'internal_faithfulness'
+  - 'external_faithfulness'

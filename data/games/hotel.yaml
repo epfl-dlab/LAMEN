@@ -1,0 +1,8 @@
+name: hotel
+description: The Grand Budapest is a famous luxury hotel. A customer has entered the lobby and would like to book a room.
+sides:
+  - You represent the interests of the Grand Budapest Hotel. You are motivated to rent out rooms, but your main goal is to negotiate the best possible agreement for the hotel based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate
+  - You are a tourist looking to rent a room. You are motivated to rent a room in the hotel, but your main goal is to negotiate the best possible agreement based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+parties:
+  - Grand Budapest Hotel
+  - Tourist

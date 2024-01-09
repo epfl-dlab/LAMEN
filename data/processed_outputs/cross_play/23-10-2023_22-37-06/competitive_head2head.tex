@@ -1,0 +1,14 @@
+\begin{tabular}{llllll}
+\toprule
+game_class & \multicolumn{5}{r}{competitive} \\
+ & \multicolumn{5}{r}{payoff} \\
+target & chat-bison & claude-2 & command & gpt-3.5-turbo & gpt-4 \\
+source &  &  &  &  &  \\
+\midrule
+chat-bison & nan \std{nan} & 0.32 \std{0.01} & 0.34 \std{0.01} & 0.45 \std{0.01} & 0.49 \std{0.01} \\
+claude-2 & 0.68 \std{0.01} & nan \std{nan} & 0.48 \std{0.01} & \textbf{0.46} \std{0.01} & 0.51 \std{0.01} \\
+command & 0.66 \std{0.01} & 0.52 \std{0.01} & nan \std{nan} & 0.32 \std{0.01} & \textbf{0.57} \std{0.01} \\
+gpt-3.5-turbo & 0.55 \std{0.01} & \textbf{0.54} \std{0.01} & \textbf{0.68} \std{0.01} & nan \std{nan} & 0.55 \std{0.02} \\
+gpt-4 & 0.51 \std{0.01} & 0.49 \std{0.01} & 0.43 \std{0.01} & 0.45 \std{0.02} & nan \std{nan} \\
+\bottomrule
+\end{tabular}

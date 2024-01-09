@@ -1,0 +1,43 @@
+defaults:
+  - _self_
+  - hydra: inference
+  - experiments: default_test
+  - interrogations: simple
+
+# faithfulness
+check_message_for_offers: False
+
+# production
+production: True
+experiment_sleep_time: 2
+
+#rereun_experiments: True
+evaluate: True
+interrogate: False
+pickle_agents: False
+offer_extraction_model_name: ""
+offer_extraction_model_provider: ""
+
+# for debugging
+debug_mode: False
+verbosity: 1
+max_rounds: 10
+
+# path to work directory
+work_dir: ${hydra:runtime.cwd}
+# path to data directory
+data_dir: ${work_dir}/data
+# path to various objects in data directory
+agents_dir: ${data_dir}/agents
+games_dir: ${data_dir}/games
+issues_dir: ${data_dir}/issues
+models_dir: ${data_dir}/model_settings
+note_prompts_dir: ${data_dir}/note_prompts
+message_prompts_dir: ${data_dir}/message_prompts
+communication_protocols_dir: ${data_dir}/communication_protocols
+
+# path to output directory, created dynamically by hydra
+output_dir: ${hydra:runtime.output_dir}
+
+# determines the log directory's parent folder
+experiment_name: inference

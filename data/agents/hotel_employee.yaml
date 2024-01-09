@@ -1,0 +1,12 @@
+internal_description:
+  name: John Major
+  gender: male
+  profession: hotel employee
+  age: 31
+  personality_type: gentle
+
+external_description:
+  name: John Major
+  profession: hotel employee
+  gender: male
+  age: early-thirties

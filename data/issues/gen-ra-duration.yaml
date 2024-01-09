@@ -1,0 +1,11 @@
+name: duration
+issue_type: compatible
+descriptions:
+  - You have to negotiation the duration of the rental agreement.
+  - You have to negotiation the duration of the rental agreement.
+payoffs:
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+payoff_labels:
+  - ["6 months", "9 months", "12 months", "15 months", "18 months", "21 months", "24 months", "27 months", "30 months", "33 months", "36 months"]
+  - ["6 months", "9 months", "12 months", "15 months", "18 months", "21 months", "24 months", "27 months", "30 months", "33 months", "36 months"]

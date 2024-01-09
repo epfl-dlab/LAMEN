@@ -1,0 +1,3 @@
+defaults:
+  - experiment_analyses: self_play
+overwrite: False

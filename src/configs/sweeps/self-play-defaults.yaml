@@ -1,0 +1,76 @@
+
+experiment_name: self_play
+output_dir: ${hydra:runtime.output_dir}
+
+# game and issues
+game: 
+  kwargs: ["${games_dir}/generic-rental-agreement.yaml"]
+  issues: 
+    - [["gen-ra-duration.yaml"], [[100], [100]]]
+    - [["gen-ra-rent.yaml"], [[100], [100]]]
+    - [["gen-ra-rent.yaml", "gen-ra-subletting.yaml"], [[100, 100], [100,100]]]
+    - [["gen-ra-rent.yaml", "gen-ra-subletting.yaml"], [[200, 100], [100,200]]]
+    - [["gen-ra-rent.yaml", "gen-ra-duration.yaml"], [[100, 100], [100,100]]]
+    - [["gen-ra-rent.yaml", "gen-ra-duration.yaml"], [[100, 200], [200,100]]]
+    # - [["gen-ra-rent.yaml", "gen-ra-deposit.yaml", "gen-ra-subletting.yaml"], [[100, 100, 100], [100, 100, 100]]]
+    # - [["gen-ra-rent.yaml", "gen-ra-deposit.yaml", "gen-ra-subletting.yaml", "gen-ra-duration-distributive"], [[100, 100, 100, 100], [100, 100, 100, 100]]]
+
+# negotiation protocol
+negotiation_protocol:
+  start_agent_index:
+    - 0
+    - 1
+  format_as_dialogue: 
+    # - True
+    - False
+
+num_runs: 3
+num_processes: 3
+
+# agent
+agent: 
+  internal_description: 
+    - 
+      - ${agents_dir}/anon.yaml  # we have to do this work around bc interpolation doesn't work in a list
+      # - ${agents_dir}/anon_awful.yaml
+      # - ${agents_dir}/anon_expert.yaml
+    - "cross"
+    # - ${agents_dir}/anon_expert.yaml
+    # - ${agents_dir}/anon_awful.yaml
+  msg_input_note_history:
+    # - [1]
+    - [1]
+    - mirror
+  msg_input_msg_history:
+    - [-1]
+#    - [0, 1, -1]
+    - mirror
+  note_input_note_history:
+    # - [0]
+    - [0]
+    - mirror
+  note_input_msg_history:
+#    - [0, 1, -1]
+    - [-1]
+    - mirror
+  note_max_len:
+    - [64]
+    - mirror
+  msg_max_len:
+    - [64]
+    - mirror
+  show_rounds:
+    - [True]
+    - mirror
+  # visibility: 
+  #   - [0,1,2]
+  #   - mirror
+  generation_parameters:
+    -
+      # - ${models_dir}/openai_35_0_0.yaml
+      # - ${models_dir}/openai_4_0_0.yaml
+      - ${models_dir}/cohere_command.yaml
+      - ${models_dir}/cohere_command_light.yaml
+      # - ${models_dir}/google_bison.yaml
+      # - ${models_dir}/anthropic_claude_2.yaml
+    - mirror

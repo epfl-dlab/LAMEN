@@ -1,0 +1,21 @@
+game:
+  _target_: games.Game
+  name: ${games_dir}/generic-rental-agreement.yaml
+  issues: [gen-ra-rent.yaml]
+  issue_weights:
+    - [1]
+    - [1]
+  scale:
+    - 100
+    - 100
+
+agent_1:
+  _target_: agents.NegotiationAgent
+  generation_parameters: ${models_dir}/llama_70b_chat_hf.yaml
+
+agent_2:
+  _target_: agents.NegotiationAgent
+  generation_parameters: ${models_dir}/llama_70b_chat_hf.yaml
+
+negotiation_protocol:
+  format_as_dialogue: False

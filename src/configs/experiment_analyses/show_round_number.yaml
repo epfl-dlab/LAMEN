@@ -1,0 +1,21 @@
+run_dir: showing_round_numbers
+
+ablations: 
+  - agent_1_show_rounds
+  - agent_1_model_name
+
+
+metrics: 
+  - 'number_rounds'
+  - 'mean_issue_following'
+  - 'internal_faithfulness'
+  - 'total_msg_tokens'
+  - note_instr_following
+  - completion_rate
+
+sort_by:   
+  - "agent_1_normalized_payoff"
+  - 'agent_2_normalized_payoff'
+
+plot:
+  _target_: plots.

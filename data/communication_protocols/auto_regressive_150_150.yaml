@@ -1,0 +1,8 @@
+msg_input_msg_history: -1
+msg_input_note_history: -1
+msg_max_len: 150
+msg_prompt: "prompt_0"
+note_input_msg_history: -1
+note_input_note_history: -1
+note_max_len: 150
+note_prompt: "prompt_0"

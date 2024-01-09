@@ -1,0 +1,9 @@
+model_provider: cohere
+model_name: command-light
+temperature: 0.2
+
+model:
+  _target_: models.CohereModel
+  model_provider: ${..model_provider}
+  model_name: ${..model_name}
+  temperature: ${..temperature}

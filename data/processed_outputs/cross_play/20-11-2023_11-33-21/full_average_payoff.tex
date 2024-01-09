@@ -1,0 +1,13 @@
+\begin{tabular}{llllll}
+\toprule
+target &         \bison{} &                 \claude{} &                 \cohere{} &               \four{}$^*$ &                  \turbo{} \\
+{} &           payoff &                    payoff &                    payoff &                    payoff &                    payoff \\
+source      &                  &                           &                           &                           &                           \\
+\midrule
+\bison{}    &     -- \std{nan} &  \textbf{0.69} \std{0.10} &           0.64 \std{0.09} &           0.65 \std{0.07} &           0.56 \std{0.06} \\
+\claude{}   &  0.61 \std{0.16} &              -- \std{nan} &           0.62 \std{0.06} &           0.58 \std{0.06} &           0.56 \std{0.04} \\
+\cohere{}   &  0.62 \std{0.09} &           0.59 \std{0.06} &              -- \std{nan} &           0.64 \std{0.06} &           0.46 \std{0.07} \\
+\four{}$^*$ &  0.74 \std{0.06} &  \textbf{0.69} \std{0.05} &  \textbf{0.69} \std{0.06} &              -- \std{nan} &  \textbf{0.59} \std{0.06} \\
+\turbo{}    &  0.58 \std{0.05} &           0.59 \std{0.05} &  \textbf{0.69} \std{0.04} &  \textbf{0.69} \std{0.05} &              -- \std{nan} \\
+\bottomrule
+\end{tabular}

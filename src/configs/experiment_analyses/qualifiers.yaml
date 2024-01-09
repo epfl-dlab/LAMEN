@@ -1,0 +1,16 @@
+run_dir: qualifiers
+
+ablations: 
+  - agent_1_model_name 
+
+metrics: 
+  - 'number_rounds'
+  - 'mean_issue_following'
+  - 'internal_faithfulness'
+  - 'external_faithfulness'
+  - 'total_msg_tokens'
+  - msg_instr_following
+  - note_instr_following
+
+plot:
+  x: 1

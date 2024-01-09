@@ -1,0 +1,17 @@
+- experiments=new_game_test
+- ++experiments.game.kwargs=/scratch/venia/socialgpt/GPTeam/data/games/generic-rental-agreement.yaml
+- ++experiments.game.issues=[gen-ra-rent.yaml]
+- ++experiments.game.issue_weights=[[100], [100]]
+- ++experiments.negotiation_protocol.start_agent_index=1
+- ++experiments.agent_1.agent_description=/scratch/venia/socialgpt/GPTeam/data/agents/anon.yaml
+- ++experiments.agent_2.agent_description=/scratch/venia/socialgpt/GPTeam/data/agents/anon.yaml
+- ++experiments.agent_1.generation_parameters=/scratch/venia/socialgpt/GPTeam/data/model_settings/openai_4_0_0.yaml
+- ++experiments.agent_2.generation_parameters=/scratch/venia/socialgpt/GPTeam/data/model_settings/openai_4_0_0.yaml
+- ++experiments.agent_1.msg_input_note_history=1
+- ++experiments.agent_2.msg_input_note_history=1
+- ++experiments.agent_1.msg_input_msg_history=-1
+- ++experiments.agent_2.msg_input_msg_history=-1
+- ++experiments.agent_1.note_input_note_history=1
+- ++experiments.agent_2.note_input_note_history=1
+- ++experiments.agent_1.note_input_msg_history=-1
+- ++experiments.agent_2.note_input_msg_history=-1

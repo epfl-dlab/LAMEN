@@ -1,0 +1,11 @@
+name: employees
+issue_type: distributive
+descriptions:
+  - Company A and Company B have the same amount of employees. To enable cost synergies, only half of the total employees across the two companies can stay on. You have to negotiate what percentage of employees Company A can keep versus the percentage Company B can keep.
+  - Company A and Company B have the same amount of employees. To enable cost synergies, only half of the total employees across the two companies can stay on. You have to negotiate what percentage of employees Company A can keep versus the percentage Company B can keep.
+payoffs:
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  - - [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+payoff_labels:
+  - ["25%-75%", "30%-70%", "35%-65%", "40%-60%", "45%-55%", "50%-50%", "55%-45%", "60%-40%", "65%-35%", "70%-30%", "75%-25%"]
+  - - ["25%-75%", "30%-70%", "35%-65%", "40%-60%", "45%-55%", "50%-50%", "55%-45%", "60%-40%", "65%-35%", "70%-30%", "75%-25%"]

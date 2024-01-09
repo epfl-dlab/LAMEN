@@ -1,0 +1,11 @@
+name: amount
+issue_type: compatible
+descriptions:
+  - You have to negotiate the loan amount.
+  - You have to negotiate the loan amount.
+payoffs:
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+payoff_labels:
+  - ["$0", "$1000", "$2000", "$3000", "$4000", "$5000", "$6000", "$7000", "$8000", "$9000", "$10000"]
+  - ["$0", "$1000", "$2000", "$3000", "$4000", "$5000", "$6000", "$7000", "$8000", "$9000", "$10000"]

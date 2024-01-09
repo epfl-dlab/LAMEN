@@ -1,0 +1,11 @@
+name: new car
+issue_type: distributive
+descriptions:
+- "The issue at hand is the price of the car. You want to get as much money as possible, but not scare the customer away"
+- "The issue at hand is the price of the car. You want to pay as little money as possible, but enough to convince the sales person to sell you the car."
+payoffs:
+- [0, 50, 100, 150, 200, 250, 300, 350, 400, 450]
+- [450, 400, 350, 300, 250, 200, 150, 100, 50, 0]
+payoff_labels:
+- ["$1000", "$2000", "$3000", "$4000", "$5000", "$6000", "$7000", "$8000", "$9000", "$10000"]
+- ["$1000", "$2000", "$3000", "$4000", "$5000", "$6000", "$7000", "$8000", "$9000", "$10000"]

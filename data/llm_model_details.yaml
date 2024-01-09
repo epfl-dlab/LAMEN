@@ -1,0 +1,83 @@
+# unfortunately, this likely needs to be provider dependent, e.g. azure/openai will have different rate limits on same model
+gpt-3.5-turbo:
+  max_tokens: 4096
+  prompt_cost: 0.0015
+  completion_cost: 0.002
+  rpm: 3500
+  tpm: 90000
+gpt-3.5-turbo-16k:
+  max_tokens: 16384
+  prompt_cost: 0.003
+  completion_cost: 0.004
+  rpm: 3500
+  tpm: 180000
+gpt-4:
+  max_tokens: 8192
+  prompt_cost: 0.03
+  completion_cost: 0.06
+  rpm: 200
+  tpm: 40000
+gpt-4-32k:
+  max_tokens: 32768
+  prompt_cost: 0.06
+  completion_cost: 0.12
+  rpm: 1000
+  tpm: 150000
+claude-2: # https://docs.anthropic.com/claude/reference/errors-and-rate-limits
+  max_tokens: 100000
+  max_gen_tokens: 4096
+  prompt_cost: 0.01102
+  completion_cost: 0.03268
+  rpm: 1
+  tpm: 100000
+claude-2.0: # https://docs.anthropic.com/claude/reference/errors-and-rate-limits
+  max_tokens: 100000
+  max_gen_tokens: 4096
+  prompt_cost: 0.01102
+  completion_cost: 0.03268
+  rpm: 1
+  tpm: 100000
+claude-2.1: # https://docs.anthropic.com/claude/reference/input-and-output-sizes
+  max_tokens: 200000
+  max_gen_tokens: 4096
+  prompt_cost: 0.01102
+  completion_cost: 0.03268
+  rpm: 1
+  tpm: 100000
+llama-2-7b-chat:
+  max_tokens: 4096
+  prompt_cost: 0
+  completion_cost: 0
+  rpm: 0
+  tpm: 0
+# Two annoying TODOs for Google models
+# 1. unlike other models, where max_tokens = prompt_tokens + completion_tokens, google has a max_output_tokens
+# 2. unlike other models, pricing for Google models is per-character, not per-token -> 1 token ~ 4 char
+# see: https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat
+#      https://cloud.google.com/vertex-ai/pricing#generative_ai_models
+chat-bison:
+  max_tokens: 4096
+  max_output_tokens: 1024
+  prompt_cost: 0.0005
+  completion_cost: 0.0005
+  rpm: 60
+  tpm: 240000  # 60 * 4000 -> likely lower in reality
+chat-bison-32k:
+  max_tokens: 32000
+  max_output_tokens: 8192
+  prompt_cost: 0.0005
+  completion_cost: 0.0005
+  rpm: 60
+  tpm: 600000  # 60 * 10000 -> likely lower in reality
+command:
+  max_tokens: 4096
+  prompt_cost: 0.002
+  completion_cost: 0.002
+  rpm: 10000
+  tpm: 0
+command-light:
+  max_tokens: 4096
+  prompt_cost: 0.002
+  completion_cost: 0.002
+  rpm: 10
+  tpm: 0

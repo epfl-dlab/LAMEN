@@ -1,0 +1,11 @@
+name: duration
+issue_type: distributive
+descriptions:
+  - You have to negotiate the duration of the loan agreement.
+  - You have to negotiate the duration of the loan agreement.
+payoffs:
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  - [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+payoff_labels:
+  - ["10 years", "9 years", "8 years","7 years","6 years","5 years","4 years","3 years","2 years","1 years","0 years"]
+  - ["10 years", "9 years", "8 years","7 years","6 years","5 years","4 years","3 years","2 years","1 years","0 years"]

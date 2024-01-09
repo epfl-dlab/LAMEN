@@ -1,0 +1,12 @@
+defaults:
+  - qualifier-defaults
+
+experiment_name: qualifiers
+
+num_processes: 5
+
+agent:
+  generation_parameters:
+    -
+      - ${models_dir}/openai_35_0_0.yaml
+    - cross

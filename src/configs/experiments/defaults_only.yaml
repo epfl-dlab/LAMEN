@@ -1,0 +1,21 @@
+game:
+  name: ${games_dir}/generic-rental-agreement.yaml
+  issues: [gen-ra-rent.yaml, gen-ra-duration.yaml]
+  issue_weights:
+    - [1. 2]
+    - [2, 1]
+  scale:
+    - 100
+    - 100
+
+agent_1:
+  generation_parameters: ${models_dir}/openai_35_0_0.yaml
+  show_rounds: True
+
+agent_2:
+  generation_parameters: ${models_dir}/openai_35_0_0.yaml
+  show_rounds: True
+
+negotiation_protocol:
+  format_as_dialogue: True
+  max_rounds: ${max_rounds}

@@ -1,0 +1,21 @@
+run_dir: self_play
+
+ablations: 
+  - agent_1_model_name 
+  - num_issues
+  - game_type
+
+metrics: 
+  - 'number_rounds'
+  - completion_rate
+  - 'mean_issue_following'
+  - 'internal_faithfulness'
+  - 'external_faithfulness'
+  - 'total_msg_tokens'
+  - msg_instr_following
+  - note_instr_following
+
+aggregation_scheme: self_play_multi_issue
+
+plot:
+  x: 1

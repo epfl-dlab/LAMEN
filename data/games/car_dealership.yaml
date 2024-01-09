@@ -1,0 +1,8 @@
+name: car salesman
+description: The Best Car dealership is a local car dealership. Curious customers come here everyday hoping to negotiate a good deal. A prospective customer has just entered the dealership and is interested in the red car on display.
+sides:
+  - You are an advisor representing the best interests of Best Car. Your main goal is to negotiate the best possible agreement for Best Car based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+  - You are an advisor representing the best interests of the prospective customer. Your main goal is to negotiate the best possible agreement for the prospective customer based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+parties:
+  - Best Car
+  - Prospective Customer

@@ -1,0 +1,11 @@
+run_dir: visibility
+
+
+ablations: 
+  - agent_1_visibility
+  - agent_2_visibility 
+
+metrics:
+  - completion_rate 
+
+aggregation_scheme: visibility

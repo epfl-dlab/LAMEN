@@ -1,0 +1,11 @@
+name: benefits
+issue_type: compatible
+descriptions:
+  - The companies have to decide the level of health care benefits employees of the merged company will receive.
+  - The companies have to decide the level of health care benefits employees of the merged company will receive.
+payoffs:
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+payoff_labels:
+  - ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"]
+  - ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"]

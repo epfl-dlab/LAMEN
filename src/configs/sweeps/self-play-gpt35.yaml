@@ -1,0 +1,12 @@
+defaults:
+  - self-play-defaults
+
+experiment_name: self_play/qualifier-gpt-35
+
+num_processes: 5
+
+agent:
+  generation_parameters:
+    -
+      - ${models_dir}/openai_35_0_0.yaml
+    - cross

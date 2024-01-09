@@ -1,0 +1,8 @@
+Finally, for each of the issues write what you believe to be an acceptable offer.
+
+acceptable offer format:
+```json{
+    "issue_name_0": "<acceptable offer>",
+    "issue_name_1": "<acceptable offer>",
+    ...
+}```

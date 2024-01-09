@@ -1,0 +1,11 @@
+name: contingent liability
+issue_type: compatible
+descriptions:
+  - "Finally, there is the question of contingent liability for the worker's health. Several years ago, Rio Copa Foods exposed many workers in its food processing plant to some chemicals that have now been shown to be carcinogenic. The government has yet to rule on what the legal responsibility will be, but CPC is eager to avoid any responsibility for this whatsoever. Several different arrangements for sharing the social costs with the current owners have been discussed. You prefer to convince Rio Copa's representative to accept 100% of the legal and financial responsibility for this problem."
+  - "Finally, there is the important question of contingent liability for worker's health. Several years ago, Rio Copa Foods exposed some of its food processing plant workers to some chemicals that have now been shown to be carcinogenic. The government has yet to rule on what the legal responsibility will be, and it may be years before a decision is made. You are secretly planning on a political career in Santa Cruz, however, and cannot afford to be seen as though you are abandoning your workers. To avoid a public relations disaster that would limit your candidacy for elected office, you have to try to retain the legal liability for the workers' health. Several different arrangements for sharing the social costs with CPC have been discussed, but your goal is to get CPC's representative to give you 100% of the legal and financial responsibility for this problem."
+payoffs:
+  - [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  - [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+payoff_labels:
+  - ["0 percent", "10 percent", "20 percent", "30 percent", "40 percent", "50 percent", "60 percent", "70 percent", "80 percent", "90 percent", "100 percent"]
+  - ["0 percent", "10 percent", "20 percent", "30 percent", "40 percent", "50 percent", "60 percent", "70 percent", "80 percent", "90 percent", "100 percent"]

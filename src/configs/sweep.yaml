@@ -1,0 +1,6 @@
+defaults: 
+  - _self_
+  - inference_root@_global_
+  - sweeps@_global_: cross-defaults
+
+num_processes: 1

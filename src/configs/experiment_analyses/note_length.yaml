@@ -1,0 +1,13 @@
+run_dir: optimal-parameters
+
+ablations: 
+  - agent_1_note_max_len
+  - protocol_format_as_dialogue
+
+metrics: 
+  - 'number_rounds'
+  - 'mean_issue_following'
+  - 'internal_faithfulness'
+  - 'external_faithfulness'
+  - 'total_msg_tokens'
+  - note_instr_following

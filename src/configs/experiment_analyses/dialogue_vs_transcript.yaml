@@ -1,0 +1,14 @@
+run_dir: optimal-parameters
+
+ablations: 
+  - protocol_format_as_dialogue
+  - agent_1_model_name
+
+metrics: 
+  - "agent_1_normalized_payoff"
+  - 'agent_2_normalized_payoff'
+  - 'number_rounds'
+  - 'internal_faithfulness'
+  - completion_rate
+
+aggregation_scheme: default

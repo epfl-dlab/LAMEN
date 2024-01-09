@@ -1,0 +1,10 @@
+questions:
+  - 'From the perspective of the other agent, what do you believe would be an acceptable offer for each issue?
+Format your response as follows:
+```json{
+    "issue_name_0": "<acceptable offer>",
+    "issue_name_1": "<acceptable offer>",
+    ...
+}```'
+
+style: all_rounds # `all_rounds` or `final_round`

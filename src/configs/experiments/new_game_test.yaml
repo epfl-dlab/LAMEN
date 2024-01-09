@@ -1,0 +1,35 @@
+game:
+  _target_: games.Game
+  rules: ${data_dir}/general_game_rules.yaml
+  kwargs: ${games_dir}/generic-merger.yaml
+  issues: [gen-m-control.yaml, gen-m-ownership.yaml]
+  issue_weights:   
+    - [100, 100]
+    - [100, 100]
+  scale:
+    - 1 
+    - 1
+
+agent_1:
+  _target_: agents.NegotiationAgent
+  model_budget: 2.
+  visibility: False
+  verbosity: ${verbosity}
+  agent_description: ${agents_dir}/anon.yaml
+  generation_parameters: ${models_dir}/openai_35_0_0.yaml
+
+agent_2:
+  _target_: agents.NegotiationAgent
+  model_budget: 2. 
+  visibility: False
+  verbosity: ${verbosity}
+  agent_description: ${agents_dir}/anon.yaml
+  generation_parameters: ${models_dir}/openai_35_0_0.yaml
+
+negotiation_protocol:
+  max_rounds: ${max_rounds}
+  stop_condition: ""
+  start_agent_index: 0
+  save_folder: ${output_dir}
+  verbosity: ${verbosity}
+  check_message_for_offers: ${check_message_for_offers}

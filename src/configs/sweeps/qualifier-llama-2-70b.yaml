@@ -1,0 +1,12 @@
+defaults:
+  - qualifier-defaults
+
+experiment_name: qualifiers
+
+num_processes: 1
+
+agent:
+  generation_parameters:
+    -
+      - ${models_dir}/llama_70b_chat_hf.yaml
+    - cross

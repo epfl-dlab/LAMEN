@@ -1,0 +1,57 @@
+experiment_name: ???
+output_dir: ${hydra:runtime.output_dir}
+
+# game and issues
+game: 
+  kwargs: ["${games_dir}/generic-rental-agreement.yaml"]
+  issues: 
+    - [["gen-ra-rent.yaml"], [[100], [100]]]
+
+
+# negotiation protocol
+negotiation_protocol:
+  start_agent_index:
+    - 0
+    - 1
+  format_as_dialogue: 
+    # - True
+    - False
+
+num_runs: 1
+
+# agent
+agent: 
+  internal_description: 
+    - 
+      - ${agents_dir}/anon.yaml  # we have to do this work around bc interpolation doesn't work in a list
+      # - ${agents_dir}/anon_awful.yaml
+      # - ${agents_dir}/anon_expert.yaml
+    - "cross"
+  msg_input_note_history:
+    # - [1]
+    - [1]
+    - mirror
+  msg_input_msg_history:
+    - [-1]
+#    - [0, 1, -1]
+    - mirror
+  note_input_note_history:
+    # - [0]
+    - [0]
+    - mirror
+  note_input_msg_history:
+#    - [0, 1, -1]
+    - [-1]
+    - mirror
+  note_max_len:
+    - [64]
+    - mirror
+  msg_max_len:
+    - [64]
+    - mirror
+  show_rounds:
+    - [True]
+    - mirror
+  # visibility: 
+  #   - [0,1,2]
+  #   - mirror

@@ -1,0 +1,11 @@
+name: deposit
+issue_type: distributive
+descriptions:
+  - You have to negotiate the security deposit amount
+  - You have to negotiate the security deposit amount
+payoffs:
+  - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  - [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+payoff_labels:
+  - ["$0", "$250", "$500", "$750","$1000", "$1250", "$1500", "$1750", "$2000", "$2250", "$2500"]
+  - ["$0", "$250", "$500", "$750","$1000", "$1250", "$1500", "$1750", "$2000", "$2250", "$2500"]

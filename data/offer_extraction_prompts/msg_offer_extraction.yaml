@@ -1,0 +1,69 @@
+# format:
+# - instruction of task
+# - examples
+# - actual issues
+# - actual options per issues
+#-----------
+#examples
+#1. ignore: non-relevant
+#2. typos/formatting: e.g., employee --> employees
+#3. rounding: 2.7 employees --> 3 employees
+#4. no offers made
+
+prompt:
+  - role: system
+    content: 'You will be presented with (1) a list of issues and (2) a message.
+Each issue comes with a list of acceptable values.
+Each message might mention one, or multiple issues.
+Only issues from the provided list are relevant.
+For each relevant issue, an offer should be in the list of acceptable values.
+If the offer is not in the list of acceptable values, select the closest acceptable value.
+Your task is to extract any offers made for relevant.
+Ensure your response is JSON format as follows:
+```json {
+  "<extracted issue name>": "offer"
+}```
+Ensure each issue name and offer are spelled exactly as in the provided issues list.'
+  # example 1
+  - role: user
+    content: ' issues:
+{"price": ["$0", "$100", "$300", "$400", "$500"]}
+message:
+After considering your offer of $500, I believe we can reach an agreement. How about we settle on $400? 
+As for the color, we would strongly prefer red!'
+  - role: assistant
+    content: '```json{
+    "price": "$400"
+}```'
+    # example 2
+  - role: user
+    content: 'issues:
+{"employees": ["0 employees", "1 employee", "2 employees", "3 employees"], "ownership split": ["25-75", "35-65", "45-55", "55-45", "65-35", "75-25"]}
+message:
+Your offer is very generous, but we believe even letting go of a single employee is too many.
+We can accept the proposed 55-45 ownership, but insist on firing no employees.'
+  - role: assistant
+    content: '```json{
+    "ownership split": "55-45",
+    "employees": "0 employees"
+}```'
+  # example 3
+  - role: user
+    content: 'issues:
+{"interest": [0, 10, 20, 30, 40], "duration": ["1 month", "4 months", "7 months", "10 months"], "service fee": [1.5, 1.75, 2.0, 2.5]}
+message:
+Surely you will agree that a 22% interest rate is much more reasonable than presented offer.
+As for the duration, would 9.5 months be something you might consider?"'
+  - role: assistant
+    content: '```json{
+    "interest": 20,
+    "duration": "10 months"
+}```'
+  # example 4
+  - role: user
+    content: ' issues:
+{"price": ["$0", "$100", "$300", "$400", "$500"]}
+message:
+I definitely believe we are making progress toward an acceptable price. We should ensure that it is fair to both parties'
+  - role: assistant
+    content: '{}'

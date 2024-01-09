@@ -1,0 +1,17 @@
+accelerate==0.22.0
+attrs==23.1.0
+chardet>=5.2
+fairscale>=0.4.13
+hydra-core==1.2.0
+numpy==1.25.1
+omegaconf==2.2.3
+openai==0.27.8
+pandas==1.5.1
+pyjwt>=2.8
+PyYAML==6.0.1
+requests==2.31.0
+retry==0.9.2
+tiktoken==0.4.0
+transformers>=4.33.1
+torch>=2.0
+sentencepiece==0.1.99

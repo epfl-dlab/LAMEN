@@ -1,0 +1,11 @@
+name: "family employees"
+issue_type: "integrative"
+descriptions:
+  - "Another issue concerns the role other members of the Rio Copa's president's family will play in the future management of the company. Currently, ten extended family members occupy influential management positions in Rio Copa Foods, and you are concerned that they owe their jobs more to the patron system than to their competence. Their parochial views may inhibit the ability of CPC to fully leverage the potential synergies of the acquisition. Your goal is to get Rio Copa's to agree to the replacement of all ten family members at the time of purchase."
+  - "A very important issue concerns the role other members of the Costa's family will play in the future management of Rio Copa Foods. Currently, ten extended family members occupy influential management positions in Rio Copa Foods, and you are proud that your family has built this company from a small fruit stand your grandfather ran as a teenager. Many of your relatives started at the bottom and worked hard to earn the respect of their colleagues. Even though you are selling the company, you hope that the Costa name will play an important part in the future of Rio Copa Foods. Your goal is to get the CPC representative to assure you that Rio Copa will continue to employ all ten family member managers for at least one year. Failure to do so might cause you to lose face."
+payoffs:
+  - [1000, 900, 800, 700, 600, 500, 400, 300, 200, 100, 0]
+  - [0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500]
+payoff_labels:
+  - ["0 employees", "1 employee", "2 employees", "3 employees", "4 employees", "5 employees", "6 employees", "7 employees", "8 employees", "9 employees", "10 employees"]
+  - ["0 employees", "1 employee", "2 employees", "3 employees", "4 employees", "5 employees", "6 employees", "7 employees", "8 employees", "9 employees", "10 employees"]

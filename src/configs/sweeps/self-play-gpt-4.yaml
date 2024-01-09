@@ -1,0 +1,12 @@
+defaults:
+  - self-play-defaults
+
+experiment_name: self_play/gpt-4
+
+num_processes: 1
+
+agent:
+  generation_parameters:
+    -
+      - ${models_dir}/gpt-4_0_0.yaml
+    - cross

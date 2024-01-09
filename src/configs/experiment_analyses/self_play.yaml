@@ -1,0 +1,6 @@
+run_dir: self_play
+
+aggregation_method:
+  _target_: evaluation_methods.SelfPlayEval
+
+aggregation_scheme: "self-play"

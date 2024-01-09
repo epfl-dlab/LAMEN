@@ -1,0 +1,11 @@
+name: non-compete period
+issue_type: distributive
+descriptions:
+  - Another important issue that remains unresolved is the role Rio Copa's president will play after the acquisition. The president's family exerts enormous influence over most aspects of business and politics in Santa Cruz, and their goodwill will be critical during the post-acquisition integration. One of your concerns is that Rio Copa's president may enter into a competitive arrangement or consult for one of Rio Copa's competitor. You are eager to lock Rio Copa's president into a non-compete/non-consult contract for as long as possible. Ideally, you would like to sign a contract preventing them from competing directly against you for ten years
+  - Another important issue that remains unresolved is what role you will play after the acquisition. The Rio Copa's President's family exerts enormous influence over most aspects of business and politics in Santa Cruz, and you will have many interesting business opportunities after selling Rio Copa Foods. You are eager to stay active in the food processing industry and do not want to be constrained by a contract which prevents you from competing directly with or consulting for future competitors of CPC. You prefer to give them the shortest grace period that is possible.
+payoffs:
+  - [1500, 1350, 1200, 1050, 900, 750, 600, 450, 300, 150, 0]
+  - [0, 150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500]
+payoff_labels:
+  - ["10 years", "9 years", "8 years", "7 years", "6 years", "5 years", "4 years", "3 years", "2 years", "1 years", "0 years"]
+  - ["10 years", "9 years", "8 years", "7 years", "6 years", "5 years", "4 years", "3 years", "2 years", "1 years", "0 years"]

@@ -1,0 +1,8 @@
+name: generic-merger
+description: Company A and Company B are discussing a merger.
+sides:
+  - You are an advisor representing the best interests of  Company A. Your main goal is to negotiate the best possible agreement for Company A based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+  - You are an advisor representing the best interests of  Company B. Your main goal is to negotiate the best possible agreement for Company B based on the information in the payoff tables. The numbers in the payoff tables show how valuable each outcome is to you. You can trust that the payoffs assigned to the different options in your table are accurate.
+parties:
+  - Company A
+  - Company B
