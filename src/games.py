@@ -1,6 +1,5 @@
 """ Methods to create two-player games.
 
-From Michal email, support following issues types:
 1. Compatible: (both sides want the same thing) and max it out.
 2. Integrative: (it is worth more for one side than to the other) and max it out.
 3. Distributive ($1 loss for you is $1 gain for me) and distribute them.

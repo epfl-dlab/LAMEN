@@ -2,7 +2,7 @@ from attr import define, field
 from .abstract_eval import AbstractEval
 import pandas as pd 
 
-@dataclass 
+@define 
 class SelfPlayEval(AbstractEval):
     # how many points to sample in cross play
     sample_n: int = field(default=None)
@@ -16,7 +16,7 @@ class SelfPlayEval(AbstractEval):
 
     def _preprocess(self): 
         """preprocess the run to make it fit for cross-play eval"""
-        if len(limit_models) > 0:
+        if len(self.limit_models) > 0:
             df = self._limit_models(df, self.limit_models)
 
         if self.ensure_complete_runs:
@@ -28,7 +28,7 @@ class SelfPlayEval(AbstractEval):
         self.completion = self.self.get_completed()
 
     def _process(self):
-        self.df_processed = completion
+        self.df_processed = self.completion
         self.df_processed['agent_1_internal_description'] = self.df_processed['agent_1_internal_description'].apply(lambda x: 'Expert' if 'expert' in x else 'Awful' if 'awful' in x else 'No description')
         self.df_processed['agent_2_internal_description'] = self.df_processed['agent_2_internal_description'].apply(lambda x: 'Expert' if 'expert' in x else 'Awful' if 'awful' in x else 'No description')
 

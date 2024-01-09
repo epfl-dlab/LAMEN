@@ -16,7 +16,7 @@ class SelfPlayEval(AbstractEval):
 
     def _preprocess(self, df):
         """preprocess the run to make it fit for cross-play eval"""
-        if len(limit_models) > 0:
+        if len(self.limit_models) > 0:
             df = self._limit_models(df, self.limit_models)
 
         if self.ensure_complete_runs:
@@ -27,7 +27,7 @@ class SelfPlayEval(AbstractEval):
         self.completion = self.self.get_completed()
 
     def _process(self)
-        self.df_processed = completion
+        self.df_processed = self.completion
         agent_1_start = self.df_processed[self.df_processed['protocol_start_agent_index'] == 0]
         agent_2_start = self.df_processed[self.df_processed['protocol_start_agent_index'] == 1]
 
