@@ -16,9 +16,9 @@
     </a>
 </p>
 
-
-# Evaluating Language Model Agency through Negotiations
-
+<h2 align="center">
+    <p>Evaluating Language Model Agency through Negotiations</p>
+</h2>
 
 This repository contains the official implementation for the paper 
 _Evaluating Language Model Agency through Negotiations_ [[1]](#citation). 
