@@ -1,34 +1,56 @@
-# Evaluating Language Model Agency through Negotiations
-___
+<p align="center">
+      <br/>
+            <img src="assets/main-no-header.png" alt="image" width="800" height="auto">
+      <br/>
+<p>
+<p align="center">
+    <a href="https://epfl-dlab.github.io/LAMEN">
+    <img alt="Website" src="https://img.shields.io/badge/website-online-green">
+    </a>
+    <a href="https://dlab.epfl.ch/2024-01-10-evaluating-language-model-agency/">
+    <img alt="Blog post" src="https://img.shields.io/badge/blog-online-green">
+    </a>
+    <a href="https://www.python.org/downloads/release/python-3110/"><img alt="PyPi version" src="https://img.shields.io/badge/python-3.11-blue.svg"></a>
+    <a href="https://arxiv.org/abs/2401.04536">
+    <img alt="Paper" src="https://img.shields.io/badge/arXiv-arXiv:2401.04536-b31b1b.svg">
+    </a>
+    <a href='https://zenodo.org/records/10254697'>
+    <img alt='Data' src='https://img.shields.io/badge/DOI-zenodo.10254697-blue.svg'>
+</p>
+
+<h1 align="center">
+    <p>Evaluating Language Model Agency through Negotiations</p>
+</h1>
+
 This repository contains the official implementation for the paper 
 _Evaluating Language Model Agency through Negotiations_ [[1]](#citation). 
 
-**TL;DR: let language models negotiate to find out how well they function as autonomous agents.**
+**TL;DR: let language models negotiate to find out how well they function as autonomous agents. (🤖💬🤝🤖💬)**
 
 Interested in learning more?
-- We wrote a [blogpost](https://dlab.epfl.ch/2024-01-10-evaluating-language-model-agency/)
-- Shared our [code & data](https://github.com/epfl-dlab/LAMEN)
-- And wrote a [paper](https://arxiv.org/abs/2401.04536)
+- 🎓 We wrote a [paper](https://arxiv.org/abs/2401.04536)
+- 🗂️ Shared our [data](https://zenodo.org/records/10254697)
+- 📝 And wrote a [blogpost](https://dlab.epfl.ch/2024-01-10-evaluating-language-model-agency/)
 
 ## Overview
 Language Models (LMs) are increasingly being used to power 'agents', capable of planning and interacting over
 multiple steps. Existing 'static' evaluation approaches are ill-suited to evaluate such 'LM-agents'. 
 Specifically, they **do not**:
-1. Measure behavior over multiple-steps
-2. Allow for cross-model interaction
-3. Jointly evaluate alignment and performance metrics
+1. 🔄     Measure behavior over extended periods
+2. 🤖💬🤖   Allow for cross-model interaction
+3. 🤝⚖️🏆 Jointly evaluate alignment and performance metrics
 
-Additionally, static evaluations are prone to data-leakage and risk becoming outdated quickly.
+Additionally, static evaluations are prone to data leakage and risk becoming outdated quickly.
 Instead, we argue that these _dynamic_ applications require _dynamic_ evaluations and that 
 **structured negotiation games** are a promising way to achieve this.
 
 What can you find in this repository?
-- **No-code required** scripts to reproduce negotiation games reported on in our paper
-- **No-code required** guide to run your own negotiation experiments
+- [**No-code required**] Scripts to reproduce negotiation games reported on in our paper
+- [**No-code required**] Guide to run your own negotiation experiments
 - Example notebooks and run scripts
 
 ## Getting Started!
-The simplest way of getting started is to:
+The simplest way to get started is to:
 1. clone this repository, then
 2. create a `secrets.json` file in the root directory looking as follows:
 ```json
@@ -70,13 +92,16 @@ python src/run_scratch.py \
 ++offer_extraction_model_provider=$model_provider \
 ++max_rounds=1
 ```
-Tada! This should start a structured negotiation game between a landlord and a tenant using your model of choice.
+Tada! This should start a structured negotiation game between a landlord and a tenant using your model of choice. 
+For a more elaborate example, e.g., on how to change the games/issues/issues_weights as well as the agent descriptions,
+please check out the `example.ipynb` notebook.
 
 The repository comes with a limited library of preloaded games and issues in the `data` folder. 
 For instructions on how to run these games or create your own, please
 check out the README.md guide contained in this repository under `data/`.
 
-For any questions, feel free to open a ticket or reach out directly to Tim and Venia :).
+For any questions, feel free to open a ticket or reach out directly to [Tim](tim.davidson@epfl.ch) or 
+[Venia](veniamin.veselovsky@epfl.ch) :).
 
 ### Note on Google/MSFT Azure
 If you are using Google or MSFT Azure, you also need to update the relevant endpoints in 
@@ -90,6 +115,8 @@ Save the exported .json file in a file called `gcp_secrets.json` in the root dir
 MIT
 
 ## Citation
+Please cite our work using one of the following if you end up using the repository - thanks!
+
 ```
 [1] T.R. Davidson, V. Veselovsky, M. Josifoski, M. Peyrard, A. Bosselut, M. Kosinski, R. West (2023). 
 Evaluating Language Model Agency through Negotiations.
@@ -97,7 +124,7 @@ Evaluating Language Model Agency through Negotiations.
 
 BibTeX format:
 ```
-@article{davidson23,
+@article{davidson24,
   title={Evaluating Language Model Agency through Negotiations},
   author={Davidson, Tim R. and 
           Veselovsky, Veniamin and
