@@ -1,20 +1,20 @@
 <p align="center">
       <br/>
-            <img src="assets/img/main-no-header.png" alt="image" width="800" height="auto">
+            <img src="assets/main-no-header.png" alt="image" width="800" height="auto">
       <br/>
 <p>
 <p align="center">
     <a href="https://epfl-dlab.github.io/LAMEN">
     <img alt="Website" src="https://img.shields.io/badge/website-online-green">
     </a>
-    <a href="https://vminvsky.com">
+    <a href="https://dlab.epfl.ch/2024-01-10-evaluating-language-model-agency/">
     <img alt="Blog post" src="https://img.shields.io/badge/blog-online-green">
     </a>
     <a href="https://www.python.org/downloads/release/python-3110/"><img alt="PyPi version" src="https://img.shields.io/badge/python-3.11-blue.svg"></a>
-    <a href="https://vminvsky.com">
-    <img alt="Documentation" src="https://img.shields.io/badge/arXiv-2308.01285-b31b1b.svg">
+    <a href="https://arxiv.org/abs/2401.04536">
+    <img alt="Paper" src="https://img.shields.io/badge/arXiv-arXiv:2401.04536-b31b1b.svg">
     </a>
-    <a href=''>
+    <a href='https://zenodo.org/records/10254697'>
     <img alt='Data' src='https://img.shields.io/badge/DOI-zenodo.10254697-blue.svg'>
 </p>
 
@@ -124,7 +124,7 @@ Evaluating Language Model Agency through Negotiations.
 
 BibTeX format:
 ```
-@article{davidson23,
+@article{davidson24,
   title={Evaluating Language Model Agency through Negotiations},
   author={Davidson, Tim R. and 
           Veselovsky, Veniamin and
