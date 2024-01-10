@@ -4,9 +4,6 @@
       <br/>
 <p>
 <p align="center">
-    <a href="https://epfl-dlab.github.io/LAMEN">
-    <img alt="Website" src="https://img.shields.io/badge/website-online-green">
-    </a>
     <a href="https://dlab.epfl.ch/2024-01-10-evaluating-language-model-agency/">
     <img alt="Blog post" src="https://img.shields.io/badge/blog-online-green">
     </a>
