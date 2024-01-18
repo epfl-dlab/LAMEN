@@ -116,12 +116,12 @@ Please cite our work using one of the following if you end up using the reposito
 
 ```
 [1] T.R. Davidson, V. Veselovsky, M. Josifoski, M. Peyrard, A. Bosselut, M. Kosinski, R. West. 
-Evaluating Language Model Agency through Negotiations. arXiv preprint arXiv:2401.04536, 2024.
+Evaluating Language Model Agency through Negotiations. ICLR, 2024.
 ```
 
 BibTeX format:
 ```
-@misc{davidson2024evaluating,
+@article{davidson2024evaluating,
       title={Evaluating Language Model Agency through Negotiations}, 
       author={Tim R. Davidson and 
               Veniamin Veselovsky and 
@@ -131,8 +131,6 @@ BibTeX format:
               Michal Kosinski and 
               Robert West},
       year={2024},
-      eprint={2401.04536},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+      journal={ICLR}
 }
 ```
