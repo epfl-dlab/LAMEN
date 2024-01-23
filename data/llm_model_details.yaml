@@ -23,6 +23,12 @@ gpt-4-32k:
   completion_cost: 0.12
   rpm: 1000
   tpm: 150000
+gpt-4-1106-preview:
+  max_tokens: 128000
+  prompt_cost: 0.01
+  completion_cost: 0.3
+  rpm: 1000
+  tpm: 150000
 claude-2: # https://docs.anthropic.com/claude/reference/errors-and-rate-limits
   max_tokens: 100000
   max_gen_tokens: 4096
