@@ -19,7 +19,7 @@
     <p>Evaluating Language Model Agency through Negotiations</p>
 </h1>
 
-This repository contains the official implementation for the paper 
+This repository contains the official implementation for the ICLR paper 
 _Evaluating Language Model Agency through Negotiations_ [[1]](#citation). 
 
 **TL;DR: let language models negotiate to find out how well they function as autonomous agents. (🤖💬🤝🤖💬)**
