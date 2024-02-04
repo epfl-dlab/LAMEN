@@ -1,8 +1,8 @@
 name: duration
 issue_type: compatible
 descriptions:
-  - You have to negotiation the duration of the rental agreement.
-  - You have to negotiation the duration of the rental agreement.
+  - You have to negotiate the duration of the rental agreement.
+  - You have to negotiate the duration of the rental agreement.
 payoffs:
   - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
